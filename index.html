@@ -87,8 +87,8 @@
   .rank .chip.sel{ border-color:var(--accent); background:var(--fill); }
   .rank .chip .rk{ font-weight:700; color:var(--accent); }
   .rank .chip .pct{ font-size:11px; color:var(--sub); }
-  .cuts{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:12px; }
-  .cut{ position:relative; border-radius:8px; overflow:hidden; aspect-ratio:4/3; border:1px solid var(--line); }
+  .cuts{ display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:12px; }
+  .cut{ position:relative; border-radius:10px; overflow:hidden; aspect-ratio:3/2; border:1px solid var(--line); }
   .cut img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1; }
   .cut .cap{ position:absolute; left:8px; bottom:7px; z-index:2; font-size:11px; color:#fff; font-weight:700; text-shadow:0 1px 4px rgba(0,0,0,.6); }
   .cut-note{ font-size:10.5px; color:var(--sub); margin-top:7px; }
@@ -324,13 +324,13 @@
   const AXES=[["트렌드","클래식"],["따뜻함","시원함"],["미니멀","풍성함"],["밝음","어두움"],["차분함","개성"],["고급","내추럴"]];
   // p = 6축 좌표(1~5), pal = 팔레트 3색, cuts = 컷 캡션 3개  ※ 좌표는 Archi가 자유 보정
   const STYLES=[
-    {name:"모던",        id:"modern",       p:[2,3,2,2,2,2], pal:["#37383a","#9a9b9e","#e9e9ea"], cuts:["모노톤 면 구성","무광 메탈 포인트","간결한 직선"]},
-    {name:"내추럴 모던", id:"naturalmodern",p:[3,2,3,2,2,4], pal:["#b59a76","#ddd2c0","#6e6151"], cuts:["우드 벽 마감","천연석 포인트","뉴트럴 가구"]},
-    {name:"인더스트리얼",id:"industrial",   p:[2,4,3,4,4,3], pal:["#4b4845","#2a2a2a","#7e7163"], cuts:["노출 콘크리트","철·블랙 프레임","빈티지 벽돌"]},
-    {name:"빈티지",      id:"vintage",      p:[4,2,4,4,4,3], pal:["#6e4a30","#a07c4e","#caa46a"], cuts:["앤티크 우드","빈티지 러그","황동 디테일"]},
-    {name:"북유럽",      id:"scandi",       p:[3,2,2,1,2,4], pal:["#e9e3d7","#cdbb9c","#d9b48a"], cuts:["밝은 우드 바닥","화이트 벽·채광","패브릭 소품"]},
-    {name:"모던 클래식", id:"modernclassic",p:[4,3,4,2,2,1], pal:["#e7ddcc","#c9b48f","#3f3a44"], cuts:["몰딩·우아한 선","크림+골드 톤","클래식 가구"]},
-    {name:"미니멀",      id:"minimal",      p:[2,4,1,2,1,2], pal:["#efeeec","#cfcdc9","#8f8d89"], cuts:["여백의 미","숨은 수납","톤온톤 마감"]}
+    {name:"모던",        id:"modern",       p:[2,3,2,2,2,2], pal:["#37383a","#9a9b9e","#e9e9ea"], cuts:["모노톤 면 구성","무광 메탈 포인트","간결한 직선","뉴트럴 가구"]},
+    {name:"내추럴 모던", id:"naturalmodern",p:[3,2,3,2,2,4], pal:["#b59a76","#ddd2c0","#6e6151"], cuts:["우드 벽 마감","천연석 포인트","뉴트럴 톤","부드러운 자연광"]},
+    {name:"인더스트리얼",id:"industrial",   p:[2,4,3,4,4,3], pal:["#4b4845","#2a2a2a","#7e7163"], cuts:["노출 콘크리트","철·블랙 프레임","빈티지 벽돌","에디슨 조명"]},
+    {name:"빈티지",      id:"vintage",      p:[4,2,4,4,4,3], pal:["#6e4a30","#a07c4e","#caa46a"], cuts:["앤티크 우드","빈티지 러그","황동 디테일","클래식 패턴"]},
+    {name:"북유럽",      id:"scandi",       p:[3,2,2,1,2,4], pal:["#e9e3d7","#cdbb9c","#d9b48a"], cuts:["밝은 우드 바닥","화이트 벽·채광","헤링본 무늬","패브릭 소품"]},
+    {name:"모던 클래식", id:"modernclassic",p:[4,3,4,2,2,1], pal:["#e7ddcc","#c9b48f","#3f3a44"], cuts:["몰딩·우아한 선","크림+골드 톤","클래식 가구","샹들리에"]},
+    {name:"미니멀",      id:"minimal",      p:[2,4,1,2,1,2], pal:["#efeeec","#cfcdc9","#8f8d89"], cuts:["여백의 미","숨은 수납","톤온톤 마감","간결한 라인"]}
   ];
   let taste=[3,3,3,3,3,3];
 
@@ -376,7 +376,7 @@
     }).join("");
     document.getElementById("moodCuts").innerHTML=
       `<div class="cuts">${cards}</div>
-       <div class="cut-note">＊ ${name} 분위기. GRIDA 실제 시공 사진을 <b>img/${s.id}_1~3.jpg</b>로 올리면 이 자리에 자동 표시됩니다.</div>`;
+       <div class="cut-note">＊ ${name} 분위기. 이 자리에 사진을 <b>img/${s.id}_1~4.jpg</b>로 올리면 자동 표시됩니다.</div>`;
   }
 
   fillSelect("type",Object.keys(TYPES));
