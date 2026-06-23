@@ -324,7 +324,7 @@
   const AXES=[["트렌드","클래식"],["따뜻함","시원함"],["미니멀","풍성함"],["밝음","어두움"],["차분함","개성"],["고급","내추럴"]];
   // p = 6축 좌표(1~5), pal = 팔레트 3색, cuts = 컷 캡션 3개  ※ 좌표는 Archi가 자유 보정
   const STYLES=[
-    {name:"모던",        id:"modern",       p:[2,3,2,2,2,2], pal:["#37383a","#9a9b9e","#e9e9ea"], cuts:["모노톤 면 구성","무광 메탈 포인트","간결한 직선","뉴트럴 가구"]},
+    {name:"모던",        id:"modern",       p:[2,3,2,2,2,2], pal:["#37383a","#9a9b9e","#e9e9ea"], cuts:["모노톤 면 연출 (무광 메탈 포인트)","군더더기 없는 현대적 세련됨","뉴트럴 가구와의 조화","심플하고 간결한 직선"]},
     {name:"내추럴 모던", id:"naturalmodern",p:[3,2,3,2,2,4], pal:["#b59a76","#ddd2c0","#6e6151"], cuts:["우드 벽 마감","천연석 포인트","뉴트럴 톤","부드러운 자연광"]},
     {name:"인더스트리얼",id:"industrial",   p:[2,4,3,4,4,3], pal:["#4b4845","#2a2a2a","#7e7163"], cuts:["노출 콘크리트","철·블랙 프레임","빈티지 벽돌","에디슨 조명"]},
     {name:"빈티지",      id:"vintage",      p:[4,2,4,4,4,3], pal:["#6e4a30","#a07c4e","#caa46a"], cuts:["앤티크 우드","빈티지 러그","황동 디테일","클래식 패턴"]},
@@ -376,7 +376,7 @@
     }).join("");
     document.getElementById("moodCuts").innerHTML=
       `<div class="cuts">${cards}</div>
-       <div class="cut-note">＊ ${name} 분위기. 이 자리에 사진을 <b>img/${s.id}_1~4.jpg</b>로 올리면 자동 표시됩니다.</div>`;
+       <div class="cut-note">＊ ${name} 분위기. 사진을 <b>img/${s.id}_1~4.jpg</b>로 올리면 자동 표시됩니다.</div>`;
   }
 
   fillSelect("type",Object.keys(TYPES));
