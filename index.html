@@ -30,6 +30,8 @@
   .sec-no{ font-size:12px; font-weight:700; color:var(--paper); background:var(--ink); width:20px; height:20px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; }
   .sec-title{ font-size:14px; font-weight:700; letter-spacing:.04em; }
   .sec-en{ font-size:10px; color:var(--sub); letter-spacing:.08em; }
+  .sec-pick{ margin-left:auto; font-size:10.5px; font-weight:700; color:var(--accent); display:inline-flex; align-items:center; gap:5px; max-width:52%; }
+  .sec-pick .dot{ width:10px; height:10px; border-radius:50%; border:1px solid rgba(0,0,0,.1); flex:0 0 auto; }
 
   .grid{ display:grid; gap:10px 18px; }
   .g2{ grid-template-columns:1fr 1fr; } .g3{ grid-template-columns:1fr 1fr 1fr; }
@@ -236,7 +238,7 @@
 
   <!-- 5 디자인 취향 -->
   <section>
-    <div class="sec-head"><span class="sec-no">5</span><span class="sec-title">디자인 취향</span><span class="sec-en">Taste · 클라이언트 평가</span></div>
+    <div class="sec-head"><span class="sec-no">5</span><span class="sec-title">디자인 취향</span><span class="sec-en">Taste · 클라이언트 평가</span><span class="sec-pick" id="pick5"></span></div>
     <p class="eum-hint" style="margin-bottom:12px;">각 축에서 끌리는 위치를 고르세요. 가운데가 기본이며, 양 끝에 가까울수록 취향이 뚜렷한 것입니다.</p>
     <div id="axes"></div>
     <div id="tasteResult"></div>
@@ -245,7 +247,7 @@
 
   <!-- 6 컬러 -->
   <section>
-    <div class="sec-head"><span class="sec-no">6</span><span class="sec-title">컬러</span><span class="sec-en">Color · 2026 팬톤 트렌드</span></div>
+    <div class="sec-head"><span class="sec-no">6</span><span class="sec-title">컬러</span><span class="sec-en">Color · 2026 팬톤 트렌드</span><span class="sec-pick" id="pick6"></span></div>
     <p class="eum-hint" style="margin-bottom:12px;">마음에 드는 무드를 화살표로 넘겨 고르시면, 그 분위기의 <b>2026 팬톤 공식 컬러 팔레트</b>가 우측에 함께 표시됩니다. <span style="color:var(--accent);font-weight:700;">PANTONE Color of the Year 2026 · Cloud Dancer</span></p>
     <div class="pal-wrap">
       <div class="pal-left">
@@ -428,6 +430,7 @@
       seg.querySelectorAll("button").forEach(b=>{ b.classList.toggle("on",+b.dataset.v===taste[ax]); });
     });
   }
+  function setPick5(n){ const e=document.getElementById("pick5"); if(!e) return; const st=STYLES.find(x=>x.name===n); const c=st?st.pal[2]:"var(--accent)"; e.innerHTML=`<span class="dot" style="background:${c}"></span>${n}`; }
   function renderTaste(){
     const conv=taste.reduce((s,v)=>s+Math.abs(v-3),0);
     const ext=taste.filter(v=>v===1||v===5).length;
@@ -441,8 +444,8 @@
     document.getElementById("tasteResult").innerHTML=
       `<div class="taste-conv">${c}</div>
        <div class="rank">${top.map((r,i)=>`<div class="chip" data-name="${r.s.name}"><span class="rk">${i+1}</span> ${r.s.name} <span class="pct">${r.pct}%</span></div>`).join("")}</div>`;
-    document.querySelectorAll(".rank .chip").forEach(ch=>{ ch.onclick=()=>{ document.querySelectorAll(".rank .chip").forEach(x=>x.classList.remove("sel")); ch.classList.add("sel"); showCuts(ch.dataset.name); }; });
-    const first=document.querySelector(".rank .chip"); if(first){ first.classList.add("sel"); showCuts(top[0].s.name); }
+    document.querySelectorAll(".rank .chip").forEach(ch=>{ ch.onclick=()=>{ document.querySelectorAll(".rank .chip").forEach(x=>x.classList.remove("sel")); ch.classList.add("sel"); showCuts(ch.dataset.name); setPick5(ch.dataset.name); }; });
+    const first=document.querySelector(".rank .chip"); if(first){ first.classList.add("sel"); showCuts(top[0].s.name); setPick5(top[0].s.name); }
     window.__topStyle=top[0].s;
   }
   function showCuts(name){
@@ -497,6 +500,7 @@
     const img=document.getElementById("palImg"); img.style.display=""; img.src="img/pal_"+p.id+".jpg";
     document.getElementById("palCount").textContent=(selPal+1)+" / "+PALS.length;
     document.getElementById("palName").textContent=p.name;
+    { const pk=document.getElementById("pick6"); if(pk) pk.innerHTML=`<span class="dot" style="background:linear-gradient(135deg,${p.g[0]},${p.g[1]})"></span>${p.name}`; }
     document.getElementById("palDesc").textContent=p.desc;
     const oc=p.chips.slice().sort((a,b)=>((b[0].indexOf("11-4201")===0?1:0)-(a[0].indexOf("11-4201")===0?1:0)));
     document.getElementById("palChips").innerHTML=oc.map(palChip).join("");
