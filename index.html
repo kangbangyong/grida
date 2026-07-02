@@ -71,6 +71,24 @@
   .warn{ font-size:10px; color:var(--sub); margin-top:10px; line-height:1.5; border-top:1px dashed var(--hair); padding-top:8px; }
   .warn b{ color:var(--accent); }
 
+  /* special (7) — 특화 시설 토글 */
+  .spec{ border-bottom:1px dashed var(--hair); padding:10px 0; }
+  .spec:last-of-type{ border-bottom:none; }
+  .spec .nm{ font-size:12.5px; font-weight:700; }
+  .spec .nt{ font-size:11px; color:var(--sub); margin-top:2px; line-height:1.45; }
+  .spec-seg{ display:flex; gap:5px; margin-top:7px; flex-wrap:wrap; }
+  .spec-seg button{ font-size:10.5px; font-weight:700; padding:4px 11px; border-radius:13px; border:1px solid var(--line); background:#fff; color:var(--sub); cursor:pointer; font-family:inherit; white-space:nowrap; }
+  .spec-seg button:hover{ border-color:var(--accent); }
+  .spec-seg button.inc.on{ background:var(--accent); border-color:var(--accent); color:#fff; }
+  .spec-seg button.sep.on{ background:var(--req-bg); border-color:var(--req-bd); color:var(--req-tx); }
+  .spec-seg button.na.on{ background:var(--na-bg); border-color:var(--na-bd); color:var(--na-tx); }
+  .spec-free{ margin-top:8px; }
+  .spec-free input{ width:100%; border:1px solid var(--line); border-radius:7px; padding:7px 9px; font-size:12px; font-family:inherit; color:var(--ink); }
+  .spec-free input:focus{ outline:none; border-color:var(--accent); }
+  .spec-sum{ margin-top:13px; background:var(--fill); border:1px solid var(--hair); border-radius:9px; padding:11px 12px; font-size:11.5px; line-height:1.6; color:var(--ink); }
+  .spec-sum b{ color:var(--accent); }
+  .spec-sum .sep-warn{ color:var(--req-tx); }
+
   /* taste profiler (5) */
   .axis{ display:grid; grid-template-columns:78px 1fr 78px; align-items:center; gap:8px; margin-bottom:9px; }
   .axis .lab{ font-size:11.5px; color:var(--ink); }
@@ -92,6 +110,31 @@
   .cut img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1; }
   .cut .cap{ position:absolute; left:8px; bottom:7px; z-index:2; font-size:11px; color:#fff; font-weight:700; text-shadow:0 1px 4px rgba(0,0,0,.6); }
   .cut-note{ font-size:10.5px; color:var(--sub); margin-top:7px; }
+
+  /* color (6) — 2026 팬톤 트렌드 슬라이더 (이미지 1 : 팬톤 8칩) */
+  .pal-wrap{ display:grid; grid-template-columns:1.05fr 1fr; gap:14px; align-items:start; }
+  .pal-stage{ position:relative; border:1px solid var(--line); border-radius:10px; overflow:hidden; aspect-ratio:4/3; background:linear-gradient(135deg,var(--g1,#ddd),var(--g2,#bbb)); }
+  .pal-stage img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .pal-nav{ position:absolute; top:50%; transform:translateY(-50%); z-index:2; width:30px; height:30px; border-radius:50%; border:none; background:rgba(255,255,255,.86); color:var(--ink); font-size:18px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 1px 5px rgba(0,0,0,.18); font-family:inherit; }
+  .pal-nav:hover{ background:#fff; }
+  .pal-nav.prev{ left:8px; } .pal-nav.next{ right:8px; }
+  .pal-count{ position:absolute; right:8px; bottom:8px; z-index:2; font-size:10px; font-weight:700; color:#fff; background:rgba(0,0,0,.5); padding:2px 8px; border-radius:999px; letter-spacing:.04em; }
+  .pchips{ display:grid; grid-template-columns:repeat(2,1fr); gap:7px; }
+  .pchip{ border:1px solid var(--hair); border-radius:7px; overflow:hidden; background:#fff; position:relative; }
+  .pchip.coty{ border:1.5px solid var(--accent); }
+  .pchip .sw{ height:30px; border-bottom:1px solid var(--hair); }
+  .pchip .meta{ padding:4px 6px 5px; }
+  .pchip .pt{ font-size:7.5px; color:var(--sub); letter-spacing:.04em; }
+  .pchip .cd{ font-size:8.5px; color:var(--sub); font-family:ui-monospace,"SFMono-Regular",monospace; }
+  .pchip .nm{ font-size:9px; color:var(--ink); line-height:1.15; }
+  .pchip .coty-tag{ position:absolute; top:3px; right:3px; font-size:7.5px; font-weight:700; color:#fff; background:var(--accent); padding:1px 5px; border-radius:999px; }
+  .pal-name{ font-size:13px; font-weight:700; color:var(--accent); margin-top:11px; }
+  .pal-desc{ font-size:12px; color:var(--ink); line-height:1.55; margin-top:4px; }
+  .pal-dots{ display:flex; gap:6px; margin-top:11px; flex-wrap:wrap; }
+  .pal-dots button{ width:8px; height:8px; padding:0; border-radius:50%; border:none; background:var(--line); cursor:pointer; }
+  .pal-dots button.on{ background:var(--accent); }
+  .pal-note{ font-size:10.5px; color:var(--sub); margin-top:12px; line-height:1.5; }
+  .pal-note b{ color:var(--accent); }
 
   .foot{ margin-top:22px; border-top:1.5px solid var(--ink); padding-top:10px; display:flex; justify-content:space-between; align-items:flex-end; }
   .foot .stmt{ font-size:11.5px; color:var(--accent); font-weight:700; max-width:60%; }
@@ -164,13 +207,15 @@
       <label class="f">지구단위 (해당 시)<input id="district"></label>
       <label class="f">건축물 용도<select id="bldgUse"></select></label>
       <label class="f">정화조 용량 (해당 시)<input id="septic" placeholder="㎥/일 또는 인용"></label>
+      <label class="f">전기용량 (계약전력)<input id="elecCap" placeholder="예: 단상 5kW / 3상 10kW"></label>
       <label class="f">희망 일정 · 오픈<input id="schedule"></label>
     </div>
     <div style="margin-top:12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
       <a class="eum" href="https://www.eum.go.kr" target="_blank" rel="noopener">토지이음 ↗ <small style="font-weight:400;">용도지역·지구단위</small></a>
       <a class="eum" href="https://www.gov.kr/mw/AA020InfoCappView.do?CappBizCD=15000000098" target="_blank" rel="noopener">정부24 건축물대장 ↗ <small style="font-weight:400;">건축물용도·구조</small></a>
+      <a class="eum" href="https://online.kepco.co.kr" target="_blank" rel="noopener">한전ON ↗ <small style="font-weight:400;">계약전력·계약종별</small></a>
     </div>
-    <div class="eum-hint" style="margin-top:6px;">주소만 입력하면 조회 가능 (모두 국가 운영·무료). 토지이음 = 토지(용도지역·지구), 정부24 건축물대장 = 건축물(정확한 용도·구조).</div>
+    <div class="eum-hint" style="margin-top:6px;">주소만 입력하면 조회 가능 (모두 국가 운영·무료). 토지이음 = 토지(용도지역·지구), 정부24 건축물대장 = 건축물(정확한 용도·구조). 계약전력은 전기요금 고지서(우측 상단 10자리 고객번호) 또는 한전ON·고객센터 123에서 확인 — 상가·집합건물은 관리사무소 문의.</div>
   </section>
 
   <!-- 3 공간의 목적 -->
@@ -196,6 +241,38 @@
     <div id="axes"></div>
     <div id="tasteResult"></div>
     <div id="moodCuts"></div>
+  </section>
+
+  <!-- 6 컬러 -->
+  <section>
+    <div class="sec-head"><span class="sec-no">6</span><span class="sec-title">컬러</span><span class="sec-en">Color · 2026 팬톤 트렌드</span></div>
+    <p class="eum-hint" style="margin-bottom:12px;">마음에 드는 무드를 화살표로 넘겨 고르시면, 그 분위기의 <b>2026 팬톤 공식 컬러 팔레트</b>가 우측에 함께 표시됩니다. <span style="color:var(--accent);font-weight:700;">PANTONE Color of the Year 2026 · Cloud Dancer</span></p>
+    <div class="pal-wrap">
+      <div class="pal-left">
+        <div class="pal-stage" id="palStage">
+          <button class="pal-nav prev" id="palPrev" aria-label="이전 무드">‹</button>
+          <img id="palImg" alt="" onerror="this.style.display='none'">
+          <span class="pal-count" id="palCount"></span>
+          <button class="pal-nav next" id="palNext" aria-label="다음 무드">›</button>
+        </div>
+        <div class="pal-name" id="palName"></div>
+        <div class="pal-desc" id="palDesc"></div>
+        <div class="pal-dots" id="palDots"></div>
+      </div>
+      <div class="pal-side">
+        <div class="pchips" id="palChips"></div>
+      </div>
+    </div>
+    <div class="pal-note" id="palNote"></div>
+  </section>
+
+  <!-- 7 특화 시설 -->
+  <section>
+    <div class="sec-head"><span class="sec-no">7</span><span class="sec-title">특화 시설</span><span class="sec-en">Special · 추가공사 방지 · 선택</span></div>
+    <p class="eum-hint" style="margin-bottom:12px;">나중에 '별도'라는 말이 없도록, 처음부터 견적에 담는 항목입니다. 해당 항목을 <b>포함 / 별도 / 해당없음</b>으로 표시하세요. (해도 되고 안 해도 되지만, 결국 공사에 필요한 것들입니다.)</p>
+    <div id="specList"></div>
+    <div class="spec-sum" id="specSum"></div>
+    <p class="warn">⚠ '별도'로 두면 기본 견적엔 빠지고 공사 중 추가될 수 있습니다. <b>처음부터 포함</b>하면 총액이 투명해집니다.</p>
   </section>
 
   <div class="foot">
@@ -339,14 +416,14 @@
       `<div class="axis"><span class="lab l">${a[0]}</span>
          <div class="seg" data-ax="${i}">${[1,2,3,4,5].map(v=>`<button data-v="${v}"></button>`).join("")}</div>
          <span class="lab r">${a[1]}</span></div>`).join("");
-    document.querySelectorAll(".seg").forEach(seg=>{
+    document.querySelectorAll("#axes .seg").forEach(seg=>{
       const ax=+seg.dataset.ax;
       seg.querySelectorAll("button").forEach(b=>{ b.onclick=()=>{ taste[ax]=+b.dataset.v; syncSeg(); renderTaste(); }; });
     });
     syncSeg();
   }
   function syncSeg(){
-    document.querySelectorAll(".seg").forEach(seg=>{
+    document.querySelectorAll("#axes .seg").forEach(seg=>{
       const ax=+seg.dataset.ax;
       seg.querySelectorAll("button").forEach(b=>{ b.classList.toggle("on",+b.dataset.v===taste[ax]); });
     });
@@ -366,6 +443,7 @@
        <div class="rank">${top.map((r,i)=>`<div class="chip" data-name="${r.s.name}"><span class="rk">${i+1}</span> ${r.s.name} <span class="pct">${r.pct}%</span></div>`).join("")}</div>`;
     document.querySelectorAll(".rank .chip").forEach(ch=>{ ch.onclick=()=>{ document.querySelectorAll(".rank .chip").forEach(x=>x.classList.remove("sel")); ch.classList.add("sel"); showCuts(ch.dataset.name); }; });
     const first=document.querySelector(".rank .chip"); if(first){ first.classList.add("sel"); showCuts(top[0].s.name); }
+    window.__topStyle=top[0].s;
   }
   function showCuts(name){
     const s=STYLES.find(x=>x.name===name); if(!s) return;
@@ -379,6 +457,97 @@
        <div class="cut-note">＊ ${name} 분위기. 사진을 <b>img/${s.id}_1~4.jpg</b>로 올리면 자동 표시됩니다.</div>`;
   }
 
+  /* ===== 6. 컬러 (2026 팬톤 트렌드 팔레트) ===== */
+  const PALS=[
+    {id:"powdered",name:"Powdered Pastels",g:["#EAD9DC","#C7DBE9"],
+     desc:"파스텔과 뉴트럴 톤이 클라우드 댄서와 어우러져, 미묘하고 절제된 색조 변화를 만듭니다.",
+     chips:[["11-0515 TCX","Lemon Icing","#E9E2A8"],["13-4108 TCX","Nimbus Cloud","#D3D4D2"],["11-1400 TCX","Raindrops on Roses","#EAD9DC"],["11-4201 TCX","Cloud Dancer","#F0EEE9"],["13-4306 TCX","Ice Melt","#C7DBE9"],["12-1107 TCX","Peach Dust","#ECD2C3"],["13-6006 TCX","Almost Aqua","#C0CDB4"],["13-3802 TCX","Orchid Tint","#CFC4CE"]]},
+    {id:"takeabreak",name:"Take a Break",g:["#EA72A0","#DBA52C"],
+     desc:"잠시 쉬어가자는 듯, 클라우드 댄서가 다양한 색을 맛보게 합니다 — 핑크 레모네이드·파파야부터 캐러멜·코코아 크림, 차와 망고 모히토까지 경쾌한 팔레트.",
+     chips:[["15-1040 TCX","Iced Coffee","#B39B70"],["15-0960 TCX","Mango Mojito","#DBA52C"],["18-1020 TCX","Cocoa Crème","#776A57"],["16-1735 TCX","Pink Lemonade","#EA72A0"],["16-0213 TCX","Tea","#8F9678"],["15-1243 TCX","Papaya","#F09B55"],["11-4201 TCX","Cloud Dancer","#F0EEE9"],["16-1439 TCX","Caramel","#C08B5C"]]},
+    {id:"atmospheric",name:"Atmospheric",g:["#6EA7CD","#60C0B5"],
+     desc:"클라우드 댄서가 회색 하늘을 뚫고 맑고 산뜻한 블루를 드러내며, 물빛 블루그린이 깊은 수면에서 피어오릅니다.",
+     chips:[["14-4005 TCX","Nantucket Breeze","#B8CFE0"],["11-4201 TCX","Cloud Dancer","#F0EEE9"],["15-4225 TCX","Alaskan Blue","#6EA7CD"],["15-3909 TCX","Cosmic Sky","#A8A9C5"],["15-5205 TCX","Aqua Gray","#9BA99F"],["18-4039 TCX","Regatta","#4B78B5"],["14-4912 TCX","Rinsing Rivulet","#60C0B5"],["14-0827 TCX","Dusky Citron","#D9BE69"]]},
+    {id:"comfort",name:"Comfort Zone",g:["#D7BDA5","#AA8489"],
+     desc:"클라우드 댄서를 둘러싼 자연스럽고 유기적인 색들이 포근하게 감싸며, 다시 안정되는 휴식의 감각을 줍니다.",
+     chips:[["14-1210 TCX","Shifting Sand","#D7BDA5"],["16-1329 TCX","Coral Haze","#D27C73"],["17-0807 TCX","Mountain Trail","#7F7166"],["14-1217 TCX","Amberlight","#E1C19D"],["15-0703 TCX","Ashes of Roses","#AEA49F"],["16-1806 TCX","Woodrose","#AA8489"],["18-1512 TCX","Rose Brown","#754A50"],["11-4201 TCX","Cloud Dancer","#F0EEE9"]]},
+    {id:"tropic",name:"Tropic Tonalities",g:["#37B1CA","#F49300"],
+     desc:"청록빛 바다, 톡 쏘는 시트러스, 화사한 꽃, 이국적인 새들. 햇살 가득한 낙원의 구름은 두둥실 떠오르는 클라우드 댄서.",
+     chips:[["11-4201 TCX","Cloud Dancer","#F0EEE9"],["17-3323 TCX","Iris Orchid","#9C5CA6"],["15-4722 TCX","Capri","#37B1CA"],["14-0443 TCX","Kiwi Colada","#A9C82F"],["12-0741 TCX","Sunny Lime","#CFE370"],["15-1164 TCX","Bright Marigold","#F49300"],["17-1755 TCX","Paradise Pink","#E13A5B"],["12-0643 TCX","Blazing Yellow","#F6E726"]]},
+    {id:"lightshadow",name:"Light & Shadow",g:["#70B1DE","#42586D"],
+     desc:"클라우드 댄서가 부드러운 색조의 베일 같은 팔레트에 녹아들어, 그림자 같은 짙은 톤으로 사라지며 자연스러운 대비를 만듭니다.",
+     chips:[["11-4201 TCX","Cloud Dancer","#F0EEE9"],["12-6000 TCX","Veiled Vista","#BADCC1"],["14-4320 TCX","Baltic Sea","#70B1DE"],["13-0624 TCX","Golden Mist","#D3C887"],["16-3610 TCX","Quiet Violet","#A28AAE"],["16-1523 TCX","Cloud Cover","#9D938D"],["17-5800 TCX","Hematite","#6C635A"],["18-4218 TCX","Blue Fusion","#42586D"]]},
+    {id:"glamour",name:"Glamour & Gleam",g:["#B11F39","#2A2B2F"],
+     desc:"흰색의 음이 검정의 양을 만나고, 립스틱 레드가 포인트를 더합니다. 와인·틸·그래파이트·그레이·실버 메탈릭이 글래머를 끌어올립니다.",
+     chips:[["19-4005 TCX","Stretch Limo","#2A2B2F"],["11-4201 TCX","Cloud Dancer","#F0EEE9"],["19-1558 TCX","Scarlet Smile","#B11F39"],["17-1710 TCX","Bordeaux","#94697F"],["19-4826 TCX","Dragonfly","#1F5D6F"],["20-0188 TPM","Graphite","#4A4A2F"],["20-0020 TPM","Satin Slipper","#A99B83"],["20-0007 TPM","Micron","#6F7073"]]}
+  ];
+  let selPal=0;
+  function palChip(c){
+    const coty=c[0].indexOf("11-4201")===0;
+    return `<div class="pchip${coty?" coty":""}"><div class="sw" style="background:${c[2]}"></div>`+
+      (coty?`<span class="coty-tag">올해의 컬러</span>`:``)+
+      `<div class="meta"><div class="pt">PANTONE®</div><div class="cd">${c[0]}</div><div class="nm">${c[1]}</div></div></div>`;
+  }
+  function showPal(i){
+    if(!PALS.length) return;
+    selPal=((i%PALS.length)+PALS.length)%PALS.length;
+    const p=PALS[selPal], stage=document.getElementById("palStage");
+    if(!stage) return;
+    stage.style.setProperty("--g1",p.g[0]); stage.style.setProperty("--g2",p.g[1]);
+    const img=document.getElementById("palImg"); img.style.display=""; img.src="img/pal_"+p.id+".jpg";
+    document.getElementById("palCount").textContent=(selPal+1)+" / "+PALS.length;
+    document.getElementById("palName").textContent=p.name;
+    document.getElementById("palDesc").textContent=p.desc;
+    const oc=p.chips.slice().sort((a,b)=>((b[0].indexOf("11-4201")===0?1:0)-(a[0].indexOf("11-4201")===0?1:0)));
+    document.getElementById("palChips").innerHTML=oc.map(palChip).join("");
+    document.getElementById("palNote").innerHTML="선택 근거 — 고객님 트렌드 선호 → <b>2026 팬톤 공식 '"+p.name+"' 팔레트</b>를 그대로 제안합니다. ＊무드 사진은 <b>img/pal_"+p.id+".jpg</b>로 올리면 자동 표시됩니다.";
+    document.querySelectorAll("#palDots button").forEach((b,k)=>b.classList.toggle("on",k===selPal));
+  }
+  function buildPalPicker(){
+    document.getElementById("palDots").innerHTML=PALS.map((p,i)=>`<button data-i="${i}" aria-label="${p.name}"></button>`).join("");
+    document.querySelectorAll("#palDots button").forEach(b=>{ b.onclick=()=>showPal(+b.dataset.i); });
+    document.getElementById("palPrev").onclick=()=>showPal(selPal-1);
+    document.getElementById("palNext").onclick=()=>showPal(selPal+1);
+    const stage=document.getElementById("palStage"); let sx=null;
+    stage.addEventListener("touchstart",e=>{ sx=e.touches[0].clientX; },{passive:true});
+    stage.addEventListener("touchend",e=>{ if(sx===null) return; const dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>40) showPal(selPal+(dx<0?1:-1)); sx=null; },{passive:true});
+    showPal(selPal);
+  }
+
+  /* ===== 7. 특화 시설 ===== */
+  const SPECS=[
+    {id:"sound",n:"소음시설",d:"방음·흡음 — 상업·다세대는 입주 후 민원으로 반드시 필요해집니다."},
+    {id:"hvac",n:"냉난방공조 (HVAC)",d:"덕트·실외기·천장 매립이 인테리어와 얽히는 설비입니다."},
+    {id:"fire",n:"소방시설",d:"스프링클러·감지기·피난 — 용도·면적에 따라 법정 의무입니다."},
+    {id:"sign",n:"간판시설",d:"외부 사인·돌출간판 — 허가·전기까지 포함됩니다."},
+    {id:"furn",n:"가구집기",d:"붙박이·맞춤가구·집기 — 디자인엔 들어가나 견적엔 누락이 잦습니다."},
+    {id:"elec",n:"전기 증설 · 인입",d:"계약전력 증설·인입 — 장비·면적이 늘면 반드시 필요합니다."},
+    {id:"etc",n:"기타 특수시설",d:"PDLC·폴딩문·일괄소등스위치·전동블라인드(커튼) 등 (계속 추가 예정).",free:true}
+  ];
+  let spec={}; SPECS.forEach(x=>spec[x.id]="na");
+  const SPECV=[["inc","포함"],["sep","별도"],["na","해당없음"]];
+  function buildSpecs(){
+    document.getElementById("specList").innerHTML=SPECS.map(x=>
+      `<div class="spec"><div class="nm">${x.n}</div><div class="nt">${x.d}</div>`+
+      `<div class="spec-seg" data-id="${x.id}">${SPECV.map(v=>`<button class="${v[0]}${spec[x.id]===v[0]?" on":""}" data-v="${v[0]}">${v[1]}</button>`).join("")}</div>`+
+      (x.free?`<div class="spec-free"><input id="spec_etc_txt" placeholder="PDLC · 폴딩문 · 일괄소등스위치 · 전동블라인드(커튼) 등 — 원하시는 항목 직접 입력"></div>`:``)+
+      `</div>`).join("");
+    document.querySelectorAll("#specList .spec-seg").forEach(seg=>{
+      const id=seg.dataset.id;
+      seg.querySelectorAll("button").forEach(b=>{ b.onclick=()=>{ spec[id]=b.dataset.v; seg.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x.dataset.v===spec[id])); renderSpecSum(); }; });
+    });
+    renderSpecSum();
+  }
+  function renderSpecSum(){
+    const inc=SPECS.filter(x=>spec[x.id]==="inc").map(x=>x.n);
+    const sep=SPECS.filter(x=>spec[x.id]==="sep").map(x=>x.n);
+    let h="";
+    if(inc.length) h+=`<div><b>견적 포함 (${inc.length})</b> — ${inc.join(" · ")}<br>이 항목들은 처음부터 견적에 반영되어, 공사 중 추가가 없습니다.</div>`;
+    if(sep.length) h+=`<div style="margin-top:${inc.length?"8px":"0"}"><span class="sep-warn"><b>별도 (${sep.length})</b> — ${sep.join(" · ")}</span><br>기본 견적에서 빠진 항목으로, 진행 시 별도 견적이 발생합니다.</div>`;
+    if(!inc.length&&!sep.length) h=`필요한 특화 항목을 <b>포함 / 별도</b>로 표시하면, 여기에 견적 반영 여부가 요약됩니다.`;
+    document.getElementById("specSum").innerHTML=h;
+  }
+
   fillSelect("type",Object.keys(TYPES));
   document.getElementById("type").value="상업"; initDetail();
   document.getElementById("detail").value="고기집·구이";
@@ -387,8 +556,8 @@
   document.getElementById("type").addEventListener("change",()=>{ initDetail(); render(); });
   ["detail","area","totalFloors","floorType","floorNo","zone","district","bldgUse","septic"]
     .forEach(id=>{ const e=document.getElementById(id); e.addEventListener("input",render); e.addEventListener("change",render); });
-  const FIELDS=["reqno","reqdate","clientName","clientPhone","clientRef","type","detail","area","addr","totalFloors","floorType","floorNo","zone","district","bldgUse","septic","schedule","purpose"];
-  function gather(){ const o={}; FIELDS.forEach(id=>{ const e=document.getElementById(id); if(e) o[id]=e.value; }); o.taste=taste.slice(); return o; }
+  const FIELDS=["reqno","reqdate","clientName","clientPhone","clientRef","type","detail","area","addr","totalFloors","floorType","floorNo","zone","district","bldgUse","septic","elecCap","schedule","purpose"];
+  function gather(){ const o={}; FIELDS.forEach(id=>{ const e=document.getElementById(id); if(e) o[id]=e.value; }); o.taste=taste.slice(); o.color={palette:selPal}; o.special=Object.assign({},spec); const _et=document.getElementById("spec_etc_txt"); if(_et) o.special.etc_txt=_et.value; return o; }
   function tbmsg(t){ const m=document.getElementById("tb-msg"); m.textContent=t; setTimeout(()=>{ if(m.textContent===t) m.textContent=""; },2800); }
   const WEBAPP_URL="https://script.google.com/macros/s/AKfycbybQXidCd7cZvJj50lB5LS4HTtBOmhuJ0epGXQ1aTJ584dYtC3LospEbBVWiY--Vm48Lw/exec"; // Google 드라이브(시트) 연동
   async function saveReq(){
@@ -408,6 +577,8 @@
     if(o.type){ document.getElementById("type").value=o.type; initDetail(); }
     FIELDS.forEach(id=>{ const e=document.getElementById(id); if(e&&o[id]!==undefined) e.value=o[id]; });
     if(Array.isArray(o.taste)&&o.taste.length===6){ taste=o.taste.slice(); syncSeg(); }
+    if(o.color){ showPal(o.color.palette===undefined?0:o.color.palette); }
+    if(o.special){ SPECS.forEach(x=>{ if(o.special[x.id]) spec[x.id]=o.special[x.id]; }); buildSpecs(); const _et=document.getElementById("spec_etc_txt"); if(_et&&o.special.etc_txt) _et.value=o.special.etc_txt; }
     render();
   }
   async function loadReq(){
@@ -424,6 +595,8 @@
   }
 
   buildAxes();
+  buildPalPicker();
+  buildSpecs();
   render();
 </script>
 </body>
