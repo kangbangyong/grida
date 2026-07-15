@@ -42,6 +42,10 @@
   .f input:focus, .f select:focus{ outline:none; border-bottom:1.5px solid var(--accent); }
   .inline{ display:flex; gap:6px; align-items:flex-end; }
   .inline select{ flex:0 0 auto; width:auto; }
+  .unit{ font-size:11px; color:var(--sub); white-space:nowrap; padding-bottom:3px; flex:0 0 auto; }
+  .f input.auto{ color:var(--accent); font-weight:700; border-bottom-style:dashed; }
+  .f input.auto:focus{ border-bottom:1px dashed var(--accent); }
+  .f .auto-tag{ color:var(--accent); font-size:9.5px; font-weight:700; }
 
   .prompt{ font-size:13.5px; font-weight:700; margin-bottom:10px; }
   textarea.purpose{ width:100%; min-height:108px; border:1px solid var(--line); border-radius:6px; padding:10px;
@@ -50,9 +54,9 @@
   textarea.purpose:focus{ outline:none; border-color:var(--accent); }
 
   /* 토지이음 link */
-  .eum{ display:inline-flex; align-items:center; gap:5px; font-size:11.5px; color:var(--accent); font-weight:700;
-    border:1px solid var(--accent); border-radius:6px; padding:6px 12px; text-decoration:none; }
-  .eum:hover{ background:var(--accent); color:#fff; }
+  .eum{ display:inline-flex; align-items:center; gap:4px; font-size:11.5px; color:var(--accent); font-weight:700; text-decoration:none; }
+  .eum:hover{ text-decoration:underline; }
+  .eum small{ color:var(--sub); font-weight:400; }
   .eum-hint{ font-size:11px; color:var(--sub); }
 
   /* checklist */
@@ -90,6 +94,50 @@
   .spec-sum{ margin-top:13px; background:var(--fill); border:1px solid var(--hair); border-radius:9px; padding:11px 12px; font-size:11.5px; line-height:1.6; color:var(--ink); }
   .spec-sum b{ color:var(--accent); }
   .spec-sum .sep-warn{ color:var(--req-tx); }
+
+  /* scope (3) — 작품 범위 판정 배지 패널 */
+  .scope-grp{ margin-bottom:15px; }
+  .scope-grp-h{ font-size:11.5px; font-weight:700; color:var(--accent); margin-bottom:6px; padding-bottom:4px; border-bottom:1px solid var(--hair); }
+  .scope-grp-h small{ font-weight:400; color:var(--sub); margin-left:6px; letter-spacing:0; }
+  .scope-row{ padding:9px 0; border-bottom:1px dashed var(--hair); }
+  .scope-row:last-child{ border-bottom:none; }
+  .scope-line{ display:flex; align-items:center; gap:10px; }
+  .scope-nm{ font-size:12.5px; font-weight:700; display:inline-flex; align-items:center; gap:6px; }
+  .scope-no{ font-size:10px; font-weight:700; color:var(--paper); background:var(--sub); width:16px; height:16px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto; }
+  .scope-badge{ margin-left:auto; font-size:10.5px; font-weight:700; padding:3px 10px; border-radius:6px; border:1px solid; white-space:nowrap; }
+  .scope-badge.r{ background:var(--req-bg); color:var(--req-tx); border-color:var(--req-bd); }
+  .scope-badge.c{ background:var(--chk-bg); color:var(--chk-tx); border-color:var(--chk-bd); }
+  .scope-badge.n{ background:var(--na-bg); color:var(--na-tx); border-color:var(--na-bd); }
+  .scope-badge.w{ background:#fff; color:var(--sub); border-color:var(--line); }
+  .scope-dt{ font-size:11px; color:var(--sub); margin-top:5px; line-height:1.5; }
+  .scope-dt b{ color:var(--accent); }
+  .scope-ctl{ margin-top:8px; }
+  .scope-ctl select{ width:100%; font-size:12.5px; font-family:inherit; padding:6px 9px; border:1px solid var(--line); border-radius:7px; background:#fff; color:var(--ink); cursor:pointer; }
+  .scope-ctl select:focus{ outline:none; border-color:var(--accent); }
+  .scope-parts{ display:flex; flex-wrap:wrap; gap:6px 14px; margin-top:8px; }
+  .scope-parts label{ font-size:11px; color:var(--ink); display:inline-flex; align-items:center; gap:4px; cursor:pointer; }
+  .scope-parts input{ accent-color:var(--accent); }
+  .scope-seg{ display:flex; flex-wrap:wrap; gap:5px; margin-top:7px; }
+  .scope-seg button{ font-size:10.5px; font-weight:700; padding:4px 11px; border-radius:13px; border:1px solid var(--line); background:#fff; color:var(--sub); cursor:pointer; font-family:inherit; }
+  .scope-seg button:hover{ border-color:var(--accent); }
+  .scope-seg button.on{ background:var(--accent); border-color:var(--accent); color:#fff; }
+  .scope-foot{ font-size:10px; color:var(--sub); margin-top:12px; border-top:1px dashed var(--hair); padding-top:8px; line-height:1.5; }
+
+  /* fin table (4) — 부위별 마감 등급 */
+  .fintbl{ margin-top:14px; border:1px solid var(--hair); border-radius:10px; overflow:hidden; }
+  .fintbl .fh{ background:var(--fill); padding:9px 12px; font-size:11.5px; font-weight:700; color:var(--ink); border-bottom:1px solid var(--hair); }
+  .fintbl .fh small{ display:block; font-weight:400; color:var(--sub); margin-top:2px; font-size:10.5px; }
+  .fintbl table{ width:100%; border-collapse:collapse; }
+  .fintbl th,.fintbl td{ padding:7px 8px; font-size:10.5px; text-align:center; border-bottom:1px solid var(--hair); }
+  .fintbl th{ background:#fff; color:var(--sub); font-weight:700; }
+  .fintbl td:first-child,.fintbl th:first-child{ text-align:left; }
+  .fintbl tbody tr:last-child td{ border-bottom:none; }
+  .fintbl .bu{ font-weight:700; color:var(--ink); }
+  .fintbl .ok{ color:var(--accent); font-weight:700; }
+  .fintbl .no{ color:var(--req-tx); font-weight:700; }
+  .fintbl .cond{ color:var(--chk-tx); font-weight:700; }
+  .fintbl .mn{ font-size:9.5px; font-weight:700; padding:1px 7px; border-radius:999px; background:var(--accent); color:#fff; white-space:nowrap; }
+  .fintbl .fnote{ padding:8px 12px; font-size:10px; color:var(--sub); line-height:1.5; background:var(--fill); border-top:1px solid var(--hair); }
 
   /* taste profiler (5) */
   .axis{ display:grid; grid-template-columns:78px 1fr 78px; align-items:center; gap:8px; margin-bottom:9px; }
@@ -156,15 +204,72 @@
   .tb-btn:hover{ background:var(--fill); }
   .tb-btn.primary{ background:var(--accent); color:#fff; }
   .tb-msg{ font-size:11.5px; color:var(--sub); }
+  .tb-sep{ color:var(--line); padding:0 2px; }
+  .tb-group{ display:inline-flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  input.locked{ background:var(--fill); color:var(--accent); font-weight:700; cursor:default; }
+  .lock-tag{ font-size:9px; color:var(--accent); font-weight:700; margin-left:4px; }
+  .grp-lbl{ font-size:11px; font-weight:700; color:var(--accent); letter-spacing:.03em; margin:2px 0 8px; }
+  .grp-lbl small{ font-weight:400; color:var(--sub); margin-left:6px; }
+  .scope-stub{ border:1px dashed var(--line); border-radius:9px; padding:12px 14px; background:var(--fill); }
+  .upick{ font-size:10.5px; color:var(--sub); }
+  .upick .tagline{ font-weight:400; color:var(--sub); }
+  .upick .search-box{ position:relative; margin-top:3px; }
+  .upick .search-box input{ width:100%; padding:7px 9px; font-size:12.5px; border:1px solid var(--line); border-radius:7px; font-family:inherit; color:var(--ink); background:#fff; }
+  .upick .search-box input:focus{ outline:none; border-color:var(--accent); }
+  .upick .search-box input.chosen{ border-color:var(--accent); background:var(--fill); font-weight:600; }
+  .upick .results{ position:absolute; top:calc(100% + 3px); left:0; right:0; background:#fff; border:1px solid var(--line); border-radius:8px; box-shadow:0 6px 20px rgba(0,0,0,.12); max-height:230px; overflow:auto; z-index:20; display:none; }
+  .upick .results.show{ display:block; }
+  /* 용도지역 검색 picker */
+  .zsearch{ position:relative; margin-top:3px; }
+  .zsearch input.zone-input{ width:100%; padding:7px 9px; font-size:12.5px; border:1px solid var(--line); border-radius:7px; background:#fff; color:var(--ink); font-family:inherit; margin-top:0; }
+  .zsearch input.zone-input:focus{ outline:none; border-color:var(--accent); border-bottom:1px solid var(--accent); }
+  .zsearch input.zone-input.chosen{ border-color:var(--accent); background:var(--fill); font-weight:600; }
+  .zsearch .results{ position:absolute; top:calc(100% + 3px); left:0; right:0; background:#fff; border:1px solid var(--line); border-radius:8px; box-shadow:0 6px 20px rgba(0,0,0,.12); max-height:280px; overflow:auto; z-index:25; display:none; }
+  .zsearch .results.show{ display:block; }
+  .zsearch .res-group{ padding:5px 11px; font-size:9.5px; font-weight:700; letter-spacing:.06em; color:var(--sub); background:var(--fill); position:sticky; top:0; }
+  .res-item{ padding:8px 11px; font-size:12px; cursor:pointer; border-bottom:1px solid var(--hair); display:flex; align-items:flex-start; gap:8px; }
+  .res-item:last-child{ border-bottom:none; }
+  .res-item:hover,.res-item.hi{ background:var(--fill); }
+  .res-item mark{ background:#fde68a; color:inherit; padding:0 1px; border-radius:2px; }
+  .res-alias{ display:block; font-size:10px; color:var(--sub); margin-top:1px; }
+  .grp-dot{ width:9px; height:9px; border-radius:50%; flex-shrink:0; margin-top:3px; }
+  .res-empty{ padding:12px; font-size:12px; color:var(--sub); text-align:center; }
+  .use-row{ display:grid; grid-template-columns:1fr 1fr 1.25fr; gap:12px; margin-bottom:10px; align-items:end; }
+  @media(max-width:640px){ .use-row{ grid-template-columns:1fr; } }
+  .upick .ulab{ display:block; font-size:10.5px; color:var(--sub); margin-bottom:3px; }
+  .upick .ulab .tagline{ color:var(--sub); }
+  .ucell{ font-size:12.5px; padding:7px 9px; border:1px solid var(--line); border-radius:7px; background:var(--fill); min-height:34px; display:flex; align-items:center; }
+  .ucell.major{ color:var(--sub); font-weight:400; }
+  .ucell.major.filled{ color:var(--accent); font-weight:700; background:#fff; border-color:var(--accent); }
+  .areawarn{ display:none; margin:2px 0 10px; padding:9px 12px; font-size:11.5px; line-height:1.55; background:var(--req-bg); color:var(--req-tx); border:1px solid var(--req-bd); border-radius:8px; }
+  .areawarn.show{ display:block; }
+  .areawarn b{ color:var(--req-tx); }
 </style>
 </head>
 <body>
 <div class="toolbar">
   <span class="tb-title">GRIDA 작품의뢰서</span>
-  <input id="loadno" class="tb-inp" placeholder="의뢰번호 입력">
-  <button class="tb-btn" onclick="loadReq()">불러오기</button>
-  <button class="tb-btn" onclick="saveReq()">저장</button>
-  <button class="tb-btn primary" onclick="window.print()">인쇄 · PDF 저장</button>
+
+  <span id="adminGate" class="tb-group">
+    <input id="adminPass" class="tb-inp" type="password" placeholder="관리자 비번" style="width:100px;">
+    <button class="tb-btn" onclick="unlockAdmin()">관리자 열기</button>
+  </span>
+
+  <span id="adminTools" class="tb-group" style="display:none;">
+    <input id="loadno" class="tb-inp" placeholder="의뢰번호" style="width:110px;">
+    <button class="tb-btn" onclick="loadReq()">불러오기</button>
+    <input id="findName" class="tb-inp" placeholder="성명" style="width:70px;">
+    <input id="findPhone" class="tb-inp" placeholder="연락처" style="width:90px;">
+    <button class="tb-btn" onclick="findReq()">찾기</button>
+    <span class="tb-sep">|</span>
+    <button class="tb-btn" onclick="makeClientLink()">고객용 링크 만들기</button>
+    <span class="tb-sep">|</span>
+  </span>
+
+  <span id="clientNote" class="tb-msg" style="display:none;"></span>
+
+  <button class="tb-btn primary" id="saveBtn" onclick="saveReq()">저장</button>
+  <button class="tb-btn" onclick="window.print()">인쇄 · PDF</button>
   <span id="tb-msg" class="tb-msg"></span>
 </div>
 <div class="sheet">
@@ -188,31 +293,85 @@
       <label class="f">성함 / 상호<input id="clientName"></label>
       <label class="f">연락처<input id="clientPhone"></label>
       <label class="f">소개 경로<input id="clientRef"></label>
+      <label class="f" style="grid-column:1/-1;">희망일 · 정 오픈<input id="schedule" placeholder="예: 2026-09 오픈 목표 / 정식 오픈 희망일"></label>
     </div>
   </section>
 
-  <!-- 2 작품 개요 (법적 판정 입력) -->
+  <!-- 2 작품 개요 -->
   <section>
-    <div class="sec-head"><span class="sec-no">2</span><span class="sec-title">작품 개요</span><span class="sec-en">Project · 입력 시 4번 자동 판정</span></div>
-    <div class="grid g3">
-      <label class="f">인테리어 종류<select id="type"></select></label>
-      <label class="f">세부 공간<select id="detail"></select></label>
-      <label class="f">면적 (㎡)
-        <span class="inline"><input id="area" type="number" placeholder="0"><span id="pyeong" style="font-size:11.5px;color:var(--sub);white-space:nowrap;">≈ 0.0 평</span></span>
-      </label>
-      <label class="f" style="grid-column:1/-1;">위치 / 주소<input id="addr" placeholder="도로명 또는 지번 주소"></label>
-      <label class="f">건물 총 층수<input id="totalFloors" type="number" placeholder="예: 5"></label>
-      <label class="f">해당 위치
-        <span class="inline"><select id="floorType"><option>지상</option><option>지하</option></select><input id="floorNo" type="number" placeholder="층"></span>
-      </label>
-      <label class="f">용도지역<select id="zone"></select></label>
-      <label class="f">지구단위 (해당 시)<input id="district"></label>
-      <label class="f">건축물 용도<select id="bldgUse"></select></label>
-      <label class="f">정화조 용량 (해당 시)<input id="septic" placeholder="㎥/일 또는 인용"></label>
-      <label class="f">전기용량 (계약전력)<input id="elecCap" placeholder="예: 단상 5kW / 3상 10kW"></label>
-      <label class="f">희망 일정 · 오픈<input id="schedule"></label>
+    <div class="sec-head"><span class="sec-no">2</span><span class="sec-title">작품 개요</span><span class="sec-en">Project · 데이터 수집</span></div>
+    <div class="grp-lbl">용도 · 업종 <small>희망(목표) / 현황 · 별표1 (업종 별칭 검색 → 용도 자동 · 대분류/중분류 표시)</small></div>
+    <div class="use-row">
+      <div class="upick"><span class="ulab">희망 업종</span>
+        <div class="search-box"><input type="text" id="targetBizInput" placeholder="예: 카페·헬스장·게하…" autocomplete="off"><div class="results" id="targetBizResults"></div></div>
+      </div>
+      <div class="upick"><span class="ulab">희망 용도 · 대분류</span>
+        <div class="ucell major" id="targetUseMajor">—</div>
+      </div>
+      <div class="upick"><span class="ulab">희망 용도 · 중분류(세부용도)</span>
+        <div class="search-box"><input type="text" id="targetUseInput" placeholder="검색·수정" autocomplete="off"><div class="results" id="targetUseResults"></div></div>
+      </div>
     </div>
-    <div style="margin-top:12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+    <div class="use-row">
+      <div class="upick"><span class="ulab">현 업종 <span class="tagline">없으면 공실</span></span>
+        <div class="search-box"><input type="text" id="curBizInput" placeholder="예: 공실·사무실·카페…" autocomplete="off"><div class="results" id="curBizResults"></div></div>
+      </div>
+      <div class="upick"><span class="ulab">현 용도 · 대분류</span>
+        <div class="ucell major" id="curUseMajor">—</div>
+      </div>
+      <div class="upick"><span class="ulab">현 용도 · 중분류(세부용도)</span>
+        <div class="search-box"><input type="text" id="curUseInput" placeholder="검색·수정" autocomplete="off"><div class="results" id="curUseResults"></div></div>
+      </div>
+    </div>
+    <label class="f" style="display:block;margin-top:12px;">위치 / 주소<input id="addr" placeholder="도로명 또는 지번 주소"></label>
+    <div class="grp-lbl" style="margin-top:14px;">규모 <small>면적 · 층수 · 연면적</small></div>
+    <div class="grid g3">
+      <label class="f">해당 용도면적
+        <span class="inline"><input id="area" type="number" placeholder="0"><span class="unit">㎡</span><span id="pyeong" style="font-size:11px;color:var(--sub);white-space:nowrap;padding-bottom:3px;">≈ 0.0 평</span></span>
+      </label>
+      <label class="f">해당 층 위치
+        <span class="inline"><select id="floorType"><option>지상</option><option>지하</option></select><input id="floorNo" type="number" placeholder="0"><span class="unit">층</span></span>
+      </label>
+      <label class="f">지·하 무창층 최대 바닥면적
+        <span class="inline"><input id="windowlessArea" type="number" placeholder="0"><span class="unit">㎡</span></span>
+      </label>
+
+      <label class="f">지상 층수
+        <span class="inline"><input id="floorsAbove" type="number" placeholder="0"><span class="unit">층</span></span>
+      </label>
+      <label class="f">지하 층수
+        <span class="inline"><input id="floorsBelow" type="number" placeholder="0"><span class="unit">층</span></span>
+      </label>
+      <label class="f">건물 총 층수 <span class="auto-tag">＝지상＋지하 자동</span>
+        <span class="inline"><input id="totalFloors" type="number" placeholder="0" readonly class="auto"><span class="unit">층</span></span>
+      </label>
+
+      <label class="f">지상 연면적
+        <span class="inline"><input id="areaAbove" type="number" placeholder="0"><span class="unit">㎡</span></span>
+      </label>
+      <label class="f">지하 연면적
+        <span class="inline"><input id="areaBelow" type="number" placeholder="0"><span class="unit">㎡</span></span>
+      </label>
+      <label class="f">총 연면적 <span class="auto-tag">＝지상＋지하 자동</span>
+        <span class="inline"><input id="grossArea" type="number" placeholder="0" readonly class="auto"><span class="unit">㎡</span></span>
+      </label>
+    </div>
+    <div class="areawarn" id="areaWarn"></div>
+    <div class="grp-lbl" style="margin-top:14px;">입지 · 설비 <small>토지이음 · 대장 · 한전 조회</small></div>
+    <div class="grid g3">
+      <label class="f">용도지역 <span class="auto-tag">검색·선택</span>
+        <div class="zsearch"><input type="text" id="zone" class="zone-input" placeholder="예: 계획관리 · 제2종일반주거 · 준공업…" autocomplete="off"><div class="results" id="zoneResults"></div></div>
+      </label>
+      <label class="f">용도지구 <span class="auto-tag">검색·선택</span>
+        <div class="zsearch"><input type="text" id="zoneDist" class="zone-input" placeholder="예: 방화지구 · 자연취락 · 경관…" autocomplete="off"><div class="results" id="zoneDistResults"></div></div>
+      </label>
+      <label class="f">지구단위 (해당 시)<input id="district" placeholder="지구단위계획구역명 등"></label>
+
+      <label class="f">전기용량 (계약전력)<input id="elecCap" placeholder="예: 단상 5kW / 3상 10kW"></label>
+      <label class="f">스프링클러(자동식 소화설비)<select id="sprinkler"><option>모름</option><option>없음</option><option>있음</option></select></label>
+      <label class="f">정화조 용량 (해당 시)<input id="septic" placeholder="㎥/일 또는 인용"></label>
+    </div>
+    <div style="margin-top:12px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
       <a class="eum" href="https://www.eum.go.kr" target="_blank" rel="noopener">토지이음 ↗ <small style="font-weight:400;">용도지역·지구단위</small></a>
       <a class="eum" href="https://www.gov.kr/mw/AA020InfoCappView.do?CappBizCD=15000000098" target="_blank" rel="noopener">정부24 건축물대장 ↗ <small style="font-weight:400;">건축물용도·구조</small></a>
       <a class="eum" href="https://online.kepco.co.kr" target="_blank" rel="noopener">한전ON ↗ <small style="font-weight:400;">계약전력·계약종별</small></a>
@@ -220,20 +379,72 @@
     <div class="eum-hint" style="margin-top:6px;">주소만 입력하면 조회 가능 (모두 국가 운영·무료). 토지이음 = 토지(용도지역·지구), 정부24 건축물대장 = 건축물(정확한 용도·구조). 계약전력은 전기요금 고지서(우측 상단 10자리 고객번호) 또는 한전ON·고객센터 123에서 확인 — 상가·집합건물은 관리사무소 문의.</div>
   </section>
 
-  <!-- 3 공간의 목적 -->
+  <!-- 3 작품 범위 -->
   <section>
-    <div class="sec-head"><span class="sec-no">3</span><span class="sec-title">공간의 목적</span><span class="sec-en">Purpose</span></div>
-    <p class="prompt">본 프로젝트에서 가장 중요한 것은?</p>
-    <textarea id="purpose" class="purpose" rows="5"></textarea>
+    <div class="sec-head"><span class="sec-no">3</span><span class="sec-title">작품 범위</span><span class="sec-en">Scope · 자가진단 / 자동진단</span></div>
+    <p class="eum-hint" style="margin-bottom:10px;">공사에 포함될 범위를 표시하세요. 각 항목은 <b>자가진단</b>(간단 질문) 또는 <b>자동진단</b>(용도·규모 기반)으로 판정됩니다. <span style="color:var(--sub);">．상세 인허가 판정은 GRIDA 참고자료(ref01~04)에서 의뢰번호로 이어집니다.</span></p>
+    <div id="scopeList">
+      <div class="scope-grp">
+        <div class="scope-grp-h">자동 판정 <small>§2 입력으로 자동 · 추가 입력 불필요</small></div>
+        <div class="scope-row" id="scUseChange"></div>
+        <div class="scope-row" id="scMultiBldg"></div>
+        <div class="scope-row" id="scMultiUse"></div>
+      </div>
+      <div class="scope-grp">
+        <div class="scope-grp-h">공사 내용 <small>어떤 공사인지 선택하시면 판정됩니다</small></div>
+
+        <div class="scope-row">
+          <div class="scope-line"><span class="scope-nm"><span class="scope-no">4</span>건축행위</span><span class="scope-badge w" id="baBadge">선택</span></div>
+          <div class="scope-ctl">
+            <select id="scBaType">
+              <option value="">— 어떤 공사인가요? —</option>
+              <option value="interior">기존 건물 내부공사만 (마감·집기·인테리어)</option>
+              <option value="new">신축 (없던 건물을 새로)</option>
+              <option value="extend">증축 (면적 늘림)</option>
+              <option value="rebuild">개축 (헐고 같은 규모로 다시)</option>
+              <option value="restore">재축 (재해로 멸실된 것 다시)</option>
+              <option value="height">높이 증축 (면적 그대로 높이만)</option>
+              <option value="daesuseon">주요 구조·방화·계단을 손봄 (→ 대수선)</option>
+              <option value="usechange">용도만 변경 (→ 용도변경)</option>
+            </select>
+          </div>
+          <div class="scope-dt" id="baDetail"></div>
+        </div>
+
+        <div class="scope-row">
+          <div class="scope-line"><span class="scope-nm"><span class="scope-no">5</span>대수선</span><span class="scope-badge w" id="dsBadge">선택</span></div>
+          <div class="scope-parts" id="scDsParts">
+            <label><input type="checkbox" value="wall"> 내력벽</label>
+            <label><input type="checkbox" value="column"> 기둥</label>
+            <label><input type="checkbox" value="beam"> 보</label>
+            <label><input type="checkbox" value="roof"> 지붕틀</label>
+            <label><input type="checkbox" value="firewall"> 방화벽·방화구획</label>
+            <label><input type="checkbox" value="stair"> 주계단·피난계단</label>
+            <label><input type="checkbox" value="partywall"> 세대 간 경계벽</label>
+            <label><input type="checkbox" value="exwall"> 외벽 마감재</label>
+            <label><input type="checkbox" value="none"> 위에 없음(가벽·마감만)</label>
+          </div>
+          <div class="scope-seg" id="scDsMethod" style="display:none">
+            <button data-m="attach">덧방·비접촉(부위 안 건드림)</button>
+            <button data-m="repair">수선·변경(고치기)</button>
+            <button data-m="change">증설·해체(늘리거나 뜯기)</button>
+          </div>
+          <div class="scope-seg" id="scDsScale" style="display:none">
+            <button data-s="over">내력벽·외벽 30㎡↑ / 기둥·보·지붕틀 3개↑</button>
+            <button data-s="under">그 미만</button>
+          </div>
+          <div class="scope-dt" id="dsDetail"></div>
+        </div>
+      </div>
+      <p class="scope-foot">＊ 판정 근거·상세 조건·필요 서류는 GRIDA 참고자료(ref01~04)에서 의뢰번호로 이어집니다. 최종 인허가는 관할 지자체·소방서에서 확정합니다.</p>
+    </div>
   </section>
 
-  <!-- 4 작품 방향 · 법적 체크리스트 (자동) -->
+  <!-- 4 공간의 방향 -->
   <section>
-    <div class="sec-head"><span class="sec-no">4</span><span class="sec-title">작품 방향 · 법적 체크리스트</span><span class="sec-en">Legal · 자동 판정</span></div>
-    <div class="summary" id="summary"></div>
-    <div id="checklist"></div>
-    <p class="warn">⚠ 1차 트리아지입니다. 적용 여부·면적 기준·수치는 용도·규모·층·지자체 조례·법 개정에 따라 달라집니다.
-      최종 판단은 관할 구청·소방서·인허가 담당 확인이 필요하며, <b>＊현행 확인</b> 표시 항목은 특히 주의하세요.</p>
+    <div class="sec-head"><span class="sec-no">4</span><span class="sec-title">공간의 방향</span><span class="sec-en">Direction · 클라이언트 의견</span></div>
+    <p class="prompt">본 프로젝트에서 가장 중요한 것은? · 원하시는 공간의 방향</p>
+    <textarea id="purpose" class="purpose" rows="5"></textarea>
   </section>
 
   <!-- 5 디자인 취향 -->
@@ -268,13 +479,13 @@
     <div class="pal-note" id="palNote"></div>
   </section>
 
-  <!-- 7 특화 시설 -->
+  <!-- 7 클라이언트 참고이미지 -->
   <section>
-    <div class="sec-head"><span class="sec-no">7</span><span class="sec-title">특화 시설</span><span class="sec-en">Special · 추가공사 방지 · 선택</span></div>
-    <p class="eum-hint" style="margin-bottom:12px;">나중에 '별도'라는 말이 없도록, 처음부터 견적에 담는 항목입니다. 해당 항목을 <b>포함 / 별도 / 해당없음</b>으로 표시하세요. (해도 되고 안 해도 되지만, 결국 공사에 필요한 것들입니다.)</p>
-    <div id="specList"></div>
-    <div class="spec-sum" id="specSum"></div>
-    <p class="warn">⚠ '별도'로 두면 기본 견적엔 빠지고 공사 중 추가될 수 있습니다. <b>처음부터 포함</b>하면 총액이 투명해집니다.</p>
+    <div class="sec-head"><span class="sec-no">7</span><span class="sec-title">클라이언트 참고이미지</span><span class="sec-en">Reference · 업로드</span></div>
+    <p class="eum-hint" style="margin-bottom:12px;">원하시는 분위기·디테일이 담긴 참고 이미지를 올려주세요. 여러 장 가능합니다.</p>
+    <div id="refUpload" class="scope-stub">
+      <p class="eum-hint">． 이미지 업로드 기능은 다음 단계(Step 3)에서 추가됩니다. (기존 §7 특화시설 항목은 견적의뢰서-B로 이관 예정)</p>
+    </div>
   </section>
 
   <div class="foot">
@@ -285,119 +496,353 @@
 </div>
 
 <script>
-  const TYPES = {
-    "주거":["아파트/공동주택","단독주택","빌라·다세대","복층"],
-    "상업":["카페","베이커리","음식점(일반)","고기집·구이","미용실","판매점"],
-    "숙박":["호스텔","에어비앤비","게스트하우스"],
-    "사무실":["일반 사무실","공유오피스"],
-    "의료":["성형외과","피부과","일반 의원","한의원","약국"],
-    "교육":["학원","교습소","공부방","독서실"]
-  };
+  // ===== 건축법 별표1 용도·업종 검색 (ref01 이식) =====
+  const GRP_NAME={1:"자동차 관련 시설군",2:"산업 등의 시설군",3:"전기통신시설군",4:"문화 및 집회시설군",5:"영업시설군",6:"교육 및 복지시설군",7:"근린생활시설군",8:"주거업무시설군",9:"그 밖의 시설군"};
+  const GRP_SHORT={1:"자동차관련",2:"산업등",3:"전기통신",4:"문화집회",5:"영업",6:"교육복지",7:"근린생활",8:"주거업무",9:"그밖의"};
+  const GRP_COLOR={1:"#8a6d3b",2:"#6b7280",3:"#2563eb",4:"#7c3aed",5:"#0891b2",6:"#059669",7:"#002945",8:"#b45309",9:"#9ca3af"};
+  const USES=[
+["1","가","단독주택",8,"",""],
+["1","나","다중주택(연면적330㎡↓·3층↓)",8,"취사시설 없음",""],
+["1","다","다가구주택(3개층↓·660㎡↓·19세대↓)",8,"",""],
+["1","라","공관",8,"",""],
+["2","가","아파트(주택 5개층↑)",8,"",""],
+["2","나","연립주택(1동 660㎡ 초과·4층↓)",8,"",""],
+["2","다","다세대주택(1동 660㎡↓·4층↓)",8,"",""],
+["2","라","기숙사",8,"",""],
+["3","가","소매점(1,000㎡↓)",7,"1종 근생. 1,000㎡↑이면 판매시설","편의점 슈퍼"],
+["3","나","휴게음식점·제과점(300㎡↓)",7,"1종 근생. 300㎡↑이면 2종","카페 베이커리 빵집"],
+["3","다","이용원·미용원·목욕장·세탁소",7,"1종 근생 (면적기준 없음)","미용실 이발소 네일 사우나 빨래방"],
+["3","라","의원·치과·한의원·조산원·산후조리원·안마원",7,"1종 근생 (면적기준 없음)","병원 클리닉 의원"],
+["3","마","탁구장·체육도장(500㎡↓)",7,"1종 근생. 500㎡↑이면 운동시설","태권도 검도 헬스"],
+["3","바","공공업무시설(파출소·우체국·보건소 등, 1,000㎡↓)",7,"1종 근생",""],
+["3","사","마을회관·공중화장실·지역아동센터 등 주민공동시설",7,"1종 근생",""],
+["3","아","변전소·도시가스배관·통신용시설·정수장 등",7,"1종 근생",""],
+["3","자","금융업소·사무소·부동산중개소 등 일반업무(30㎡↓)",7,"1종 근생. 30㎡↑이면 2종/업무","소규모 사무실"],
+["3","차","전기자동차 충전소(1,000㎡↓)",7,"1종 근생","전기차충전소"],
+["3","카","동물병원·동물미용실·동물위탁관리업(300㎡↓)",7,"1종 근생. 300㎡↑이면 2종 근생(4차). 2025 반영","동물병원 펫샵 애견미용 강아지"],
+["4","가","공연장(500㎡↓)",7,"2종 근생. 500㎡↑이면 문화및집회시설","소극장 라이브홀"],
+["4","나","종교집회장(500㎡↓)",7,"2종 근생. 500㎡↑이면 종교시설","교회 성당 절 예배당"],
+["4","다","자동차영업소(1,000㎡↓)",7,"2종 근생","카센터 대리점"],
+["4","라","서점(1종 제외)",7,"2종 근생","책방"],
+["4","마","총포판매소",7,"2종 근생",""],
+["4","바","사진관·표구점",7,"2종 근생","스튜디오"],
+["4","사","청소년게임제공업소·PC방 등 게임시설(500㎡↓)",7,"2종 근생","피시방 오락실"],
+["4","아","휴게음식점·제과점(300㎡↑)",7,"2종 근생","대형카페"],
+["4","자","일반음식점",7,"2종 근생 (면적기준 없음)","식당 레스토랑 술집 고깃집 횟집"],
+["4","차","장의사·동물병원·동물미용실",7,"2종 근생","펫샵 애견미용"],
+["4","카","학원·교습소·직업훈련소(500㎡↓)",7,"2종 근생. 500㎡↑이면 교육연구시설. ※보컬·악기·안무 연습실이 교습소로 등록되면 여기","보습학원 음악학원 미술학원 연습실 공부방"],
+["4","타","독서실·기원",7,"2종 근생 (면적기준 없음). ※스터디카페는 통상 여기","스터디카페 열람실 바둑"],
+["4","파","체력단련장·볼링장·당구장·골프연습장 등(500㎡↓)",7,"2종 근생. 500㎡↑이면 운동시설","헬스장 피트니스 스크린골프 요가 필라테스"],
+["4","하","금융업소·사무소·부동산중개소·출판사 등 일반업무(500㎡↓)",7,"2종 근생. 500㎡↑이면 업무시설","사무실 오피스 공유오피스 은행 부동산"],
+["4","거","다중생활시설(고시원, 500㎡↓)",7,"2종 근생. 500㎡↑이면 숙박시설","고시원 고시텔"],
+["4","너","제조업소·수리점(500㎡↓, 비공해)",7,"2종 근생","공방 수선집"],
+["4","더","단란주점(150㎡↓)",7,"2종 근생. 150㎡↑이면 위락시설",""],
+["4","러","안마시술소·노래연습장",7,"2종 근생 (면적기준 없음)","노래방 코인노래방"],
+["4","머","주문배송시설",7,"2종 근생. 500㎡↓ (물류창고업 등록 대상). 2025 신설","풀필먼트 물류 배송센터"],
+["4","버","공유보관시설",7,"2종 근생. 1,000㎡↓. 2025 신설","셀프스토리지 무인창고 짐보관"],
+["5","가","공연장(2종 근생 아닌 것)",4,"문화및집회시설","공연장 극장"],
+["5","나","집회장(예식장·공회당·회의장 등)",4,"문화및집회시설","웨딩홀 컨벤션"],
+["5","다","관람장(경마장·체육관 등 관람석 1,000㎡↑)",4,"문화및집회시설","경기장 스타디움"],
+["5","라","전시장(박물관·미술관·과학관 등)",4,"문화및집회시설","갤러리 뮤지엄"],
+["5","마","동·식물원",4,"문화및집회시설","",],
+["6","가","종교집회장(2종 근생 아닌 것)",4,"종교시설","대형교회 성당"],
+["6","나","봉안당(종교시설 내)",4,"종교시설","납골당"],
+["7","가","도매시장",5,"판매시설",""],
+["7","나","소매시장(대규모점포)",5,"판매시설","마트 백화점 아울렛"],
+["7","다","상점(1종 근생 아닌 것 등)",5,"판매시설","대형상점"],
+["8","가","여객자동차터미널",2,"운수시설(산업 등 시설군)","버스터미널"],
+["8","나","철도시설",2,"운수시설","역사"],
+["8","다","공항시설",2,"운수시설",""],
+["8","라","항만시설",2,"운수시설",""],
+["8","마","버티포트(Vertiport)",2,"운수시설. UAM 도심항공교통 이착륙장. 2025 신설","UAM 드론택시 에어택시 수직이착륙장"],
+["9","가","병원(종합·치과·한방·정신·요양)",6,"의료시설","종합병원 요양병원"],
+["9","나","격리병원(전염병원·마약진료소 등)",6,"의료시설",""],
+["10","가","학교(유치원·초·중·고·대학)",6,"교육연구시설","",],
+["10","나","교육원·연수원",6,"교육연구시설",""],
+["10","다","직업훈련소(운전·정비 제외)",6,"교육연구시설",""],
+["10","라","학원(500㎡↑ 등, 2종근생 아닌 것)",6,"교육연구시설","대형학원"],
+["10","마","연구소·시험소·계측계량소",6,"교육연구시설","랩"],
+["10","바","도서관",6,"교육연구시설",""],
+["11","가","아동관련시설(어린이집·아동복지시설 등)",6,"노유자시설","어린이집 유치원"],
+["11","나","노인복지시설",6,"노유자시설","요양원 데이케어"],
+["11","다","기타 사회복지·근로복지시설",6,"노유자시설",""],
+["12","가","생활권수련시설(청소년수련관 등)",6,"수련시설",""],
+["12","나","자연권수련시설(청소년수련원·야영장 등)",6,"수련시설",""],
+["12","다","유스호스텔",6,"수련시설",""],
+["12","라","야영장시설(29호 아닌 것)",6,"수련시설","캠핑장 글램핑"],
+["13","가","탁구장·체력단련장·볼링장·골프연습장 등(근생 아닌 것)",5,"운동시설(영업시설군)","대형헬스장"],
+["13","나","체육관(관람석 1,000㎡↓)",5,"운동시설",""],
+["13","다","운동장(수영장·스케이트장 등)",5,"운동시설","수영장 아이스링크"],
+["14","가","공공업무시설(국가·지자체 청사, 외국공관)",8,"업무시설","관공서 시청"],
+["14","나-1","일반업무시설(사무소·금융업소 등, 500㎡↑)",8,"업무시설. 500㎡↓이면 2종 근생","오피스 사옥 대형사무실"],
+["14","나-2","오피스텔",8,"업무시설","오피스텔"],
+["15","가","일반숙박시설·생활숙박시설",5,"숙박시설(영업시설군)","모텔 여관 레지던스 생숙"],
+["15","나","관광숙박시설(호텔·호스텔·콘도 등)",5,"숙박시설. ※호스텔·게하 프로젝트 핵심","호텔 호스텔 게스트하우스 게하 콘도"],
+["15","다","다중생활시설(고시원, 500㎡↑)",5,"숙박시설. 500㎡↓이면 2종 근생","대형고시원"],
+["15","라","그 밖에 비슷한 숙박시설",5,"숙박시설",""],
+["16","가","단란주점(2종 근생 아닌 것, 150㎡↑)",4,"위락시설(문화및집회시설군)",""],
+["16","나","유흥주점",4,"위락시설","룸살롱 클럽"],
+["16","다","유원시설업 시설",4,"위락시설","놀이공원"],
+["16","마","무도장·무도학원",4,"위락시설","댄스홀"],
+["16","바","카지노영업소",4,"위락시설","카지노"],
+["17","","공장",2,"산업 등 시설군","공장 제조"],
+["18","가","창고(일반·냉장·냉동)",2,"창고시설","물류창고 냉동창고"],
+["18","나","하역장",2,"창고시설",""],
+["18","다","물류터미널",2,"창고시설",""],
+["18","라","집배송시설",2,"창고시설","택배"],
+["19","","위험물저장및처리시설(주유소·충전소 등)",2,"산업 등 시설군","주유소 가스충전소 LPG"],
+["20","가","주차장",1,"자동차관련시설(최상위군)","주차타워"],
+["20","나","세차장",1,"자동차관련시설",""],
+["20","다","폐차장",1,"자동차관련시설",""],
+["20","라","검사장",1,"자동차관련시설",""],
+["20","마","매매장",1,"자동차관련시설","중고차매매"],
+["20","바","정비공장",1,"자동차관련시설","카센터 정비소"],
+["20","사","운전학원·정비학원",1,"자동차관련시설","운전면허학원"],
+["20","아","차고·주기장",1,"자동차관련시설",""],
+["20","자","전기자동차 충전소로서 제1종 근린생활시설에 해당하지 않는 것",1,"자동차관련시설. 1종 근생(3차, 1,000㎡↓)에 해당하지 않는 대규모 충전소","전기차충전소 EV충전소 충전스테이션"],
+["21","가","축사",9,"동물및식물관련시설(최하위군)","",],
+["21","나","가축시설",9,"동물및식물관련시설",""],
+["21","다","도축장",9,"동물및식물관련시설",""],
+["21","라","도계장",9,"동물및식물관련시설",""],
+["21","마","작물재배사",9,"동물및식물관련시설","",],
+["21","바","종묘배양시설",9,"동물및식물관련시설",""],
+["21","사","화초·분재 온실",9,"동물및식물관련시설","",],
+["22","가","하수등처리시설",2,"자원순환관련시설",""],
+["22","나","고물상",2,"자원순환관련시설","",],
+["22","다","폐기물재활용시설",2,"자원순환관련시설","",],
+["22","라","폐기물처분시설",2,"자원순환관련시설",""],
+["22","마","폐기물감량화시설",2,"자원순환관련시설",""],
+["23","가","교정시설(구치소·교도소)",8,"교정및군사시설(주거업무시설군)","",],
+["23","나","갱생보호시설",8,"교정및군사시설",""],
+["23","다","소년원·소년분류심사원",8,"교정및군사시설",""],
+["23","라","(삭제 2023.5.15)",8,"삭제된 목","",],
+["23의2","","국방·군사시설",8,"주거업무시설군. 2025 개정으로 23호에서 분리 신설","군사시설 국방"],
+["24","가","방송국",3,"방송통신시설(전기통신시설군)","방송사"],
+["24","나","전신전화국",3,"방송통신시설",""],
+["24","다","촬영소",3,"방송통신시설. ※녹음실·스튜디오 방송용이면 확인","녹음실 스튜디오"],
+["24","라","데이터센터",3,"방송통신시설(2023 신설). 대규모 전산·서버 시설","IDC 서버센터 전산센터"],
+["24","마","통신용시설",3,"방송통신시설",""],
+["25","","발전시설(발전소)",3,"전기통신시설군","발전소"],
+["26","가","화장시설",2,"묘지관련시설","화장장"],
+["26","나","봉안당(종교시설 제외)",2,"묘지관련시설","납골당"],
+["26","다","묘지·자연장지 부수건축물",2,"묘지관련시설",""],
+["27","가","야외음악당",4,"관광휴게시설(문화및집회시설군)",""],
+["27","나","야외극장",4,"관광휴게시설",""],
+["27","다","어린이회관",4,"관광휴게시설",""],
+["27","라","관망탑",4,"관광휴게시설","전망대"],
+["27","마","휴게소",4,"관광휴게시설","",],
+["27","바","공원·유원지 부수시설",4,"관광휴게시설",""],
+["28","","장례식장",2,"산업 등 시설군","장례식장"],
+["29","","야영장시설(300㎡↓)",6,"수련시설로 분류(교육및복지시설군)","캠핑장"],
+];;
+  USES.forEach((u,i)=>u.idx=i);
+  const uLabel=u=>`[${u[0]}${u[1]}] ${u[2]}`;
+  const uKey=u=>`${u[0]}${u[1]}`;
+  const uByKey=k=>USES.find(u=>uKey(u)===k)||null;
+  const HO_MAJOR={"1":"단독주택","2":"공동주택","3":"제1종 근린생활시설","4":"제2종 근린생활시설","5":"문화 및 집회시설","6":"종교시설","7":"판매시설","8":"운수시설","9":"의료시설","10":"교육연구시설","11":"노유자시설","12":"수련시설","13":"운동시설","14":"업무시설","15":"숙박시설","16":"위락시설","17":"공장","18":"창고시설","19":"위험물 저장 및 처리시설","20":"자동차 관련 시설","21":"동물 및 식물 관련 시설","22":"자원순환 관련 시설","23":"교정시설","23의2":"국방·군사시설","24":"방송통신시설","25":"발전시설","26":"묘지 관련 시설","27":"관광 휴게시설","28":"장례시설","29":"야영장 시설"};
+  const uMajor=u=>HO_MAJOR[u[0]]||"";
+  const AREA_RULE={
+ "3가":{th:1000,below:{g:7,jong:1,label:"소매점(1종 근생)"},above:{g:5,jong:0,label:"판매시설"}},
+ "3나":{th:300, below:{g:7,jong:1,label:"휴게음식점(1종 근생)"},above:{g:7,jong:2,label:"휴게음식점(2종 근생)"}},
+ "3카":{th:300, below:{g:7,jong:1,label:"동물병원(1종 근생)"},above:{g:7,jong:2,label:"동물병원(2종 근생)"}},
+ "3마":{th:500, below:{g:7,jong:1,label:"탁구장·체육도장(1종 근생)"},above:{g:5,jong:0,label:"운동시설"}},
+ "3바":{th:1000,below:{g:7,jong:1,label:"공공업무시설(1종 근생)"},above:{g:8,jong:0,label:"업무시설"}},
+ "4가":{th:500, below:{g:7,jong:2,label:"공연장(2종 근생)"},above:{g:4,jong:0,label:"문화 및 집회시설"}},
+ "4나":{th:500, below:{g:7,jong:2,label:"종교집회장(2종 근생)"},above:{g:4,jong:0,label:"종교시설"}},
+ "4다":{th:1000,below:{g:7,jong:2,label:"자동차영업소(2종 근생)"},above:{g:5,jong:0,label:"판매시설"}},
+ "4사":{th:500, below:{g:7,jong:2,label:"게임제공업소(2종 근생)"},above:{g:4,jong:0,label:"문화 및 집회시설"}},
+ "4카":{th:500, below:{g:7,jong:2,label:"학원·교습소(2종 근생)"},above:{g:6,jong:0,label:"교육연구시설(학원)"}},
+ "4파":{th:500, below:{g:7,jong:2,label:"체력단련장 등(2종 근생)"},above:{g:5,jong:0,label:"운동시설"}},
+ "4하":{th:500, below:{g:7,jong:2,label:"사무소·일반업무(2종 근생)"},above:{g:8,jong:0,label:"업무시설(오피스)"}},
+ "4거":{th:500, below:{g:7,jong:2,label:"고시원(2종 근생)"},above:{g:5,jong:0,label:"숙박시설(다중생활시설)"}},
+ "4너":{th:500, below:{g:7,jong:2,label:"제조업소·수리점(2종 근생)"},above:{g:2,jong:0,label:"공장"}},
+ "4더":{th:150, below:{g:7,jong:2,label:"단란주점(2종 근생)"},above:{g:4,jong:0,label:"위락시설"}},
+};
+  function areaMsgFor(u){
+    const ae=document.getElementById("area"); const a=ae?parseFloat(ae.value)||0:0;
+    if(!u||a<=0) return null;
+    const rule=AREA_RULE[uKey(u)];
+    if(rule && a>=rule.th)
+      return `면적 ${a.toLocaleString()}㎡ ≥ ${rule.th.toLocaleString()}㎡ → <b>${rule.above.label}</b>(으)로 재분류됩니다. 현재 선택한 <b>${u[2]}</b>은(는) ${rule.th.toLocaleString()}㎡ 미만 기준입니다.`;
+    const m=u[2].match(/([\d,]+)\s*㎡\s*↑/);
+    if(m && !/연면적/.test(u[2])){ const th=parseInt(m[1].replace(/,/g,''));
+      if(a<th) return `면적 ${a.toLocaleString()}㎡ < ${th.toLocaleString()}㎡ → 현재 선택한 <b>${u[2]}</b>은(는) ${th.toLocaleString()}㎡ 이상 기준입니다. 하위(근린생활시설 등) 세부용도일 수 있습니다.`; }
+    return null;
+  }
+  function checkAreaWarn(){
+    const el=document.getElementById("areaWarn"); if(!el) return;
+    const parts=[];
+    const t=areaMsgFor(usePick.targetUse); if(t) parts.push("<b>희망 용도</b> — "+t);
+    const c=areaMsgFor(usePick.curUse); if(c) parts.push("<b>현 용도</b> — "+c);
+    if(parts.length){ el.innerHTML="⚠ "+parts.join("<br>⚠ "); el.classList.add("show"); }
+    else { el.innerHTML=""; el.classList.remove("show"); }
+    if(typeof renderScope==="function") renderScope();
+  }
+  const uSearch=u=>`${uLabel(u)} ${uMajor(u)} ${u[4]}`.toLowerCase();
+  // 업종 목록: 세부용도 이름(괄호 제거·· 분해)+별칭을 개별 토큰으로
+  const BIZ=[]; { const seen=new Set();
+    USES.forEach(u=>{ const terms=[];
+      u[2].replace(/\([^)]*\)/g,'').split('·').forEach(p=>{ const t=p.trim(); if(t) terms.push(t); });
+      if(u[5]) u[5].split(/\s+/).forEach(t=>{ t=t.trim(); if(t) terms.push(t); });
+      terms.forEach(t=>{ const k=t+'|'+uKey(u); if(!seen.has(k)){ seen.add(k); BIZ.push({term:t,u}); } });
+    }); }
+  const usePick={targetUse:null,targetBiz:null,curUse:null,curBiz:null};
+  const hlRe=q=>new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig');
+  // ── 용도 picker (세부용도 + 대분류 표시) ──
+  function makeUsePicker(inputId,resultsId,slot,onPick){
+    const input=document.getElementById(inputId), box=document.getElementById(resultsId);
+    if(!input||!box) return null;
+    let hi=-1, cur=[];
+    function draw(q){
+      const query=(q||'').trim().toLowerCase();
+      if(!query){ box.classList.remove('show'); return; }
+      cur=USES.filter(u=>uSearch(u).includes(query)).slice(0,60);
+      if(!cur.length){ box.innerHTML='<div class="res-empty">일치하는 용도가 없습니다.</div>'; box.classList.add('show'); return; }
+      const re=hlRe(query);
+      box.innerHTML=cur.map((u,i)=>`<div class="res-item ${i===hi?'hi':''}" data-idx="${u.idx}"><span class="grp-dot" style="background:${GRP_COLOR[u[3]]}"></span><span>${uLabel(u).replace(re,'<mark>$1</mark>')}<span class="res-alias">${uMajor(u)}</span></span></div>`).join('');
+      box.classList.add('show');
+    }
+    const majEl=document.getElementById(inputId.replace("Input","Major"));
+    const setMaj=(u)=>{ if(!majEl)return; if(u){ majEl.textContent=uMajor(u); majEl.classList.add("filled"); } else { majEl.textContent="—"; majEl.classList.remove("filled"); } };
+    function pick(u){ usePick[slot]=u; input.value=uLabel(u); input.classList.add('chosen'); box.classList.remove('show'); setMaj(u); checkAreaWarn(); if(onPick)onPick(u); }
+    input.addEventListener('input',()=>{ hi=-1; usePick[slot]=null; input.classList.remove('chosen'); setMaj(null); checkAreaWarn(); draw(input.value); if(onPick)onPick(null); });
+    input.addEventListener('focus',()=>{ if(input.value&&!usePick[slot]) draw(input.value); });
+    input.addEventListener('keydown',e=>{ if(!box.classList.contains('show'))return;
+      if(e.key==='ArrowDown'){e.preventDefault();hi=Math.min(hi+1,cur.length-1);draw(input.value);}
+      else if(e.key==='ArrowUp'){e.preventDefault();hi=Math.max(hi-1,0);draw(input.value);}
+      else if(e.key==='Enter'&&hi>=0){e.preventDefault();pick(cur[hi]);}
+      else if(e.key==='Escape'){box.classList.remove('show');} });
+    box.addEventListener('mousedown',e=>{ const it=e.target.closest('.res-item'); if(!it)return; e.preventDefault(); pick(USES[+it.dataset.idx]); });
+    document.addEventListener('click',e=>{ if(!input.parentElement.contains(e.target)) box.classList.remove('show'); });
+    return { setUse:(u)=>{ usePick[slot]=u; input.value=u?uLabel(u):''; input.classList.toggle('chosen',!!u); setMaj(u); checkAreaWarn(); },
+             restore:(key,txt)=>{ const u=key?uByKey(key):null; usePick[slot]=u; input.value=txt||(u?uLabel(u):''); input.classList.toggle('chosen',!!(txt||u)); setMaj(u); checkAreaWarn(); } };
+  }
+  // ── 업종 picker (별칭·이름 토큰 선택 → 용도 자동) ──
+  function makeBizPicker(inputId,resultsId,slot,onPick){
+    const input=document.getElementById(inputId), box=document.getElementById(resultsId);
+    if(!input||!box) return null;
+    let hi=-1, cur=[];
+    function draw(q){
+      const query=(q||'').trim().toLowerCase();
+      if(!query){ box.classList.remove('show'); return; }
+      cur=BIZ.filter(b=>b.term.toLowerCase().includes(query)).slice(0,60);
+      if(!cur.length){ box.innerHTML='<div class="res-empty">일치하는 업종이 없습니다. 용도 칸에서 선택하거나 그대로 입력하세요.</div>'; box.classList.add('show'); return; }
+      const re=hlRe(query);
+      box.innerHTML=cur.map((b,i)=>`<div class="res-item ${i===hi?'hi':''}" data-i="${i}"><span class="grp-dot" style="background:${GRP_COLOR[b.u[3]]}"></span><span>${b.term.replace(re,'<mark>$1</mark>')}<span class="res-alias">→ ${uLabel(b.u)} · ${uMajor(b.u)}</span></span></div>`).join('');
+      box.classList.add('show');
+    }
+    function pick(b){ usePick[slot]=b.u; input.value=b.term; input.classList.add('chosen'); box.classList.remove('show'); if(onPick)onPick(b.u); }
+    input.addEventListener('input',()=>{ hi=-1; usePick[slot]=null; input.classList.remove('chosen'); draw(input.value); });
+    input.addEventListener('focus',()=>{ if(input.value&&!usePick[slot]) draw(input.value); });
+    input.addEventListener('keydown',e=>{ if(!box.classList.contains('show'))return;
+      if(e.key==='ArrowDown'){e.preventDefault();hi=Math.min(hi+1,cur.length-1);draw(input.value);}
+      else if(e.key==='ArrowUp'){e.preventDefault();hi=Math.max(hi-1,0);draw(input.value);}
+      else if(e.key==='Enter'&&hi>=0){e.preventDefault();pick(cur[hi]);}
+      else if(e.key==='Escape'){box.classList.remove('show');} });
+    box.addEventListener('mousedown',e=>{ const it=e.target.closest('.res-item'); if(!it)return; e.preventDefault(); pick(cur[+it.dataset.i]); });
+    document.addEventListener('click',e=>{ if(!input.parentElement.contains(e.target)) box.classList.remove('show'); });
+    return { restore:(key,txt)=>{ usePick[slot]=key?uByKey(key):null; input.value=txt||''; input.classList.toggle('chosen',!!txt); } };
+  }
   const ZONES = ["모름","주거지역","상업지역","공업지역","녹지지역"];
-  const USES = ["모름","단독주택","공동주택","제1종근린생활시설","제2종근린생활시설","판매시설","업무시설","의료시설","교육연구시설","숙박시설"];
-  const REQUIRED_USE = {
-    "카페":["제1종근린생활시설","제2종근린생활시설"],"베이커리":["제1종근린생활시설","제2종근린생활시설"],
-    "음식점(일반)":["제1종근린생활시설","제2종근린생활시설"],"고기집·구이":["제2종근린생활시설"],
-    "미용실":["제1종근린생활시설"],"판매점":["제1종근린생활시설","제2종근린생활시설","판매시설"],
-    "일반 사무실":["제2종근린생활시설","업무시설"],"공유오피스":["제2종근린생활시설","업무시설"],
-    "성형외과":["제1종근린생활시설","의료시설"],"피부과":["제1종근린생활시설","의료시설"],
-    "일반 의원":["제1종근린생활시설","의료시설"],"한의원":["제1종근린생활시설","의료시설"],"약국":["제1종근린생활시설"],
-    "학원":["제2종근린생활시설","교육연구시설"],"교습소":["제2종근린생활시설"],"공부방":["제2종근린생활시설"],"독서실":["제2종근린생활시설","교육연구시설"],
-    "호스텔":["숙박시설"],"에어비앤비":["단독주택","공동주택","숙박시설"],"게스트하우스":["숙박시설","단독주택"],
-    "아파트/공동주택":["공동주택"],"단독주택":["단독주택"],"빌라·다세대":["공동주택"],"복층":["단독주택","공동주택"]
-  };
+  // 용도지역 전체 체계 (국토계획법 §36) — 검색형 선택기용  [라벨, 대분류, 중분류, 별칭]
+  const ZONE_LIST=[
+    ["제1종 전용주거지역","도시지역","전용주거","단독 저층"],
+    ["제2종 전용주거지역","도시지역","전용주거","공동 저층"],
+    ["제1종 일반주거지역","도시지역","일반주거","저층"],
+    ["제2종 일반주거지역","도시지역","일반주거","중층"],
+    ["제3종 일반주거지역","도시지역","일반주거","중고층"],
+    ["준주거지역","도시지역","주거지역","주거+상업 혼합"],
+    ["중심상업지역","도시지역","상업지역","도심 상업"],
+    ["일반상업지역","도시지역","상업지역","일반 상업"],
+    ["근린상업지역","도시지역","상업지역","근생 상업"],
+    ["유통상업지역","도시지역","상업지역","물류 유통"],
+    ["전용공업지역","도시지역","공업지역","중화학"],
+    ["일반공업지역","도시지역","공업지역","일반 공업"],
+    ["준공업지역","도시지역","공업지역","경공업+주거"],
+    ["보전녹지지역","도시지역","녹지지역","보전"],
+    ["생산녹지지역","도시지역","녹지지역","생산"],
+    ["자연녹지지역","도시지역","녹지지역","제한적 개발"],
+    ["보전관리지역","비도시지역","관리지역","보전"],
+    ["생산관리지역","비도시지역","관리지역","생산"],
+    ["계획관리지역","비도시지역","관리지역","개발 가능"],
+    ["농림지역","비도시지역","농림지역","농업 임업"],
+    ["자연환경보전지역","비도시지역","자연환경보전지역","보전"],
+    ["모름 / 미확인","","","모름 미상 나중"]
+  ];
+  // 용도지구 (국토계획법 §37·시행령 §31) — 검색형 선택기용  [라벨, 대분류, 세분, 별칭]
+  const DIST_LIST=[
+    ["해당 없음","","","없음 미지정"],
+    ["자연경관지구","경관지구","경관","산지 하천 주변"],
+    ["시가지경관지구","경관지구","경관","시가지 미관"],
+    ["특화경관지구","경관지구","경관","수변 문화재 주변"],
+    ["고도지구","고도지구","높이","건축물 높이 최고한도"],
+    ["방화지구","방화지구","방재","밀집시가지 화재예방"],
+    ["시가지방재지구","방재지구","방재","시가지 재해예방"],
+    ["자연방재지구","방재지구","방재","해안 하천 재해예방"],
+    ["역사문화환경보호지구","보호지구","보호","문화재 주변"],
+    ["중요시설물보호지구","보호지구","보호","공항 항만 관공서"],
+    ["생태계보호지구","보호지구","보호","야생동식물"],
+    ["자연취락지구","취락지구","취락","녹지·관리·농림·자연환경 내 취락"],
+    ["집단취락지구","취락지구","취락","개발제한구역 내 취락"],
+    ["주거개발진흥지구","개발진흥지구","진흥","주거 중심 개발"],
+    ["산업·유통개발진흥지구","개발진흥지구","진흥","공업 유통 개발"],
+    ["관광·휴양개발진흥지구","개발진흥지구","진흥","관광 휴양 개발"],
+    ["복합개발진흥지구","개발진흥지구","진흥","2개 이상 복합"],
+    ["특정개발진흥지구","개발진흥지구","진흥","특정목적 개발"],
+    ["특정용도제한지구","특정용도제한지구","제한","청소년·주거환경 유해시설 제한"],
+    ["복합용도지구","복합용도지구","복합","용도지역 제한 완화"],
+    ["기타 (직접 입력)","","","기타 그밖"]
+  ];
+  function makeGeoPicker(inputId,resultsId,LIST){
+    const input=document.getElementById(inputId), box=document.getElementById(resultsId);
+    if(!input||!box) return;
+    let hi=-1, cur=[];
+    const zs=z=>`${z[0]} ${z[1]} ${z[2]} ${z[3]}`.toLowerCase().replace(/\s+/g,"");
+    function draw(q){
+      const query=(q||"").trim().toLowerCase().replace(/\s+/g,"");
+      cur = query ? LIST.filter(z=>zs(z).includes(query)) : LIST.slice();
+      if(!cur.length){ box.innerHTML='<div class="res-item" style="color:var(--sub)">일치하는 용도지역이 없습니다.</div>'; box.classList.add("show"); return; }
+      const re=hlRe((q||"").trim());
+      let html="", lastG="";
+      cur.forEach((z,i)=>{ const g=z[1];
+        if(g!==lastG){ if(g) html+=`<div class="res-group">${g}</div>`; lastG=g; }
+        const dot = g==="도시지역"?"var(--accent)":(g==="비도시지역"?"#8a9a7a":"#bbb");
+        const alias = (z[2]&&z[2]!==z[0]) ? `<span class="res-alias">${z[2]}${z[3]?" · "+z[3]:""}</span>` : (z[3]?`<span class="res-alias">${z[3]}</span>`:"");
+        html+=`<div class="res-item ${i===hi?'hi':''}" data-i="${i}"><span class="grp-dot" style="background:${dot}"></span><span>${(q&&q.trim())?z[0].replace(re,'<mark>$1</mark>'):z[0]}${alias}</span></div>`;
+      });
+      box.innerHTML=html; box.classList.add("show");
+    }
+    function pick(z){ input.value=z[0]; input.classList.add("chosen"); box.classList.remove("show"); render(); }
+    input.addEventListener("input",()=>{ hi=-1; input.classList.remove("chosen"); draw(input.value); });
+    input.addEventListener("focus",()=>{ draw(input.value); });
+    input.addEventListener("keydown",e=>{ if(!box.classList.contains("show"))return;
+      if(e.key==="ArrowDown"){e.preventDefault();hi=Math.min(hi+1,cur.length-1);draw(input.value);}
+      else if(e.key==="ArrowUp"){e.preventDefault();hi=Math.max(hi-1,0);draw(input.value);}
+      else if(e.key==="Enter"&&hi>=0){e.preventDefault();pick(cur[hi]);}
+      else if(e.key==="Escape"){box.classList.remove("show");} });
+    box.addEventListener("mousedown",e=>{ const it=e.target.closest(".res-item"); if(!it||it.dataset.i===undefined)return; e.preventDefault(); pick(cur[+it.dataset.i]); });
+    document.addEventListener("click",e=>{ if(!input.parentElement.contains(e.target)) box.classList.remove("show"); });
+  }
   const REQ="필수", CHK="확인 필요", NA="해당없음";
   const m2 = (v,u)=> u==="평" ? v*3.3058 : v;
 
-  function build(s){
-    const d=s.detail, t=s.type, a=m2(parseFloat(s.area)||0, s.unit), hasA=a>0, base=s.floorType==="지하";
-    const isFood=["카페","베이커리","음식점(일반)","고기집·구이"].includes(d), isGrill=d==="고기집·구이";
-    const isMed=t==="의료", isAcademy=["학원","교습소"].includes(d), isApt=["아파트/공동주택","빌라·다세대"].includes(d);
-    const isLodging=t==="숙박", isBnb=d==="에어비앤비", isStudy=d==="독서실";
-    const floors=parseInt(s.totalFloors)||0;
-    const r=[]; const add=(name,st,note)=>r.push({name,st,note});
-
-    const need=REQUIRED_USE[d]||[];
-    if(!s.bldgUse||s.bldgUse==="모름") add("용도변경 (건축법)",CHK,"현재 건축물 용도 확인 필요");
-    else if(need.includes(s.bldgUse)) add("용도변경 (건축법)",NA,"용도 적합 — 변경 불필요");
-    else add("용도변경 (건축법)",REQ,`현재 '${s.bldgUse}' → '${need[0]||"해당 용도"}' 변경 검토`);
-
-    if(isFood){ const th=base?66:100;
-      if(!hasA) add("다중이용업소 해당",CHK,"면적 입력 시 자동 판정");
-      else if(a>=th) add("다중이용업소 해당",REQ,`음식점 ${th}㎡ 이상 → 비상구·피난통로·방염 ＊현행 확인`);
-      else add("다중이용업소 해당",CHK,`${th}㎡ 미만 — 경계값, 영업장 합산 확인`);
-    } else if(isAcademy||isStudy) add("다중이용업소 해당",CHK, isStudy?"독서실 — 다중이용업 대상 가능, 면적·수용인원 확인":"학원 수용인원 기준 확인");
-    else if(isLodging) add("다중이용업소 해당",CHK,"고시원형 시 다중이용업 해당 — 확인");
-    else add("다중이용업소 해당",NA,"비대상 업종으로 추정");
-
-    if(t==="주거"&&!isApt) add("소방 기본시설",CHK,"단독주거 — 주택용 소방시설 확인");
-    else add("소방 기본시설",REQ,"소화기·감지기·유도등·비상조명");
-
-    if(floors>=11||base||a>=600) add("스프링클러",CHK,"11층↑·지하·대면적 시 대상 가능 ＊현행 확인");
-    else add("스프링클러",CHK,"층수·면적·용도별 — 확인 필요");
-
-    if(isFood||isAcademy||isMed||isStudy||isLodging) add("마감재 방염·불연",REQ,"다중이용/숙박/의료 — 방염 마감 필수");
-    else add("마감재 방염·불연",CHK,"규모·용도별 방염대상 확인");
-
-    if(isMed||isAcademy||isStudy) add("실내공기질 (친환경 자재)",REQ,"의료·학원·독서실 — 다중이용시설 적용");
-    else if(a>=430) add("실내공기질 (친환경 자재)",CHK,"대규모 점포 등 적용 여부 확인");
-    else add("실내공기질 (친환경 자재)",NA,"소규모 일반시설 — 비대상 추정");
-
-    if(isMed||t==="교육"||isLodging) add("장애인 편의시설",CHK,"의료·교육·숙박 — 용도·면적 기준 확인");
-    else if(a>=300) add("장애인 편의시설",CHK,"일정 규모 이상 — 대상 여부 확인");
-    else add("장애인 편의시설",NA,"소규모 — 비대상 추정");
-
-    if(isFood) add("주방 배기 (후드·국소배기)",isGrill?REQ:CHK,isGrill?"구이 — 후드·국소배기덕트·자동소화 필수":"조리장 환기시설 — 식품위생법 시설기준");
-    else add("주방 배기 (후드·국소배기)",NA,"주방 미설치 — 비대상");
-
-    if(isApt) add("환기설비 (건축법 설비규칙 §11)",CHK,"신축·리모델링 30세대 이상 공동주택 — 시간당 0.5회 ＊세대수·신축여부 확인");
-    else if(t==="상업"||isMed||t==="교육"||isLodging||isOffice) add("환기설비 (건축법 설비규칙 §11)",CHK,"다중이용시설 신축 시 기계환기설비 의무 — 규모·별표1의6 확인");
-    else add("환기설비 (건축법 설비규칙 §11)",NA,"단독주거 등 — 비대상(권장 가능)");
-
-    if(isFood||isLodging){ const cap=parseFloat(s.septic)||0; add("정화조 / 오수",CHK,(isLodging?"숙박 객실 인원":"음식점 오수 발생")+" — 용량 적정성 확인"+(cap?` (입력 ${cap})`:"")); }
-    else add("정화조 / 오수",NA,"오수 부하 낮음 — 비대상 추정");
-
-    if(isFood) add("가스 (도시가스/LP)",isGrill?REQ:CHK,"주방 가스 사용 — 안전·완성검사 확인");
-    else add("가스 (도시가스/LP)",NA,"비대상");
-
-    if(isApt) add("공동주택 층간소음 기준",REQ,"직접충격 주39/야34dB 수준 — 법정 기준 ＊현행 확인");
-    else if(isBnb) add("공동주택 층간소음 기준",CHK,"공동주택 운영 시 이웃 소음 민원 — 세대 차음 검토");
-    else if(t==="주거") add("공동주택 층간소음 기준",NA,"단독 — 법정 대상 아님(권장 가능)");
-    else add("공동주택 층간소음 기준",NA,"주거 외 — 비대상");
-
-    if(isMed) add("의료 인허가·시설기준",REQ,"개설기준·감염관리·(전신마취 시)수술실 CCTV·촬영실 차폐 ＊현행 확인");
-    else add("의료 인허가·시설기준",NA,"비의료 — 비대상");
-
-    if(isFood) add("영업신고 (식품위생법)",REQ,"음식점 영업신고");
-    else if(isLodging) add("숙박업 신고/등록",REQ,"숙박업·외국인관광도시민박업 등 신고 ＊업태 확인");
-    else if(isStudy) add("독서실 신고·등록",REQ,"교육청/구청 신고");
-    else if(isAcademy) add("학원 설립·운영 등록",REQ,"교육청 등록");
-    else if(isMed) add("의료기관 개설신고",REQ,"보건소 신고/허가");
-    else add("업종 등록·신고",CHK,"업종별 신고 의무 확인");
-
-    return r;
+  function syncTotals(){
+    const fa=val("floorsAbove"), fb=val("floorsBelow"), tf=document.getElementById("totalFloors");
+    if(tf && !(fa===""&&fb==="")){ const a=parseFloat(fa)||0, b=parseFloat(fb)||0; tf.value=String(a+b); }
+    const aa=val("areaAbove"), ab=val("areaBelow"), ga=document.getElementById("grossArea");
+    if(ga && !(aa===""&&ab==="")){ const x=parseFloat(aa)||0, y=parseFloat(ab)||0; ga.value=String(Math.round((x+y)*100)/100); }
   }
-
-  const cls={[REQ]:"r",[CHK]:"c",[NA]:"n"};
   function render(){
-    const s={ type:val("type"), detail:val("detail"), area:val("area"), unit:"㎡",
-      totalFloors:val("totalFloors"), floorType:val("floorType"), floorNo:val("floorNo"),
-      zone:val("zone"), district:val("district"), bldgUse:val("bldgUse"), septic:val("septic") };
+    syncTotals();
     const pv=parseFloat(val("area"))||0;
-    document.getElementById("pyeong").textContent="≈ "+(pv/3.3058).toFixed(1)+" 평";
-    const list=build(s);
-    const nR=list.filter(x=>x.st===REQ).length, nC=list.filter(x=>x.st===CHK).length, nN=list.length-nR-nC;
-    document.getElementById("summary").innerHTML=
-      `<span class="pill r">필수 ${nR}</span><span class="pill c">확인 필요 ${nC}</span><span class="pill n">해당없음 ${nN}</span>`;
-    document.getElementById("checklist").innerHTML=list.map(x=>
-      `<div class="check ${x.st===NA?'na':''}"><span class="badge ${cls[x.st]}">${x.st}</span>
-        <div><div class="nm">${x.name}</div><div class="nt">${x.note}</div></div></div>`).join("");
-    renderTaste();
+    const py=document.getElementById("pyeong");
+    if(py) py.textContent="≈ "+(pv/3.3058).toFixed(1)+" 평";
+    if(typeof checkAreaWarn==="function") checkAreaWarn();
+    if(typeof renderTaste==="function") renderTaste();
   }
   const val=(id)=>{ const e=document.getElementById(id); return e?e.value:""; };
 
   function fillSelect(id,arr){ document.getElementById(id).innerHTML=arr.map(v=>`<option>${v}</option>`).join(""); }
-  function initDetail(){ fillSelect("detail",TYPES[val("type")]); }
 
   /* ===== 5. 디자인 취향 ===== */
   const AXES=[["트렌드","클래식"],["따뜻함","시원함"],["미니멀","풍성함"],["밝음","어두움"],["차분함","개성"],["고급","내추럴"]];
@@ -518,57 +963,72 @@
     showPal(selPal);
   }
 
-  /* ===== 7. 특화 시설 ===== */
-  const SPECS=[
-    {id:"sound",n:"소음시설",d:"방음·흡음 — 상업·다세대는 입주 후 민원으로 반드시 필요해집니다."},
-    {id:"hvac",n:"냉난방공조 (HVAC)",d:"덕트·실외기·천장 매립이 인테리어와 얽히는 설비입니다."},
-    {id:"fire",n:"소방시설",d:"스프링클러·감지기·피난 — 용도·면적에 따라 법정 의무입니다."},
-    {id:"sign",n:"간판시설",d:"외부 사인·돌출간판 — 허가·전기까지 포함됩니다."},
-    {id:"furn",n:"가구집기",d:"붙박이·맞춤가구·집기 — 디자인엔 들어가나 견적엔 누락이 잦습니다."},
-    {id:"elec",n:"전기 증설 · 인입",d:"계약전력 증설·인입 — 장비·면적이 늘면 반드시 필요합니다."},
-    {id:"etc",n:"기타 특수시설",d:"PDLC·폴딩문·일괄소등스위치·전동블라인드(커튼) 등 (계속 추가 예정).",free:true}
-  ];
-  let spec={}; SPECS.forEach(x=>spec[x.id]="na");
-  const SPECV=[["inc","포함"],["sep","별도"],["na","해당없음"]];
-  function buildSpecs(){
-    document.getElementById("specList").innerHTML=SPECS.map(x=>
-      `<div class="spec"><div class="nm">${x.n}</div><div class="nt">${x.d}</div>`+
-      `<div class="spec-seg" data-id="${x.id}">${SPECV.map(v=>`<button class="${v[0]}${spec[x.id]===v[0]?" on":""}" data-v="${v[0]}">${v[1]}</button>`).join("")}</div>`+
-      (x.free?`<div class="spec-free"><input id="spec_etc_txt" placeholder="PDLC · 폴딩문 · 일괄소등스위치 · 전동블라인드(커튼) 등 — 원하시는 항목 직접 입력"></div>`:``)+
-      `</div>`).join("");
-    document.querySelectorAll("#specList .spec-seg").forEach(seg=>{
-      const id=seg.dataset.id;
-      seg.querySelectorAll("button").forEach(b=>{ b.onclick=()=>{ spec[id]=b.dataset.v; seg.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x.dataset.v===spec[id])); renderSpecSum(); }; });
-    });
-    renderSpecSum();
+  // ===== 배포 모드: 고객용(?req=…) vs 관리자용(기본 주소) =====
+  let __adminPass="";
+  (function initMode(){
+    const p=new URLSearchParams(location.search);
+    const req=(p.get("req")||p.get("reqno")||"").trim();
+    const date=(p.get("date")||p.get("reqdate")||"").trim();
+    const reqEl=document.getElementById("reqno"), dateEl=document.getElementById("reqdate");
+    const today=new Date().toISOString().slice(0,10);
+    if(req){ // ── 고객 모드: 의뢰번호·일자 자동채움 + 잠금 ──
+      window.__CLIENT_MODE=true;
+      if(reqEl){ reqEl.value=req; reqEl.readOnly=true; reqEl.classList.add("locked"); }
+      if(dateEl){ dateEl.value=date||today; dateEl.readOnly=true; dateEl.classList.add("locked"); }
+      const g=document.getElementById("adminGate"); if(g) g.style.display="none";
+      const t=document.getElementById("adminTools"); if(t) t.style.display="none";
+      const note=document.getElementById("clientNote");
+      if(note){ note.style.display="inline"; note.textContent="의뢰번호 "+req+" · 아는 부분만 입력 후 [작품의뢰 제출]"; }
+      const sb=document.getElementById("saveBtn"); if(sb) sb.textContent="작품의뢰 제출";
+    } else { // ── 관리자 모드: 오늘 날짜 기본값 ──
+      if(dateEl && !dateEl.value) dateEl.value=today;
+    }
+  })();
+  function unlockAdmin(){
+    const el=document.getElementById("adminPass"), v=(el?el.value:"").trim();
+    if(!v){ tbmsg("관리자 비번을 입력하세요"); return; }
+    __adminPass=v;
+    const t=document.getElementById("adminTools"); if(t) t.style.display="inline-flex";
+    const g=document.getElementById("adminGate"); if(g) g.style.display="none";
+    tbmsg("관리자 모드 · 불러오기 가능 (서버 비번검증은 Apps Script 배포 후 적용)");
   }
-  function renderSpecSum(){
-    const inc=SPECS.filter(x=>spec[x.id]==="inc").map(x=>x.n);
-    const sep=SPECS.filter(x=>spec[x.id]==="sep").map(x=>x.n);
-    let h="";
-    if(inc.length) h+=`<div><b>견적 포함 (${inc.length})</b> — ${inc.join(" · ")}<br>이 항목들은 처음부터 견적에 반영되어, 공사 중 추가가 없습니다.</div>`;
-    if(sep.length) h+=`<div style="margin-top:${inc.length?"8px":"0"}"><span class="sep-warn"><b>별도 (${sep.length})</b> — ${sep.join(" · ")}</span><br>기본 견적에서 빠진 항목으로, 진행 시 별도 견적이 발생합니다.</div>`;
-    if(!inc.length&&!sep.length) h=`필요한 특화 항목을 <b>포함 / 별도</b>로 표시하면, 여기에 견적 반영 여부가 요약됩니다.`;
-    document.getElementById("specSum").innerHTML=h;
+  function makeClientLink(){
+    const no=(document.getElementById("reqno").value||"").trim();
+    const dt=(document.getElementById("reqdate").value||"").trim();
+    if(!no){ tbmsg("먼저 상단 의뢰번호를 입력하세요"); return; }
+    const url=location.origin+location.pathname+"?req="+encodeURIComponent(no)+(dt?"&date="+encodeURIComponent(dt):"");
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(()=>tbmsg("고객용 링크 복사됨 · "+no),()=>prompt("고객용 링크 (복사하세요):",url));
+    } else prompt("고객용 링크 (복사하세요):",url);
   }
 
-  fillSelect("type",Object.keys(TYPES));
-  document.getElementById("type").value="상업"; initDetail();
-  document.getElementById("detail").value="고기집·구이";
-  fillSelect("zone",ZONES); fillSelect("bldgUse",USES);
+  makeGeoPicker("zone","zoneResults",ZONE_LIST);
+  makeGeoPicker("zoneDist","zoneDistResults",DIST_LIST);
+  const pkTargetUse=makeUsePicker("targetUseInput","targetUseResults","targetUse");
+  const pkTargetBiz=makeBizPicker("targetBizInput","targetBizResults","targetBiz",u=>{ if(u&&pkTargetUse) pkTargetUse.setUse(u); });
+  const pkCurUse=makeUsePicker("curUseInput","curUseResults","curUse");
+  const pkCurBiz=makeBizPicker("curBizInput","curBizResults","curBiz",u=>{ if(u&&pkCurUse) pkCurUse.setUse(u); });
 
-  document.getElementById("type").addEventListener("change",()=>{ initDetail(); render(); });
-  ["detail","area","totalFloors","floorType","floorNo","zone","district","bldgUse","septic"]
-    .forEach(id=>{ const e=document.getElementById(id); e.addEventListener("input",render); e.addEventListener("change",render); });
-  const FIELDS=["reqno","reqdate","clientName","clientPhone","clientRef","type","detail","area","addr","totalFloors","floorType","floorNo","zone","district","bldgUse","septic","elecCap","schedule","purpose"];
-  function gather(){ const o={}; FIELDS.forEach(id=>{ const e=document.getElementById(id); if(e) o[id]=e.value; }); o.taste=taste.slice(); o.color={palette:selPal}; o.special=Object.assign({},spec); const _et=document.getElementById("spec_etc_txt"); if(_et) o.special.etc_txt=_et.value; return o; }
+  ["area","floorType","floorNo","district",
+   "floorsAbove","floorsBelow","areaAbove","areaBelow","windowlessArea"]
+    .forEach(id=>{ const e=document.getElementById(id); if(e){ e.addEventListener("input",render); e.addEventListener("change",render); } });
+  const FIELDS=["reqno","reqdate","clientName","clientPhone","clientRef","schedule",
+    "addr","area","floorType","floorNo",
+    "totalFloors","floorsAbove","floorsBelow","windowlessArea","grossArea","areaAbove","areaBelow",
+    "zone","zoneDist","district","septic","elecCap","sprinkler","purpose"];
+  const gv=id=>{ const e=document.getElementById(id); return e?e.value:""; };
+  function slotState(slot,inputId){ return { key: usePick[slot]?uKey(usePick[slot]):"", txt: gv(inputId) }; }
+  function usesState(){ return {
+    targetUse: slotState("targetUse","targetUseInput"), targetBiz: slotState("targetBiz","targetBizInput"),
+    curUse: slotState("curUse","curUseInput"), curBiz: slotState("curBiz","curBizInput") }; }
+  function gather(){ const o={}; FIELDS.forEach(id=>{ const e=document.getElementById(id); if(e) o[id]=e.value; }); o.taste=taste.slice(); o.color={palette:selPal}; o.uses=usesState(); o.scope={baType:scope.baType,dsParts:scope.dsParts.slice(),dsMethod:scope.dsMethod,dsScale:scope.dsScale,muExc:scope.muExc}; return o; }
   function tbmsg(t){ const m=document.getElementById("tb-msg"); m.textContent=t; setTimeout(()=>{ if(m.textContent===t) m.textContent=""; },2800); }
   const WEBAPP_URL="https://script.google.com/macros/s/AKfycbybQXidCd7cZvJj50lB5LS4HTtBOmhuJ0epGXQ1aTJ584dYtC3LospEbBVWiY--Vm48Lw/exec"; // Google 드라이브(시트) 연동
   async function saveReq(){
     const no=(document.getElementById("reqno").value||"").trim();
     if(!no){ tbmsg("상단 '의뢰번호'를 먼저 입력하세요"); return; }
     const data=gather();
-    try{ localStorage.setItem("grida_req_"+no, JSON.stringify(data)); }catch(e){}
+    try{ localStorage.setItem("grida_req_"+no, JSON.stringify(data)); indexReq(no,data); }catch(e){}
     if(!WEBAPP_URL){ tbmsg("이 브라우저에 저장됨 · "+no+" (드라이브 미연동)"); return; }
     tbmsg("드라이브 저장 중…");
     try{
@@ -577,12 +1037,48 @@
       tbmsg(ok?("드라이브 저장됨 · "+no):"저장 응답 오류 — 시트 확인");
     }catch(e){ tbmsg("드라이브 연결 실패 — 이 브라우저엔 저장됨"); }
   }
+  const _norm=(x)=>(x||"").replace(/[\s\-()]/g,"").toLowerCase();
+  function idxKey(name,phone){ return _norm(name)+"|"+_norm(phone); }
+  function indexReq(no,data){
+    try{ const idx=JSON.parse(localStorage.getItem("grida_index")||"{}");
+      idx[idxKey(data.clientName,data.clientPhone)]=no;
+      localStorage.setItem("grida_index",JSON.stringify(idx)); }catch(e){}
+  }
+  async function findReq(){
+    const nm=(document.getElementById("findName").value||"").trim();
+    const ph=(document.getElementById("findPhone").value||"").trim();
+    if(!nm&&!ph){ tbmsg("성명 또는 연락처를 입력하세요"); return; }
+    if(WEBAPP_URL){
+      tbmsg("드라이브에서 찾는 중…");
+      try{ const res=await fetch(WEBAPP_URL+"?action=find&name="+encodeURIComponent(nm)+"&phone="+encodeURIComponent(ph)+"&pass="+encodeURIComponent(__adminPass));
+        const j=await res.json();
+        if(j&&j.ok&&j.reqno){ document.getElementById("loadno").value=j.reqno; tbmsg("의뢰번호 찾음 · "+j.reqno); loadReq(); return; }
+      }catch(e){}
+    }
+    try{ const idx=JSON.parse(localStorage.getItem("grida_index")||"{}");
+      let hit=idx[idxKey(nm,ph)];
+      if(!hit){ const kn=_norm(nm), kp=_norm(ph);
+        for(const k in idx){ const p=k.split("|"); if((kn&&p[0]===kn)||(kp&&p[1]===kp)){ hit=idx[k]; break; } } }
+      if(hit){ document.getElementById("loadno").value=hit; tbmsg("의뢰번호 찾음 · "+hit); loadReq(); return; }
+    }catch(e){}
+    tbmsg("일치하는 의뢰서를 찾지 못했습니다");
+  }
   function applyData(o){
-    if(o.type){ document.getElementById("type").value=o.type; initDetail(); }
     FIELDS.forEach(id=>{ const e=document.getElementById(id); if(e&&o[id]!==undefined) e.value=o[id]; });
+    const zEl=document.getElementById("zone"); if(zEl) zEl.classList.toggle("chosen",!!zEl.value);
+    const zdEl=document.getElementById("zoneDist"); if(zdEl) zdEl.classList.toggle("chosen",!!zdEl.value);
+    if(o.uses){ const U=o.uses; const one=(pk,x)=>{ if(pk&&x) pk.restore(x.key,x.txt); };
+      one(pkTargetUse,U.targetUse); one(pkTargetBiz,U.targetBiz); one(pkCurUse,U.curUse); one(pkCurBiz,U.curBiz);
+    }
     if(Array.isArray(o.taste)&&o.taste.length===6){ taste=o.taste.slice(); syncSeg(); }
     if(o.color){ showPal(o.color.palette===undefined?0:o.color.palette); }
-    if(o.special){ SPECS.forEach(x=>{ if(o.special[x.id]) spec[x.id]=o.special[x.id]; }); buildSpecs(); const _et=document.getElementById("spec_etc_txt"); if(_et&&o.special.etc_txt) _et.value=o.special.etc_txt; }
+    if(o.scope){ const S=o.scope;
+      scope.baType=S.baType||""; scope.dsParts=Array.isArray(S.dsParts)?S.dsParts.slice():[];
+      scope.dsMethod=S.dsMethod||""; scope.dsScale=S.dsScale||""; scope.muExc=S.muExc||"";
+      const ba=document.getElementById("scBaType"); if(ba) ba.value=scope.baType;
+      const parts=document.getElementById("scDsParts");
+      if(parts) parts.querySelectorAll("input").forEach(i=>{ i.checked=scope.dsParts.includes(i.value); });
+    }
     render();
   }
   async function loadReq(){
@@ -591,16 +1087,182 @@
     let data=null;
     if(WEBAPP_URL){
       tbmsg("드라이브에서 불러오는 중…");
-      try{ const res=await fetch(WEBAPP_URL+"?action=load&reqno="+encodeURIComponent(no)); const j=await res.json(); if(j.ok&&j.data) data=j.data; }catch(e){}
+      try{ const res=await fetch(WEBAPP_URL+"?action=load&reqno="+encodeURIComponent(no)+"&pass="+encodeURIComponent(__adminPass)); const j=await res.json(); if(j.ok&&j.data) data=j.data; }catch(e){}
     }
     if(!data){ try{ const raw=localStorage.getItem("grida_req_"+no); if(raw) data=JSON.parse(raw); }catch(e){} }
     if(!data){ tbmsg("저장된 의뢰서 없음 · "+no); return; }
     applyData(data); tbmsg("불러옴 · "+no);
   }
 
+  /* ===== 3. 작품 범위 — 판정 배지 패널 (ref01 로직 이식) ===== */
+  // 다중이용업(다중이용업소법 시행령 §2) — ref01 MULTIUSE 세트/설명 그대로
+  const MU_SET=new Set(["3나","3다","3라","4가","4사","4아","4자","4카","4파","4거","4더","4러","5가","10라","13가","13다","15다","16나"]);
+  const MU_SUB={"3나":"음식점(100㎡ 이상 등, 1층·지상 직접출입은 제외)","3다":"찜질방(맥반석·황토 등, 수용 100명 이상)","3라":"산후조리원·안마원","4가":"비디오물감상실·소극장·복합영상물제공업","4사":"게임제공업·PC방·복합유통게임(1층·지상 직접출입은 제외)","4아":"음식점(100㎡ 이상, 지하 66㎡ 이상 등)","4자":"음식점(100㎡ 이상, 지하 66㎡ 이상 등)","4카":"학원(수용인원 300명 이상 등)","4파":"실내 가상체험 체육시설업(스크린골프 등)만 — 실외 타석형 골프연습장은 제외","4거":"고시원업","4더":"단란주점","4러":"안마시술소·노래연습장","5가":"영화상영관·공연장","10라":"학원(수용인원 300명 이상 등)","13가":"실내 가상체험 체육시설업(스크린골프 등)만","13다":"실내 권총사격장","15다":"고시원업","16나":"유흥주점"};
+  const MU_MUSTREG=new Set(["3다","3라","4가","4사","4카","4파","4더","4러","7다","16가","16나"]); // 임의변경 제외(대장변경 필수)
+  const MU_FOOD=new Set(["3나","4아","4자"]), MU_GAME=new Set(["4사"]), MU_ACADEMY=new Set(["4카","10라"]);
+  const MU_ALWAYS=new Set(["4러","4더","4거","15다","16나"]); // 면적·층 무관 해당
+  const MB_HO={"5":"문화 및 집회시설","6":"종교시설","7":"판매시설"};
+
+  let scope={ baType:"", dsParts:[], dsMethod:"", dsScale:"", muExc:"" };
+  const nn=id=>parseFloat(val(id))||0;
+  const bdg=(c,l)=>`<span class="scope-badge ${c}">${l}</span>`;
+  function effGroup(u){ if(!u) return null; const r=AREA_RULE[uKey(u)]; return (r&&nn("area")>=r.th)?r.above.g:u[3]; }
+
+  function renderUseChange(){
+    const el=document.getElementById("scUseChange"); if(!el) return;
+    const cu=usePick.curUse, tu=usePick.targetUse;
+    const H=b=>`<div class="scope-line"><span class="scope-nm"><span class="scope-no">1</span>용도변경</span>${b}</div>`;
+    let b,dt;
+    if(!cu||!tu){ b=bdg("w","대기"); dt="§2에서 현재·희망 용도를 입력하면 자동 판정됩니다."; }
+    else if(uKey(cu)===uKey(tu)){ b=bdg("n","해당없음"); dt="현재와 희망 용도가 같습니다 — 용도변경 없음."; }
+    else { const a=effGroup(cu), x=effGroup(tu);
+      if(a===x){ b=bdg("n","대장변경");
+        dt=MU_MUSTREG.has(uKey(tu))
+          ? `같은 시설군 내 이동이지만 <b>${tu[2]}</b>은 임의변경 제외 용도라 <b>건축물대장 기재변경 신청</b>이 필요합니다. (시행령 §14④ 단서)`
+          : "같은 시설군 안에서의 이동 — 허가·신고 대상 아님(대장 기재변경/임의변경). (건축법 §19③)"; }
+      else if(x<a){ b=bdg("r","허가"); dt=`하위→상위 시설군(${GRP_SHORT[a]}→${GRP_SHORT[x]}) — <b>용도변경 허가</b> 대상. (건축법 §19②1호)`; }
+      else { b=bdg("c","신고"); dt=`상위→하위 시설군(${GRP_SHORT[a]}→${GRP_SHORT[x]}) — <b>용도변경 신고</b> 대상. (건축법 §19②2호)`; }
+    }
+    el.innerHTML=H(b)+`<div class="scope-dt">${dt}</div>`;
+  }
+
+  function renderMultiBldg(){
+    const el=document.getElementById("scMultiBldg"); if(!el) return;
+    const tu=usePick.targetUse;
+    const H=b=>`<div class="scope-line"><span class="scope-nm"><span class="scope-no">2</span>다중이용건축물</span>${b}</div>`;
+    let b,dt;
+    if(!tu){ b=bdg("w","대기"); dt="§2에서 희망 용도·규모를 입력하면 자동 판정됩니다."; }
+    else { const ho=tu[0], key=uKey(tu);
+      const floors=Math.max(nn("totalFloors"),nn("floorsAbove"));
+      const useArea=Math.max(nn("area"),nn("grossArea"));
+      let cat="",cond="";
+      if(ho==="5"&&!/동물원|식물원/.test(tu[2])){ cat=MB_HO["5"]; }
+      else if(ho==="6"||ho==="7"){ cat=MB_HO[ho]; }
+      else if(ho==="8"){ cat="운수시설"; cond="여객용인 경우"; }
+      else if(ho==="9"){ cat="의료시설"; cond="종합병원인 경우"; }
+      else if(key==="15나"){ cat="관광숙박시설"; }
+      // 면적으로 상위 대분류 승격(소매점→판매·공연장→문화집회 등) 반영
+      if(!cat){ const r=AREA_RULE[key]; const lab=(r&&nn("area")>=r.th)?r.above.label:"";
+        if(/판매/.test(lab)) cat="판매시설"; else if(/문화/.test(lab)) cat="문화 및 집회시설"; }
+      const is16=floors>=16, big=cat&&useArea>=5000;
+      if(is16){ b=bdg("r","해당"); dt="16층 이상 건축물 → <b>다중이용 건축물</b>. (건축법 시행령 §2 17호)"; }
+      else if(big){ b=bdg(cond?"c":"r",cond?"조건부 해당":"해당"); dt=`${cat} 바닥면적 ${useArea.toLocaleString()}㎡ ≥ 5,000㎡${cond?" ("+cond+")":""} → <b>다중이용 건축물</b>. (시행령 §2 17호)`; }
+      else { b=bdg("n","해당없음"); dt="5,000㎡ 미만 + 16층 미만 → 다중이용 건축물 아님."; }
+    }
+    el.innerHTML=H(b)+`<div class="scope-dt">${dt}</div>`;
+  }
+
+  function renderMultiUse(){
+    const el=document.getElementById("scMultiUse"); if(!el) return;
+    const tu=usePick.targetUse;
+    const H=b=>`<div class="scope-line"><span class="scope-nm"><span class="scope-no">3</span>다중이용업</span>${b}</div>`;
+    const out=(b,dt,ctl)=>{ el.innerHTML=H(b)+`<div class="scope-dt">${dt}</div>`+(ctl||"");
+      const seg=document.getElementById("muExcSeg");
+      if(seg) seg.querySelectorAll("button").forEach(bt=>{ bt.classList.toggle("on",bt.dataset.e===scope.muExc);
+        bt.addEventListener("click",()=>{ scope.muExc=(scope.muExc===bt.dataset.e)?"":bt.dataset.e; renderMultiUse(); }); }); };
+    if(!tu){ out(bdg("w","대기"),"§2에서 희망 업종을 입력하면 자동 판정됩니다."); return; }
+    const key=uKey(tu);
+    if(!MU_SET.has(key)){ out(bdg("n","해당없음"),"다중이용업 목록에 없는 업종입니다."); return; }
+    const sub=MU_SUB[key]||tu[2];
+    const isBase=val("floorType")==="지하", is1F=val("floorType")==="지상"&&nn("floorNo")===1, area=nn("area");
+    const excSeg=`<div class="scope-seg" id="muExcSeg"><button data-e="exempt">지상과 직접 통하는 출입구 + 창 충분</button><button data-e="no">아니오(지하·무창·안쪽 등)</button></div>`;
+
+    if(MU_ALWAYS.has(key)){ out(bdg("r","해당"),`<b>${sub}</b> — 면적·층과 무관하게 다중이용업입니다. 소방서 ‘안전시설등 완비증명서’ 필요.`); return; }
+    if(MU_FOOD.has(key)){
+      const th=isBase?66:100, thT=isBase?"지하 66㎡":"100㎡";
+      if(is1F&&scope.muExc==="exempt"){ out(bdg("n","해당없음"),"지상 1층 + 직접 통하는 출입구 + 창 충분 → 면적과 무관하게 제외됩니다.",excSeg); return; }
+      if(area<=0){ out(bdg("c","면적 입력"),`영업장 바닥면적(§2)을 입력하면 판정됩니다. (${thT} 이상 시 해당)`,is1F?excSeg:""); return; }
+      if(area>=th) out(bdg("r","해당"),`음식점 ${area.toLocaleString()}㎡ ≥ ${thT} → 다중이용업. 소방서 완비증명서 필요.`,is1F?excSeg:"");
+      else out(bdg("n","해당없음"),`음식점 ${area.toLocaleString()}㎡ < ${thT} → 면적 기준 미달.`,is1F?excSeg:"");
+      return;
+    }
+    if(MU_GAME.has(key)){
+      if(is1F&&scope.muExc==="exempt"){ out(bdg("n","해당없음"),"지상 1층 + 직접출입 + 창 충분 → 게임제공업 제외 요건 충족.",excSeg); return; }
+      out(bdg("r","해당"),"게임제공업(PC방 등) → 다중이용업. (지상 1층 직접출입·창 충분 예외 미해당)",is1F?excSeg:""); return;
+    }
+    if(MU_ACADEMY.has(key)){
+      if(area<=0){ out(bdg("c","면적 입력"),"강의실 등 바닥면적(§2)을 입력하면 수용인원(÷1.9)으로 판정됩니다. (300명 이상 시 해당)"); return; }
+      const ppl=Math.round(area/1.9);
+      if(ppl>=300) out(bdg("r","해당"),`학원 수용인원 약 ${ppl.toLocaleString()}명(=${area.toLocaleString()}㎡÷1.9) ≥ 300명 → 다중이용업.`);
+      else out(bdg("c","확인필요"),`수용인원 약 ${ppl.toLocaleString()}명 &lt; 300명. 단 한 건물에 학원+기숙사·다중이용업이 함께면 100~300명도 해당될 수 있어 소방서 확인.`);
+      return;
+    }
+    out(bdg("c","확인필요"),`${sub} — 세부 업종·형태에 따라 다중이용업일 수 있습니다. 소방서 확인.`); // 조건부(3다·3라·4가·4파·5가·13가·13다)
+  }
+
+  function renderBuildAct(){
+    const bE=document.getElementById("baBadge"), dE=document.getElementById("baDetail"); if(!bE) return;
+    const set=(c,l,d)=>{ bE.className="scope-badge "+c; bE.textContent=l; dE.innerHTML=d; };
+    const t=scope.baType;
+    if(!t){ set("w","선택","어떤 공사인지 선택하세요."); return; }
+    if(t==="interior"){ set("n","해당없음","마감·집기·인테리어만 하는 공사는 건축 인허가 대상이 아닙니다. (용도변경·대수선·다중이용업 기준은 별도 판정)"); return; }
+    if(t==="daesuseon"){ set("c","→ 대수선","주요 구조·방화·계단을 손보는 공사는 아래 ⑤ 대수선에서 부위를 선택해 판정합니다."); return; }
+    if(t==="usechange"){ set("c","→ 용도변경","용도만 바꾸는 경우는 위 ① 용도변경에서 자동 판정됩니다."); return; }
+    if(t==="new"){ const g=Math.max(nn("grossArea"),nn("area"));
+      if(g<=0){ set("c","면적 입력","연면적(§2)을 입력하면 판정됩니다. (100㎡ 이하 신고 / 초과 허가)"); return; }
+      if(g<=100) set("c","신고",`신축 연면적 ${g.toLocaleString()}㎡ ≤ 100㎡ → <b>건축신고</b>. (건축법 §14)`);
+      else set("r","허가",`신축 연면적 ${g.toLocaleString()}㎡ &gt; 100㎡ → <b>건축허가</b>. (건축법 §11)`);
+      return; }
+    if(t==="extend"||t==="rebuild"||t==="restore"){ const nm={extend:"증축",rebuild:"개축",restore:"재축"}[t]; const a=nn("area");
+      if(a<=0){ set("c","면적 입력",`${nm} 면적(§2 해당 용도면적)을 입력하면 판정됩니다. (85㎡ 이하 + 연면적 200㎡ 미만·3층 미만 신고 / 초과 허가)`); return; }
+      const gr=nn("grossArea"), fl=Math.max(nn("totalFloors"),nn("floorsAbove"));
+      const small=a<=85&&(gr===0||gr<200)&&(fl===0||fl<3);
+      if(small) set("c","신고",`${nm} ${a.toLocaleString()}㎡ ≤ 85㎡ (연면적 200㎡ 미만·3층 미만) → <b>건축신고</b>. (건축법 §14)`);
+      else set("r","허가",`${nm} ${a.toLocaleString()}㎡ → <b>건축허가</b> 대상 (85㎡ 초과 또는 연면적 200㎡↑·3층↑). (건축법 §11)`);
+      return; }
+    if(t==="height"){ set("c","확인필요","높이 증축은 3m 이하 범위면 신고, 초과면 허가입니다. 증축 높이를 관할과 확인하세요. (건축법 §14)"); return; }
+  }
+
+  function renderDaesuseon(){
+    const bE=document.getElementById("dsBadge"), dE=document.getElementById("dsDetail");
+    const mSeg=document.getElementById("scDsMethod"), sSeg=document.getElementById("scDsScale"); if(!bE) return;
+    const set=(c,l,d)=>{ bE.className="scope-badge "+c; bE.textContent=l; dE.innerHTML=d; };
+    const parts=scope.dsParts, method=scope.dsMethod;
+    const scaleP=["wall","column","beam","roof","exwall"], alwaysP=["firewall","stair","partywall"];
+    const hasReal=parts.some(v=>v!=="none"), hasScale=parts.some(v=>scaleP.includes(v)), hasAlways=parts.some(v=>alwaysP.includes(v));
+    mSeg.style.display=hasReal?"flex":"none";
+    sSeg.style.display=(hasReal&&method==="repair"&&hasScale&&!hasAlways)?"flex":"none";
+    mSeg.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.m===method));
+    sSeg.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.s===scope.dsScale));
+
+    if(parts.length===0){ set("w","선택","건드리는 부위를 선택하세요."); return; }
+    if(parts.includes("none")){ set("n","해당없음","가벽·마감·설비만 손보는 공사는 대수선이 아닙니다."); return; }
+    if(!method){ set("w","방식 선택","공사 방식을 선택하세요."); return; }
+    if(method==="attach"){ set("n","해당없음","기존 부위를 그대로 두고 덧방·비접촉으로 시공 → 대수선 아님 (예: 경계벽 앞 방음 덧방). 단, 기존 벽을 갈아내거나 개구부를 내면 수선·변경으로 봅니다."); return; }
+    if(method==="repair"&&hasScale&&!hasAlways){
+      if(!scope.dsScale){ set("w","규모 선택","수선 규모(내력벽·외벽 30㎡ / 기둥·보·지붕틀 3개)를 선택하세요."); return; }
+      if(scope.dsScale==="under"){ set("n","해당없음","내력벽·외벽 30㎡ / 기둥·보·지붕틀 3개 미만의 수선은 대수선이 아닙니다."); return; }
+    }
+    const gr=nn("grossArea"), fl=Math.max(nn("totalFloors"),nn("floorsAbove")), known=(gr>0||fl>0);
+    const small=known&&(gr>0&&gr<200)&&(fl>0&&fl<3);
+    const tail=known?"":" ※연면적·층수(§2) 입력 시 소규모 신고 여부 확정.";
+    if(small){ set("c","신고 (대수선)","연면적 200㎡ 미만 + 3층 미만 → 대수선은 <b>건축신고</b>로 갈음. (건축법 §14)"); return; }
+    if(method==="change"){ set("r","허가 (대수선)","주요구조부 증설·해체 수반 → <b>건축허가</b> 대상 (대수선 원칙 허가)."+tail); return; }
+    set("c","신고 (대수선)","주요구조부 해체 없이 수선만 → <b>건축신고</b> 대상 (대통령령)."+tail);
+  }
+
+  function renderScope(){
+    if(!document.getElementById("scUseChange")) return;
+    renderUseChange(); renderMultiBldg(); renderMultiUse(); renderBuildAct(); renderDaesuseon();
+  }
+  // 정적 입력 컨트롤 배선 (④ 건축행위 · ⑤ 대수선)
+  (function wireScope(){
+    const ba=document.getElementById("scBaType");
+    if(ba) ba.addEventListener("change",()=>{ scope.baType=ba.value; renderScope(); });
+    const parts=document.getElementById("scDsParts");
+    if(parts) parts.addEventListener("change",()=>{
+      let s=[...parts.querySelectorAll("input:checked")].map(i=>i.value);
+      if(s.includes("none")&&s.length>1){ parts.querySelectorAll("input").forEach(i=>{ if(i.value!=="none") i.checked=false; }); s=["none"]; }
+      scope.dsParts=s; renderScope();
+    });
+    const ms=document.getElementById("scDsMethod");
+    if(ms) ms.addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b)return; scope.dsMethod=(scope.dsMethod===b.dataset.m)?"":b.dataset.m; if(scope.dsMethod!=="repair") scope.dsScale=""; renderScope(); });
+    const ss=document.getElementById("scDsScale");
+    if(ss) ss.addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b)return; scope.dsScale=(scope.dsScale===b.dataset.s)?"":b.dataset.s; renderScope(); });
+  })();
+
   buildAxes();
   buildPalPicker();
-  buildSpecs();
   render();
 </script>
 </body>
