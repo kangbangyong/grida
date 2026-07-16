@@ -1741,6 +1741,39 @@ const LAWS=[
 document.getElementById('lawBody').innerHTML=LAWS.map((l,i)=>`
   <tr style="background:${i%2?'#f8fafc':'#fff'}"><td><b>${l[0]}</b></td><td class="memo">${l[1]}</td></tr>`).join('');
 
+// ===== 건축행위 허가/신고 판정기 (그동안 UI만 있고 로직이 없던 것 구현) =====
+(function(){
+  const sel=document.getElementById('baType'); if(!sel) return;
+  const R=document.getElementById('baResult');
+  const set=(c,h)=>{ R.className='msc-result'+(c?' '+c:''); R.innerHTML=h; };
+  function fields(){
+    const t=sel.value;
+    document.querySelectorAll('.msc-cond[data-ba]').forEach(el=>{
+      el.classList.toggle('show',(el.dataset.ba||'').split(' ').includes(t));
+    });
+    judge();
+  }
+  function judge(){
+    const t=sel.value;
+    if(!t){ set('','건축행위를 선택하세요.'); return; }
+    if(t==='interior'){ set('no','✅ <b>건축 인허가 대상 아님</b> — 마감·집기만 바꾸는 인테리어입니다. (용도변경·대수선·다중이용업은 별도 판정)'); return; }
+    if(t==='daesuseon'){ set('','→ 아래 <b>🔧 대수선 판정</b>에서 부위를 선택하세요.'); return; }
+    if(t==='usechange'){ set('','→ <b>용도변경</b> 탭에서 판정됩니다.'); return; }
+    if(t==='height'){ const h=parseFloat(document.getElementById('baHeight').value);
+      if(isNaN(h)){ set('','증축 높이를 입력하세요.'); return; }
+      set('yes', h<=3 ? '📋 <b>건축신고</b> — 높이 '+h+'m ≤ 3m. (건축법 §14)' : '📄 <b>건축허가</b> — 높이 '+h+'m > 3m. (건축법 §11)');
+      return; }
+    const a=parseFloat(document.getElementById('baArea').value);
+    if(isNaN(a)){ set('','면적을 입력하세요.'); return; }
+    if(t==='new'){ set('yes', a<=100 ? '📋 <b>건축신고</b> — 신축 연면적 '+a.toLocaleString()+'㎡ ≤ 100㎡. (건축법 §14)' : '📄 <b>건축허가</b> — 신축 연면적 '+a.toLocaleString()+'㎡ > 100㎡. (건축법 §11)'); return; }
+    const nm={extend:'증축',rebuild:'개축',restore:'재축'}[t]||'';
+    set('yes', a<=85 ? '📋 <b>건축신고</b> — '+nm+' '+a.toLocaleString()+'㎡ ≤ 85㎡ <span class="msc-r-sub">단, 연면적 200㎡ 미만 + 3층 미만일 때 신고. 그 이상이면 허가.</span>' : '📄 <b>건축허가</b> — '+nm+' '+a.toLocaleString()+'㎡ > 85㎡. (건축법 §11)');
+  }
+  sel.addEventListener('change',fields);
+  const baA=document.getElementById('baArea'); if(baA) baA.addEventListener('input',judge);
+  const baH=document.getElementById('baHeight'); if(baH) baH.addEventListener('input',judge);
+})();
+
 // ── 작품의뢰서(index.html) 연동: localStorage에서 조회된 의뢰서를 읽어 판정기 자동 세팅 ──
 (function applyActiveRequest(){
   const reqParam=new URLSearchParams(location.search).get('req');
@@ -1758,17 +1791,69 @@ document.getElementById('lawBody').innerHTML=LAWS.map((l,i)=>`
   let area=(d.area!==undefined&&d.area!=='')?parseFloat(d.area):NaN; if(isNaN(area)) area=null;
   if(cur){ fromSel={use:cur,area:area}; const i=document.getElementById('fromInput'); i.value=label(cur); i.classList.add('chosen'); renderArea('from'); }
   if(tgt){ toSel={use:tgt,area:area}; const i=document.getElementById('toInput'); i.value=label(tgt); i.classList.add('chosen'); renderArea('to'); }
+  // 사용승인·건축사 판정 카드: 용도변경 면적 + 대수선 공사 포함 자동 채움
+  const cpA=document.getElementById('cpArea');
+  if(cpA && area!=null){ cpA.value=area; }
+  const sc=d.scope||{};
+  const daeParts=Array.isArray(sc.dsParts)&&sc.dsParts.some(v=>v!=='none');
+  const daeMethod=sc.dsMethod&&sc.dsMethod!=='attach';
+  const isDae=(sc.baType==='daesuseon')||(daeParts&&daeMethod);
+  const cpD=document.getElementById('cpDaesuseon');
+  if(cpD){ cpD.checked=!!isDae; }
   if(cur||tgt) updateVerdict();
+  if(typeof refreshCheckPanel==='function') refreshCheckPanel();
+
+  // ── 이벤트로 위젯 구동하는 헬퍼 ──
+  const fire=(el,type)=>{ if(el) el.dispatchEvent(new Event(type,{bubbles:true})); };
+  const setRadio=(name,val)=>{ if(!val)return; const r=document.querySelector('input[name="'+name+'"][value="'+val+'"]'); if(r){ r.checked=true; fire(r,'change'); } };
+
+  // ── 건축행위 판정기(baType/baArea) — scope와 값 동일 ──
+  const baSel=document.getElementById('baType');
+  if(baSel && sc.baType){
+    baSel.value=sc.baType; fire(baSel,'change');
+    const baA=document.getElementById('baArea');
+    if(baA){ let ba=(sc.baType==='new')?(parseFloat(d.grossArea)||area):area; if(ba!=null&&!isNaN(ba)){ baA.value=ba; fire(baA,'input'); } }
+  }
+
+  // ── 대수선 판정기(dsParts/dsAct/dsScale/dsBldg) — scope와 값 동일, 건물규모만 자동계산 ──
+  if(Array.isArray(sc.dsParts) && sc.dsParts.length){
+    const dp=document.getElementById('dsParts');
+    if(dp){ dp.querySelectorAll('input[type=checkbox]').forEach(cb=>{ cb.checked=sc.dsParts.includes(cb.value); }); fire(dp.querySelector('input'),'change'); }
+    setRadio('dsact', sc.dsMethod);
+    setRadio('dsscale', sc.dsScale);
+    const gr=parseFloat(d.grossArea)||0, fl=Math.max(parseFloat(d.totalFloors)||0, parseFloat(d.floorsAbove)||0);
+    if(gr>0||fl>0) setRadio('dsbldg', (gr>0&&gr<200&&(fl===0||fl<3))?'small':'big');
+  }
+
+  // ── 다중이용업 자가진단(mscType) — 호목→카테고리 매핑 ──
+  const MU_CAT={"16나":"always_bar","4더":"always_bar","4러":"always_karaoke","4거":"always_gosiwon","15다":"always_gosiwon","3라":"always_postpartum","5가":"always_film","13다":"always_shooting","3나":"food","4아":"food","4자":"food","4사":"game","4카":"academy","10라":"academy","3다":"jjimjil","4파":"screengolf","13가":"screengolf"};
+  const mscSel=document.getElementById('mscType');
+  let muCat=null;
+  if(mscSel && tgt){
+    muCat=MU_CAT[keyOf(tgt)]||null;
+    if(muCat){
+      mscSel.value=muCat; fire(mscSel,'change');
+      if(muCat==='food'&&area!=null){ const e=document.getElementById('mscFoodArea'); if(e){ e.value=area; fire(e,'input'); } }
+      if(muCat==='academy'&&area!=null){ const e=document.getElementById('mscAcademyArea'); if(e){ e.value=area; fire(e,'input'); } }
+      if(muCat==='food'||muCat==='game'){
+        const ft=d.floorType, fn=parseFloat(d.floorNo)||0;
+        setRadio('mscfloor', ft==='지하'?'base':(fn===1?'1f':'upper'));
+        if(sc.muExc){ setRadio('mscdirect', sc.muExc==='exempt'?'y':'n'); if(sc.muExc==='exempt') setRadio('mscwindow','n'); }
+      }
+    }
+  }
+
   if(ban){
-    txt.innerHTML='작품의뢰서 <b>'+(p.reqno||reqParam)+'</b> 데이터 적용됨 — '
-      +(cur?'현재('+cur[2]+') ':'')+(tgt?'→ 희망('+tgt[2]+') ':'')
-      +(area!=null?'· 면적 '+area+'㎡ ':'')+'자동 입력. 검색칸에서 수정 가능.';
+    const bits=[];
+    if(cur) bits.push('현재('+cur[2]+')');
+    if(tgt) bits.push('희망('+tgt[2]+')');
+    if(area!=null) bits.push('면적 '+area+'㎡');
+    if(sc.baType) bits.push('건축행위');
+    if(Array.isArray(sc.dsParts)&&sc.dsParts.length) bits.push('대수선');
+    if(muCat) bits.push('다중이용업');
+    txt.innerHTML='작품의뢰서 <b>'+(p.reqno||reqParam)+'</b> 데이터 적용됨 — '+bits.join(' · ')+' 자동 입력. 각 탭에서 수정 가능.';
     ban.style.display='flex';
-    document.getElementById('reqBannerClear').onclick=()=>{
-      fromSel={use:null,area:null}; toSel={use:null,area:null};
-      ['from','to'].forEach(w=>{ const i=document.getElementById(w+'Input'); i.value=''; i.classList.remove('chosen'); renderArea(w); });
-      updateVerdict(); ban.style.display='none';
-    };
+    document.getElementById('reqBannerClear').onclick=()=>{ location.href=location.pathname; };
   }
 })();
 </script>
