@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GRIDA 작품의뢰서</title>
+<title>GRIDA_4U 작품의뢰서</title>
 <style>
   :root{
     --ink:#1b2a38; --sub:#6b6a63; --line:#cfcdc4; --hair:#e4e2da;
@@ -248,7 +248,7 @@
 </head>
 <body>
 <div class="toolbar">
-  <span class="tb-title">GRIDA 작품의뢰서</span>
+  <span class="tb-title">GRIDA_4U 작품의뢰서</span>
 
   <span id="adminGate" class="tb-group">
     <input id="adminPass" class="tb-inp" type="password" placeholder="관리자 비번" style="width:100px;">
@@ -271,6 +271,13 @@
   <button class="tb-btn primary" id="saveBtn" onclick="saveReq()">저장</button>
   <button class="tb-btn" onclick="window.print()">인쇄 · PDF</button>
   <span id="tb-msg" class="tb-msg"></span>
+</div>
+<div id="refLinks" style="display:none;background:var(--fill);border-bottom:1px solid var(--line);padding:9px 20px;">
+  <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;">
+    <span style="color:var(--accent);font-weight:700;">📚 이 의뢰서로 참고자료 열기</span>
+    <span id="refLinkBtns" style="display:flex;gap:6px;flex-wrap:wrap;"></span>
+    <span id="refLinkNo" style="color:var(--sub);"></span>
+  </div>
 </div>
 <div class="sheet">
 
@@ -1103,6 +1110,32 @@
     if(!data){ try{ const raw=localStorage.getItem("grida_req_"+no); if(raw) data=JSON.parse(raw); }catch(e){} }
     if(!data){ tbmsg("저장된 의뢰서 없음 · "+no); return; }
     applyData(data); tbmsg("불러옴 · "+no);
+    showRefLinks(no, data);
+  }
+
+  // ── 참고자료(ref01~04) 연동: 조회한 의뢰서를 localStorage에 실어 ref 도구가 읽게 ──
+  const REF_FILES=[
+    {file:"ref01_permit.html", label:"ref01 인허가"},
+    {file:"ref02_fire.html", label:"ref02 소방"},
+    {file:"ref03_finish.html", label:"ref03 마감"},
+    {file:"ref04_access.html", label:"ref04 편의"}
+  ];
+  function showRefLinks(no, data){
+    try{ localStorage.setItem("grida_active", JSON.stringify({reqno:no, at:Date.now(), data:data})); }catch(e){}
+    const wrap=document.getElementById("refLinks"), btns=document.getElementById("refLinkBtns"), noEl=document.getElementById("refLinkNo");
+    if(!wrap||!btns) return;
+    btns.innerHTML="";
+    REF_FILES.forEach(r=>{
+      const b=document.createElement("button");
+      b.textContent=r.label;
+      b.style.cssText="font-size:12px;font-weight:700;padding:5px 11px;border-radius:7px;border:1px solid var(--accent);background:#fff;color:var(--accent);cursor:pointer;font-family:inherit;";
+      b.onmouseenter=()=>{ b.style.background="var(--accent)"; b.style.color="#fff"; };
+      b.onmouseleave=()=>{ b.style.background="#fff"; b.style.color="var(--accent)"; };
+      b.onclick=()=>{ window.open(r.file+"?req="+encodeURIComponent(no), "_blank"); };
+      btns.appendChild(b);
+    });
+    if(noEl) noEl.textContent="· 의뢰번호 "+no;
+    wrap.style.display="block";
   }
 
   /* ===== 3. 작품 범위 — 판정 배지 패널 (ref01 로직 이식) ===== */
@@ -1276,5 +1309,11 @@
   buildPalPicker();
   render();
 </script>
+<footer id="gridaCopyright" style="margin:44px auto 28px;max-width:920px;padding:16px 20px 0;border-top:1px solid #e5e5e5;text-align:center;font-size:11px;line-height:1.7;color:#9a9a9a;font-family:system-ui,-apple-system,'Malgun Gothic','Apple SD Gothic Neo',sans-serif;">
+  <div style="font-weight:700;color:#7a7a7a;letter-spacing:.02em;">© 2026 GRIDA_4U (그리드에이포유) · 당신을 위해 공간을 그리다</div>
+  <div style="margin-top:2px;"><a href="https://www.grida4u.com" target="_blank" rel="noopener" style="color:#7a7a7a;text-decoration:none;font-weight:700;">www.grida4u.com</a></div>
+  본 문서·양식·판정 로직 및 소스코드의 무단 복제·배포·2차 이용을 금합니다.<br>
+  Unauthorized reproduction, distribution, or derivative use is prohibited.
+</footer>
 </body>
 </html>

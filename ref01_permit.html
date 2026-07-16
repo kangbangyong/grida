@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRIDA_4U 참고자료 ref01 · 인허가신고</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"/>
+<style>
+  :root{
+    --navy:#14284a; --navy2:#1e3a5f; --ink:#1f2937; --sub:#6b7280;
+    --line:#e5e7eb; --bg:#fbfbfa; --card:#ffffff;
+    --amber:#d97706; --amber-bg:#fef3e2;
+    --red:#b4442e; --red-bg:#fdece8;
+    --teal:#1a7a4a; --teal-bg:#e8f5ee;
+    --green:#1a7a4a; --green-bg:#e8f5ee;
+    --slate:#475569; --slate-bg:#eef1f6;
+    --g1:#fef3c7;--g2:#fde68a;--g3:#fcd34d;--g4:#bfdbfe;--g5:#93c5fd;--g6:#a7f3d0;--g7:#6ee7b7;--g8:#c7d2fe;--g9:#e2e8f0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Pretendard Variable",'Pretendard','Malgun Gothic','맑은 고딕',-apple-system,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px 80px}
+
+  /* header (ref04 style) */
+  header{background:#fff;color:var(--ink);padding:22px 0 0;margin-bottom:0}
+  .head-inner{max-width:1000px;margin:0 auto;padding:0 20px 14px;border-bottom:2px solid var(--navy)}
+  .eyebrow{font-size:11px;letter-spacing:.14em;color:var(--amber);font-weight:700;text-transform:uppercase}
+  h1{font-size:22px;font-weight:700;margin:6px 0 4px;letter-spacing:-.02em;color:var(--navy)}
+  .head-sub{font-size:12px;color:var(--sub);margin-top:4px;line-height:1.5}
+  .head-sub b{color:var(--navy2);font-weight:700}
+  .head-meta{font-size:12px;color:var(--sub);margin-top:3px}
+  .head-meta b{color:var(--navy2);font-weight:700}
+
+  /* tabs (ref04 pill style) */
+  .tabs{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);
+    display:flex;gap:8px;overflow-x:auto;padding:12px 20px;max-width:1000px;margin:0 auto}
+  .tab{padding:8px 14px;font-size:13px;font-weight:600;color:var(--navy2);cursor:pointer;
+    border:1px solid var(--line);background:#fff;white-space:nowrap;border-radius:8px;transition:.15s}
+  .tab:hover{border-color:var(--amber);color:var(--amber)}
+  .tab.active{background:var(--amber);border-color:var(--amber);color:#fff}
+
+  section.panel{display:none;padding-top:28px}
+  section.panel.active{display:block}
+  h2{font-size:19px;font-weight:800;margin-bottom:4px;letter-spacing:-.01em}
+  .lead{font-size:13.5px;color:var(--sub);margin-bottom:20px}
+
+  /* ── 판정기 ── */
+  .finder{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:22px;
+    box-shadow:0 1px 3px rgba(15,23,42,.04)}
+  .finder-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:640px){.finder-grid{grid-template-columns:1fr}}
+  .picker label{display:block;font-size:12.5px;font-weight:700;color:var(--navy);margin-bottom:7px}
+  .picker .tagline{font-size:11px;color:var(--sub);font-weight:400}
+  .search-box{position:relative}
+  .search-box input{width:100%;padding:11px 13px;font-size:14px;border:1.5px solid var(--line);
+    border-radius:10px;font-family:inherit;transition:.15s}
+  .search-box input:focus{outline:none;border-color:var(--amber);box-shadow:0 0 0 3px rgba(217,119,6,.12)}
+  .search-box input.chosen{border-color:var(--teal);background:#f0fdfa;font-weight:600}
+  .results{position:absolute;top:calc(100% + 4px);left:0;right:0;background:#fff;border:1px solid var(--line);
+    border-radius:10px;box-shadow:0 8px 24px rgba(15,23,42,.12);max-height:280px;overflow-y:auto;z-index:30;display:none}
+  .results.show{display:block}
+  .res-item{padding:9px 13px;font-size:13px;cursor:pointer;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:9px}
+  .res-item:last-child{border-bottom:none}
+  .res-item:hover,.res-item.hi{background:#f8fafc}
+  .res-item .code{font-size:10.5px;color:var(--sub);font-weight:600;flex-shrink:0;min-width:34px}
+  .res-item mark{background:#fde68a;color:inherit;padding:0 1px;border-radius:2px}
+  .grp-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+  .res-empty{padding:14px;font-size:12.5px;color:var(--sub);text-align:center}
+
+  /* 면적 입력 */
+  .areabox{margin-top:10px;display:none}
+  .areabox.show{display:block;animation:slideDown .18s ease}
+  @keyframes slideDown{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  .areabox .arow{display:flex;align-items:center;gap:8px;background:#f8fafc;border:1px dashed #cbd5e1;
+    border-radius:10px;padding:10px 12px}
+  .areabox .arow label{font-size:11.5px;font-weight:700;color:var(--navy);white-space:nowrap;margin:0}
+  .areabox input{width:90px;padding:7px 9px;font-size:13.5px;border:1.5px solid var(--line);border-radius:8px;
+    font-family:inherit;text-align:right}
+  .areabox input:focus{outline:none;border-color:var(--navy)}
+  .areabox .unit{font-size:12px;color:var(--sub)}
+  .areabox .aresult{font-size:11.5px;margin-top:7px;padding:6px 10px;border-radius:7px;line-height:1.45}
+  .areabox .aresult.below{background:var(--green-bg);color:#166534}
+  .areabox .aresult.above{background:var(--amber-bg);color:#92400e}
+  .areabox .aresult.empty{background:#fff;color:var(--sub);border:1px solid var(--line)}
+  .areabox .aresult b{font-weight:700}
+  .areabox .thnote{font-size:10.5px;color:var(--sub);margin-left:auto}
+  .area-note{font-size:10.5px;color:#92400e;background:#fffbeb;border:1px solid #fde68a;
+    border-radius:8px;padding:8px 11px;margin-top:8px;line-height:1.55}
+  .area-note b{font-weight:800}
+
+  /* verdict */
+  .verdict{margin-top:20px;border-radius:14px;padding:20px 22px;border:1.5px solid var(--line);background:#f8fafc}
+  .verdict.wait{color:var(--sub);font-size:13.5px}
+  .verdict .vhead{font-size:19px;font-weight:800;display:flex;align-items:center;gap:10px;letter-spacing:-.01em}
+  .verdict .vsub{font-size:12.5px;margin-top:8px;line-height:1.55}
+  .verdict .v-multi{font-size:12px;margin-top:12px;padding:9px 12px;background:#fff1f2;
+    border:1px solid #fca5a5;border-radius:9px;color:#9f1239;line-height:1.5}
+  .verdict .v-multi b{font-weight:800}
+  .verdict .v-free{font-size:12px;margin-top:12px;padding:11px 13px;background:#eff6ff;
+    border:1px solid #93c5fd;border-radius:9px;color:#1e40af;line-height:1.6}
+  .verdict .v-free b{font-weight:800}
+  .verdict.permit{background:var(--red-bg);border-color:#fca5a5}
+  .verdict.permit .vhead{color:var(--red)}
+  .verdict.report{background:var(--amber-bg);border-color:#fcd34d}
+  .verdict.report .vhead{color:var(--amber)}
+  .verdict.regi{background:var(--green-bg);border-color:#86efac}
+  .verdict.regi .vhead{color:var(--green)}
+  .flow{display:flex;align-items:center;gap:12px;margin-top:16px;flex-wrap:wrap}
+  .flow .node{background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 13px;font-size:12.5px}
+  .flow .node b{display:block;font-size:11px;color:var(--sub);font-weight:600;margin-bottom:2px}
+  .flow .arrow{font-size:18px;color:var(--sub)}
+  .grp-badge{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:700}
+
+  .warn-inline{font-size:11.5px;color:var(--sub);margin-top:14px;padding:10px 13px;background:#fffbeb;
+    border-left:3px solid var(--amber);border-radius:0 8px 8px 0}
+
+  /* 절차 흐름도 */
+  .flowchart{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 22px 18px;
+    margin-top:18px;box-shadow:0 1px 3px rgba(15,23,42,.04)}
+  .fc-title{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:16px}
+  .fc-title #fcHint{font-size:11.5px;font-weight:400;color:var(--sub)}
+  .fc-step{display:flex;align-items:stretch;border-radius:11px;overflow:hidden;border:1px solid var(--line);
+    background:#f1f5f9;transition:.25s}
+  .fc-num{flex-shrink:0;width:52px;display:flex;align-items:center;justify-content:center;
+    background:#94a3b8;color:#fff;font-weight:800;font-size:15px}
+  .fc-body{padding:11px 15px;font-size:13.5px;display:flex;flex-direction:column;justify-content:center}
+  .fc-body b{font-weight:700;color:var(--ink)}
+  .fc-sub{font-size:11.5px;color:var(--sub);margin-top:3px;line-height:1.45}
+  .fc-opt{display:inline-block;background:#fdba74;color:#7c2d12;font-size:10px;font-weight:700;
+    padding:1px 7px;border-radius:5px;margin-left:6px;vertical-align:middle}
+  .fc-down{display:flex;justify-content:center;padding:3px 0}
+  .fc-arrow{color:#93c5fd;font-size:18px;font-weight:800;line-height:1}
+  .fc-arrow.warm{color:#fdba74}
+  .fc-split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:560px){.fc-split{grid-template-columns:1fr}}
+
+  /* warm(3~5) 단계 */
+  .fc-step.warm{background:#fff7ed;border-color:#fed7aa}
+  .fc-step.warm .fc-num{background:#fb923c}
+
+  /* 강조/비활성 상태 */
+  .fc-step.active{border-color:var(--navy);box-shadow:0 2px 10px rgba(31,41,55,.14)}
+  .fc-step.active .fc-num{background:var(--navy)}
+  .fc-step.warm.active{border-color:#ea580c;box-shadow:0 2px 10px rgba(234,88,12,.16)}
+  .fc-step.warm.active .fc-num{background:#ea580c}
+  .fc-step.dim{opacity:.32;filter:grayscale(.4)}
+  .fc-arrow.dim{opacity:.25}
+  .fc-legend{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:14px;font-size:11px;color:var(--sub)}
+  .fc-legend .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:4px;vertical-align:middle}
+  .fc-legend .dot.navy{background:var(--navy)}
+  .fc-legend .dot.dim{background:#cbd5e1}
+
+  /* 확인사항 패널 */
+  .checkpanel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;
+    margin-top:18px;box-shadow:0 1px 3px rgba(15,23,42,.04)}
+  .cp-title{font-size:15px;font-weight:800;color:var(--navy)}
+  .cp-lead{font-size:12px;color:var(--sub);margin-top:4px;line-height:1.5}
+  .cp-card{border:1px solid var(--line);border-radius:12px;margin-top:14px;overflow:hidden}
+  .cp-card-top{display:flex;align-items:center;gap:9px;padding:11px 14px;background:#f8fafc;
+    font-size:13.5px;border-bottom:1px solid var(--line)}
+  .cp-badge{font-size:10px;font-weight:800;padding:2px 8px;border-radius:5px}
+  .cp-badge.auto{background:var(--teal-bg);color:var(--teal)}
+  .cp-badge.manual{background:#e2e8f0;color:var(--slate)}
+  .cp-card-body{padding:13px 14px}
+  .cp-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+  .cp-inline{font-size:12.5px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:7px}
+  .cp-inline input{width:88px;padding:6px 9px;font-size:13px;border:1.5px solid var(--line);
+    border-radius:7px;font-family:inherit;text-align:right}
+  .cp-inline input:focus{outline:none;border-color:var(--navy)}
+  .cp-toggle{font-size:12.5px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:6px;cursor:pointer}
+  .cp-toggle input{width:15px;height:15px;accent-color:var(--navy)}
+  .cp-result{font-size:12.5px;line-height:1.5;padding:9px 12px;border-radius:8px}
+  .cp-result.empty{background:#f8fafc;color:var(--sub);border:1px dashed #cbd5e1}
+  .cp-result.need{background:var(--amber-bg);color:#92400e;font-weight:600}
+  .cp-result.free{background:var(--green-bg);color:#166534;font-weight:600}
+  .cp-result.na{background:#f1f5f9;color:var(--slate)}
+  .cp-result b{font-weight:800}
+  .cp-hint{font-size:10.5px;color:var(--sub);margin-top:8px;line-height:1.5}
+  .cp-check{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .cp-check li label{display:flex;gap:9px;font-size:12.5px;line-height:1.5;color:var(--ink);cursor:pointer;align-items:flex-start}
+  .cp-check li input{margin-top:2px;width:15px;height:15px;flex-shrink:0;accent-color:var(--navy)}
+  .cp-check li b{font-weight:700;color:var(--navy)}
+
+  /* tables */
+  .tablewrap{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:18px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{background:var(--navy);color:#fff;font-weight:600;padding:11px 12px;text-align:left;font-size:12px;white-space:nowrap}
+  td{padding:9px 12px;border-bottom:1px solid #f1f5f9;vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  .memo{color:var(--sub);font-size:12px}
+  .code-cell{font-size:11px;color:var(--sub);font-weight:600;white-space:nowrap}
+  .grp-cell{font-weight:700;text-align:center;white-space:nowrap}
+
+  /* filter bar for table */
+  .tfilter{display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+  .tfilter input{flex:1;min-width:180px;padding:9px 12px;font-size:13px;border:1.5px solid var(--line);border-radius:9px;font-family:inherit}
+  .tfilter input:focus{outline:none;border-color:var(--navy)}
+  .chip{padding:5px 11px;font-size:11.5px;font-weight:600;border:1px solid var(--line);border-radius:20px;
+    cursor:pointer;background:#fff;color:var(--sub);white-space:nowrap}
+  .chip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .count{font-size:11.5px;color:var(--sub)}
+
+  .card-note{font-size:11.5px;color:var(--sub);margin-top:12px;line-height:1.5}
+
+  /* 다중이용업소 패널 */
+  .mu-block{margin-bottom:22px}
+  .mu-h{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:10px;padding-left:10px;
+    border-left:3px solid var(--navy)}
+  .mu-card{background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:16px 18px}
+  .mu-card p{font-size:13px;line-height:1.6;margin-bottom:10px}
+  .mu-card p:last-child{margin-bottom:0}
+  .mu-def{font-size:12.5px;color:#7c2d12;background:#fff;border-radius:8px;padding:9px 12px}
+  .mu-note{font-size:12px;color:var(--sub);border-top:1px dashed #fdba74;padding-top:10px}
+  #multiuse table td b{color:var(--navy)}
+  /* 자가진단 위젯 */
+  .mu-selfcheck{background:var(--card);border:2px solid var(--navy);border-radius:16px;
+    padding:20px 22px;margin-bottom:24px;box-shadow:0 2px 12px rgba(31,41,55,.08)}
+  .msc-title{font-size:16px;font-weight:800;color:var(--navy)}
+  .msc-sub{font-size:12px;color:var(--sub);margin:4px 0 16px}
+  .msc-field{margin-bottom:14px}
+  .msc-field>label{display:block;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:7px}
+  .msc-hint{font-weight:400;color:var(--sub);font-size:11px}
+  .msc-field select{width:100%;padding:10px 12px;font-size:14px;border:1.5px solid var(--line);
+    border-radius:9px;font-family:inherit;background:#fff}
+  .msc-field select:focus{outline:none;border-color:var(--navy)}
+  .msc-inline{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--navy)}
+  .msc-inline input{width:120px;padding:9px 11px;font-size:14px;border:1.5px solid var(--line);
+    border-radius:8px;font-family:inherit;text-align:right}
+  .msc-inline input:focus{outline:none;border-color:var(--navy)}
+  .msc-radios{display:flex;gap:8px;flex-wrap:wrap}
+  .msc-radios label{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;
+    padding:8px 13px;border:1.5px solid var(--line);border-radius:9px;cursor:pointer;background:#fff}
+  .msc-radios label:has(input:checked){border-color:var(--navy);background:var(--navy);color:#fff}
+  .msc-radios input{accent-color:#fff;width:14px;height:14px}
+  .msc-cond{display:none}
+  .msc-cond.show{display:block}
+  .msc-result{margin-top:16px;padding:14px 16px;border-radius:11px;font-size:14px;line-height:1.55;
+    font-weight:600;background:#f8fafc;color:var(--sub);border:1px dashed #cbd5e1}
+  .msc-result.yes{background:#fff1f2;border:1px solid #fca5a5;color:#9f1239}
+  .msc-result.no{background:var(--green-bg);border:1px solid #86efac;color:#166534}
+  .msc-result b{font-weight:800}
+  .msc-result .msc-r-sub{display:block;font-size:12px;font-weight:400;margin-top:6px}
+  /* 대수선 판정기 */
+  .ds-check{background:var(--card);border:2px solid var(--navy);border-radius:16px;
+    padding:20px 22px;box-shadow:0 2px 12px rgba(31,41,55,.08)}
+  .ds-title{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:14px}
+  .ds-parts{display:flex;flex-direction:column;gap:8px}
+  .ds-parts label{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;
+    padding:9px 13px;border:1.5px solid var(--line);border-radius:9px;cursor:pointer;background:#fff}
+  .ds-parts label:has(input:checked){border-color:var(--navy);background:#eff6ff}
+  .ds-parts input{width:15px;height:15px;accent-color:var(--navy)}
+  .mu-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:#f8fafc;
+    border:1px solid var(--line);border-radius:12px;padding:14px}
+  .muf-node{background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px 12px;
+    font-size:12px;font-weight:600;text-align:center;line-height:1.35}
+  .muf-node small{font-weight:400;color:var(--sub);font-size:10.5px}
+  .muf-node.ok{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .muf-arr{color:var(--sub);font-size:16px}
+  .mu-flow-note{font-size:11px;color:var(--sub);margin-top:8px}
+  .mu-inline-note{color:var(--sub);font-size:11.5px}
+  .guide-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #f1f5f9}
+  .guide-item:last-child{border-bottom:none}
+  .guide-item .gname{font-weight:700;font-size:13px;color:var(--navy);flex-shrink:0;min-width:130px}
+  .guide-item .gdesc{font-size:12.5px;color:var(--sub)}
+
+  .legend{display:flex;gap:14px;flex-wrap:wrap;margin:6px 0 18px;font-size:11.5px;color:var(--sub)}
+  .legend span{display:flex;align-items:center;gap:5px}
+</style>
+</head>
+<body>
+<header>
+  <div class="head-inner">
+    <div class="eyebrow">GRIDA_4U 참고자료 ref01 · 인허가신고 · 감으로 하지 않는다</div>
+    <h1>인허가·신고 — 용도변경 · 다중이용업소 판정 · 대수선</h1>
+    <div class="head-sub">건축법 <b>§19</b> · 시행령 <b>§14</b> · 별표1 <b>개정 2025. 10. 1.</b> 기준 · 실제 처리 전 관할 지자체·세움터(eais.go.kr) 확인</div>
+  </div>
+</header>
+
+<div class="tabs" id="tabs">
+  <button class="tab active" data-tab="finder">용도변경</button>
+  <button class="tab" data-tab="multiuse">다중이용업소</button>
+  <button class="tab" data-tab="daesuseon">건축행위·대수선</button>
+  <button class="tab" data-tab="groups">9개 시설군</button>
+  <button class="tab" data-tab="uses">세부용도</button>
+  <button class="tab" data-tab="docs">용도변경 절차별 서류</button>
+  <button class="tab" data-tab="laws">근거법령</button>
+</div>
+
+<div class="wrap">
+
+  <!-- 판정 -->
+  <section class="panel active" id="finder">
+    <h2>용도변경</h2>
+    <p class="lead">현재 용도와 희망 용도를 입력하면 허가·신고·대장변경 중 무엇인지 바로 알려드립니다. 이름 일부만 쳐도 됩니다 — 예: <b>미용</b> 입력 → 미용원 계열 전부 표시.</p>
+    <div id="reqBanner" style="align-items:center;gap:10px;flex-wrap:wrap;background:#fef3e2;border:1px solid #f5d9a8;border-radius:10px;padding:10px 14px;margin-bottom:16px;font-size:13px;color:#7a4a08;display:none;">
+      <b id="reqBannerText" style="flex:1;min-width:200px;line-height:1.5;">작품의뢰서 데이터 적용됨</b>
+      <button id="reqBannerClear" style="font-size:12px;padding:4px 10px;border:1px solid #d97706;background:#fff;color:#b45309;border-radius:6px;cursor:pointer;font-family:inherit;font-weight:700;white-space:nowrap;">입력 지우기</button>
+    </div>
+    <div class="finder">
+      <div class="finder-grid">
+        <div class="picker">
+          <label>현재 용도 <span class="tagline">지금 건축물대장에 적힌 용도</span></label>
+          <div class="search-box">
+            <input type="text" id="fromInput" placeholder="예: 미용원, 음식점, 사무소…" autocomplete="off">
+            <div class="results" id="fromResults"></div>
+          </div>
+          <div class="areabox" id="fromArea"></div>
+        </div>
+        <div class="picker">
+          <label>희망 용도 <span class="tagline">바꿔서 쓰려는 용도</span></label>
+          <div class="search-box">
+            <input type="text" id="toInput" placeholder="예: 독서실, 카페, 호스텔…" autocomplete="off">
+            <div class="results" id="toResults"></div>
+          </div>
+          <div class="areabox" id="toArea"></div>
+        </div>
+      </div>
+      <div class="verdict wait" id="verdict">↑ 현재 용도와 희망 용도를 모두 선택하면 결과가 표시됩니다.</div>
+    </div>
+
+    <!-- 전체 절차 흐름 -->
+    <div class="flowchart" id="flowchart">
+      <div class="fc-title">전체 절차 흐름 <span id="fcHint">— 판정되면 진행 경로가 강조됩니다</span></div>
+
+      <div class="fc-step" data-step="1">
+        <div class="fc-num">1</div>
+        <div class="fc-body">
+          <b>용도변경 전 확인사항</b>
+          <div class="fc-sub">현재 용도와 바꾸려는 용도 확인 · 용도변경 제한 여부 확인 · 건축기준 등의 확인</div>
+        </div>
+      </div>
+      <div class="fc-down"><span class="fc-arrow">↓</span></div>
+
+      <div class="fc-split">
+        <div class="fc-step branch" data-step="2-1">
+          <div class="fc-num">2-1</div>
+          <div class="fc-body"><b>용도변경 허가 신청 또는 신고</b>
+            <div class="fc-sub">시설군이 바뀌는 경우</div></div>
+        </div>
+        <div class="fc-step branch" data-step="2-2">
+          <div class="fc-num">2-2</div>
+          <div class="fc-body"><b>건축물대장 기재사항 변경신청 또는 임의변경</b>
+            <div class="fc-sub">같은 시설군 내</div></div>
+        </div>
+      </div>
+      <div class="fc-down"><span class="fc-arrow warm">↓</span></div>
+
+      <div class="fc-step warm" data-step="3">
+        <div class="fc-num">3</div>
+        <div class="fc-body"><b>용도변경에 맞게 공사</b> <span class="fc-opt">필요 시</span></div>
+      </div>
+      <div class="fc-down"><span class="fc-arrow warm">↓</span></div>
+
+      <div class="fc-step warm" data-step="4">
+        <div class="fc-num">4</div>
+        <div class="fc-body">
+          <b>건축물 사용승인 신청 → 검사 및 사용승인</b> <span class="fc-opt">필요 시</span>
+          <div class="fc-sub">허가·신고 대상 중 용도변경 면적 합계 100㎡ 이상일 때 (500㎡ 미만 + 대수선 미수반이면 생략)</div>
+        </div>
+      </div>
+      <div class="fc-down"><span class="fc-arrow warm">↓</span></div>
+
+      <div class="fc-step warm" data-step="5">
+        <div class="fc-num">5</div>
+        <div class="fc-body"><b>지목변경</b> <span class="fc-opt">필요 시</span>
+          <div class="fc-sub">토지의 실제 용도가 바뀌어 지목이 달라지는 경우</div></div>
+      </div>
+
+      <div class="fc-legend">
+        <span><i class="dot navy"></i> 진행 경로</span>
+        <span><i class="dot dim"></i> 해당 없음</span>
+        <span class="fc-opt">필요 시</span> = 상황에 따라 생략 가능
+      </div>
+    </div>
+
+    <!-- 전 확인사항 패널 -->
+    <div class="checkpanel" id="checkpanel">
+      <div class="cp-head">
+        <div>
+          <div class="cp-title">용도변경 전 확인사항</div>
+          <div class="cp-lead">절차 판정은 “어떻게 신고하냐”일 뿐입니다. 실제 <b>용도변경이 가능한지</b>는 아래를 따로 확인해야 합니다. — 용도변경은 신축에 준하는 건축행위 (건축법 §19①·§49①)</div>
+        </div>
+      </div>
+
+      <!-- 자동: 사용승인 -->
+      <div class="cp-card" id="cpUseApproval">
+        <div class="cp-card-top"><span class="cp-badge auto">자동</span><b>사용승인 · 건축사 설계 필요 여부</b></div>
+        <div class="cp-card-body">
+          <div class="cp-row">
+            <label class="cp-inline">용도변경 면적
+              <input type="number" id="cpArea" min="0" step="1" placeholder="㎡"> ㎡</label>
+            <label class="cp-toggle"><input type="checkbox" id="cpDaesuseon"> 대수선 공사 포함</label>
+          </div>
+          <div class="cp-result empty" id="cpUseResult">면적을 입력하면 판정됩니다. (허가·신고 대상 + 100㎡ 이상일 때 원칙적으로 사용승인 신청 → 단, 500㎡ 미만이고 대수선이 없으면 생략)</div>
+          <div class="cp-result empty" id="cpArchResult" style="margin-top:8px">건축사 설계 필요 여부 — 면적을 입력하면 판정됩니다. (허가 대상 + 500㎡ 이상이면 건축사 설계 필수)</div>
+          <div class="cp-hint">용도변경 면적 = 실제로 용도를 바꾸는 부분의 바닥면적 합계. 대수선 = 내력벽·기둥·보·지붕틀·방화구획·주계단/피난계단·세대 경계벽·외벽마감을 증설/해체/일정규모 수선하는 것 (건축법 §2⑨, 시행령 §3의2). 내력벽에 문 하나 뚫는 것도 대수선입니다.</div>
+        </div>
+      </div>
+
+      <!-- 자동: 주차대수 -->
+      <div class="cp-card" id="cpParkingCard">
+        <div class="cp-card-top"><span class="cp-badge auto">자동</span><b>부설주차장 추가 확보</b></div>
+        <div class="cp-card-body">
+          <div class="cp-result empty" id="cpParkingResult">현재·희망 용도를 선택하고 면적을 입력하면, 용도별 주차 원단위로 필요 대수를 계산합니다.</div>
+          <div class="cp-row" id="cpParkingHave" style="display:none">
+            <label class="cp-inline">현재 확보 주차대수(선택)
+              <input type="number" id="cpHaveParking" min="0" step="1" placeholder="대"> 대</label>
+          </div>
+          <div class="cp-hint">원단위는 <b>서울특별시 주차장 설치·관리 조례 별표2</b> 대표값입니다(위락 67 · 문화집회/판매/숙박/업무/운동 등 100 · 근린생활 134 · 공장/창고 200 ㎡당 1대). 세부용도·자치구·주차상한제 구역에 따라 달라질 수 있어 최종은 관할 구청으로 확인하세요. 같은 건물 내 용도 상호변경이라도 ‘주차기준이 높은 용도의 면적이 늘면’ 추가 확보 대상입니다(주차장법 시행령 §6④).</div>
+        </div>
+      </div>
+
+      <!-- 체크리스트: 나머지 -->
+      <div class="cp-card">
+        <div class="cp-card-top"><span class="cp-badge manual">직접 확인</span><b>그 밖에 반드시 확인할 것</b></div>
+        <div class="cp-card-body">
+          <ul class="cp-check">
+            <li><label><input type="checkbox"> <b>용도지역·지구 허용 여부</b> — 국토계획법상 그 지역에서 지을 수 있는 용도인지. 예: 중심상업지역 오피스텔 → 공동주택 불가 (국토계획법 §76, 시행령 별표)</label></li>
+            <li><label><input type="checkbox"> <b>지구단위계획·개별법 제한</b> — 지구단위계획 지정용도, 주차장법 §19의4(부설주차장 용도변경 제한) 등</label></li>
+            <li><label><input type="checkbox"> <b>바닥 하중</b> — 변경 용도의 적재하중을 구조가 견디는지. 예: 사무실 250~500㎏/㎡ → 음식점 식당 500·주방 700㎏/㎡ (구조기준규칙 §7)</label></li>
+            <li><label><input type="checkbox"> <b>정화조 용량</b> — 용도별 오수발생량이 달라 재산정 필요 (하수도법, 환경부 고시)</label></li>
+            <li><label><input type="checkbox"> <b>피난·방화 기준</b> — 복도·계단·출입구·비상구·방화구획 등 변경 용도 기준 충족 (건축법 §49)</label></li>
+            <li><label><input type="checkbox"> <b>숨어 있는 건축법</b> — 학교보건법(학교 200m 정화구역 금지용도), 다중이용업소법, 소방시설법 등</label></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="warn-inline" id="finderWarn" style="display:none">
+      ⚠ 이 판정은 시설군 번호 비교입니다. 근생 1종↔2종 이동이나 500㎡ 등 면적기준(사무소·공연장·학원·체력단련장 등)은 규모에 따라 결과가 달라질 수 있어요. ‘세부용도’ 탭의 면적기준·메모를 함께 확인하고, 최종은 관할 지자체·세움터에서 확정하세요.
+    </div>
+  </section>
+
+  <!-- 세부용도 -->
+  <section class="panel" id="uses">
+    <h2>세부용도 <span class="count" id="useCount"></span></h2>
+    <p class="lead">건축법 시행령 별표1의 세부 목(중분류) 전체입니다. 색은 소속 시설군.</p>
+    <div class="tfilter">
+      <input type="text" id="useSearch" placeholder="용도명·메모 검색 (예: 학원, 500, 호스텔)">
+      <div id="useChips"></div>
+    </div>
+    <div class="tablewrap">
+      <table id="useTable">
+        <thead><tr><th style="width:52px">호·목</th><th>세부용도 (중분류)</th><th style="width:64px">시설군</th><th>면적기준 / 실무 메모</th></tr></thead>
+        <tbody id="useBody"></tbody>
+      </table>
+    </div>
+    <p class="card-note">※ ‘해당 용도로 쓰는 바닥면적’ = 부설주차장 제외 실사용면적 + 공용부분(복도·계단·화장실 등) 비례배분(별표1 비고1). 총 124개 항목.</p>
+  </section>
+
+  <!-- 시설군 -->
+  <section class="panel" id="groups">
+    <h2>9개 시설군</h2>
+    <p class="lead">번호 1에 가까울수록 상위군(관리 엄격), 9에 가까울수록 하위군. 상위군으로 올리면 허가, 하위군으로 내리면 신고.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th style="width:52px">번호</th><th style="width:150px">시설군 명칭</th><th>소속 대분류 용도</th><th>방향성 메모</th></tr></thead>
+        <tbody id="grpBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 서류 -->
+  <section class="panel" id="docs">
+    <h2>절차별 서류·소요</h2>
+    <p class="lead">판정 결과에 따라 준비할 서류와 근거 조문입니다.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th style="width:130px">구분</th><th>적용 상황</th><th>필요 서류</th><th style="width:130px">수수료</th><th style="width:120px">근거</th></tr></thead>
+        <tbody id="docBody"></tbody>
+      </table>
+    </div>
+    <p class="card-note">처리 주체는 모두 특별자치시장·특별자치도지사 또는 시장·군수·구청장입니다.</p>
+  </section>
+
+  <!-- 다중이용업소 -->
+  <section class="panel" id="multiuse">
+    <h2>다중이용업소</h2>
+    <p class="lead">불특정 다수가 이용해 화재 시 인명피해 우려가 큰 영업. 해당하면 영업 전 소방서 <b>‘안전시설등 완비증명서’</b>를 받아야 합니다. (다중이용업소의 안전관리에 관한 특별법 · 시행령 §2)</p>
+
+    <!-- 자가진단 위젯 -->
+    <div class="mu-selfcheck" id="muSelfcheck">
+      <div class="msc-title">🔎 다중이용업 자가진단</div>
+      <div class="msc-sub">업종을 고르고 면적·층 등을 입력하면 해당 여부를 판정합니다.</div>
+
+      <div class="msc-field">
+        <label>1. 업종</label>
+        <select id="mscType">
+          <option value="">— 선택 —</option>
+          <optgroup label="면적·층 관계없이 전부 해당">
+            <option value="always_bar">단란주점·유흥주점</option>
+            <option value="always_karaoke">노래연습장</option>
+            <option value="always_gosiwon">고시원업</option>
+            <option value="always_postpartum">산후조리업</option>
+            <option value="always_massage">안마시술소</option>
+            <option value="always_film">영화상영관·비디오물감상실·소극장·복합영상물</option>
+            <option value="always_shooting">권총사격장(실내)</option>
+          </optgroup>
+          <optgroup label="면적·층으로 판정">
+            <option value="food">음식점(휴게·제과·일반)·공유주방</option>
+            <option value="game">게임제공업·인터넷컴퓨터게임·복합유통게임</option>
+          </optgroup>
+          <optgroup label="수용인원으로 판정">
+            <option value="academy">학원</option>
+            <option value="jjimjil">목욕장(찜질방)</option>
+          </optgroup>
+          <optgroup label="실내 여부로 판정">
+            <option value="screengolf">가상체험 체육시설(스크린골프 등)</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <!-- 음식점: 면적+층+출입+무창 -->
+      <div class="msc-field msc-cond" data-for="food">
+        <label>2. 영업장 바닥면적 <span class="msc-hint">(주방·홀·창고 등 영업공간 전체. 화장실·구획복도·계단 제외)</span></label>
+        <div class="msc-inline"><input type="number" id="mscFoodArea" min="0" step="1" placeholder="㎡"> ㎡</div>
+      </div>
+      <div class="msc-field msc-cond" data-for="food game">
+        <label>3. 층 위치</label>
+        <div class="msc-radios" id="mscFloor">
+          <label><input type="radio" name="mscfloor" value="1f"> 지상 1층</label>
+          <label><input type="radio" name="mscfloor" value="upper"> 지상 2층 이상</label>
+          <label><input type="radio" name="mscfloor" value="base"> 지하층</label>
+        </div>
+      </div>
+      <div class="msc-field msc-cond" data-for="food game" data-floor="1f">
+        <label>4. 지상과 직접 통하는 출입구가 있나요?</label>
+        <div class="msc-radios" id="mscDirect">
+          <label><input type="radio" name="mscdirect" value="y"> 예</label>
+          <label><input type="radio" name="mscdirect" value="n"> 아니오</label>
+        </div>
+      </div>
+      <div class="msc-field msc-cond" data-for="food game" data-floor="1f upper" data-direct="y">
+        <label>5. 무창층인가요? <span class="msc-hint">(개구부 면적이 그 층 바닥면적의 1/30 이하 — 통유리·간판으로 창을 막은 경우 포함)</span></label>
+        <div class="msc-radios" id="mscWindow">
+          <label><input type="radio" name="mscwindow" value="n"> 아니오(창 충분)</label>
+          <label><input type="radio" name="mscwindow" value="y"> 예(무창층)</label>
+        </div>
+      </div>
+
+      <!-- 학원: 면적 → 인원 -->
+      <div class="msc-field msc-cond" data-for="academy">
+        <label>2. 강의실·교무실·실습실 등 바닥면적 <span class="msc-hint">(÷1.9㎡ = 수용인원)</span></label>
+        <div class="msc-inline"><input type="number" id="mscAcademyArea" min="0" step="1" placeholder="㎡"> ㎡</div>
+      </div>
+
+      <!-- 찜질방: 인원 -->
+      <div class="msc-field msc-cond" data-for="jjimjil">
+        <label>2. 수용인원 <span class="msc-hint">(맥반석·황토 등 가열방 이용 인원)</span></label>
+        <div class="msc-inline"><input type="number" id="mscJjimjilPpl" min="0" step="1" placeholder="명"> 명</div>
+      </div>
+
+      <!-- 스크린골프: 실내 여부 -->
+      <div class="msc-field msc-cond" data-for="screengolf">
+        <label>2. 설치 형태</label>
+        <div class="msc-radios" id="mscIndoor">
+          <label><input type="radio" name="mscindoor" value="y"> 실내(스크린 등)</label>
+          <label><input type="radio" name="mscindoor" value="n"> 실외 타석형</label>
+        </div>
+      </div>
+
+      <div class="msc-result" id="mscResult">업종을 선택하세요.</div>
+    </div>
+
+    <div class="mu-block">
+      <div class="mu-h">1 · 대상 업종과 요건</div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th style="width:130px">업종</th><th>다중이용업 요건</th></tr></thead>
+          <tbody>
+            <tr><td><b>음식점</b><br>(휴게·제과·일반)</td><td>바닥면적 합계 <b>100㎡ 이상</b>(지하층은 <b>66㎡ 이상</b>). 단, 지상 1층 + 지상과 직접 접하는 출입구가 있으면 제외 (→ 지하·무창층이면 이 예외 없음)</td></tr>
+            <tr><td><b>공유주방 영업</b></td><td>음식점과 동일 요건 (지하 66㎡ / 지상 100㎡ 이상)</td></tr>
+            <tr><td><b>단란주점·유흥주점</b></td><td>면적 무관 전부 해당</td></tr>
+            <tr><td><b>영화·영상</b></td><td>영화상영관·비디오물감상실·비디오물소극장·복합영상물제공업</td></tr>
+            <tr><td><b>학원</b></td><td>수용인원 <b>300명 이상</b>. 또는 <b>100~300명 미만</b> 중(방화구획으로 나뉘지 않은 경우): ①한 건축물에 학원+기숙사 함께 ②한 건축물에 학원 2 이상으로 수용인원 300명 이상 ③한 건축물에 다중이용업+학원 함께</td></tr>
+            <tr><td><b>목욕장(찜질방)</b></td><td>맥반석·황토·옥 등으로 가열한 방을 준비해 <b>수용인원 100명 이상</b>이 이용</td></tr>
+            <tr><td><b>게임</b></td><td>게임제공업·인터넷컴퓨터게임시설제공업·복합유통게임제공업 (지상 1층 직접출입 제외)</td></tr>
+            <tr><td><b>노래연습장</b></td><td>노래연습장업 전부</td></tr>
+            <tr><td><b>산후조리업</b></td><td>산후조리원 전부</td></tr>
+            <tr><td><b>고시원업</b></td><td>구획된 실 안에 학습·숙박 제공. 전부 해당</td></tr>
+            <tr><td><b>실내 사격장</b></td><td>권총 사격장(실내)</td></tr>
+            <tr><td><b>가상체험 체육</b></td><td>실내에 스크린 등을 설치한 <b>스크린골프 등</b> — 실외 타석형 골프연습장은 제외</td></tr>
+            <tr><td><b>안마시술소</b></td><td>안마시술소 전부</td></tr>
+            <tr><td><b>기타</b></td><td>전화방·화상대화방·수면방·콜라텍·방탈출카페·키즈카페·만화카페 등 (행안부령으로 추가 지정)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="mu-block">
+      <div class="mu-h">1-2 · 수용인원 산정 방법 (인원 기준의 근거)</div>
+      <div class="mu-card">
+        <p>‘학원 300명’, ‘찜질방 100명’ 같은 <b>수용인원 기준은 실제 인원이 아니라 면적으로 계산</b>합니다. (소방시설법 시행령 별표7)</p>
+        <p class="mu-def"><b>학원 예시</b>: 강의실 바닥면적 ÷ 1.9㎡ = 수용인원. 즉 강의실 면적이 <b>570㎡ 이상이면 300명</b>(570÷1.9)이 되어 다중이용업에 해당합니다.</p>
+      </div>
+      <div class="tablewrap" style="margin-top:12px">
+        <table>
+          <thead><tr><th style="width:200px">용도</th><th>수용인원 산정식</th></tr></thead>
+          <tbody>
+            <tr><td><b>숙박시설 (침대 O)</b></td><td>종사자 수 + 침대 수 (2인용 침대 = 2개)</td></tr>
+            <tr><td><b>숙박시설 (침대 X)</b></td><td>종사자 수 + (숙박 바닥면적 ÷ 3㎡)</td></tr>
+            <tr><td><b>강의실·교무실·상담실·실습실·휴게실</b><br><small>(학원 등)</small></td><td>바닥면적 ÷ <b>1.9㎡</b> ← 가장 조밀(적은 면적에도 인원 많이 잡힘)</td></tr>
+            <tr><td><b>강당·문화집회·운동·종교시설</b></td><td>바닥면적 ÷ 4.6㎡ (관람석 고정의자는 의자 수, 긴의자는 정면너비 ÷ 0.45m)</td></tr>
+            <tr><td><b>그 밖의 시설</b></td><td>바닥면적 ÷ 3㎡</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="card-note">※ 바닥면적 산정 시 복도(준불연재료 이상으로 천장까지 벽 구획한 것)·계단·화장실 면적은 제외. 계산 결과 소수점 이하는 반올림. 근거: 소방시설법 시행령 별표7(제17조 관련).</p>
+    </div>
+
+    <div class="mu-block">
+      <div class="mu-h">2 · 입지 조건 — 지하층·무창층이면 강해짐</div>
+      <div class="mu-card">
+        <p><b>지하층</b> 또는 <b>무창층</b>에 있으면 ‘지상 1층 직접출입’ 예외가 적용되지 않아 다중이용업으로 잡힐 가능성이 커집니다.</p>
+        <p class="mu-def"><b>무창층이란?</b> 지상층 중 개구부(창·출입문 등) 면적의 합이 그 층 <b>바닥면적의 1/30(약 3.3%) 이하</b>인 층. 지하만이 아니라 <b>지상 어느 층이든</b> 해당할 수 있습니다. (소방시설법 시행령 §2)</p>
+        <p class="mu-def"><b>개구부로 인정되려면</b>: ① 지름 50cm 이상 원이 통과 ② 바닥에서 밑까지 1.2m 이내 ③ 도로·빈터 쪽을 향함 ④ 쉽게 열거나 부술 수 있음(창살 등 장애물 없음). 출입문·자동문도 이 조건을 만족하면 개구부로 인정(자동문은 정전·화재 시 열리는 구조여야 함).</p>
+        <p class="mu-note">※ 무창층 자체가 다중이용업을 만드는 건 아닙니다. <b>‘1층이라 받던 면제’를 무효화</b>하는 조건이며, 그다음은 면적(100㎡)·업종별 원래 기준으로 판단합니다. 통유리·간판으로 창을 막은 카페·음식점이 뜻밖에 무창층으로 잡히는 경우를 주의하세요.</p>
+      </div>
+    </div>
+
+    <div class="mu-block">
+      <div class="mu-h">3 · 해당하면 따라오는 의무</div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th style="width:150px">단계</th><th>의무 사항</th></tr></thead>
+          <tbody>
+            <tr><td><b>영업 전</b></td><td>소방특별조사 · <b>안전시설등 완비증명서</b> 발급 (없으면 영업신고 불가)</td></tr>
+            <tr><td><b>안전시설 설치</b></td><td>소화·경보·피난 설비: 자동화재탐지설비 · 유도등 · 피난안내도 · 비상구 · 방염 물품 · (규모에 따라) 간이스프링클러</td></tr>
+            <tr><td><b>운영 중</b></td><td>종업원 소방안전교육 이수 · 정기 자체점검 · 화재배상책임보험 가입</td></tr>
+            <tr><td><b>위반 시</b></td><td>영업정지 · 과태료 · 형사처벌</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="mu-block">
+      <div class="mu-h">4 · 완비증명 처리 흐름·서류</div>
+      <div class="mu-flow">
+        <span class="muf-node">사전지도<br><small>전화·팩스</small></span>
+        <span class="muf-arr">→</span>
+        <span class="muf-node">안전시설<br>설치신고·완공검사</span>
+        <span class="muf-arr">→</span>
+        <span class="muf-node">현장확인<br><small>소방서</small></span>
+        <span class="muf-arr">→</span>
+        <span class="muf-node ok">완비증명서<br>발급</span>
+      </div>
+      <p class="mu-flow-note">※ 현장확인에서 부적합이면 → 부적합사항 통보 → 보완 후 재신청</p>
+      <div class="tablewrap" style="margin-top:12px">
+        <table>
+          <thead><tr><th style="width:150px">구분</th><th>내용</th></tr></thead>
+          <tbody>
+            <tr><td><b>제출 서류</b></td><td>안전시설등 설치신고서 + 설치 설계도서 / 완공 시 완공신고서(설계도서와 달라진 내용 있으면 관련 서류 첨부)</td></tr>
+            <tr><td><b>처리 기간</b></td><td>설치신고 3일 · 완공신고 3일</td></tr>
+            <tr><td><b>수수료 · 부서</b></td><td>없음 · 관할 소방서 예방과</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="mu-block">
+      <div class="mu-h">5 · 방염 (실내 인테리어 직결)</div>
+      <div class="mu-card">
+        <p>다중이용업소 등은 실내 마감·장식물에 <b>방염 처리된 물품</b>을 써야 합니다. GRIDA 시공에서 커튼·카펫·합판·칸막이가 여기 직접 걸립니다.</p>
+      </div>
+      <div class="tablewrap" style="margin-top:12px">
+        <table>
+          <thead><tr><th style="width:140px">구분</th><th>대상</th></tr></thead>
+          <tbody>
+            <tr><td><b>방염대상물품</b></td><td>창문에 설치하는 커튼류(블라인드 포함) · 카펫(두께 2mm 미만 벽지류 제외) · 전시용/무대용 합판·목재·섬유판 · 암막·무대막(스크린 포함)</td></tr>
+            <tr><td><b>실내장식물</b></td><td>종이류(두께 2mm 이상)·합성수지류·섬유판으로 만든 것 · 합판·목재 · 실 등으로 짠 공간 구획 설치물(간막이) · 흡음/방음을 위한 벽·반자돌림대 등<br><span class="mu-inline-note">제외: 가구류(장롱·붙박이장·식탁·의자 등)·사무용 집기·너비 10cm 이하 반자돌림대·건축법 §43 마감재료</span></td></tr>
+            <tr><td><b>방염성능검사</b></td><td>대상: 목재·합판(현장처리 방염물품) / 처리기간 <b>10일</b> / 시료재 29×29cm 등 / 성적서 교부, 불합격 시 방염성능검사성적서 미교부</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p class="card-note">본 요약은 1차 참고용입니다. 실제 해당 여부·요건은 업종·면적·인원·입지에 따라 달라지므로 최종은 관할 <b>소방서</b>에서 확인하세요. 근거: 다중이용업소의 안전관리에 관한 특별법 및 시행령 §2, 소방시설법 시행령 §2, 방염 관련 소방시설법령.</p>
+
+    <div class="mu-block">
+      <div class="mu-h">6 · 시공 실무 3원칙 (공사 관계자 필수)</div>
+      <div class="mu-card">
+        <p><b>① 내부 구획은 불연재로</b> — 방화석고보드 · 일반석고보드 12.5t · 타일 · 유리 등. <b>벽체 앞뒤로 시공 + 최종마감까지</b> 불연 기준.<br>
+        <span class="mu-inline-note">⚠ 단란주점·유흥주점·노래연습장업은 <b>천장(반자 속)까지</b> 구획 필요 — 벽만이 아니라 천장 내부까지.</span></p>
+        <p><b>② 구획으로 통로가 생기면</b> — 통로폭 <b>120cm 이상</b>(양옆에 실이 있고 출입문이 피난통로 방향이면 <b>150cm 이상</b>). 구획된 실에서 출입구·비상구까지 <b>3번 이상 꺾이지 않게</b>.</p>
+        <p><b>③ 목재 사용 시</b> — 소방담당자와 상의해 가용면적 이내로. 방염 <b>선처리</b>(종류별 방염필름 성적서, 시료절취·처리시간 불필요, 즉시) vs <b>후처리</b>(신청면적만큼 방염페인트 딱지 + 시공 전·중·후 및 절취 전·후 사진 + 소방검사까지 약 1주일).</p>
+        <p class="mu-note">⚠ 인테리어 구획 변경·마감재 변경 시 반드시 소방담당자와 <b>사전 협의 후 시공</b> → 재시공 방지.</p>
+      </div>
+    </div>
+
+    <div class="mu-block">
+      <div class="mu-h">7 · 안전시설 설치기준 (상세)</div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th style="width:120px">항목</th><th>기준</th></tr></thead>
+          <tbody>
+            <tr><td><b>소방설비</b></td><td>구획된 각 실마다 소화기 or 자동확산소화기 · <b>K급 소화기(외식업 필수, 매장 25㎡당 1대 추가)</b> · 간이스프링클러(<b>지하층 영업장·숙박형 다중이용업[산후조리업·고시원업]</b> 등 특정 대상, 캐비넷형 포함) · 비상벨 or 자동화재탐지설비 · 피난기구(완강기·피난사다리·구조대·미끄럼대, <b>4층 이하</b> 영업장 비상구) · 피난유도선 · 유도등·유도표지 or 비상조명등 · 휴대용 비상조명등 · <b>가스누설경보기(가스 주방·난방 영업장)</b></td></tr>
+            <tr><td><b>비상구</b></td><td>층별 설치 · 주출입구 반대방향 · 주출입구 중심선에서 수평거리 가장 긴 길이의 1/2 이상 떨어진 위치 · <b>규격 가로 750 × 세로 1500mm 이상</b>(문틀 제외 유효폭) · 외부 직접 통하는 구조 · 피난방향으로 열림 · 자동문은 화재감지 연동/정전 시 자동·수동 개방 · 방화문 or 불연재 문 · 앞에 물건 적재 금지, 120cm 이상 난간·추락위험 표지<br><span class="mu-inline-note">면제: 주출입구 외에 피난층·지상 통하는 직통계단이 주출입구 중심선에서 긴 변 길이의 1/2 이상 떨어져 별도 설치된 경우 비상구 생략 가능</span></td></tr>
+            <tr><td><b>발코니·부속실</b></td><td>가로 750×세로 1500mm 이상 · 면적 1.12㎡ 이상 · 난간높이 1000mm 이상(부속실은 1200mm 이상 시 발판 등) · 외부로 나가는 문 750×1000mm 이상 · 추락방지(경보음 장치·위험표지·1200mm 이상 난간)</td></tr>
+            <tr><td><b>피난통로</b></td><td>폭 <b>1200mm 이상</b>(피난통로 방향으로 문이 열리면 <b>1500mm 이상</b>) · 3번 이상 꺾이지 않게</td></tr>
+            <tr><td><b>창문</b></td><td>층마다 가로 500×세로 500mm 이상 열리는 창문 1개 이상 · 피난통로/복도에 외기와 면하도록(구획된 실에 설치하는 것은 제외)</td></tr>
+            <tr><td><b>피난안내도</b></td><td>피난안내도 비치 또는 피난안내 영상물 상영<br><span class="mu-inline-note">제외: 영업장 바닥면적 33㎡ 이하이거나, 구획된 실 없고 출입구·비상구 확인이 가능한 경우</span></td></tr>
+            <tr><td><b>영상음향차단장치</b><br><small>(노래방 등)</small></td><td>화재 시 자탐설비로 자동 정지 + 한 스위치로 수동 조작 · 수동차단스위치는 관계인 상주 장소에 · "영상음향차단스위치" 표지 · 작동 시 실내 등 전원은 안 꺼지는 구조</td></tr>
+            <tr><td><b>누전차단기</b></td><td><b>모든 다중이용업소</b>에 설치</td></tr>
+            <tr><td><b>실내장식물</b></td><td>불연재료 또는 준불연재료로 설치</td></tr>
+            <tr><td><b>보일러실</b></td><td>영업장 사이 출입문은 방화문 · 개구부에는 방화댐퍼 설치</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p class="card-note">시공 기준은 업종·규모·건물 구조에 따라 적용이 달라집니다. 설계·시공 전 관할 소방서 예방과와 사전 협의를 권장합니다.</p>
+  </section>
+
+  <!-- 대수선 -->
+  <section class="panel" id="daesuseon">
+    <h2>건축행위 · 대수선</h2>
+    <p class="lead">사용승인 후 건물을 바꾸는 행위는 <b>증축·개축·재축·대수선·용도변경·리모델링</b>으로 나뉘고, 각각 규모에 따라 <b>건축허가</b> 또는 <b>건축신고</b> 대상이 됩니다. 마감·집기만 바꾸는 인테리어는 건축 인허가 대상이 아닙니다.</p>
+
+    <!-- 건축행위 개념 지도 -->
+    <div class="mu-block">
+      <div class="mu-h">건축행위 분류 (사용승인 후 바꾸는 행위)</div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th></th><th>면적 증가 없음</th><th>면적 증가 있음</th></tr></thead>
+          <tbody>
+            <tr><td><b>구조·형태 변경</b></td><td><b>개축</b>(기존 헐고 같은 규모로 다시) &gt; <b>대수선</b>(구조 일부 손봄)</td><td><b>리모델링</b>(사용승인 15년↑ + 대수선+증축)</td></tr>
+            <tr><td><b>용도만 변경</b></td><td><b>용도변경</b> (→ ‘용도변경’ 탭)</td><td><b>증축</b>(면적만 늘림)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="card-note">· <b>신축</b>: 없던 건물을 새로 · <b>재축</b>: 재해로 멸실된 것을 다시 · <b>대수선</b>: 면적·용도 그대로 두고 주요구조부·방화·피난 부위를 손봄 · <b>리모델링</b>: 15년 이상 노후 건물의 대수선+증축(건축기준 완화 인센티브 가능). ‘리뉴얼’은 건축법 용어가 아니며 실제 작업 내용(마감만/구조/용도/면적)에 따라 위 분류로 판정됩니다.</p>
+    </div>
+
+    <!-- 허가/신고 기준표 -->
+    <div class="mu-block">
+      <div class="mu-h">건축허가 vs 건축신고 기준</div>
+      <div class="mu-card" style="margin-bottom:12px">
+        <p><b>허가</b> = 원칙 금지 → 요건·절차 갖추면 제한적 허용. <b>신고</b> = 원칙 허용 → 요건·절차만 거침(허가 대상이지만 규제완화로 신고하면 허가받은 것으로 봄). (건축법 §11 허가 / §14 신고)</p>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th style="width:130px">행위</th><th>건축신고</th><th>건축허가</th></tr></thead>
+          <tbody>
+            <tr><td><b>신축</b></td><td>연면적 100㎡ 이하</td><td>연면적 100㎡ 초과</td></tr>
+            <tr><td><b>증축·개축·재축</b></td><td>85㎡ 이하 <span class="mu-inline-note">(+연면적 200㎡ 미만·3층 미만 등)</span></td><td>85㎡ 초과</td></tr>
+            <tr><td><b>대수선</b></td><td>연면적 200㎡ 미만+3층 미만, 또는 해체 없는 수선</td><td>그 외(대규모+해체 등)</td></tr>
+            <tr><td><b>높이 증축</b></td><td>3m 이하 범위 증축</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tablewrap" style="margin-top:12px">
+        <table>
+          <thead><tr><th style="width:130px">구분</th><th>허가</th><th>신고</th></tr></thead>
+          <tbody>
+            <tr><td><b>설계도서 작성</b></td><td>건축사 필수</td><td>누구나 가능(단독주택 100㎡ 초과는 건축사)</td></tr>
+            <tr><td><b>공사감리자</b></td><td>지정 필요</td><td>불필요</td></tr>
+            <tr><td><b>공통</b></td><td colspan="2">건축법 등 관련 법령에 적법해야 함 · 처리부서: 건축과</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 건축행위 판정기 -->
+    <div class="ds-check" style="margin-bottom:18px">
+      <div class="ds-title">🏗️ 건축행위 허가/신고 판정</div>
+      <div class="msc-field">
+        <label>1. 어떤 건축행위인가요?</label>
+        <select id="baType">
+          <option value="">— 선택 —</option>
+          <option value="new">신축 (없던 건물을 새로)</option>
+          <option value="extend">증축 (면적 늘림)</option>
+          <option value="rebuild">개축 (헐고 같은 규모로 다시)</option>
+          <option value="restore">재축 (재해로 멸실된 것 다시)</option>
+          <option value="height">높이 증축 (면적 그대로 높이만)</option>
+          <option value="daesuseon">대수선 (→ 아래 판정기 이용)</option>
+          <option value="usechange">용도변경 (→ ‘용도변경’ 탭 이용)</option>
+          <option value="interior">마감·집기만(인테리어)</option>
+        </select>
+      </div>
+      <div class="msc-field msc-cond" data-ba="new extend rebuild restore">
+        <label id="baAreaLabel">2. 면적</label>
+        <div class="msc-inline"><input type="number" id="baArea" min="0" step="1" placeholder="㎡"> ㎡</div>
+      </div>
+      <div class="msc-field msc-cond" data-ba="height">
+        <label>2. 증축 높이</label>
+        <div class="msc-inline"><input type="number" id="baHeight" min="0" step="0.1" placeholder="m"> m</div>
+      </div>
+      <div class="msc-result" id="baResult">건축행위를 선택하세요.</div>
+    </div>
+
+    <!-- 판정기 -->
+    <div class="ds-check">
+      <div class="ds-title">🔧 대수선 판정</div>
+      <div class="msc-field">
+        <label>1. 어떤 부위를 건드리나요? <span class="msc-hint">(복수 선택 가능)</span></label>
+        <div class="ds-parts" id="dsParts">
+          <label><input type="checkbox" value="wall"> 내력벽</label>
+          <label><input type="checkbox" value="column"> 기둥</label>
+          <label><input type="checkbox" value="beam"> 보</label>
+          <label><input type="checkbox" value="roof"> 지붕틀</label>
+          <label><input type="checkbox" value="firewall"> 방화벽·방화구획 바닥/벽</label>
+          <label><input type="checkbox" value="stair"> 주계단·피난계단·특별피난계단</label>
+          <label><input type="checkbox" value="partywall"> 다가구/다세대 세대 간 경계벽</label>
+          <label><input type="checkbox" value="exwall"> 외벽 마감재료</label>
+          <label><input type="checkbox" value="none"> 위에 없음(가벽·마감·설비만)</label>
+        </div>
+      </div>
+      <div class="msc-field" id="dsActWrap" style="display:none">
+        <label>2. 공사 방식은?</label>
+        <div class="msc-radios" id="dsAct">
+          <label><input type="radio" name="dsact" value="attach"> 기존 유지 + 덧방·비접촉(그 부위 안 건드림)</label>
+          <label><input type="radio" name="dsact" value="repair"> 수선·변경(고치기)</label>
+          <label><input type="radio" name="dsact" value="change"> 증설·해체(늘리거나 뜯기)</label>
+        </div>
+      </div>
+      <div class="msc-field" id="dsScaleWrap" style="display:none">
+        <label>3. 규모 조건 <span class="msc-hint">(내력벽·외벽마감은 30㎡, 기둥·보·지붕틀은 개수)</span></label>
+        <div class="msc-radios" id="dsScale">
+          <label><input type="radio" name="dsscale" value="over"> 내력벽/외벽마감 30㎡ 이상 · 또는 기둥/보/지붕틀 3개 이상</label>
+          <label><input type="radio" name="dsscale" value="under"> 그 미만</label>
+        </div>
+      </div>
+      <div class="msc-field" id="dsBldgWrap" style="display:none">
+        <label>4. 건축물 규모 <span class="msc-hint">(허가/신고 구분)</span></label>
+        <div class="msc-radios" id="dsBldg">
+          <label><input type="radio" name="dsbldg" value="small"> 연면적 200㎡ 미만 <b>이고</b> 3층 미만</label>
+          <label><input type="radio" name="dsbldg" value="big"> 그 이상(200㎡↑ 또는 3층↑)</label>
+        </div>
+      </div>
+      <div class="msc-result" id="dsResult">건드리는 부위를 선택하세요.</div>
+    </div>
+
+    <!-- 8가지 대상 -->
+    <div class="mu-block" style="margin-top:22px">
+      <div class="mu-h">대수선 대상 8가지 (시행령 §3의2)</div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th style="width:180px">부위</th><th>대수선이 되는 경우</th></tr></thead>
+          <tbody>
+            <tr><td><b>① 내력벽</b></td><td>증설·해체하거나, 벽면적 <b>30㎡ 이상</b> 수선·변경. <span class="mu-inline-note">내력벽에 문 하나 뚫는 것도 ‘해체’로 봐 대수선(판례).</span></td></tr>
+            <tr><td><b>② 기둥</b></td><td>증설·해체하거나 <b>3개 이상</b> 수선·변경</td></tr>
+            <tr><td><b>③ 보</b></td><td>증설·해체하거나 <b>3개 이상</b> 수선·변경</td></tr>
+            <tr><td><b>④ 지붕틀</b></td><td>증설·해체하거나 <b>3개 이상</b> 수선·변경 (한옥 서까래 제외)</td></tr>
+            <tr><td><b>⑤ 방화벽·방화구획 바닥/벽</b></td><td>증설·해체·수선·변경 <span class="mu-inline-note">용도변경으로 공간 틀 때 자주 걸림</span></td></tr>
+            <tr><td><b>⑥ 주계단·피난계단·특별피난계단</b></td><td>증설·해체·수선·변경</td></tr>
+            <tr><td><b>⑦ 다가구/다세대 세대 간 경계벽</b></td><td>증설·해체·수선·변경 <span class="mu-inline-note">방음 시공과 직결</span></td></tr>
+            <tr><td><b>⑧ 외벽 마감재료</b></td><td>증설·해체하거나 벽면적 <b>30㎡ 이상</b> 수선·변경</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="card-note">주요구조부 = 내력벽·기둥·바닥·보·지붕틀·주계단. <b>절차</b>: 수선·변경은 신고 / 증설·해체는 허가가 원칙이나, 규모·건축물에 따라 다르니 관할 확인. 용도변경 공사에 대수선이 수반되면 사용승인·건축사 설계 요건에도 영향(‘용도변경’ 탭 참조).</p>
+    </div>
+  </section>
+
+  <!-- 법령 -->
+  <section class="panel" id="laws">
+    <h2>근거법령 색인</h2>
+    <p class="lead">본 자료에 사용된 조문입니다.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th style="width:180px">조문</th><th>내용 요지</th></tr></thead>
+        <tbody id="lawBody"></tbody>
+      </table>
+    </div>
+    <p class="card-note">정리: GRIDA 참고자료 #1 · 건축법 시행령 별표1(개정 2025.10.1) 기준 · 본 표는 1차 트리아지용이며 실제 처리 전 관할 지자체/세움터(eais.go.kr) 확인 필수.</p>
+  </section>
+
+</div>
+
+<script>
+const GRP_NAME={1:"자동차 관련 시설군",2:"산업 등의 시설군",3:"전기통신시설군",4:"문화 및 집회시설군",5:"영업시설군",6:"교육 및 복지시설군",7:"근린생활시설군",8:"주거업무시설군",9:"그 밖의 시설군"};
+const GRP_SHORT={1:"자동차관련",2:"산업등",3:"전기통신",4:"문화집회",5:"영업",6:"교육복지",7:"근린생활",8:"주거업무",9:"그밖의"};
+const GRP_COLOR={1:"var(--g1)",2:"var(--g2)",3:"var(--g3)",4:"var(--g4)",5:"var(--g5)",6:"var(--g6)",7:"var(--g7)",8:"var(--g8)",9:"var(--g9)"};
+
+// 면적 분기 규칙: key="호목"
+//  { th:문턱㎡, below:{g:시설군,jong:종,label:이름}, above:{g,jong,label} }
+//  jong: 1=1종근생, 2=2종근생, 0=근생 아님/무관
+const AREA_RULE={
+ "3가":{th:1000,below:{g:7,jong:1,label:"소매점(1종 근생)"},above:{g:5,jong:0,label:"판매시설"}},
+ "3나":{th:300, below:{g:7,jong:1,label:"휴게음식점(1종 근생)"},above:{g:7,jong:2,label:"휴게음식점(2종 근생)"}},
+ "3카":{th:300, below:{g:7,jong:1,label:"동물병원(1종 근생)"},above:{g:7,jong:2,label:"동물병원(2종 근생)"}},
+ "3마":{th:500, below:{g:7,jong:1,label:"탁구장·체육도장(1종 근생)"},above:{g:5,jong:0,label:"운동시설"}},
+ "3바":{th:1000,below:{g:7,jong:1,label:"공공업무시설(1종 근생)"},above:{g:8,jong:0,label:"업무시설"}},
+ "4가":{th:500, below:{g:7,jong:2,label:"공연장(2종 근생)"},above:{g:4,jong:0,label:"문화 및 집회시설"}},
+ "4나":{th:500, below:{g:7,jong:2,label:"종교집회장(2종 근생)"},above:{g:4,jong:0,label:"종교시설"}},
+ "4다":{th:1000,below:{g:7,jong:2,label:"자동차영업소(2종 근생)"},above:{g:5,jong:0,label:"판매시설"}},
+ "4사":{th:500, below:{g:7,jong:2,label:"게임제공업소(2종 근생)"},above:{g:4,jong:0,label:"문화 및 집회시설"}},
+ "4카":{th:500, below:{g:7,jong:2,label:"학원·교습소(2종 근생)"},above:{g:6,jong:0,label:"교육연구시설(학원)"}},
+ "4파":{th:500, below:{g:7,jong:2,label:"체력단련장 등(2종 근생)"},above:{g:5,jong:0,label:"운동시설"}},
+ "4하":{th:500, below:{g:7,jong:2,label:"사무소·일반업무(2종 근생)"},above:{g:8,jong:0,label:"업무시설(오피스)"}},
+ "4거":{th:500, below:{g:7,jong:2,label:"고시원(2종 근생)"},above:{g:5,jong:0,label:"숙박시설(다중생활시설)"}},
+ "4너":{th:500, below:{g:7,jong:2,label:"제조업소·수리점(2종 근생)"},above:{g:2,jong:0,label:"공장"}},
+ "4더":{th:150, below:{g:7,jong:2,label:"단란주점(2종 근생)"},above:{g:4,jong:0,label:"위락시설"}},
+};
+
+// 주차 원단위(㎡/대) — 서울특별시 주차장 설치 및 관리 조례 별표2 대표값.
+// 값이 작을수록 주차 많이 필요(엄격). 세부용도·구별 조례로 달라질 수 있음.
+const PARK_UNIT={ // 시설면적 N㎡당 1대
+  "위락":67,          // 위락시설 67㎡/대 (가장 엄격)
+  "문화집회":100,     // 문화및집회·종교·판매·운수·의료·운동·업무·숙박·관광휴게·장례 = 100
+  "판매":100, "운수":100, "의료":100, "운동":100, "숙박":100, "업무":100,
+  "교육복지":100,     // 교육연구·노유자·수련 등 (대표 100, 학교는 별도 완화 있음)
+  "근생":134,         // 제1·2종 근린생활시설 134㎡/대
+  "단독":null,        // 세대·규모별 별도식
+  "공동":null,
+  "산업":200,         // 공장·창고·자원순환 등 200㎡/대(대표, 일부 350·400)
+  "자동차":null, "전기통신":null, "그밖의":null
+};
+const G2PARKKEY={1:"자동차",2:"산업",3:"전기통신",4:"문화집회",5:null,6:"교육복지",7:"근생",8:"업무",9:"그밖의"};
+// 영업시설군(5)은 세부에 따라 판매/숙박/운동 → 모두 서울 100. 세부 라벨로 개별 처리
+
+// 시행령 §14④ 단서 등: 대장변경이라도 '지자체에 반드시 신청' 필요한 용도(호목) — 표의 청색
+// (목욕장·진료치료시설·공연장·게임제공업소·학원류·골프연습장/놀이형·단란주점·안마/노래연습장·게임상점·위락 단란/유흥)
+const MUST_REGISTER=new Set(["3다","3라","4가","4사","4카","4파","4더","4러","7다","16가","16나"]);
+
+// 다중이용업(다중이용업소법 시행령 §2) → 소방서 '안전시설등 완비증명서' 필요 — 표의 적색
+const MULTIUSE=new Set(["3나","3다","3라","4가","4사","4아","4자","4카","4파","4거","4더","4러","5가","10라","13가","13다","15다","16나"]);
+// 참고: 위 중 일부는 세부업종만 해당(다중이용업소법 시행령 §2 기준).
+// 세부업종만 해당하는 항목 → 경고에 '해당 업종만' 문구 표시
+const MULTIUSE_SUB={
+  "3나":"음식점(100㎡ 이상 등, 1층·지상 직접출입은 제외)",
+  "3다":"찜질방(맥반석·황토 등, 수용 100명 이상)",
+  "3라":"산후조리원(산후조리업)",
+  "4가":"비디오물감상실·소극장·복합영상물제공업",
+  "4사":"게임제공업·인터넷컴퓨터게임·복합유통게임(1층·지상 직접출입은 제외)",
+  "4아":"음식점(100㎡ 이상, 지하 66㎡ 이상 등)",
+  "4자":"음식점(100㎡ 이상, 지하 66㎡ 이상 등)",
+  "4카":"학원(수용인원 300명 이상 등)",
+  "4파":"실내 가상체험 체육시설업(스크린골프 등)만 — 실외 타석형 골프연습장은 제외",
+  "5가":"영화상영관",
+  "10라":"학원(수용인원 300명 이상 등)",
+  "13가":"실내 가상체험 체육시설업(스크린골프 등)만",
+  "13다":"권총사격장(실내)",
+  "15다":"고시원업"
+};
+
+// 세부용도 데이터: [호,목,이름,시설군,메모,별칭]
+const USES=[
+["1","가","단독주택",8,"",""],
+["1","나","다중주택(연면적330㎡↓·3층↓)",8,"취사시설 없음",""],
+["1","다","다가구주택(3개층↓·660㎡↓·19세대↓)",8,"",""],
+["1","라","공관",8,"",""],
+["2","가","아파트(주택 5개층↑)",8,"",""],
+["2","나","연립주택(1동 660㎡ 초과·4층↓)",8,"",""],
+["2","다","다세대주택(1동 660㎡↓·4층↓)",8,"",""],
+["2","라","기숙사",8,"",""],
+["3","가","소매점(1,000㎡↓)",7,"1종 근생. 1,000㎡↑이면 판매시설","편의점 슈퍼"],
+["3","나","휴게음식점·제과점(300㎡↓)",7,"1종 근생. 300㎡↑이면 2종","카페 베이커리 빵집"],
+["3","다","이용원·미용원·목욕장·세탁소",7,"1종 근생 (면적기준 없음)","미용실 이발소 네일 사우나 빨래방"],
+["3","라","의원·치과·한의원·조산원·산후조리원·안마원",7,"1종 근생 (면적기준 없음)","병원 클리닉 의원"],
+["3","마","탁구장·체육도장(500㎡↓)",7,"1종 근생. 500㎡↑이면 운동시설","태권도 검도 헬스"],
+["3","바","공공업무시설(파출소·우체국·보건소 등, 1,000㎡↓)",7,"1종 근생",""],
+["3","사","마을회관·공중화장실·지역아동센터 등 주민공동시설",7,"1종 근생",""],
+["3","아","변전소·도시가스배관·통신용시설·정수장 등",7,"1종 근생",""],
+["3","자","금융업소·사무소·부동산중개소 등 일반업무(30㎡↓)",7,"1종 근생. 30㎡↑이면 2종/업무","소규모 사무실"],
+["3","차","전기자동차 충전소(1,000㎡↓)",7,"1종 근생","전기차충전소"],
+["3","카","동물병원·동물미용실·동물위탁관리업(300㎡↓)",7,"1종 근생. 300㎡↑이면 2종 근생(4차). 2025 반영","동물병원 펫샵 애견미용 강아지"],
+["4","가","공연장(500㎡↓)",7,"2종 근생. 500㎡↑이면 문화및집회시설","소극장 라이브홀"],
+["4","나","종교집회장(500㎡↓)",7,"2종 근생. 500㎡↑이면 종교시설","교회 성당 절 예배당"],
+["4","다","자동차영업소(1,000㎡↓)",7,"2종 근생","카센터 대리점"],
+["4","라","서점(1종 제외)",7,"2종 근생","책방"],
+["4","마","총포판매소",7,"2종 근생",""],
+["4","바","사진관·표구점",7,"2종 근생","스튜디오"],
+["4","사","청소년게임제공업소·PC방 등 게임시설(500㎡↓)",7,"2종 근생","피시방 오락실"],
+["4","아","휴게음식점·제과점(300㎡↑)",7,"2종 근생","대형카페"],
+["4","자","일반음식점",7,"2종 근생 (면적기준 없음)","식당 레스토랑 술집 고깃집 횟집"],
+["4","차","장의사·동물병원·동물미용실",7,"2종 근생","펫샵 애견미용"],
+["4","카","학원·교습소·직업훈련소(500㎡↓)",7,"2종 근생. 500㎡↑이면 교육연구시설. ※보컬·악기·안무 연습실이 교습소로 등록되면 여기","보습학원 음악학원 미술학원 연습실 공부방"],
+["4","타","독서실·기원",7,"2종 근생 (면적기준 없음). ※스터디카페는 통상 여기","스터디카페 열람실 바둑"],
+["4","파","체력단련장·볼링장·당구장·골프연습장 등(500㎡↓)",7,"2종 근생. 500㎡↑이면 운동시설","헬스장 피트니스 스크린골프 요가 필라테스"],
+["4","하","금융업소·사무소·부동산중개소·출판사 등 일반업무(500㎡↓)",7,"2종 근생. 500㎡↑이면 업무시설","사무실 오피스 공유오피스 은행 부동산"],
+["4","거","다중생활시설(고시원, 500㎡↓)",7,"2종 근생. 500㎡↑이면 숙박시설","고시원 고시텔"],
+["4","너","제조업소·수리점(500㎡↓, 비공해)",7,"2종 근생","공방 수선집"],
+["4","더","단란주점(150㎡↓)",7,"2종 근생. 150㎡↑이면 위락시설",""],
+["4","러","안마시술소·노래연습장",7,"2종 근생 (면적기준 없음)","노래방 코인노래방"],
+["4","머","주문배송시설",7,"2종 근생. 500㎡↓ (물류창고업 등록 대상). 2025 신설","풀필먼트 물류 배송센터"],
+["4","버","공유보관시설",7,"2종 근생. 1,000㎡↓. 2025 신설","셀프스토리지 무인창고 짐보관"],
+["5","가","공연장(2종 근생 아닌 것)",4,"문화및집회시설","공연장 극장"],
+["5","나","집회장(예식장·공회당·회의장 등)",4,"문화및집회시설","웨딩홀 컨벤션"],
+["5","다","관람장(경마장·체육관 등 관람석 1,000㎡↑)",4,"문화및집회시설","경기장 스타디움"],
+["5","라","전시장(박물관·미술관·과학관 등)",4,"문화및집회시설","갤러리 뮤지엄"],
+["5","마","동·식물원",4,"문화및집회시설","",],
+["6","가","종교집회장(2종 근생 아닌 것)",4,"종교시설","대형교회 성당"],
+["6","나","봉안당(종교시설 내)",4,"종교시설","납골당"],
+["7","가","도매시장",5,"판매시설",""],
+["7","나","소매시장(대규모점포)",5,"판매시설","마트 백화점 아울렛"],
+["7","다","상점(1종 근생 아닌 것 등)",5,"판매시설","대형상점"],
+["8","가","여객자동차터미널",2,"운수시설(산업 등 시설군)","버스터미널"],
+["8","나","철도시설",2,"운수시설","역사"],
+["8","다","공항시설",2,"운수시설",""],
+["8","라","항만시설",2,"운수시설",""],
+["8","마","버티포트(Vertiport)",2,"운수시설. UAM 도심항공교통 이착륙장. 2025 신설","UAM 드론택시 에어택시 수직이착륙장"],
+["9","가","병원(종합·치과·한방·정신·요양)",6,"의료시설","종합병원 요양병원"],
+["9","나","격리병원(전염병원·마약진료소 등)",6,"의료시설",""],
+["10","가","학교(유치원·초·중·고·대학)",6,"교육연구시설","",],
+["10","나","교육원·연수원",6,"교육연구시설",""],
+["10","다","직업훈련소(운전·정비 제외)",6,"교육연구시설",""],
+["10","라","학원(500㎡↑ 등, 2종근생 아닌 것)",6,"교육연구시설","대형학원"],
+["10","마","연구소·시험소·계측계량소",6,"교육연구시설","랩"],
+["10","바","도서관",6,"교육연구시설",""],
+["11","가","아동관련시설(어린이집·아동복지시설 등)",6,"노유자시설","어린이집 유치원"],
+["11","나","노인복지시설",6,"노유자시설","요양원 데이케어"],
+["11","다","기타 사회복지·근로복지시설",6,"노유자시설",""],
+["12","가","생활권수련시설(청소년수련관 등)",6,"수련시설",""],
+["12","나","자연권수련시설(청소년수련원·야영장 등)",6,"수련시설",""],
+["12","다","유스호스텔",6,"수련시설",""],
+["12","라","야영장시설(29호 아닌 것)",6,"수련시설","캠핑장 글램핑"],
+["13","가","탁구장·체력단련장·볼링장·골프연습장 등(근생 아닌 것)",5,"운동시설(영업시설군)","대형헬스장"],
+["13","나","체육관(관람석 1,000㎡↓)",5,"운동시설",""],
+["13","다","운동장(수영장·스케이트장 등)",5,"운동시설","수영장 아이스링크"],
+["14","가","공공업무시설(국가·지자체 청사, 외국공관)",8,"업무시설","관공서 시청"],
+["14","나-1","일반업무시설(사무소·금융업소 등, 500㎡↑)",8,"업무시설. 500㎡↓이면 2종 근생","오피스 사옥 대형사무실"],
+["14","나-2","오피스텔",8,"업무시설","오피스텔"],
+["15","가","일반숙박시설·생활숙박시설",5,"숙박시설(영업시설군)","모텔 여관 레지던스 생숙"],
+["15","나","관광숙박시설(호텔·호스텔·콘도 등)",5,"숙박시설. ※호스텔·게하 프로젝트 핵심","호텔 호스텔 게스트하우스 게하 콘도"],
+["15","다","다중생활시설(고시원, 500㎡↑)",5,"숙박시설. 500㎡↓이면 2종 근생","대형고시원"],
+["15","라","그 밖에 비슷한 숙박시설",5,"숙박시설",""],
+["16","가","단란주점(2종 근생 아닌 것, 150㎡↑)",4,"위락시설(문화및집회시설군)",""],
+["16","나","유흥주점",4,"위락시설","룸살롱 클럽"],
+["16","다","유원시설업 시설",4,"위락시설","놀이공원"],
+["16","마","무도장·무도학원",4,"위락시설","댄스홀"],
+["16","바","카지노영업소",4,"위락시설","카지노"],
+["17","","공장",2,"산업 등 시설군","공장 제조"],
+["18","가","창고(일반·냉장·냉동)",2,"창고시설","물류창고 냉동창고"],
+["18","나","하역장",2,"창고시설",""],
+["18","다","물류터미널",2,"창고시설",""],
+["18","라","집배송시설",2,"창고시설","택배"],
+["19","","위험물저장및처리시설(주유소·충전소 등)",2,"산업 등 시설군","주유소 가스충전소 LPG"],
+["20","가","주차장",1,"자동차관련시설(최상위군)","주차타워"],
+["20","나","세차장",1,"자동차관련시설",""],
+["20","다","폐차장",1,"자동차관련시설",""],
+["20","라","검사장",1,"자동차관련시설",""],
+["20","마","매매장",1,"자동차관련시설","중고차매매"],
+["20","바","정비공장",1,"자동차관련시설","카센터 정비소"],
+["20","사","운전학원·정비학원",1,"자동차관련시설","운전면허학원"],
+["20","아","차고·주기장",1,"자동차관련시설",""],
+["20","자","전기자동차 충전소로서 제1종 근린생활시설에 해당하지 않는 것",1,"자동차관련시설. 1종 근생(3차, 1,000㎡↓)에 해당하지 않는 대규모 충전소","전기차충전소 EV충전소 충전스테이션"],
+["21","가","축사",9,"동물및식물관련시설(최하위군)","",],
+["21","나","가축시설",9,"동물및식물관련시설",""],
+["21","다","도축장",9,"동물및식물관련시설",""],
+["21","라","도계장",9,"동물및식물관련시설",""],
+["21","마","작물재배사",9,"동물및식물관련시설","",],
+["21","바","종묘배양시설",9,"동물및식물관련시설",""],
+["21","사","화초·분재 온실",9,"동물및식물관련시설","",],
+["22","가","하수등처리시설",2,"자원순환관련시설",""],
+["22","나","고물상",2,"자원순환관련시설","",],
+["22","다","폐기물재활용시설",2,"자원순환관련시설","",],
+["22","라","폐기물처분시설",2,"자원순환관련시설",""],
+["22","마","폐기물감량화시설",2,"자원순환관련시설",""],
+["23","가","교정시설(구치소·교도소)",8,"교정및군사시설(주거업무시설군)","",],
+["23","나","갱생보호시설",8,"교정및군사시설",""],
+["23","다","소년원·소년분류심사원",8,"교정및군사시설",""],
+["23","라","(삭제 2023.5.15)",8,"삭제된 목","",],
+["23의2","","국방·군사시설",8,"주거업무시설군. 2025 개정으로 23호에서 분리 신설","군사시설 국방"],
+["24","가","방송국",3,"방송통신시설(전기통신시설군)","방송사"],
+["24","나","전신전화국",3,"방송통신시설",""],
+["24","다","촬영소",3,"방송통신시설. ※녹음실·스튜디오 방송용이면 확인","녹음실 스튜디오"],
+["24","라","데이터센터",3,"방송통신시설(2023 신설). 대규모 전산·서버 시설","IDC 서버센터 전산센터"],
+["24","마","통신용시설",3,"방송통신시설",""],
+["25","","발전시설(발전소)",3,"전기통신시설군","발전소"],
+["26","가","화장시설",2,"묘지관련시설","화장장"],
+["26","나","봉안당(종교시설 제외)",2,"묘지관련시설","납골당"],
+["26","다","묘지·자연장지 부수건축물",2,"묘지관련시설",""],
+["27","가","야외음악당",4,"관광휴게시설(문화및집회시설군)",""],
+["27","나","야외극장",4,"관광휴게시설",""],
+["27","다","어린이회관",4,"관광휴게시설",""],
+["27","라","관망탑",4,"관광휴게시설","전망대"],
+["27","마","휴게소",4,"관광휴게시설","",],
+["27","바","공원·유원지 부수시설",4,"관광휴게시설",""],
+["28","","장례식장",2,"산업 등 시설군","장례식장"],
+["29","","야영장시설(300㎡↓)",6,"수련시설로 분류(교육및복지시설군)","캠핑장"],
+];
+
+// index 부여
+USES.forEach((u,i)=>u.idx=i);
+const label=u=>`[${u[0]}${u[1]}] ${u[2]}`;
+const searchText=u=>`${label(u)} ${u[4]} ${u[5]}`.toLowerCase();
+const keyOf=u=>`${u[0]}${u[1]}`;
+
+// 근생(7군) 항목의 종(種) 추론: 3호=1종, 4호=2종
+function jongOf(u){
+  if(u[3]!==7)return 0;
+  if(u[0]==="3")return 1;
+  if(u[0]==="4")return 2;
+  return 0;
+}
+
+// 선택 상태: {use, area(입력 면적 or null)}
+// 유효 판정값 산출 → {g:시설군, jong:종, label:표시명, resolved:면적확정여부, needArea:면적필요여부}
+function resolve(sel){
+  if(!sel||!sel.use)return null;
+  const u=sel.use, rule=AREA_RULE[keyOf(u)];
+  if(!rule){
+    return {use:u, g:u[3], jong:jongOf(u), label:u[2], needArea:false, resolved:true};
+  }
+  // 면적 문턱 있음
+  if(sel.area==null||isNaN(sel.area)){
+    return {use:u, g:u[3], jong:jongOf(u), label:u[2], needArea:true, resolved:false, rule};
+  }
+  const side=sel.area<rule.th?rule.below:rule.above;
+  return {use:u, g:side.g, jong:side.jong, label:side.label, needArea:true, resolved:true, rule,
+          side:sel.area<rule.th?"below":"above"};
+}
+
+// ── 탭 ──
+document.getElementById('tabs').addEventListener('click',e=>{
+  const t=e.target.closest('.tab'); if(!t)return;
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');
+  document.getElementById(t.dataset.tab).classList.add('active');
+});
+
+// ── 검색형 선택 ──
+function setupPicker(inputId,resultsId,onPick){
+  const input=document.getElementById(inputId);
+  const box=document.getElementById(resultsId);
+  let chosen=null, hiIndex=-1, current=[];
+  function render(q){
+    const query=q.trim().toLowerCase();
+    if(!query){box.classList.remove('show');return;}
+    current=USES.filter(u=>searchText(u).includes(query)).slice(0,60);
+    if(current.length===0){box.innerHTML='<div class="res-empty">일치하는 용도가 없습니다. 다른 키워드로 검색해 보세요.</div>';box.classList.add('show');return;}
+    box.innerHTML=current.map((u,i)=>{
+      const lb=label(u);
+      const re=new RegExp('('+query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig');
+      const hl=lb.replace(re,'<mark>$1</mark>');
+      return `<div class="res-item ${i===hiIndex?'hi':''}" data-idx="${u.idx}">
+        <span class="grp-dot" style="background:${GRP_COLOR[u[3]]}"></span>
+        <span>${hl}</span></div>`;
+    }).join('');
+    box.classList.add('show');
+  }
+  input.addEventListener('input',()=>{chosen=null;hiIndex=-1;input.classList.remove('chosen');render(input.value);onPick(null);});
+  input.addEventListener('focus',()=>{if(input.value&&!chosen)render(input.value);});
+  input.addEventListener('keydown',e=>{
+    if(!box.classList.contains('show'))return;
+    if(e.key==='ArrowDown'){e.preventDefault();hiIndex=Math.min(hiIndex+1,current.length-1);render(input.value);}
+    else if(e.key==='ArrowUp'){e.preventDefault();hiIndex=Math.max(hiIndex-1,0);render(input.value);}
+    else if(e.key==='Enter'&&hiIndex>=0){e.preventDefault();pick(current[hiIndex]);}
+    else if(e.key==='Escape'){box.classList.remove('show');}
+  });
+  box.addEventListener('mousedown',e=>{
+    const item=e.target.closest('.res-item'); if(!item)return;
+    e.preventDefault();
+    pick(USES[+item.dataset.idx]);
+  });
+  function pick(u){
+    chosen=u; input.value=label(u); input.classList.add('chosen');
+    box.classList.remove('show'); onPick(u);
+  }
+  document.addEventListener('click',e=>{if(!input.parentElement.contains(e.target))box.classList.remove('show');});
+}
+
+let fromSel={use:null,area:null}, toSel={use:null,area:null};
+setupPicker('fromInput','fromResults',u=>{fromSel={use:u,area:null};renderArea('from');updateVerdict();});
+setupPicker('toInput','toResults',u=>{toSel={use:u,area:null};renderArea('to');updateVerdict();});
+
+function grpBadge(g){return `<span class="grp-badge" style="background:${GRP_COLOR[g]};color:var(--ink)">${g} ${GRP_SHORT[g]}</span>`;}
+function jongTag(jong){return jong?`<span style="font-size:10.5px;color:var(--sub)">(${jong}종 근생)</span>`:'';}
+
+// 면적 입력칸 렌더
+function renderArea(which){
+  const sel=which==='from'?fromSel:toSel;
+  const box=document.getElementById(which==='from'?'fromArea':'toArea');
+  const u=sel&&sel.use;
+  const rule=u?AREA_RULE[keyOf(u)]:null;
+  if(!rule){box.className='areabox';box.innerHTML='';return;}
+  box.className='areabox show';
+  box.innerHTML=`
+    <div class="arow">
+      <label>바닥면적 합계</label>
+      <input type="number" id="${which}AreaInput" min="0" step="1" placeholder="예: 480" value="${sel.area!=null?sel.area:''}">
+      <span class="unit">㎡</span>
+      <span class="thnote">기준선 ${rule.th.toLocaleString()}㎡</span>
+    </div>
+    <div class="aresult ${sel.area==null||isNaN(sel.area)?'empty':(sel.area<rule.th?'below':'above')}" id="${which}AreaResult"></div>
+    <div class="area-note">⚠ <b>합산 주의</b>: 같은 사람이 같은 용도로 쓰는 공간은 층이 달라 떨어져 있어도 면적을 <b>모두 더해</b> 넣으세요. 임차인이 달라도 통로·창고를 공동으로 쓰거나 상호를 같게 홍보하면 합산합니다(별표1 비고2). 자기 호실 하나만 넣으면 문턱을 잘못 판정할 수 있습니다.</div>`;
+  const inp=document.getElementById(which+'AreaInput');
+  const upd=()=>{
+    const val=inp.value===''?null:parseFloat(inp.value);
+    sel.area=(val==null||isNaN(val))?null:val;
+    paintAreaResult(which);
+    updateVerdict();
+  };
+  inp.addEventListener('input',upd);
+  paintAreaResult(which);
+}
+function paintAreaResult(which){
+  const sel=which==='from'?fromSel:toSel;
+  const rule=AREA_RULE[keyOf(sel.use)];
+  const el=document.getElementById(which+'AreaResult');
+  if(!el)return;
+  if(sel.area==null||isNaN(sel.area)){
+    el.className='aresult empty';
+    el.innerHTML=`면적을 입력하면 <b>${rule.th.toLocaleString()}㎡</b> 기준으로 분류가 확정됩니다. (미만 → ${rule.below.label} · 이상 → ${rule.above.label})`;
+    return;
+  }
+  const side=sel.area<rule.th?rule.below:rule.above;
+  const isBelow=sel.area<rule.th;
+  el.className='aresult '+(isBelow?'below':'above');
+  el.innerHTML=`${sel.area.toLocaleString()}㎡ → <b>${side.label}</b> ${jongTag(side.jong)} · 시설군 ${side.g} ${GRP_SHORT[side.g]}`;
+}
+
+function updateVerdict(){
+  const v=document.getElementById('verdict');
+  const warn=document.getElementById('finderWarn');
+  const R1=resolve(fromSel), R2=resolve(toSel);
+  if(!R1||!R2){
+    v.className='verdict wait';
+    v.innerHTML='↑ 현재 용도와 희망 용도를 모두 선택하면 결과가 표시됩니다.';
+    warn.style.display='none';
+    paintFlow(null);
+    refreshCheckPanel();
+    return;
+  }
+  // 면적 미입력으로 확정 불가한 경우
+  const pending=[];
+  if(R1.needArea&&!R1.resolved)pending.push('현재');
+  if(R2.needArea&&!R2.resolved)pending.push('희망');
+  if(pending.length){
+    v.className='verdict wait';
+    v.innerHTML=`↑ ${pending.join(' · ')} 용도는 면적에 따라 분류가 갈립니다. <b>바닥면적</b>을 입력하면 결과가 확정됩니다.`;
+    warn.style.display='none';
+    paintFlow(null);
+    refreshCheckPanel();
+    return;
+  }
+
+  const a=R1.g, b=R2.g;
+  const key1=R1.use?keyOf(R1.use):'', key2=R2.use?keyOf(R2.use):'';
+  let cls,head,sub,ref,isFree=false;
+  if(a===b){
+    // 같은 시설군 — 별표1 같은 호 or 근생 1종↔2종은 원칙 임의변경.
+    // 단, 희망용도가 §14④ 단서 예외목록이면 대장변경 신청 필수.
+    const sameHo = R1.use && R2.use && R1.use[0]===R2.use[0]; // 같은 호(중분류 대분류)
+    const mustReg = MUST_REGISTER.has(key2);
+    if(a===7 && !mustReg){
+      // 근생 내 이동(1종↔2종 포함) & 예외 아님 → 임의변경
+      cls='regi';head='절차 없이 임의변경 가능';
+      const jongTxt = (R1.jong&&R2.jong&&R1.jong!==R2.jong)?`${R1.jong}종↔${R2.jong}종이라도 `:'';
+      sub=`근린생활시설 상호 간이라 ${jongTxt}건축물대장 기재내용 변경신청 없이 용도를 바꿀 수 있습니다(2014년 개정).`;
+      ref='시행령 §14④';
+      isFree=true;
+    }else if(a===7 && mustReg){
+      // 근생이지만 예외목록 → 대장변경 신청 필수
+      cls='regi';head='건축물대장 기재내용 변경신청 필요';
+      sub=`근생 내 이동이지만 희망 용도(${R2.label})는 목욕장·종교집회장·게임제공업소·학원/교습소·골프연습장·단란주점·안마시술소/노래연습장·다중생활시설처럼 <b>임의변경이 제외되는 용도</b>라, 대장변경 신청을 해야 합니다(시행령 §14④ 단서).`;
+      ref='시행령 §14④ 단서';
+    }else{
+      // 근생 외 같은 시설군
+      cls='regi';head='건축물대장 기재내용 변경신청';
+      sub='같은 시설군 안에서의 이동입니다. 별표1상 같은 호이면 절차 없이 임의변경이 가능한 경우도 있습니다. ‘용도변경 절차별 서류’ 탭을 확인하세요.';
+      ref='건축법 §19③';
+    }
+  }else if(b<a){
+    cls='permit';head='용도변경 허가 필요';
+    sub='하위 시설군에서 상위 시설군으로 올라가는 변경이라 허가 대상입니다. (번호가 작아질수록 상위군)';
+    ref='건축법 §19②1호';
+  }else{
+    cls='report';head='용도변경 신고 필요';
+    sub='상위 시설군에서 하위 시설군으로 내려가는 변경이라 신고 대상입니다. (번호가 커질수록 하위군)';
+    ref='건축법 §19②2호';
+  }
+  // 다중이용업(소방 완비증명서) 경고 추가
+  let multiNote='';
+  if(MULTIUSE.has(key2)){
+    const sub2=MULTIUSE_SUB[key2];
+    const subTxt=sub2?`이 중 <b>${sub2}</b>은 `:'희망 용도는 ';
+    multiNote=`<div class="v-multi">🔥 ${subTxt}<b>다중이용업소</b>에 해당할 수 있습니다 → 소방서 <b>‘안전시설등 완비증명서’</b> 필요 (다중이용업소법).<br>
+    <b>· 입지로 강해짐</b>: 같은 업종이라도 <b>지하층</b>이거나 <b>무창층</b>(지상층이라도 개구부 면적이 그 층 바닥면적의 1/30 이하 — 즉 통유리·간판으로 창을 막아도 해당)이면 ‘1층 직접출입 제외’가 적용되지 않아 다중이용업 분류 가능성이 높아집니다.<br>
+    <b>· 따라오는 의무</b>: 영업 전 소방특별조사 · 피난안내도·유도등·자동화재탐지설비 설치 · 방염·스프링클러 · 종업원 소방안전교육 및 자체점검. 위반 시 영업정지·과태료·형사처벌.<br>
+    영업신고 전 반드시 관할 소방서 확인.</div>`;
+  }
+  // 임의변경 오해 방지 주의박스
+  let freeNote='';
+  if(isFree){
+    freeNote=`<div class="v-free">💡 <b>‘임의변경’은 관청에 용도변경 신고/신청만 면제된다는 뜻입니다.</b> 아무것도 안 해도 되는 게 아니에요.<br>• <b>건축기준 충족 의무</b>는 그대로 — 변경 용도에 맞는 피난·주차·정화조·하중 등을 갖춰야 하며, 안 맞으면 불법입니다(건축법 §19①·§49). 아래 ‘확인사항’을 꼭 점검하세요.<br>• <b>개별 영업 인허가는 별도</b> — 예: 음식점=식품위생법 영업신고, 학원=학원법 등록, 의원=의료기관 개설신고. 용도변경 절차와 무관하게 따로 해야 합니다.</div>`;
+  }
+  v.className='verdict '+cls;
+  v.innerHTML=`
+    <div class="vhead">${head}</div>
+    <div class="vsub">${sub} <b>${ref}</b></div>
+    ${freeNote}
+    ${multiNote}
+    <div class="flow">
+      <div class="node"><b>현재</b>${R1.label} ${jongTag(R1.jong)}<br>${grpBadge(a)}</div>
+      <div class="arrow">→</div>
+      <div class="node"><b>희망</b>${R2.label} ${jongTag(R2.jong)}<br>${grpBadge(b)}</div>
+    </div>`;
+  warn.style.display='block';
+  paintFlow(cls);
+  refreshCheckPanel();
+}
+
+// 흐름도 경로 강조: kind = 'permit'|'report'|'regi'|null
+function paintFlow(kind){
+  const steps=document.querySelectorAll('#flowchart .fc-step');
+  const arrows=document.querySelectorAll('#flowchart .fc-arrow');
+  const hint=document.getElementById('fcHint');
+  // 초기화
+  steps.forEach(s=>s.classList.remove('active','dim'));
+  arrows.forEach(a=>a.classList.remove('dim'));
+  if(!kind){ hint.textContent='— 판정되면 진행 경로가 강조됩니다'; return; }
+  const path21 = (kind==='permit'||kind==='report'); // 허가/신고 → 2-1
+  document.querySelector('[data-step="1"]').classList.add('active');
+  const warmSteps=['3','4','5'];
+  const warmArrows=[...arrows].filter(a=>a.classList.contains('warm'));
+  if(path21){
+    document.querySelector('[data-step="2-1"]').classList.add('active');
+    document.querySelector('[data-step="2-2"]').classList.add('dim');
+    hint.textContent='— 허가/신고 경로(2-1) → 공사·사용승인이 필요할 수 있음';
+    warmSteps.forEach(n=>document.querySelector(`[data-step="${n}"]`).classList.add('active'));
+  }else{ // regi(대장변경/임의변경) → 2-2
+    document.querySelector('[data-step="2-2"]').classList.add('active');
+    document.querySelector('[data-step="2-1"]').classList.add('dim');
+    hint.textContent='— 대장변경 경로(2-2) → 통상 공사·사용승인 단계 없이 종료';
+    warmSteps.forEach(n=>document.querySelector(`[data-step="${n}"]`).classList.add('dim'));
+    warmArrows.forEach(a=>a.classList.add('dim'));
+  }
+}
+
+// ── 확인사항: 사용승인 자동판정 ──
+// 판정종류(허가/신고 여부)를 알아야 하므로 마지막 판정결과를 보관
+let lastVerdictKind=null; // 'permit'|'report'|'regi'|null
+function currentKind(){
+  const R1=resolve(fromSel),R2=resolve(toSel);
+  if(!R1||!R2)return null;
+  if((R1.needArea&&!R1.resolved)||(R2.needArea&&!R2.resolved))return null;
+  const a=R1.g,b=R2.g;
+  if(a===b){
+    return 'regi'; // 같은 시설군(근생 1종↔2종 포함) = 허가·신고 대상 아님
+  }
+  return b<a?'permit':'report';
+}
+
+function updateUseApproval(){
+  const el=document.getElementById('cpUseResult');
+  const area=parseFloat(document.getElementById('cpArea').value);
+  const dae=document.getElementById('cpDaesuseon').checked;
+  const kind=currentKind();
+  if(isNaN(area)){
+    el.className='cp-result empty';
+    el.innerHTML='면적을 입력하면 판정됩니다. (허가·신고 대상 + 100㎡ 이상일 때 원칙적으로 사용승인 신청 → 단, 500㎡ 미만이고 대수선이 없으면 생략)';
+    updateArchDesign();
+    return;
+  }
+  // 허가/신고 대상이 아니면(대장변경/임의변경) 사용승인 대상 아님
+  if(kind==='regi'||kind===null){
+    el.className='cp-result na';
+    el.innerHTML=(kind==='regi')
+      ? '이 경우는 <b>대장변경(같은 시설군)</b>이라 사용승인 대상이 아닙니다. (사용승인은 허가·신고 대상일 때만)'
+      : '현재·희망 용도를 먼저 선택하면, 허가·신고 대상인지에 따라 사용승인 여부까지 판정합니다.';
+    updateArchDesign();
+    return;
+  }
+  // 허가/신고 대상
+  if(area<100){
+    el.className='cp-result free';
+    el.innerHTML=`${area.toLocaleString()}㎡ → 100㎡ 미만이라 <b>사용승인 불필요</b>. (건축법 §19⑤)`;
+  }else if(area<500 && !dae){
+    el.className='cp-result free';
+    el.innerHTML=`${area.toLocaleString()}㎡ + 대수선 없음 → <b>사용승인 불필요</b> (500㎡ 미만 + 대수선 미수반 예외). 신청 절차 자체를 안 거쳐도 됩니다.`;
+  }else{
+    el.className='cp-result need';
+    const why=area>=500?'500㎡ 이상':'대수선 포함';
+    el.innerHTML=`${area.toLocaleString()}㎡ (${why}) → <b>사용승인 신청 필요</b>. 공사 완료 후 검사받고 사용승인서를 받아야 합니다. (건축법 §19⑤·§22)`;
+  }
+  updateArchDesign();
+}
+
+// ── 확인사항: 건축사 설계 필요 여부 ──
+function updateArchDesign(){
+  const el=document.getElementById('cpArchResult');
+  if(!el)return;
+  const area=parseFloat(document.getElementById('cpArea').value);
+  const kind=currentKind();
+  if(isNaN(area)){
+    el.className='cp-result empty';
+    el.innerHTML='건축사 설계 필요 여부 — 면적을 입력하면 판정됩니다. (허가 대상 + 500㎡ 이상이면 건축사 설계 필수)';
+    return;
+  }
+  if(kind==='permit'){
+    if(area>=500){
+      el.className='cp-result need';
+      el.innerHTML=`허가 대상 + ${area.toLocaleString()}㎡ (500㎡ 이상) → <b>건축사 설계 필수</b>. 설계는 건축사가 아니면 할 수 없습니다(건축법 §19⑥). 건축사 선임 비용·기간을 견적에 반영하세요.`;
+    }else{
+      el.className='cp-result free';
+      el.innerHTML=`허가 대상이지만 ${area.toLocaleString()}㎡ (500㎡ 미만) → 건축사 설계 <b>의무 아님</b>. (단, 도서 작성 편의상 선임하는 경우는 있음)`;
+    }
+  }else if(kind==='report'){
+    el.className='cp-result na';
+    el.innerHTML='신고 대상이라 건축사 설계 의무 규정(§19⑥, 허가+500㎡↑)에는 해당하지 않습니다. 다만 제출 도서 작성을 위해 전문가 선임이 필요할 수 있습니다.';
+  }else{
+    el.className='cp-result na';
+    el.innerHTML='허가 대상일 때만 건축사 설계 의무(500㎡↑) 판정 대상입니다.';
+  }
+}
+
+// ── 확인사항: 주차대수 자동계산 ──
+function parkUnitOf(R){ // R=resolve 결과 → ㎡/대 (없으면 null)
+  if(!R)return null;
+  const lb=R.label;
+  // 주거(8군 중 주택류)는 세대·규모별 별도식 → 자동계산 제외
+  if(/단독주택|다중주택|다가구|공관|아파트|연립주택|다세대|기숙사/.test(lb))return null;
+  // 위락시설은 서울 조례상 67㎡/대 (문화집회군에 속하지만 원단위 별도)
+  if(/위락|단란주점|유흥주점|무도장|무도학원|카지노|유원시설/.test(lb))return 67;
+  // 영업시설군(5) — 서울 조례상 판매·숙박·운동 모두 100㎡/대
+  if(R.g===5){
+    return 100;
+  }
+  const key=G2PARKKEY[R.g];
+  if(!key)return null;
+  return PARK_UNIT[key]||null;
+}
+function updateParking(){
+  const el=document.getElementById('cpParkingResult');
+  const haveRow=document.getElementById('cpParkingHave');
+  const R1=resolve(fromSel),R2=resolve(toSel);
+  const area=parseFloat(document.getElementById('cpArea').value);
+  if(!R1||!R2||(R1.needArea&&!R1.resolved)||(R2.needArea&&!R2.resolved)){
+    el.className='cp-result empty';el.innerHTML='현재·희망 용도를 선택하고 면적을 입력하면, 용도별 주차 원단위로 필요 대수를 계산합니다.';
+    haveRow.style.display='none';return;
+  }
+  const u1=parkUnitOf(R1), u2=parkUnitOf(R2);
+  if(isNaN(area)){
+    el.className='cp-result empty';
+    el.innerHTML=`원단위 — 현재 ${u1?u1+'㎡/대':'개별확인'} · 희망 ${u2?u2+'㎡/대':'개별확인'}. <b>면적</b>을 입력하면 필요 대수를 계산합니다.`;
+    haveRow.style.display='none';return;
+  }
+  haveRow.style.display='flex';
+  if(!u2){
+    el.className='cp-result na';
+    el.innerHTML='희망 용도는 주차 원단위가 규모·세부용도별로 달라 자동계산에서 제외됩니다. 관할 조례로 개별 확인하세요.';
+    return;
+  }
+  const need1=u1?Math.ceil(area/u1*10)/10:null;
+  const need2=Math.ceil(area/u2*10)/10;
+  const have=parseFloat(document.getElementById('cpHaveParking').value);
+  let extra='';
+  if(!isNaN(have)){
+    const short=Math.max(0,Math.ceil(need2-have));
+    extra = short>0
+      ? ` · 현재 ${have}대 확보 → <b>${short}대 추가 확보</b> 필요`
+      : ` · 현재 ${have}대 확보 → 추가 확보 불필요`;
+  }else if(need1!=null){
+    const diff=Math.max(0,Math.ceil(need2-need1));
+    extra = diff>0? ` · 원단위 기준 약 <b>${diff}대 추가</b> 예상`:' · 추가 없음 예상';
+  }
+  el.className='cp-result need';
+  el.innerHTML=`${area.toLocaleString()}㎡ 기준 필요 주차 — 현재용도 ${need1!=null?need1+'대':'개별'} → 희망용도 <b>${need2}대</b> (원단위 ${u2}㎡/대)${extra}`;
+}
+
+function refreshCheckPanel(){ updateUseApproval(); updateParking(); }
+// 면적/대수선/보유대수 입력 이벤트
+document.getElementById('cpArea').addEventListener('input',refreshCheckPanel);
+document.getElementById('cpDaesuseon').addEventListener('change',updateUseApproval);
+document.getElementById('cpHaveParking').addEventListener('input',updateParking);
+
+// ── 세부용도 테이블 ──
+const useBody=document.getElementById('useBody');
+const useCount=document.getElementById('useCount');
+let grpFilter=0;
+function renderUseTable(){
+  const q=document.getElementById('useSearch').value.trim().toLowerCase();
+  const rows=USES.filter(u=>{
+    if(grpFilter&&u[3]!==grpFilter)return false;
+    if(q&&!searchText(u).includes(q))return false;
+    return true;
+  });
+  useBody.innerHTML=rows.map(u=>`
+    <tr style="background:${GRP_COLOR[u[3]]}22">
+      <td class="code-cell">${u[0]}${u[1]}</td>
+      <td><b>${u[2]}</b>${u[5]?`<div class="memo">별칭: ${u[5]}</div>`:''}</td>
+      <td class="grp-cell"><span class="grp-badge" style="background:${GRP_COLOR[u[3]]};color:var(--ink)">${u[3]}</span></td>
+      <td class="memo">${u[4]||'—'}</td>
+    </tr>`).join('');
+  useCount.textContent=`(${rows.length}개 표시)`;
+}
+document.getElementById('useSearch').addEventListener('input',renderUseTable);
+// 시설군 칩
+const chipWrap=document.getElementById('useChips');
+chipWrap.innerHTML=`<span class="chip on" data-g="0">전체</span>`+[1,2,3,4,5,6,7,8,9].map(g=>`<span class="chip" data-g="${g}">${g} ${GRP_SHORT[g]}</span>`).join('');
+chipWrap.addEventListener('click',e=>{
+  const c=e.target.closest('.chip');if(!c)return;
+  chipWrap.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));
+  c.classList.add('on');grpFilter=+c.dataset.g;renderUseTable();
+});
+renderUseTable();
+
+// ── 시설군 테이블 ──
+const GROUPS=[
+[1,["자동차 관련 시설"],"최상위군. 이 방향으로 올라가면 항상 ‘허가’."],
+[2,["운수시설","창고시설","공장","위험물저장및처리시설","자원순환관련시설","묘지관련시설","장례식장"],""],
+[3,["방송통신시설","발전시설"],""],
+[4,["문화및집회시설","종교시설","위락시설","관광휴게시설"],""],
+[5,["판매시설","운동시설","숙박시설","다중생활시설(고시원 500㎡↑)"],"호스텔·게하는 이 시설군 진입."],
+[6,["의료시설","교육연구시설","노유자시설","수련시설","야영장시설"],"학원·연습실(500㎡↑)이 이 군에."],
+[7,["제1종근린생활시설","제2종근린생활시설(고시원 제외)"],"가장 유동 잦음. 1종↔2종은 대장변경만으로 안 되는 경우 있음."],
+[8,["단독주택","공동주택","업무시설(오피스)","교정및군사시설"],"사무소 500㎡↑(일반업무)는 근생이 아니라 여기."],
+[9,["동물및식물관련시설"],"최하위군. 이 방향으로 내려가면 항상 ‘신고’."],
+];
+document.getElementById('grpBody').innerHTML=GROUPS.map(([n,uses,memo])=>`
+  <tr style="background:${GRP_COLOR[n]}22">
+    <td class="grp-cell"><span class="grp-badge" style="background:${GRP_COLOR[n]};color:var(--ink)">${n}</span></td>
+    <td><b>${GRP_NAME[n]}</b></td>
+    <td>${uses.join(' · ')}</td>
+    <td class="memo">${memo||'—'}</td>
+  </tr>`).join('');
+
+// ===== 다중이용업 자가진단 위젯 =====
+(function(){
+  const sel=document.getElementById('mscType');
+  if(!sel)return;
+  const rv=n=>{const el=document.querySelector('input[name="'+n+'"]:checked');return el?el.value:'';};
+
+  function updateFields(){
+    const t=sel.value, floor=rv('mscfloor'), direct=rv('mscdirect');
+    document.querySelectorAll('.msc-cond').forEach(el=>{
+      const forTypes=(el.dataset.for||'').split(' ');
+      let show=forTypes.includes(t);
+      if(show && el.dataset.floor){ show=el.dataset.floor.split(' ').includes(floor); }
+      if(show && el.dataset.direct){
+        if(floor==='1f') show=(direct==='y');
+        else if(floor==='upper') show=true;
+        else show=false;
+      }
+      el.classList.toggle('show',show);
+    });
+    judge();
+  }
+
+  function judge(){
+    const t=sel.value, R=document.getElementById('mscResult');
+    if(!t){ R.className='msc-result'; R.textContent='업종을 선택하세요.'; return; }
+    const yes=(sub)=>{R.className='msc-result yes';R.innerHTML='🔥 <b>다중이용업 해당</b> — 소방서 완비증명서 필요.'+(sub?'<span class="msc-r-sub">'+sub+'</span>':'');};
+    const no=(sub)=>{R.className='msc-result no';R.innerHTML='✅ <b>다중이용업 아님</b> — 완비증명서 불필요.'+(sub?'<span class="msc-r-sub">'+sub+'</span>':'');};
+    const wait=(m)=>{R.className='msc-result';R.textContent=m;};
+
+    const alwaysMap={always_bar:'단란주점·유흥주점',always_karaoke:'노래연습장',always_gosiwon:'고시원업',
+      always_postpartum:'산후조리업',always_massage:'안마시술소',always_film:'영화·영상 관련업',always_shooting:'실내 권총사격장'};
+    if(alwaysMap[t]){ yes(alwaysMap[t]+'은 면적·층과 관계없이 다중이용업입니다.'); return; }
+
+    if(t==='food'){
+      const area=parseFloat(document.getElementById('mscFoodArea').value), floor=rv('mscfloor');
+      if(isNaN(area)){ wait('영업장 바닥면적을 입력하세요.'); return; }
+      if(!floor){ wait('층 위치를 선택하세요.'); return; }
+      const th=floor==='base'?66:100, thTxt=floor==='base'?'지하 66㎡':'100㎡';
+      if(floor==='1f'){
+        const d=rv('mscdirect');
+        if(!d){ wait('지상과 직접 통하는 출입구 여부를 선택하세요.'); return; }
+        if(d==='y'){
+          const w=rv('mscwindow');
+          if(!w){ wait('무창층 여부를 선택하세요.'); return; }
+          if(w==='n'){ no('지상 1층 + 직접 통하는 출입구 + 창 충분 → 면적과 무관하게 제외됩니다.'); return; }
+        }
+      } else if(floor==='upper'){
+        const w=rv('mscwindow'); if(!w){ wait('무창층 여부를 선택하세요.'); return; }
+      }
+      if(area>=th) yes(area.toLocaleString()+'㎡ ≥ '+thTxt+' → 기준 충족(지상 1층 직접출입 예외 미해당).');
+      else no(area.toLocaleString()+'㎡ < '+thTxt+' → 면적 기준 미달.');
+      return;
+    }
+
+    if(t==='game'){
+      const floor=rv('mscfloor');
+      if(!floor){ wait('층 위치를 선택하세요.'); return; }
+      if(floor==='1f'){
+        const d=rv('mscdirect');
+        if(!d){ wait('지상과 직접 통하는 출입구 여부를 선택하세요.'); return; }
+        if(d==='y'){
+          const w=rv('mscwindow');
+          if(!w){ wait('무창층 여부를 선택하세요.'); return; }
+          if(w==='n'){ no('지상 1층 + 직접출입 + 창 충분 → 게임제공업 제외 요건 충족.'); return; }
+        }
+      }
+      yes('지상 1층 직접출입(창 충분) 예외에 해당하지 않아 다중이용업입니다.');
+      return;
+    }
+
+    if(t==='academy'){
+      const area=parseFloat(document.getElementById('mscAcademyArea').value);
+      if(isNaN(area)){ wait('강의실 등 바닥면적을 입력하세요.'); return; }
+      const ppl=Math.round(area/1.9);
+      if(ppl>=300) yes('수용인원 약 '+ppl.toLocaleString()+'명(='+area.toLocaleString()+'㎡÷1.9) ≥ 300명 → 다중이용업.');
+      else no('수용인원 약 '+ppl.toLocaleString()+'명(='+area.toLocaleString()+'㎡÷1.9) < 300명. ※100~300명이라도 한 건물에 학원+기숙사·다중이용업 함께면 해당될 수 있으니 소방서 확인.');
+      return;
+    }
+
+    if(t==='jjimjil'){
+      const ppl=parseFloat(document.getElementById('mscJjimjilPpl').value);
+      if(isNaN(ppl)){ wait('수용인원을 입력하세요.'); return; }
+      if(ppl>=100) yes('수용인원 '+ppl.toLocaleString()+'명 ≥ 100명 → 다중이용업(찜질방).');
+      else no('수용인원 '+ppl.toLocaleString()+'명 < 100명 → 찜질방 기준 미달.');
+      return;
+    }
+
+    if(t==='screengolf'){
+      const io=rv('mscindoor');
+      if(!io){ wait('설치 형태를 선택하세요.'); return; }
+      if(io==='y') yes('실내 가상체험 체육시설(스크린골프 등) → 다중이용업.');
+      else no('실외 타석형 골프연습장은 다중이용업이 아닙니다.');
+      return;
+    }
+  }
+
+  sel.addEventListener('change',updateFields);
+  document.querySelectorAll('#muSelfcheck input').forEach(el=>{
+    el.addEventListener('change',updateFields);
+    el.addEventListener('input',judge);
+  });
+})();
+
+// ===== 대수선 판정기 =====
+(function(){
+  const parts=document.getElementById('dsParts');
+  if(!parts)return;
+  const actWrap=document.getElementById('dsActWrap');
+  const scaleWrap=document.getElementById('dsScaleWrap');
+  const R=document.getElementById('dsResult');
+  const scaleParts=['wall','column','beam','roof','exwall'];
+  const alwaysParts=['firewall','stair','partywall'];
+  function checked(){ return [...parts.querySelectorAll('input:checked')].map(i=>i.value); }
+  function rv(n){const el=document.querySelector('input[name="'+n+'"]:checked');return el?el.value:'';}
+
+  function update(){
+    let s=checked();
+    if(s.includes('none') && s.length>1){
+      parts.querySelectorAll('input').forEach(i=>{ if(i.value!=='none') i.checked=false; });
+      s=checked();
+    }
+    const hasReal=s.some(v=>v!=='none');
+    actWrap.style.display=hasReal?'block':'none';
+    const act=rv('dsact');
+    const hasScale=s.some(v=>scaleParts.includes(v));
+    // 규모조건(30㎡·3개) 질문: 수선이고 규모조건 부위일 때
+    scaleWrap.style.display=(hasReal && act==='repair' && hasScale)?'block':'none';
+    // 건축물 규모(허가/신고) 질문: 대수선으로 확정될 때만
+    document.getElementById('dsBldgWrap').style.display = isDaesuseon(s,act) ? 'block':'none';
+    judge();
+  }
+
+  // 대수선 해당 여부만 판단(허가/신고 구분 전)
+  function isDaesuseon(s,act){
+    if(!s || s.length===0 || s.includes('none') || !act) return false;
+    if(act==='attach') return false;              // 덧방·비접촉 = 대수선 아님
+    if(act==='change') return true;               // 증설·해체 = 대수선
+    // 수선·변경
+    const hasAlways=s.some(v=>alwaysParts.includes(v));
+    if(hasAlways) return true;                     // 방화벽·계단·경계벽 수선 = 대수선
+    const hasScale=s.some(v=>scaleParts.includes(v));
+    if(hasScale){ return rv('dsscale')==='over'; } // 30㎡·3개 이상 수선만 대수선
+    return false;
+  }
+
+  function judge(){
+    const s=checked();
+    if(s.length===0){ R.className='msc-result'; R.textContent='건드리는 부위를 선택하세요.'; return; }
+    if(s.includes('none')){
+      R.className='msc-result no';
+      R.innerHTML='✅ <b>대수선 아님</b> — 가벽·마감·설비 등은 대수선이 아닙니다. (용도변경·다중이용업 기준은 별도 확인)';
+      return;
+    }
+    const act=rv('dsact');
+    if(!act){ R.className='msc-result'; R.textContent='공사 방식을 선택하세요.'; return; }
+
+    // 대수선 아닌 경우들 먼저
+    if(act==='attach'){
+      R.className='msc-result no';
+      R.innerHTML='✅ <b>대수선 아님</b> — 기존 부위를 그대로 두고 앞·옆에 덧방(별도 벽체)을 대거나 비접촉으로 시공하면 그 부위 자체를 건드린 게 아니라 대수선이 아닙니다. <span class="msc-r-sub">예: 세대 경계벽 앞에 석고보드+차음재로 방음 덧방 → 대수선 아님. 단, 덧방이 실제로는 기존 벽을 갈아내거나 개구부를 내는 작업을 포함하면 수선·변경으로 봅니다.</span>';
+      return;
+    }
+    const hasAlways=s.some(v=>alwaysParts.includes(v));
+    const hasScale=s.some(v=>scaleParts.includes(v));
+    // 수선인데 규모조건 부위만 있고 30㎡·3개 미만 → 대수선 아님
+    if(act==='repair' && hasScale && !hasAlways){
+      const scale=rv('dsscale');
+      if(!scale){ R.className='msc-result'; R.textContent='규모 조건을 선택하세요.'; return; }
+      if(scale==='under'){
+        R.className='msc-result no';
+        R.innerHTML='✅ <b>대수선 아님</b> — 규모 기준(내력벽·외벽마감 30㎡·기둥·보·지붕틀 3개) 미만의 수선은 대수선이 아닙니다. <span class="msc-r-sub">단, 방화·구조 안전에 영향 있으면 별도 검토.</span>';
+        return;
+      }
+    }
+    // 여기부터는 대수선 해당 → 허가/신고 구분
+    const bldg=rv('dsbldg');
+    if(!bldg){ R.className='msc-result'; R.textContent='건축물 규모(연면적·층수)를 선택하세요.'; return; }
+
+    // 소규모(200㎡ 미만+3층 미만) → 신고
+    if(bldg==='small'){
+      R.className='msc-result yes';
+      R.innerHTML='🔧 <b>대수선 해당 → 신고 대상</b> <span class="msc-r-sub">연면적 200㎡ 미만 + 3층 미만 건축물의 대수선은 <b>건축신고</b>로 갈음됩니다(건축법 §14). 관할 확인.</span>';
+      return;
+    }
+    // 대규모: 해체 포함이면 허가, 수선만이면 신고
+    if(act==='change'){
+      R.className='msc-result yes';
+      R.innerHTML='🔧 <b>대수선 해당 → 허가 대상</b> <span class="msc-r-sub">주요구조부 증설·해체를 수반하므로 <b>건축허가</b> 대상입니다(2006년 개정 이후 대수선은 원칙 허가). 관할 확인.</span>';
+      return;
+    }
+    // 대규모 + 수선만(해체 없음) → 신고
+    R.className='msc-result yes';
+    R.innerHTML='🔧 <b>대수선 해당 → 신고 대상</b> <span class="msc-r-sub">주요구조부 해체 없이 수선만 하는 대수선은 <b>건축신고</b> 대상입니다(대통령령). 관할 확인.</span>';
+  }
+  parts.addEventListener('change',update);
+  document.getElementById('dsAct').addEventListener('change',update);
+  document.getElementById('dsScale').addEventListener('change',update);
+  document.getElementById('dsBldg').addEventListener('change',judge);
+})();
+
+// ── 서류 테이블 ──
+const DOCS=[
+["용도변경 허가","하위군 → 상위군 이동","용도변경 허가신청서(시행규칙 별지 제1호의4) + 변경 전·후 평면도 + 내화·방화·피난·설비 변경사항 도서  ※변경 전 평면도는 건축물대장(행정정보 공동이용)으로 확인되면 생략 가능. 허가+변경면적 500㎡ 이상이면 건축사 설계 필수(§19⑥)","지자체 조례(시행규칙 별표4 범위)","건축법 §16·§19⑥⑦","permit"],
+["용도변경 신고","상위군 → 하위군 이동","용도변경 신고서(시행규칙 별지 제6호) + 변경 전·후 평면도(변경 전은 대장 확인 시 생략) + 내화·방화·피난·설비 변경사항 도서","지자체 조례","건축법 §19②2호","report"],
+["건축물대장 기재내용 변경신청","같은 시설군 내 이동","건축물 표시변경 신청서(건축물대장규칙 별지 제15호) + 건축물현황도(현황도 내용이 변경된 경우에 한함)","없음","건축법 §19③","regi"],
+["임의변경 (절차 없음)","별표1 같은 ‘목’ 안 이동 등","없음 — 단, 변경 용도의 건축기준(피난·주차 등)은 충족해야 함","없음","시행령 §14④","free"],
+["사용승인 준용","허가·신고 중 용도변경 면적 합계 100㎡ 이상","사용승인 절차 준용 (500㎡ 미만 + 대수선 미수반이면 생략)","—","건축법 §19⑤·§22","none"],
+];
+const DOC_BG={permit:'var(--red-bg)',report:'var(--amber-bg)',regi:'var(--green-bg)',free:'var(--slate-bg)',none:'#fff'};
+document.getElementById('docBody').innerHTML=DOCS.map(d=>`
+  <tr style="background:${DOC_BG[d[5]]}66">
+    <td><b>${d[0]}</b></td><td class="memo">${d[1]}</td><td class="memo">${d[2]}</td>
+    <td class="memo">${d[3]}</td><td class="code-cell">${d[4]}</td>
+  </tr>`).join('');
+
+// ── 법령 ──
+const LAWS=[
+["건축법 §19①","용도변경은 변경 용도의 건축기준에 맞아야 함"],
+["건축법 §19②1호","하위군→상위군은 허가 대상"],
+["건축법 §19②2호","상위군→하위군은 신고 대상"],
+["건축법 §19③","같은 시설군 내는 대장 기재내용 변경신청"],
+["건축법 §19④","시설군 9개 구분"],
+["건축법 §19⑤","허가·신고 중 100㎡↑는 사용승인 준용(500㎡↓+대수선 미수반 예외)"],
+["시행령 §14④","절차 없는 임의변경 범위(별표1 같은 목 등)"],
+["시행령 §14⑤","시설군별 소속 용도 세부 목록"],
+["시행령 별표1","용도별 건축물의 종류(대분류 + 세부 목 124개)"],
+["건축법 §49①","용도변경 시 피난·복도·계단·출입구 등 기준 적용"],
+["주차장법 §19의4","부설주차장 용도변경 제한"],
+["건축물대장규칙 §18","건축물표시 변경신청 서류"],
+];
+document.getElementById('lawBody').innerHTML=LAWS.map((l,i)=>`
+  <tr style="background:${i%2?'#f8fafc':'#fff'}"><td><b>${l[0]}</b></td><td class="memo">${l[1]}</td></tr>`).join('');
+
+// ── 작품의뢰서(index.html) 연동: localStorage에서 조회된 의뢰서를 읽어 판정기 자동 세팅 ──
+(function applyActiveRequest(){
+  const reqParam=new URLSearchParams(location.search).get('req');
+  if(!reqParam) return;                       // 직접 열람 시엔 자동주입 안 함
+  const ban=document.getElementById('reqBanner'), txt=document.getElementById('reqBannerText');
+  let p=null; try{ p=JSON.parse(localStorage.getItem('grida_active')||'null'); }catch(e){}
+  if(!p||!p.data||!p.data.uses){
+    if(ban){ txt.textContent='의뢰번호 '+reqParam+' 데이터를 찾지 못했습니다 — 작품의뢰서에서 조회 후 다시 여세요.'; ban.style.display='flex'; }
+    return;
+  }
+  const d=p.data;
+  const find=k=>k?(USES.find(u=>keyOf(u)===k)||null):null;
+  const cur=d.uses.curUse?find(d.uses.curUse.key):null;
+  const tgt=d.uses.targetUse?find(d.uses.targetUse.key):null;
+  let area=(d.area!==undefined&&d.area!=='')?parseFloat(d.area):NaN; if(isNaN(area)) area=null;
+  if(cur){ fromSel={use:cur,area:area}; const i=document.getElementById('fromInput'); i.value=label(cur); i.classList.add('chosen'); renderArea('from'); }
+  if(tgt){ toSel={use:tgt,area:area}; const i=document.getElementById('toInput'); i.value=label(tgt); i.classList.add('chosen'); renderArea('to'); }
+  if(cur||tgt) updateVerdict();
+  if(ban){
+    txt.innerHTML='작품의뢰서 <b>'+(p.reqno||reqParam)+'</b> 데이터 적용됨 — '
+      +(cur?'현재('+cur[2]+') ':'')+(tgt?'→ 희망('+tgt[2]+') ':'')
+      +(area!=null?'· 면적 '+area+'㎡ ':'')+'자동 입력. 검색칸에서 수정 가능.';
+    ban.style.display='flex';
+    document.getElementById('reqBannerClear').onclick=()=>{
+      fromSel={use:null,area:null}; toSel={use:null,area:null};
+      ['from','to'].forEach(w=>{ const i=document.getElementById(w+'Input'); i.value=''; i.classList.remove('chosen'); renderArea(w); });
+      updateVerdict(); ban.style.display='none';
+    };
+  }
+})();
+</script>
+<footer id="gridaCopyright" style="margin:44px auto 28px;max-width:920px;padding:16px 20px 0;border-top:1px solid #e5e5e5;text-align:center;font-size:11px;line-height:1.7;color:#9a9a9a;font-family:system-ui,-apple-system,'Malgun Gothic','Apple SD Gothic Neo',sans-serif;">
+  <div style="font-weight:700;color:#7a7a7a;letter-spacing:.02em;">© 2026 GRIDA_4U (그리드에이포유) · 당신을 위해 공간을 그리다</div>
+  <div style="margin-top:2px;"><a href="https://www.grida4u.com" target="_blank" rel="noopener" style="color:#7a7a7a;text-decoration:none;font-weight:700;">www.grida4u.com</a></div>
+  본 문서·양식·판정 로직 및 소스코드의 무단 복제·배포·2차 이용을 금합니다.<br>
+  Unauthorized reproduction, distribution, or derivative use is prohibited.
+</footer>
+</body>
+</html>
