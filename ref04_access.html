@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRIDA_4U 참고자료 ref04 · 편의시설표시</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<style>
+:root{--navy:#14284a;--navy2:#1e3a5f;--amber:#d97706;--amber-bg:#fef3e2;--line:#e5e7eb;--line2:#d1d5db;--ink:#1f2937;--mut:#6b7280;--mut2:#9ca3af;--paper:#fbfbfa;--band:#f3f4f6;--M:#14284a;--R:#d97706;--ok:#1a7a4a;--no:#b4442e;}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Pretendard Variable",Pretendard,-apple-system,sans-serif;color:var(--ink);background:var(--paper);font-size:14px;line-height:1.55}
+.wrap{max-width:1280px;margin:0 auto;padding:22px 20px 90px}
+header.top{border-bottom:2px solid var(--navy);padding-bottom:14px}
+.eyebrow{font-size:11px;letter-spacing:.14em;color:var(--amber);font-weight:700;text-transform:uppercase}
+h1{font-size:22px;margin:6px 0 4px;letter-spacing:-.02em;color:var(--navy)}
+.src{font-size:12px;color:var(--mut)}.src b{color:var(--navy2)}
+.toolbar{display:flex;gap:8px;margin:16px 0 10px;flex-wrap:wrap}
+.tbtn{border:1px solid var(--line2);background:#fff;color:var(--navy2);padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
+.tbtn.active{background:var(--amber);border-color:var(--amber);color:#fff}
+.tbtn:not(.active):hover{border-color:var(--amber);color:var(--amber)}
+.controls{display:flex;gap:10px;align-items:center;margin:12px 0;flex-wrap:wrap}
+.search{flex:1;min-width:200px;border:1px solid var(--line2);border-radius:8px;padding:9px 12px;font-size:13px;font-family:inherit}
+.search:focus{outline:none;border-color:var(--amber)}
+.xls{border:1px solid var(--ok);background:var(--ok);color:#fff;padding:9px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap}.xls:hover{opacity:.9}
+.legend{display:flex;gap:16px;font-size:12px;color:var(--mut);align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.chip{display:inline-flex;align-items:center;gap:6px}
+.dot{width:20px;height:16px;border-radius:4px;display:inline-block}
+.dot.m{background:var(--M)}.dot.r{background:#fff;border:1.5px solid var(--R)}.dot.n{background:var(--band);border:1px solid var(--line)}
+.tablebox{overflow:auto;border:1px solid var(--line2);border-radius:10px;max-height:74vh;background:#fff}
+table{border-collapse:separate;border-spacing:0;font-size:12px;width:max-content;min-width:100%}
+th,td{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:0;text-align:center;white-space:nowrap}
+thead th{position:sticky;top:0;background:var(--navy);color:#fff;font-weight:600;z-index:5;padding:6px 4px}
+thead tr:nth-child(2) th{top:29px}thead tr:nth-child(3) th{top:58px}
+.gcol{writing-mode:vertical-rl;text-orientation:mixed;height:96px;min-width:26px;max-width:30px;font-weight:500;letter-spacing:.02em;padding:8px 3px}
+.grp-매개{background:#1b2f52}.grp-내부{background:#233a63}.grp-위생{background:#14284a}.grp-안내{background:#233a63}.grp-기타{background:#1b2f52}
+th.gunh,th.nameh{background:var(--navy);left:0;z-index:7}
+td.gun,td.name{position:sticky;background:#fff;z-index:3;text-align:left;font-weight:600;color:var(--navy);padding:7px 9px;border-right:1px solid var(--line2)}
+td.gun{left:0;font-size:11px;color:var(--mut);font-weight:700;width:96px;max-width:96px;white-space:normal;background:var(--band);vertical-align:middle}
+td.name{left:96px;min-width:230px;max-width:300px;white-space:normal;font-size:12px;line-height:1.4}
+th.gunh{left:0;width:96px}th.nameh{left:96px;min-width:230px;text-align:left;padding-left:9px}
+tbody tr:hover td:not(.gun){background:#fff9ee}tbody tr:hover td.name{background:#fdf1dc}
+.cell{display:block;padding:7px 4px;font-weight:700;font-size:11px}
+.cell.M{background:var(--M);color:#fff}.cell.R{color:var(--R)}.cell.N{color:var(--mut2)}
+.grpsep{border-right:2px solid var(--navy2)!important}
+td.name.grpsep,th.nameh.grpsep{border-right:1px solid var(--line2)!important}
+.foot{margin-top:16px;font-size:11.5px;color:var(--mut);line-height:1.7;border-top:1px solid var(--line);padding-top:12px}.foot b{color:var(--navy2)}
+.panel{display:none}.panel.on{display:block}
+/* judge */
+.jgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;background:#fff;border:1px solid var(--line2);border-radius:12px;padding:18px 20px}
+.fld{display:flex;flex-direction:column;gap:5px}
+.fld.full{grid-column:1/3}
+.fld label{font-size:12px;font-weight:700;color:var(--navy2)}
+.fld .hint{font-size:11px;color:var(--mut2);font-weight:400}
+select,.numin{border:1px solid var(--line2);border-radius:8px;padding:9px 11px;font-size:13px;font-family:inherit;background:#fff}
+select:focus,.numin:focus{outline:none;border-color:var(--amber)}
+.gobtn{grid-column:1/3;background:var(--navy);color:#fff;border:none;border-radius:9px;padding:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit}
+.gobtn:hover{background:var(--navy2)}
+.res{margin-top:16px}
+.rescard{border:1px solid var(--line2);border-radius:12px;overflow:hidden;background:#fff}
+.resh{padding:14px 18px;color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;gap:10px}
+.resh.ok{background:var(--ok)}.resh.no{background:var(--no)}
+.resb{padding:16px 18px}
+.rrow{display:flex;gap:8px;margin-bottom:8px;font-size:13px;flex-wrap:wrap}
+.rrow .k{color:var(--mut);min-width:96px;font-weight:600}
+.rrow .v{color:var(--ink);flex:1;min-width:200px}
+.taglist{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.tg{font-size:12px;font-weight:600;padding:4px 9px;border-radius:6px}
+.tg.M{background:var(--M);color:#fff}.tg.R{background:#fff;color:var(--R);border:1.5px solid var(--R)}
+.since{background:var(--amber-bg);border:1px solid #f5d9a8;border-radius:8px;padding:10px 12px;font-size:12px;color:#7a4a08;margin-top:12px;line-height:1.6}
+.applybox{border-radius:8px;padding:10px 12px;font-size:12.5px;margin-top:10px;line-height:1.6;font-weight:600}
+.applybox.a1{background:#e8f5ee;color:#155f38;border:1px solid #bfe3cd}
+.applybox.a2{background:#fdefe8;color:#8a3d22;border:1px solid #f3cbb6}
+.applybox.a3{background:#eef1f6;color:#2b3a55;border:1px solid #cdd6e6}
+.viewlink{display:inline-block;margin-top:12px;font-size:12px;color:var(--navy2);text-decoration:underline;cursor:pointer;background:none;border:none;font-family:inherit;padding:0}
+.spec{background:#fff;border:1px solid var(--line2);border-radius:10px;padding:16px 18px;font-size:12.5px;color:var(--mut);margin-top:14px;line-height:1.7}.spec b{color:var(--navy2)}
+.foot b{color:var(--navy2)}
+
+.pnav{display:flex;gap:0;margin:16px 0 2px;border-bottom:1px solid var(--line)}
+.pnav button{border:none;background:none;padding:10px 2px;margin-right:22px;font-size:15px;font-weight:700;color:var(--mut2);cursor:pointer;font-family:inherit;border-bottom:3px solid transparent;margin-bottom:-1px}
+.pnav button.on{color:var(--navy);border-bottom-color:var(--amber)}
+.pnav button:hover{color:var(--navy2)}
+.axis{display:none}.axis.on{display:block}
+.signtbl{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:12px;border:1px solid var(--line2);border-radius:10px;overflow:hidden}
+.signtbl th{background:var(--navy);color:#fff;padding:9px 11px;text-align:left;font-weight:600}
+.signtbl td{border-top:1px solid var(--line);padding:9px 11px;vertical-align:top;line-height:1.5}
+.signtbl td.tn{font-weight:700;color:var(--navy);white-space:nowrap;width:150px}
+.signtbl td.tc{white-space:nowrap;width:96px}
+.signtbl tr:hover td{background:#fff9ee}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;white-space:nowrap;margin:1px 2px 1px 0}
+.badge.h{background:var(--navy);color:#fff}
+.badge.s{background:#fff;color:var(--amber);border:1.5px solid var(--amber)}
+.badge.o{background:var(--band);color:var(--mut)}
+</style></head><body><div class="wrap">
+<header class="top">
+  <div class="eyebrow">GRIDA_4U 참고자료 ref04 · 편의시설표시 · 감으로 하지 않는다</div>
+  <h1>편의시설표시 — 장애인 편의시설 · 옥외광고물(간판)</h1>
+  <div class="src" id="srcline">「장애인·노인·임산부 등의 편의증진 보장에 관한 법률」 시행령 <b>[별표1·2] 개정 2024. 9. 19.</b> · 소규모 적용기준 <b>2025. 3. 20. 시행</b> 반영</div>
+</header>
+<div class="pnav">
+  <button class="on" data-axis="access">🦽 장애인 편의시설</button>
+  <button data-axis="sign">🪧 옥외광고물(간판)</button>
+</div>
+<div class="axis on" id="axis-access">
+<div class="toolbar">
+  <button class="tbtn active" data-panel="judge">🎯 대상시설 판정</button>
+  <button class="tbtn" data-panel="matrix">📋 편의시설 조견표</button>
+</div>
+
+<!-- ===== JUDGE ===== -->
+<div class="panel on" id="p-judge">
+  <div id="reqBanner" style="align-items:center;gap:10px;flex-wrap:wrap;background:#fef3e2;border:1px solid #f5d9a8;border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:12.5px;color:#7a4a08;display:none;">
+    <b id="reqBannerText" style="flex:1;min-width:200px;line-height:1.5;">작품의뢰서 데이터 적용됨</b>
+    <button id="reqBannerClear" style="font-size:11.5px;padding:4px 10px;border:1px solid #d97706;background:#fff;color:#b45309;border-radius:6px;cursor:pointer;font-family:inherit;font-weight:700;white-space:nowrap;">입력 지우기</button>
+  </div>
+  <div class="jgrid">
+    <div class="fld full"><label>① 프로젝트 용도 <span class="hint">별표1 대상시설 기준 (녹음실 등 미열거 용도 포함)</span></label>
+      <select id="useSel"></select></div>
+    <div class="fld"><label>② 해당 용도 바닥면적 <span class="hint">해당 용도로 쓰이는 바닥면적의 합계(㎡)</span></label>
+      <input class="numin" id="area" type="number" min="0" placeholder="예: 180"></div>
+    <div class="fld"><label>③ 건물 전체 연면적 <span class="hint">소규모 시행일 분기용(㎡·선택)</span></label>
+      <input class="numin" id="gfa" type="number" min="0" placeholder="예: 2400"></div>
+    <div class="fld full"><label>④ 건축행위</label>
+      <select id="act">
+        <option value="new">신축</option>
+        <option value="new">증축(별동)</option>
+        <option value="new">개축(전부)</option>
+        <option value="new">재축</option>
+        <option value="exist">기존 건축물 · 대수선 · 부분증축 등</option>
+      </select></div>
+    <button class="gobtn" id="goBtn">판정하기</button>
+  </div>
+  <div class="res" id="res"></div>
+  <div class="spec">이 판정은 <b>별표1 대상 여부 + 별표2 의무/권장 매핑 + 소규모 적용기준(시행일)</b>까지 계산합니다. 실제 설치 시 <b>구조·재질 세부기준(시행규칙 별표1: 유효폭·기울기·규격 등)</b>과 개별 면제·완화(시설주관기관 승인), BF인증 의무는 별도 확인이 필요합니다. 133 세부용도 트리 selector는 다음 단계에서 프런트에 결합합니다.</div>
+</div>
+
+<!-- ===== MATRIX ===== -->
+<div class="panel" id="p-matrix">
+  <div class="legend">
+    <span class="chip"><span class="dot m"></span> 의무 — 반드시 설치</span>
+    <span class="chip"><span class="dot r"></span> 권장</span>
+    <span class="chip"><span class="dot n"></span> 해당없음</span>
+    <span style="margin-left:auto;color:var(--mut2)">시설명의 (○○㎡)는 별표1 대상 포함 기준</span>
+  </div>
+  <div class="controls">
+    <input class="search" id="q" placeholder="대상시설 검색 (예: 음식점, 호스텔, 학원, 병원…)">
+    <button class="xls" id="xlsBtn">📥 엑셀 다운로드</button>
+  </div>
+  <div class="tablebox"><table id="tbl"><thead id="thead"></thead><tbody id="tbody"></tbody></table></div>
+  <div class="foot" id="foot"></div>
+</div>
+</div><!--/axis-access-->
+<div class="axis" id="axis-sign">
+  <div class="legend" style="margin-top:14px">
+    <span class="chip"><span class="badge h">허가</span> 지자체 허가</span>
+    <span class="chip"><span class="badge s">신고</span> 지자체 신고</span>
+    <span class="chip"><span class="badge o">면제/조례</span> 규모 이하 적용제외 또는 조례</span>
+    <span style="margin-left:auto;color:var(--mut2)">「옥외광고물법」 시행령 제3조(종류)·제4조(허가/신고)</span>
+  </div>
+  <table class="signtbl"><thead><tr><th>광고물 종류</th><th>원칙</th><th>신고 없이 표시 가능한 경우 (면제)</th></tr></thead><tbody id="signbody"></tbody></table>
+  <div class="since" style="margin-top:12px">
+    <b>애초에 신고·허가가 면제되는 것 (적용제외 — 법 제8조·시행령 제24조)</b><br>
+    ① 자기 건물·토지·점포에 <b>자기의 성명·명칭·상호·업종</b>을 표시하는 광고물 중 조례가 정한 <b>규모 이하</b> · ② 건물 내부(옥내) 광고물 · ③ 관혼상제·종교의식용 · ④ 선거·정당 광고물(개별법) · ⑤ 국가·지자체의 공익목적 표시 등. <br>단, 이 경우에도 <b>안전·표시방법·금지장소</b> 기준은 그대로 적용됩니다.
+  </div>
+  <div class="spec" style="margin-top:14px">
+    위 <b>원칙</b>은 시행령(제4조 허가·제5조 신고·제8조/제24조 적용제외) 기준입니다. 다만 <b>"신고 대상이냐 면제냐"의 정확한 경계(규모·수량 수치)는 시·도 조례</b>로 정합니다 — 예: 가로형간판이 몇 ㎡ 이하·몇 개까지 자가광고물로 면제되는지가 조례 숫자로 갈립니다. 이 숫자를 넣으려면 특정 지자체(예: <b>서울특별시</b>) 조례를 앵커로 잡아야 합니다.
+  </div>
+  <div class="since" style="margin-top:12px">
+    <b>자가광고물 특례</b> 자기 성명·명칭·영업 내용을 자기 건물·부지에 표시하는 광고물로서 조례가 정한 규모 이하는 <b>허가·신고 면제(적용제외)</b>될 수 있습니다. 다만 안전·표시방법 기준은 그대로 적용됩니다.
+  </div>
+  <div class="applybox a2" style="margin-top:10px">
+    <b>표시 금지</b> 신호기·도로표지와 유사하거나 효용을 방해하는 형태, 교통신호기·가로수·육교·터널·고가도로 등에는 표시 금지. <b>위반 시</b> 무허가 표시 1년 이하 징역 또는 1천만원 이하 벌금 / 신고대상 미신고 표시 500만원 이하 벌금·과태료(지자체 기준).
+  </div>
+  <div class="spec" style="margin-top:12px;border-color:var(--amber);background:#fffdf7">
+    <b>다음 단계 후보</b> ① 특정 지자체(서울시 등) 조례를 앵커로 <b>가로형/돌출/옥상간판 규모·수량 상세기준</b> 결합 ② 업종·건물 입력 → <b>허가/신고/제외 판정기</b>(장애인 판정기와 동일 방식) ③ 자가광고물 면제 규모 계산. 어디부터 갈지 정해주시면 원문 기준으로 채우겠습니다.
+  </div>
+</div>
+</div>
+<script>
+const D={"cols": ["주출입구접근로", "장애인전용주차구역", "주출입구높이차이제거", "출입구(문)", "복도", "계단또는승강기", "대변기", "소변기", "세면대", "욕실", "샤워실·탈의실", "점자블록", "유도및안내설비", "경보및피난설비", "객실·침실", "관람석·열람석", "접수대·작업대", "매표소·판매기·음료대", "임산부등휴게시설"], "pub": [{"gun": "제1종 근린생활시설", "name": "수퍼마켓ㆍ일용품 등의 소매점, 이용원ㆍ미용원ㆍ목욕장", "v": ["M", "R", "M", "M", "R", "R", "R", "R", "R", "", "", "", "", "", "", "", "", "", ""]}, {"gun": "제1종 근린생활시설", "name": "휴게음식점ㆍ제과점 등 음료ㆍ차ㆍ음식ㆍ빵ㆍ떡ㆍ과자 등을 조리하거나 제조하여 판매하는 시설", "v": ["M", "R", "M", "M", "R", "R", "R", "R", "R", "", "", "", "", "", "", "", "", "", ""]}, {"gun": "제1종 근린생활시설", "name": "지역자치센터, 파출소, 지구대, 소방서, 우체국, 방송국, 보건소, 공공도서관, 국민건강보험공단ㆍ국민연금공단ㆍ한국장애인고용공단ㆍ근로복지공단의 지사, 그 밖에 이와 유사한 용도의 시설", "v": ["M", "M", "M", "M", "M", "M", "M", "R", "R", "", "", "M", "R", "M", "", "", "M", "", ""]}, {"gun": "제1종 근린생활시설", "name": "대피소", "v": ["M", "", "M", "M", "", "", "", "", "", "", "", "", "R", "", "", "", "", "", ""]}, {"gun": "제1종 근린생활시설", "name": "공중화장실", "v": ["M", "", "M", "M", "", "", "M", "M", "M", "", "", "M", "", "", "", "", "", "", ""]}, {"gun": "제1종 근린생활시설", "name": "의원, 치과의원, 한의원, 조산원 및 산후조리원(500제곱미터 이상만 해당한다)", "v": ["M", "M", "M", "M", "M", "M", "M", "R", "R", "", "", "", "", "", "", "", "", "", ""]}, {"gun": "제1종 근린생활시설", "name": "의원, 치과의원, 한의원, 침술원, 접골원, 조산원 및 산후조리원(500제곱미터 미만만 해당한다)", "v": ["M", "R", "M", "M", "R", "R", "R", "R", "R", "", "", "", "", "", "", "", "", "", ""]}, {"gun": "제1종 근린생활시설", "name": "지역아동센터", "v": ["M", "M", "M", "M", "R", "R", "R", "R", "R", "", "", "", "R", "M", "", "", "", "", ""]}, {"gun": "제2종근린생활시설", "name": "일반음식점(300제곱미터 이상만 해당한다), 휴게음식점ㆍ제과점 등 음료ㆍ차ㆍ음식ㆍ빵ㆍ떡ㆍ과자 등을 조리하거나 제조하여 판매하는 시설", "v": ["M", "M", "M", "M", "R", "R", "R", "R", "R", "", "", "", "", "", "", "", "", "", ""]}, {"gun": "제2종근린생활시설", "name": "일반음식점(50제곱미터 이상 300제곱미터 미만만 해당한다)", "v": ["M", "R", "M", "M", "R", "R", "R", "R", "R", "", "", "", "", "", "", "", "", "", ""]}, {"gun": "제2종근린생활시설", "name": "공연장", "v": ["M", "M", "M", "M", "M", "M", "M", "M", "M", "", "", "M", "M", "M", "", "M", "", "M", "M"]}, {"gun": "제2종근린생활시설", "name": "안마시술소", "v": ["M", "M", "M", "M", "R", "R", "R", "R", "R", "", "", "R", "R", "M", "", "", "", "", ""]}, {"gun": "제2종근린생활시설", "name": "장의사, 동물병원, 동물미용실, 동물위탁관리업을 위한 시설", "v": ["M", "R", "M", "M", "R", "R", "R", "R", "R", "", "", "", "", "", "", "", "", "", ""]}, {"gun": "제2종근린생활시설", "name": "학원, 교습소, 직업훈련소", "v": ["M", "R", "M", "M", "R", "R", "R", "R", "R", "", "", "", "", "", "", "", "", "", ""]}, {"gun": "제2종근린생활시설", "name": "독서실, 기원", "v": ["M", "R", "M", "M", "R", "R", "R", "R", "R", "", "", "", "", "", "", "", "", "", ""]}, {"gun": "문화및집회시설", "name": "공연장 및 관람장", "v": ["M", "M", "M", "M", "M", "M", "M", "M", "M", "", "", "M", "M", "M", "", "M", "", "M", "M"]}, {"gun": "문화및집회시설", "name": "집회장", "v": ["M", "M", "M", "M", "M", "M", "M", "R", "R", "", "", "", "", "M", "", "", "", "", ""]}, {"gun": "문화및집회시설", "name": "전시장, 동ㆍ식물원", "v": ["M", "M", "M", "M", "M", "M", "M", "R", "R", "", "", "M", "R", "M", "", "", "", "R", "M"]}, {"gun": "종교시설", "name": "종교집회장(교회ㆍ성당ㆍ사찰ㆍ기도원, 그 밖에 이와 유사한 용도의 시설을 말하며, 500제곱미터 이상만 해당한다)", "v": ["M", "M", "M", "M", "R", "R", "R", "R", "R", "", "", "", "", "M", "", "R", "", "", "R"]}, {"gun": "판매시설", "name": "도매시장ㆍ소매시장ㆍ상점(1000제곱미터 이상만 해당한다)", "v": ["M", "M", "M", "M", "M", "M", "M", "R", "R", "", "", "", "R", "M", "", "", "", "", "R"]}, {"gun": "의료시설", "name": "병원ㆍ격리병원", "v": ["M", "M", "M", "M", "M", "M", "M", "M", "M", "R", "R", "M", "M", "M", "", "", "R", "R", ""]}, {"gun": "교육연구시설", "name": "학교(특수학교를 포함하며, 유치원은 제외한다)", "v": ["M", "M", "M", "M", "M", "M", "M", "M", "R", "", "", "M", "M", "M", "", "R", "R", "", "R"]}, {"gun": "교육연구시설", "name": "유치원", "v": ["M", "M", "M", "M", "M", "M", "M", "M", "R", "", "", "", "", "", "", "", "", "", "R"]}, {"gun": "교육연구시설", "name": "교육원ㆍ직업훈련소ㆍ학원, 그 밖에 이와 유사한 용도의 시설(500제곱미터 이상만 해당한다)", "v": ["M", "M", "M", "M", "M", "M", "M", "M", "R", "", "", "R", "R", "M", "", "R", "R", "", "R"]}, {"gun": "교육연구시설", "name": "도서관(1000제곱미터 이상만 해당한다)", "v": ["M", "M", "M", "M", "M", "M", "M", "M", "M", "", "", "R", "R", "M", "", "M", "R", "", "R"]}, {"gun": "노유자시설", "name": "아동관련시설(어린이집ㆍ아동복지시설)", "v": ["M", "M", "M", "M", "M", "M", "M", "M", "R", "", "", "", "", "", "", "", "", "", "R"]}, {"gun": "노유자시설", "name": "노인복지시설(경로당을 포함한다)", "v": ["M", "M", "M", "M", "M", "M", "M", "M", "R", "R", "R", "", "", "", "R", "", "", "", ""]}, {"gun": "노유자시설", "name": "사회복지시설(장애인복지시설을 포함한다)", "v": ["M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", ""]}, {"gun": "수련시설", "name": "생활권수련시설, 자연권수련시설", "v": ["M", "M", "M", "M", "M", "M", "M", "M", "M", "", "R", "", "R", "M", "M", "", "", "", ""]}, {"gun": "운동시설", "name": "운동시설(500제곱미터 이상만 해당한다)", "v": ["M", "M", "M", "M", "R", "R", "R", "M", "R", "", "R", "", "", "", "", "R", "", "", "R"]}, {"gun": "업무시설", "name": "국가 또는 지방자치단체의 청사", "v": ["M", "M", "M", "M", "M", "M", "M", "M", "M", "", "", "M", "M", "M", "", "", "M", "", "M"]}, {"gun": "업무시설", "name": "금융업소, 사무소, 신문사, 오피스텔, 그 밖에 이와 유사한 용도의 시설(500제곱미터 이상만 해당한다)", "v": ["M", "M", "M", "M", "M", "M", "M", "R", "R", "", "", "", "", "", "", "", "R", "", "R"]}, {"gun": "업무시설", "name": "국민건강보험공단ㆍ국민연금공단ㆍ한국장애인고용공단ㆍ근로복지공단 및 그 지사(1000제곱미터 이상만 해당한다)", "v": ["M", "M", "M", "M", "M", "M", "M", "M", "M", "", "", "M", "M", "M", "", "", "M", "", "R"]}, {"gun": "숙박시설", "name": "일반숙박시설 및 생활숙박시설", "v": ["M", "R", "M", "M", "R", "R", "R", "R", "R", "", "", "", "", "M", "M", "", "R", "", ""]}, {"gun": "숙박시설", "name": "관광숙박시설", "v": ["M", "M", "M", "M", "M", "M", "M", "M", "M", "R", "", "M", "R", "M", "M", "", "R", "", "R"]}, {"gun": "공장", "name": "공장", "v": ["M", "M", "M", "M", "R", "R", "M", "M", "R", "R", "R", "", "", "R", "", "", "R", "", "R"]}, {"gun": "자동차관련시설", "name": "주차장", "v": ["M", "M", "M", "", "", "R", "", "", "", "", "", "", "", "", "", "", "", "", ""]}, {"gun": "자동차관련시설", "name": "운전학원", "v": ["M", "M", "M", "M", "M", "M", "M", "R", "R", "", "", "", "", "", "", "", "R", "", ""]}, {"gun": "방송통신시설", "name": "방송국, 그 밖에 이와 유사한 용도의 시설(1000제곱미터 이상만 해당한다)", "v": ["M", "M", "M", "M", "M", "M", "M", "R", "R", "", "", "", "R", "M", "", "", "", "", "R"]}, {"gun": "방송통신시설", "name": "전신전화국, 그 밖에 이와 유사한 용도의 시설(1000제곱미터 이상만 해당한다)", "v": ["M", "M", "M", "M", "M", "R", "M", "R", "R", "", "", "", "R", "M", "", "", "R", "", "R"]}, {"gun": "교정시설", "name": "교도소ㆍ구치소", "v": ["M", "M", "M", "M", "M", "M", "M", "R", "M", "", "", "R", "", "", "", "", "R", "R", "R"]}, {"gun": "묘지관련시설", "name": "화장시설, 봉안당(종교시설에 해당하는 것은 제외한다)", "v": ["M", "M", "M", "M", "R", "R", "M", "R", "R", "", "", "", "", "R", "", "", "", "", ""]}, {"gun": "관광휴게시설", "name": "야외음악당, 야외극장, 어린이회관, 그 밖에 이와 유사한 용도의 시설", "v": ["M", "M", "M", "M", "R", "R", "M", "R", "R", "", "", "", "R", "R", "", "R", "", "R", "R"]}, {"gun": "관광휴게시설", "name": "휴게소", "v": ["M", "M", "M", "M", "R", "R", "M", "R", "R", "", "", "", "R", "", "", "", "", "R", "M"]}, {"gun": "장례식장", "name": "장례식장", "v": ["M", "M", "M", "M", "M", "M", "M", "M", "M", "", "", "M", "R", "M", "", "", "", "R", "R"]}], "apt": [{"name": "아파트", "v": ["M", "M", "M", "M", "M", "M", "R", "R", "R", "R", "R", "R", "", "M", "R", "", "", "", ""], "note": ""}, {"name": "연립주택", "v": ["M", "M", "M", "M", "M", "R", "R", "R", "R", "R", "R", "R", "", "M", "R", "", "", "", ""], "note": "세대 수가 10세대 이상만 해당"}, {"name": "다세대주택", "v": ["M", "M", "M", "M", "M", "R", "R", "R", "R", "R", "R", "R", "", "M", "R", "", "", "", ""], "note": "세대 수가 10세대 이상만 해당"}, {"name": "기숙사", "v": ["M", "M", "M", "M", "M", "R", "M", "R", "M", "R", "R", "R", "", "M", "M", "", "", "", ""], "note": "기숙사가 2동 이상의 건축물로 이루어져 있는 경우 장애인용 침실이 설치된 동에만 적용한다. 다만, 장애인용 침실수는 전체 건축물을 기준으로 산정하며, 일반 침실의 경우 출입구(문)는 권장사항임"}], "std": [{"k": "(1) 장애인등의 통행이 가능한 접근로", "t": "(가) 대상시설 외부에서 건축물의 주출입구에 이르는 접근로는 장애인등이 안전하고 편리하게 통행할 수 있도록 유효폭·기울기와 바닥의 재질 및 마감등을 고려하여 설치하여야 한다.(나) 접근로를 (가)의 주출입구에 연결하여 시공하는 것이 구조적으로 곤란하거나 주출입구보다 부출입구가 장애인등의 이용에 편리하고 안전한 경우에는 주출입구 대신 부출입구에 연결하여 접근로를 설치할 수 있다."}, {"k": "(2) 장애인전용 주차구역", "t": "(가) 부설주차장에는 장애인전용 주차구역을 주차장법령이 정하는 설치비율에 따라 장애인의 이용이 편리한 위치에 구분·설치하여야 한다. 다만, 부설주차장의 주차대수가 10대 미만인 경우를 제외하며, 산정된 장애인전용주차구역의 주차대수중 소수점이하의 끝수는 이를 1대로 본다.(나) 자동차관련시설중 특별시장·광역시장·시장·군수 또는 구청장이 설치하는 노외주차장에는 장애인전용 주차구역을 주차장법령이 정하는 설치기준에 따라 장애인의 이용이 편리한 위치에 구분·설치하여야 한다."}, {"k": "(3) 높이차이가 제거된 건축물 출입구", "t": "(가) 건축물의 주출입구와 통로에 높이차이가 있는 경우에는 턱낮추기를 하거나 휠체어리프트 또는 경사로를 설치하여야 한다.(나) (가)의 주출입구의 높이차이를 없애는 것이 구조적으로 곤란하거나 주출입구보다 부출입구가 장애인등의 이용에 편리하고 안전한 경우에는 주출입구 대신 부출입구의 높이차이를 없앨 수 있다."}, {"k": "(4) 장애인등의 출입이 가능한 출입구 등", "t": "건축물의 주출입구와 건축물 안의 공중의 이용을 주목적으로 하는 사무실 등의 출입구(문) 중 적어도 하나는 장애인등의 출입이 가능하도록 유효폭ㆍ형태 및 부착물 등을 고려하여 설치하여야 한다. 이 경우 제7조의2제6호에 따른 국가 또는 지방자치단체의 청사(공중이 직접 이용하는 시설만 해당한다) 중 「건축법 시행령」 별표 1 제3호에 따른 제1종 근린생활시설에 해당하지 않는 시설의 경우에는 장애인등의 출입이 가능하도록 설치하는 출입구를 자동문 형태로 하여야 한다."}, {"k": "(5) 장애인등의 통행이 가능한 복도", "t": "복도는 장애인등의 통행이 가능하도록 유효폭, 바닥의 재질 및 마감과 부착물 등을 고려하여 설치하여야 한다."}, {"k": "(6) 장애인등의 통행이 가능한 계단, 장애인용 승강기, 장애인용 에스컬레이터, 휠체어리프트 또는 경사로", "t": "(가) 장애인등이 건축물의 1개 층에서 다른 층으로 편리하게 이동할 수 있도록 그 이용에 편리한 구조로 계단을 설치하거나 장애인용 승강기, 장애인용 에스컬레이터, 휠체어리프트(신축하는 경우에는 수직형 휠체어리프트를 설치하여야 한다) 또는 경사로를 1대 또는 1곳 이상 설치하여야 한다. 다만, 장애인등이 이용하는 시설이 1층에만 있는 경우에는 그러하지 않다.(나) (가)의 건축물 중 6층 이상의 연면적이 2천제곱미터 이상인 건축물(층수가 6층인 건축물로서 각 층 거실의 바닥면적 300제곱미터 이내마다 1개소 이상의 직통계단을 설치한 경우를 제외한다)의 경우에는 장애인용 승강기, 장애인용 에스컬레이터, 휠체어리프트(신축하는 경우에는 수직형 휠체어리프트를 설치하여야 한다) 또는 경사로를 1대 또는 1곳 이상 설치하여야 한다."}, {"k": "(7) 장애인 등의 이용이 가능한 화장실", "t": "장애인 등이 편리하게 이용할 수 있도록 구조, 바닥의 재질 및 마감과 부착물 등을 고려하여 설치하되, 장애인용 대변기는 남자용 및 여자용 각 1개 이상을 설치하여야 하며, 영유아용 거치대 등 임산부 및 영유아가 안전하고 편리하게 이용할 수 있는 시설을 구비하여 설치하여야 한다. 다만, 2024년 6월 1일부터 2025년 5월 31일까지 설치하는 경로당(「노인복지법」 제36조제1항제2호에 따른 경로당을 말한다)에는 영유아용 거치대를 설치하지 않을 수 있다."}, {"k": "(8) 장애인등의 이용이 가능한 욕실", "t": "욕실은 1개실 이상을 장애인등이 편리하게 이용할 수 있도록 구조, 바닥의 재질 및 마감과 부착물등을 고려하여 설치하여야 한다."}, {"k": "(9) 장애인등의 이용이 가능한 샤워실 및 탈의실", "t": "샤워실 및 탈의실은 1개이상을 장애인등이 편리하게 이용할 수 있도록 구조, 바닥의 재질 및 마감과 부착물 등을 고려하여 설치하여야 한다."}, {"k": "(10) 점자블록", "t": "건축물의 주출입구와 도로 또는 교통시설을 연결하는 보도에는 점자블록을 설치하여야 한다."}, {"k": "(11) 시각 및 청각장애인 유도·안내설비", "t": "(가) 시각장애인의 시설이용 편의를 위하여 건축물의 주출입구 부근에 점자안내판, 촉지도식 안내판, 음성안내장치 또는 그 밖의 유도신호장치를 점자블록과 연계하여 1개 이상 설치하여야 한다.(나) 삭제<2007.2.12>(다) 공원·근린공공시설·장애인복지시설·교육연구시설·공공업무시설, 시각장애인 밀집거주지역등 시각장애인의 이용이 많거나 타당성이 있는 설치요구가 있는 곳에는 교통신호기가 설치되어 있는 횡단보도에 시각장애인을 위한 음향신호기를 설치하여야 한다.(라) 청각장애인의 시설이용 편의를 위하여 청각장애인 등의 이용이 많은 곳에는 전자문자안내판 또는 기타 전자문자안내설비를 설치하여야 한다."}, {"k": "(12) 시각 및 청각장애인 경보·피난설비", "t": "(가) 시각 및 청각장애인등이 위급한 상황에 대피할 수 있도록 청각장애인용 피난구유도등·통로유도등 및 시각장애인용 경보설비 등을 설치하여야 한다.(나) 장애인등이 추락할 우려가 있는 경우에는 난간 등 추락방지설비를 갖추어야 한다."}, {"k": "(13) 장애인등의 이용이 가능한 객실 또는 침실", "t": "기숙사 및 숙박시설등의 전체 침실수 또는 객실의 1퍼센트 이상(관광숙박시설은 3퍼센트 이상)은 장애인등이 편리하게 이용할 수 있도록 구조, 바닥의 재질 및 마감과 부착물등을 고려하여 설치하되, 산정된 객실 또는 침실수 중 소수점 이하의 끝수는 이를 1실로 본다."}, {"k": "(14) 장애인등의 이용이 가능한 관람석, 열람석 또는 높이 차이가 있는 무대", "t": "(가) 공연장, 집회장, 관람장 및 도서관 등의 전체 관람석 또는 열람석 수의 1퍼센트 이상(전체 관람석 또는 열람석 수가 2천석 이상인 경우에는 20석 이상)은 장애인등이 편리하게 이용할 수 있도록 구조와 위치 등을 고려하여 설치하되, 산정된 관람석 또는 열람석 수 중 소수점 이하의 끝수는 이를 1석으로 본다.(나) 공연장, 집회장 및 강당 등에 설치된 무대에 높이 차이가 있는 경우에는 장애인등이 안전하게 이용할 수 있도록 경사로 및 휠체어리프트 등을 설치하여야 한다. 다만, 설치가 구조적으로 어려운 경우에는 이동식으로 설치할 수 있다."}, {"k": "(15) 장애인등의 이용이 가능한 접수대 또는 작업대", "t": "지역자치센터 및 장애인복지시설 등의 접수대 또는 작업대는 장애인등이 편리하게 이용할 수 있도록 형태·규격 등을 고려하여 설치하여야 한다. 다만, 동일한 장소에 각각 2대이상을 설치하는 경우에는 그 중 1대만을 장애인등의 이용을 고려하여 설치할 수 있다."}, {"k": "(16) 장애인등의 이용이 가능한 매표소·판매기 또는 음료대", "t": "매표소(장애인등의 이용이 가능한 자동발매기를 설치한 경우와 시설관리자등으로부터 별도의 상시서비스가 제공되는 경우를 제외한다)·판매기 및 음료대는 장애인등이 편리하게 이용할 수 있도록 형태·규격 및 부착물등을 고려하여 설치하여야 한다. 다만, 동일한 장소에 2곳 또는 2대이상을 각각 설치하는 경우에는 그 중 1곳 또는 1대만을 장애인 등의 이용을 고려하여 설치할 수 있다."}, {"k": "(17) 임산부 등을 위한 휴게시설 등", "t": "임산부와 영유아가 편리하고 안전하게 휴식을 취할 수 있도록 구조와 재질 등을 고려하여 휴게시설을 설치하고, 휴게시설 내에는 모유수유를 위한 별도의 장소를 마련하여야 한다. 다만, 「문화유산의 보존 및 활용에 관한 법률」에 따른 지정문화유산(보호구역을 포함한다)에 설치하는 시설물 및 「자연유산의 보존 및 활용에 관한 법률」에 따른 천연기념물등(보호구역을 포함한다)에 설치하는 시설물은 제외한다."}, {"k": "(2) 장애인전용주차구역", "t": "(가) 부설주차장에는 장애인전용주차구역을 주차장법령이 정하는 설치비율에 따라 장애인의 이용이 편리한 위치에 구분·설치하여야 한다. 다만, 부설주차장의 주차대수가 10대 미만인 경우를 제외하며, 산정된 장애인전용주차구역의 주차대수 중 소수점 이하의 끝수는 이를 1대로 본다.(나) 장애인전용주차구역은 입주한 장애인가구의 동별 거주현황 등을 고려하여 설치한다."}, {"k": "(4) 장애인등의 출입이 가능한 출입구(문)", "t": "(가) 건축물의 주출입구는 장애인등의 출입이 가능하도록 유효폭·형태 및 부착물 등을 고려하여 설치하여야 한다.(나) 장애인전용주택의 세대내 출입문은 장애인등의 출입이 가능하도록 유효폭·형태 및 부착물 등을 고려하여 설치할 수 있다."}, {"k": "(6) 장애인 등의 통행이 가능한 계단·장애인용 승강기, 장애인용 에스컬레이터, 휠체어리프트 또는 경사로", "t": "아파트는 장애인등이 건축물의 1개층에서 다른 층으로 편리하게 이동할 수 있도록 그 이용에 편리한 구조로 계단을 설치하거나 장애인용 승강기, 장애인용 에스컬레이터, 휠체어리프트 또는 경사로를 1대 또는 1곳 이상 설치하여야 한다."}, {"k": "(7) 장애인 등의 이용이 가능한 화장실 및 욕실", "t": "장애인전용주택의 화장실 및 욕실은 장애인등이 편리하게 이용할 수 있도록 구조, 바닥의 재질 및 마감과 부착물 등을 고려하여 설치할 수 있다."}, {"k": "(8) 점자블록", "t": "시각장애인을 위한 장애인전용주택의 주출입구와 도로 또는 교통시설을 연결하는 보도에는 점자블록을 설치할 수 있다."}, {"k": "(9) 시각 및 청각장애인 경보·피난설비", "t": "시각 및 청각장애인을 위한 장애인전용주택에는 위급한 상황에 대피할 수 있도록 청각장애인용 피난구유도등·통로유도등 및 시각장애인용 경보설비 등을 설치할 수 있다."}, {"k": "(10) 장애인 등의 이용이 가능한 부대시설 및 복리시설", "t": "(가) 「주택법」 제2조제12호에 따른 주택단지안의 관리사무소·경로당·의원·치과의원·한의원·조산소·약국·목욕장·슈퍼마켓, 일용품 등의 소매점, 일반음식점·휴게음식점·제과점·학원·금융업소·사무소 또는 사회복지관이 있는 건축물에 대하여는 제3호가목(1) 및 (3)부터 (7)까지의 규정을 적용한다. 다만, 당해 주택단지에 건설하는 주택의 총세대수가 300세대 미만인 경우에는 그러하지 아니하다.(나) 「주택법」 제2조제13호 또는 제14호에 따른 부대시설 및 복리시설 중 (가)에 따른 시설을 제외한 시설(별표 1 제2호 및 제4호에 따른 편의시설 설치 대상시설에 해당하는 경우로 한정한다)에 대해서는 용도 및 규모에 따라 별표 1 제2호 및 제4호에 따른 공공건물·공중이용시설 및 통신시설의 설치기준을 각각 적용한다."}], "rules": [{"label": "소매점 (수퍼마켓·일용품)", "gun": "제1종 근린생활시설", "bands": [{"min": 0, "max": 50, "row": "", "tag": "50㎡ 미만 — 비대상", "since": {"t": "", "x": false}}, {"min": 50, "max": 1000, "row": "수퍼마켓ㆍ일용품 등의 소매점, 이용원ㆍ미용원ㆍ목욕장", "tag": "50㎡↑ 1,000㎡미만 (1종근생)", "since": {"t": "신설·하향분: 2025.3.20.(연면적 2,000㎡↑)·2025.9.20.(2,000㎡미만) 시행. 시행일 이전 기존 건축물은 소급 적용 제외(증축별동·개축전부·재축 시 적용).", "x": true}}, {"min": 1000, "max": null, "row": "도매시장ㆍ소매시장ㆍ상점(1000제곱미터 이상만 해당한다)", "tag": "1,000㎡↑ (판매시설로 전환)", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "이용원·미용원", "gun": "제1종 근린생활시설", "bands": [{"min": 0, "max": 50, "row": "", "tag": "50㎡ 미만 — 비대상", "since": {"t": "", "x": false}}, {"min": 50, "max": null, "row": "수퍼마켓ㆍ일용품 등의 소매점, 이용원ㆍ미용원ㆍ목욕장", "tag": "50㎡↑", "since": {"t": "신설·하향분: 2025.3.20.(연면적 2,000㎡↑)·2025.9.20.(2,000㎡미만) 시행. 시행일 이전 기존 건축물은 소급 적용 제외(증축별동·개축전부·재축 시 적용).", "x": true}}], "note": ""}, {"label": "목욕장", "gun": "제1종 근린생활시설", "bands": [{"min": 0, "max": 300, "row": "", "tag": "300㎡ 미만 — 비대상", "since": {"t": "", "x": false}}, {"min": 300, "max": null, "row": "수퍼마켓ㆍ일용품 등의 소매점, 이용원ㆍ미용원ㆍ목욕장", "tag": "300㎡↑", "since": {"t": "신설·하향분: 2022.5.1. 시행. 시행일 이전 기존 건축물은 소급 적용 제외(증축별동·개축전부·재축 시 적용).", "x": true}}], "note": ""}, {"label": "휴게음식점·제과점", "gun": "제1종/제2종 근린생활시설", "bands": [{"min": 0, "max": 50, "row": "", "tag": "50㎡ 미만 — 비대상", "since": {"t": "", "x": false}}, {"min": 50, "max": 300, "row": "휴게음식점ㆍ제과점 등 음료ㆍ차ㆍ음식ㆍ빵ㆍ떡ㆍ과자 등을 조리하거나 제조하여 판매하는 시설", "tag": "50㎡↑ 300㎡미만 (1종근생)", "since": {"t": "신설·하향분: 2022.5.1. 시행. 시행일 이전 기존 건축물은 소급 적용 제외(증축별동·개축전부·재축 시 적용).", "x": true}}, {"min": 300, "max": null, "row": "일반음식점(300제곱미터 이상만 해당한다), 휴게음식점ㆍ제과점 등 음료ㆍ차ㆍ음식ㆍ빵ㆍ떡ㆍ과자 등을 조리하거나 제조하여 판매하는 시설", "tag": "300㎡↑ (2종근생)", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "일반음식점 (식당)", "gun": "제2종 근린생활시설", "bands": [{"min": 0, "max": 50, "row": "", "tag": "50㎡ 미만 — 비대상", "since": {"t": "", "x": false}}, {"min": 50, "max": 300, "row": "일반음식점(50제곱미터 이상 300제곱미터 미만만 해당한다)", "tag": "50㎡↑ 300㎡미만", "since": {"t": "신설·하향분: 2022.5.1. 시행. 시행일 이전 기존 건축물은 소급 적용 제외(증축별동·개축전부·재축 시 적용).", "x": true}}, {"min": 300, "max": null, "row": "일반음식점(300제곱미터 이상만 해당한다), 휴게음식점ㆍ제과점 등 음료ㆍ차ㆍ음식ㆍ빵ㆍ떡ㆍ과자 등을 조리하거나 제조하여 판매하는 시설", "tag": "300㎡↑", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "지역자치센터·파출소·우체국·보건소·공공도서관·공단지사 등", "gun": "제1종 근린생활시설", "bands": [{"min": 0, "max": 1000, "row": "지역자치센터, 파출소, 지구대, 소방서, 우체국, 방송국, 보건소, 공공도서관, 국민건강보험공단ㆍ국민연금공단ㆍ한국장애인고용공단ㆍ근로복지공단의 지사, 그 밖에 이와 유사한 용도의 시설", "tag": "1,000㎡미만", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "소방서·방송국 (1종근생)", "gun": "제1종 근린생활시설", "bands": [{"min": 0, "max": 1000, "row": "지역자치센터, 파출소, 지구대, 소방서, 우체국, 방송국, 보건소, 공공도서관, 국민건강보험공단ㆍ국민연금공단ㆍ한국장애인고용공단ㆍ근로복지공단의 지사, 그 밖에 이와 유사한 용도의 시설", "tag": "1,000㎡미만 (신설)", "since": {"t": "신설·하향분: 2025.3.20.(연면적 2,000㎡↑)·2025.9.20.(2,000㎡미만) 시행. 시행일 이전 기존 건축물은 소급 적용 제외(증축별동·개축전부·재축 시 적용).", "x": true}}, {"min": 1000, "max": null, "row": "방송국, 그 밖에 이와 유사한 용도의 시설(1000제곱미터 이상만 해당한다)", "tag": "1,000㎡↑ (방송국→방송통신시설)", "since": {"t": "신설·하향분: 2025.3.20.(연면적 2,000㎡↑)·2025.9.20.(2,000㎡미만) 시행. 시행일 이전 기존 건축물은 소급 적용 제외(증축별동·개축전부·재축 시 적용).", "x": true}}], "note": "방송국 1,000㎡↑는 방송통신시설로, 소방서 1,000㎡↑는 업무시설 등으로 별도 판단."}, {"label": "대피소", "gun": "제1종 근린생활시설", "bands": [{"min": 0, "max": null, "row": "대피소", "tag": "전부", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "공중화장실", "gun": "제1종 근린생활시설", "bands": [{"min": 0, "max": null, "row": "공중화장실", "tag": "전부", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "의원·치과의원·한의원·조산원·산후조리원", "gun": "제1종 근린생활시설", "bands": [{"min": 0, "max": 500, "row": "의원, 치과의원, 한의원, 침술원, 접골원, 조산원 및 산후조리원(500제곱미터 미만만 해당한다)", "tag": "500㎡미만", "since": {"t": "100㎡미만: 2025.3.20/9.20 시행(신설분). 100㎡이상~500㎡미만: 2022.5.1. 시행. 시행일 이전 기존 건축물은 소급 적용 제외(증축별동·개축전부·재축 시 적용).", "x": true}}, {"min": 500, "max": null, "row": "의원, 치과의원, 한의원, 조산원 및 산후조리원(500제곱미터 이상만 해당한다)", "tag": "500㎡↑", "since": {"t": "의원·치과·한의원 500㎡↑: 2005.7.1.부터 / 조산원·산후조리원 500㎡↑: 2008.1.1.부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "침술원·접골원", "gun": "제1종 근린생활시설", "bands": [{"min": 0, "max": null, "row": "의원, 치과의원, 한의원, 침술원, 접골원, 조산원 및 산후조리원(500제곱미터 미만만 해당한다)", "tag": "전부 (500㎡미만 기준 준용)", "since": {"t": "신설·하향분: 2025.3.20.(연면적 2,000㎡↑)·2025.9.20.(2,000㎡미만) 시행. 시행일 이전 기존 건축물은 소급 적용 제외(증축별동·개축전부·재축 시 적용).", "x": true}}], "note": "별표2 500㎡↑ 행은 침술원·접골원 미포함 — 면적 무관 500㎡미만 기준 준용."}, {"label": "지역아동센터", "gun": "제1종 근린생활시설", "bands": [{"min": 0, "max": 300, "row": "지역아동센터", "tag": "300㎡미만", "since": {"t": "신설·하향분: 2025.3.20.(연면적 2,000㎡↑)·2025.9.20.(2,000㎡미만) 시행. 시행일 이전 기존 건축물은 소급 적용 제외(증축별동·개축전부·재축 시 적용).", "x": true}}, {"min": 300, "max": null, "row": "지역아동센터", "tag": "300㎡↑", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "공연장 (소규모)", "gun": "제2종 근린생활시설 / 문화집회시설", "bands": [{"min": 0, "max": 500, "row": "공연장", "tag": "500㎡미만 (2종근생)", "since": {"t": "관람석 바닥면적 300~500㎡: 2018.1.30.부터 대상. 그 외 500㎡미만: 2025.3.20/9.20 시행(기존 소급제외).", "x": true}}, {"min": 500, "max": null, "row": "공연장 및 관람장", "tag": "500㎡↑ (문화 및 집회시설)", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "안마시술소", "gun": "제2종 근린생활시설", "bands": [{"min": 0, "max": 500, "row": "안마시술소", "tag": "500㎡미만", "since": {"t": "신설·하향분: 2025.3.20.(연면적 2,000㎡↑)·2025.9.20.(2,000㎡미만) 시행. 시행일 이전 기존 건축물은 소급 적용 제외(증축별동·개축전부·재축 시 적용).", "x": true}}, {"min": 500, "max": null, "row": "안마시술소", "tag": "500㎡↑", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "장의사", "gun": "제2종 근린생활시설", "bands": [{"min": 0, "max": null, "row": "장의사, 동물병원, 동물미용실, 동물위탁관리업을 위한 시설", "tag": "전부 (신설)", "since": {"t": "신설·하향분: 2025.3.20.(연면적 2,000㎡↑)·2025.9.20.(2,000㎡미만) 시행. 시행일 이전 기존 건축물은 소급 적용 제외(증축별동·개축전부·재축 시 적용).", "x": true}}], "note": ""}, {"label": "동물병원·동물미용실·동물위탁관리업", "gun": "제2종 근린생활시설", "bands": [{"min": 0, "max": 300, "row": "", "tag": "300㎡ 미만 — 비대상(적용기준)", "since": {"t": "", "x": false}}, {"min": 300, "max": null, "row": "장의사, 동물병원, 동물미용실, 동물위탁관리업을 위한 시설", "tag": "300㎡↑ (신설)", "since": {"t": "신설·하향분: 2025.3.20.(연면적 2,000㎡↑)·2025.9.20.(2,000㎡미만) 시행. 시행일 이전 기존 건축물은 소급 적용 제외(증축별동·개축전부·재축 시 적용).", "x": true}}], "note": ""}, {"label": "학원·교습소·직업훈련소", "gun": "제2종 근린생활시설 / 교육연구시설", "bands": [{"min": 0, "max": 500, "row": "학원, 교습소, 직업훈련소", "tag": "500㎡미만 (2종근생)", "since": {"t": "신설·하향분: 2025.3.20.(연면적 2,000㎡↑)·2025.9.20.(2,000㎡미만) 시행. 시행일 이전 기존 건축물은 소급 적용 제외(증축별동·개축전부·재축 시 적용).", "x": true}}, {"min": 500, "max": null, "row": "교육원ㆍ직업훈련소ㆍ학원, 그 밖에 이와 유사한 용도의 시설(500제곱미터 이상만 해당한다)", "tag": "500㎡↑ (교육연구시설)", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "독서실·기원", "gun": "제2종 근린생활시설", "bands": [{"min": 0, "max": null, "row": "독서실, 기원", "tag": "전부 (신설)", "since": {"t": "신설·하향분: 2025.3.20.(연면적 2,000㎡↑)·2025.9.20.(2,000㎡미만) 시행. 시행일 이전 기존 건축물은 소급 적용 제외(증축별동·개축전부·재축 시 적용).", "x": true}}], "note": ""}, {"label": "집회장 (예식장·회의장 등)", "gun": "문화 및 집회시설", "bands": [{"min": 0, "max": 500, "row": "", "tag": "500㎡ 미만 — 비대상", "since": {"t": "", "x": false}}, {"min": 500, "max": null, "row": "집회장", "tag": "500㎡↑", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "전시장 (박물관·미술관 등)", "gun": "문화 및 집회시설", "bands": [{"min": 0, "max": 500, "row": "", "tag": "500㎡ 미만 — 비대상", "since": {"t": "", "x": false}}, {"min": 500, "max": null, "row": "전시장, 동ㆍ식물원", "tag": "500㎡↑", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "동·식물원·수족관", "gun": "문화 및 집회시설", "bands": [{"min": 0, "max": 300, "row": "", "tag": "300㎡ 미만 — 비대상", "since": {"t": "", "x": false}}, {"min": 300, "max": null, "row": "전시장, 동ㆍ식물원", "tag": "300㎡↑", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "관람장 (경마장·경기장 등)", "gun": "문화 및 집회시설", "bands": [{"min": 0, "max": null, "row": "공연장 및 관람장", "tag": "전부", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "종교집회장 (교회·성당·사찰 등)", "gun": "종교시설", "bands": [{"min": 0, "max": 500, "row": "", "tag": "500㎡ 미만 — 비대상", "since": {"t": "", "x": false}}, {"min": 500, "max": null, "row": "종교집회장(교회ㆍ성당ㆍ사찰ㆍ기도원, 그 밖에 이와 유사한 용도의 시설을 말하며, 500제곱미터 이상만 해당한다)", "tag": "500㎡↑", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "판매시설 (도소매시장·상점)", "gun": "판매시설", "bands": [{"min": 0, "max": 1000, "row": "", "tag": "1,000㎡ 미만 — 비대상", "since": {"t": "", "x": false}}, {"min": 1000, "max": null, "row": "도매시장ㆍ소매시장ㆍ상점(1000제곱미터 이상만 해당한다)", "tag": "1,000㎡↑", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "병원·격리병원", "gun": "의료시설", "bands": [{"min": 0, "max": null, "row": "병원ㆍ격리병원", "tag": "전부", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "학교 (유치원 제외)", "gun": "교육연구시설", "bands": [{"min": 0, "max": null, "row": "학교(특수학교를 포함하며, 유치원은 제외한다)", "tag": "전부", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "유치원", "gun": "교육연구시설", "bands": [{"min": 0, "max": null, "row": "유치원", "tag": "전부", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "교육원·연수원·연구시설 학원", "gun": "교육연구시설", "bands": [{"min": 0, "max": 500, "row": "", "tag": "500㎡ 미만 — 비대상", "since": {"t": "", "x": false}}, {"min": 500, "max": null, "row": "교육원ㆍ직업훈련소ㆍ학원, 그 밖에 이와 유사한 용도의 시설(500제곱미터 이상만 해당한다)", "tag": "500㎡↑", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "도서관", "gun": "교육연구시설", "bands": [{"min": 0, "max": 1000, "row": "", "tag": "1,000㎡ 미만 — 비대상", "since": {"t": "", "x": false}}, {"min": 1000, "max": null, "row": "도서관(1000제곱미터 이상만 해당한다)", "tag": "1,000㎡↑", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "어린이집·아동복지시설", "gun": "노유자시설", "bands": [{"min": 0, "max": null, "row": "아동관련시설(어린이집ㆍ아동복지시설)", "tag": "전부", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "노인복지시설 (경로당 포함)", "gun": "노유자시설", "bands": [{"min": 0, "max": null, "row": "노인복지시설(경로당을 포함한다)", "tag": "전부", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "사회복지시설 (장애인복지시설 포함)", "gun": "노유자시설", "bands": [{"min": 0, "max": null, "row": "사회복지시설(장애인복지시설을 포함한다)", "tag": "전부", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "수련시설 (청소년수련관·유스호스텔 등)", "gun": "수련시설", "bands": [{"min": 0, "max": null, "row": "생활권수련시설, 자연권수련시설", "tag": "전부", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "운동시설 (체육관·운동장)", "gun": "운동시설", "bands": [{"min": 0, "max": 500, "row": "", "tag": "500㎡ 미만 — 비대상", "since": {"t": "", "x": false}}, {"min": 500, "max": null, "row": "운동시설(500제곱미터 이상만 해당한다)", "tag": "500㎡↑", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "국가·지자체 청사", "gun": "업무시설", "bands": [{"min": 0, "max": null, "row": "국가 또는 지방자치단체의 청사", "tag": "전부", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "금융업소·사무소·오피스텔 등", "gun": "업무시설", "bands": [{"min": 0, "max": 500, "row": "", "tag": "500㎡ 미만 — 비대상", "since": {"t": "", "x": false}}, {"min": 500, "max": null, "row": "금융업소, 사무소, 신문사, 오피스텔, 그 밖에 이와 유사한 용도의 시설(500제곱미터 이상만 해당한다)", "tag": "500㎡↑", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "공단·지사 (건보·국민연금 등)", "gun": "업무시설", "bands": [{"min": 0, "max": 1000, "row": "", "tag": "1,000㎡ 미만 — 비대상", "since": {"t": "", "x": false}}, {"min": 1000, "max": null, "row": "국민건강보험공단ㆍ국민연금공단ㆍ한국장애인고용공단ㆍ근로복지공단 및 그 지사(1000제곱미터 이상만 해당한다)", "tag": "1,000㎡↑", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "일반·생활숙박시설 (모텔·레지던스)", "gun": "숙박시설", "bands": [{"min": 0, "max": null, "row": "일반숙박시설 및 생활숙박시설", "tag": "객실 30실 이상", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": "객실 30실 미만은 대상 아님."}, {"label": "관광숙박시설 (호텔·호스텔 등)", "gun": "숙박시설", "bands": [{"min": 0, "max": null, "row": "관광숙박시설", "tag": "전부", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": "호스텔·관광호텔·휴양콘도 등 관광진흥법 관광숙박업."}, {"label": "공장 (장애인고용의무 사업주)", "gun": "공장", "bands": [{"min": 0, "max": null, "row": "공장", "tag": "해당 사업주 운영", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "주차장", "gun": "자동차관련시설", "bands": [{"min": 0, "max": null, "row": "주차장", "tag": "전부", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "운전학원", "gun": "자동차관련시설", "bands": [{"min": 0, "max": null, "row": "운전학원", "tag": "전부", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "방송국 (방송통신시설)", "gun": "방송통신시설", "bands": [{"min": 0, "max": 1000, "row": "", "tag": "1,000㎡ 미만 — 비대상(단, 1종근생 소방서·방송국 참조)", "since": {"t": "", "x": false}}, {"min": 1000, "max": null, "row": "방송국, 그 밖에 이와 유사한 용도의 시설(1000제곱미터 이상만 해당한다)", "tag": "1,000㎡↑", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "전신전화국", "gun": "방송통신시설", "bands": [{"min": 0, "max": 1000, "row": "", "tag": "1,000㎡ 미만 — 비대상", "since": {"t": "", "x": false}}, {"min": 1000, "max": null, "row": "전신전화국, 그 밖에 이와 유사한 용도의 시설(1000제곱미터 이상만 해당한다)", "tag": "1,000㎡↑", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "교도소·구치소", "gun": "교정시설", "bands": [{"min": 0, "max": null, "row": "교도소ㆍ구치소", "tag": "전부", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "화장시설·봉안당", "gun": "묘지관련시설", "bands": [{"min": 0, "max": null, "row": "화장시설, 봉안당(종교시설에 해당하는 것은 제외한다)", "tag": "전부", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "야외음악당·야외극장·어린이회관", "gun": "관광휴게시설", "bands": [{"min": 0, "max": 1000, "row": "", "tag": "1,000㎡ 미만 — 비대상", "since": {"t": "", "x": false}}, {"min": 1000, "max": null, "row": "야외음악당, 야외극장, 어린이회관, 그 밖에 이와 유사한 용도의 시설", "tag": "1,000㎡↑", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "휴게소", "gun": "관광휴게시설", "bands": [{"min": 0, "max": 300, "row": "", "tag": "300㎡ 미만 — 비대상", "since": {"t": "", "x": false}}, {"min": 300, "max": null, "row": "휴게소", "tag": "300㎡↑", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "장례식장", "gun": "장례식장", "bands": [{"min": 0, "max": 500, "row": "", "tag": "500㎡ 미만 — 비대상", "since": {"t": "", "x": false}}, {"min": 500, "max": null, "row": "장례식장", "tag": "500㎡↑", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "아파트", "gun": "공동주택", "bands": [{"min": 0, "max": null, "row": "APT:아파트", "tag": "전부", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "연립주택", "gun": "공동주택", "bands": [{"min": 0, "max": null, "row": "APT:연립주택", "tag": "10세대 이상", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "다세대주택", "gun": "공동주택", "bands": [{"min": 0, "max": null, "row": "APT:다세대주택", "tag": "10세대 이상", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "기숙사", "gun": "공동주택", "bands": [{"min": 0, "max": null, "row": "APT:기숙사", "tag": "30인 이상", "since": {"t": "종전부터 대상 (기존 건축물 포함).", "x": false}}], "note": ""}, {"label": "녹음실·촬영소 (별표1 미열거)", "gun": "기타·참고", "bands": [{"min": 0, "max": null, "row": "", "tag": "별표1 직접 열거 없음", "since": {"t": "", "x": false}}], "note": "편의증진법 별표1에 녹음실·촬영소 직접 열거 없음. 실제 사용형태(공연장·방송통신·업무 등)로 별도 판단 필요."}]}, COLS=D.cols, RULES=D.rules;
+const GROUPS=[["매개",0,3],["내부",3,3],["위생",6,5],["안내",11,3],["기타",14,5]];
+const GLABEL={"매개":"매개시설","내부":"내부시설","위생":"위생시설","안내":"안내시설","기타":"그 밖의 시설"};
+const grpEnd=new Set([2,5,10,13]);
+function pubByName(n){return D.pub.find(p=>p.name===n)}
+function aptByName(n){return D.apt.find(p=>p.name===n)}
+// ---- matrix ----
+function buildHead(){const th=document.getElementById('thead');
+ let r1='<tr><th class="gunh" rowspan="3">시설군</th><th class="nameh" rowspan="3">대상시설</th>';
+ GROUPS.forEach(g=>r1+=`<th class="grp-${g[0]}" colspan="${g[2]}">${GLABEL[g[0]]}</th>`);r1+='</tr>';
+ let r2='<tr>';for(let i=0;i<COLS.length;i++){if(i===6){r2+='<th class="grp-위생" colspan="3">화장실</th>';i=8;continue;}
+  const g=GROUPS.find(x=>i>=x[1]&&i<x[1]+x[2]);r2+=`<th rowspan="2" class="gcol grp-${g[0]}${grpEnd.has(i)?' grpsep':''}">${COLS[i]}</th>`;}r2+='</tr>';
+ let r3='<tr><th class="gcol grp-위생">대변기</th><th class="gcol grp-위생">소변기</th><th class="gcol grp-위생 grpsep">세면대</th></tr>';
+ th.innerHTML=r1+r2+r3;}
+function cellHTML(v,i){const s=grpEnd.has(i)?' grpsep':'';
+ if(v==='M')return`<td class="${s}"><span class="cell M">의무</span></td>`;
+ if(v==='R')return`<td class="${s}"><span class="cell R">권장</span></td>`;
+ return`<td class="${s}"><span class="cell N">–</span></td>`;}
+function buildBody(filter){const tb=document.getElementById('tbody');filter=(filter||'').trim().toLowerCase();
+ const groups=[];D.pub.forEach(p=>{const l=groups[groups.length-1];if(l&&l.gun===p.gun)l.items.push(p);else groups.push({gun:p.gun,items:[p]});});
+ groups.push({gun:'공동주택',items:D.apt});let rows='',shown=0;
+ groups.forEach(g=>{const items=g.items.filter(it=>!filter||(g.gun+it.name).toLowerCase().includes(filter));if(!items.length)return;
+  items.forEach((it,idx)=>{let tr='<tr>';if(idx===0)tr+=`<td class="gun" rowspan="${items.length}">${g.gun}</td>`;
+   const nm=it.note?`${it.name} <span style="color:var(--mut2);font-weight:400">· ${it.note}</span>`:it.name;
+   tr+=`<td class="name">${nm}</td>`;it.v.forEach((v,i)=>tr+=cellHTML(v,i));tr+='</tr>';rows+=tr;shown++;});});
+ tb.innerHTML=rows||'<tr><td colspan="21" style="padding:24px;color:var(--mut)">검색 결과가 없습니다.</td></tr>';
+ document.getElementById('foot').innerHTML=`표시 <b>${shown}</b>개 대상시설 · 편의시설 19종<br><b>비고</b> ① 소규모 근린생활시설은 신축·증축(별동)·개축(전부)·재축에만 하향 면적기준이 적용됩니다(2022.5.1~/2025.3.20~). ② 본 조견표는 별표2 의무/권장 구분표이며, 유효폭·기울기·규격 등 <b>구조·재질 세부기준은 시행규칙 별표1</b>에서 별도 확인. ③ 개별 면제·완화(시설주관기관 승인)·BF인증 의무는 별도 검토.`;}
+// ---- judge ----
+function buildSelect(){const s=document.getElementById('useSel');const byGun={};
+ RULES.forEach((r,i)=>{(byGun[r.gun]=byGun[r.gun]||[]).push([i,r.label]);});
+ let h='';Object.keys(byGun).forEach(g=>{h+=`<optgroup label="${g}">`;byGun[g].forEach(([i,l])=>h+=`<option value="${i}">${l}</option>`);h+='</optgroup>';});
+ s.innerHTML=h;}
+function oblList(v){ // merge 화장실 6,7,8
+ const out=[];const lvl=x=>x==='M'?2:(x==='R'?1:0);
+ for(let i=0;i<v.length;i++){
+   if(i===6){const t=Math.max(lvl(v[6]),lvl(v[7]),lvl(v[8]));if(t)out.push(['화장실',t===2?'M':'R']);i=8;continue;}
+   if(lvl(v[i]))out.push([COLS[i],v[i]]);
+ }return out;}
+function judge(){
+ const idx=+document.getElementById('useSel').value;const rule=RULES[idx];
+ const area=parseFloat(document.getElementById('area').value);
+ const act=document.getElementById('act').value;
+ const res=document.getElementById('res');
+ const a=isNaN(area)?0:area;
+ let band=rule.bands.find(b=>a>=b.min&&(b.max==null||a<b.max));
+ if(!band)band=rule.bands[rule.bands.length-1];
+ const isTarget=band.row!=="";
+ if(!isTarget){
+  res.innerHTML=`<div class="rescard"><div class="resh no">✕ 편의시설 설치 대상 아님</div><div class="resb">
+   <div class="rrow"><span class="k">용도</span><span class="v">${rule.gun} · ${rule.label}</span></div>
+   <div class="rrow"><span class="k">판정 근거</span><span class="v">${band.tag}</span></div>
+   ${rule.note?`<div class="since">${rule.note}</div>`:''}</div></div>`;return;}
+ const row=band.row.startsWith('APT:')?aptByName(band.row.slice(4)):pubByName(band.row);
+ const obl=oblList(row.v);
+ const M=obl.filter(o=>o[1]==='M'),R=obl.filter(o=>o[1]==='R');
+ const chips=arr=>arr.length?`<div class="taglist">${arr.map(o=>`<span class="tg ${o[1]}">${o[0]}</span>`).join('')}</div>`:'<span style="color:var(--mut2)">없음</span>';
+ // apply logic
+ let ab='',cls='';
+ if(band.since.x){
+   if(act==='new'){cls='a1';ab='① 개정기준 적용 — 아래 의무·권장 편의시설이 설치 대상입니다.';}
+   else{cls='a2';ab='② 기존 건축물 — 신설·하향분은 소급 적용이 제외될 수 있습니다. (시행일 이후 증축별동·개축전부·재축 시 개정기준 적용)';}
+ }else{cls='a3';ab='종전부터 대상 — 기존 건축물을 포함해 설치 대상입니다.';}
+ res.innerHTML=`<div class="rescard"><div class="resh ok">✓ 편의시설 설치 대상</div><div class="resb">
+   <div class="rrow"><span class="k">용도</span><span class="v">${rule.gun} · ${rule.label}</span></div>
+   <div class="rrow"><span class="k">별표1 근거</span><span class="v">${band.tag}</span></div>
+   <div class="rrow"><span class="k">매핑 (별표2)</span><span class="v"><b>${row.name}</b>${row.note?` <span style="color:var(--mut2)">· ${row.note}</span>`:''}</span></div>
+   <div class="rrow"><span class="k">의무 편의시설</span><span class="v">${chips(M)}</span></div>
+   <div class="rrow"><span class="k">권장 편의시설</span><span class="v">${chips(R)}</span></div>
+   <div class="applybox ${cls}">${ab}</div>
+   ${band.since.t?`<div class="since"><b>시행·적용</b> ${band.since.t}</div>`:''}
+   ${rule.note?`<div class="since">${rule.note}</div>`:''}
+   <button class="viewlink" data-view="${row.name}">→ 조견표에서 이 행 보기</button>
+ </div></div>`;
+ res.querySelector('.viewlink').addEventListener('click',e=>{
+   switchPanel('matrix');const q=document.getElementById('q');q.value=e.target.dataset.view.slice(0,10);buildBody(q.value);});
+}
+function switchPanel(name){document.querySelectorAll('.tbtn').forEach(x=>x.classList.toggle('active',x.dataset.panel===name));
+ document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));document.getElementById('p-'+name).classList.add('on');}
+document.querySelectorAll('.tbtn').forEach(b=>b.addEventListener('click',()=>switchPanel(b.dataset.panel)));
+document.getElementById('q').addEventListener('input',e=>buildBody(e.target.value));
+document.getElementById('xlsBtn').addEventListener('click',()=>{const wb=XLSX.utils.table_to_book(document.getElementById('tbl'),{raw:true});XLSX.writeFile(wb,'GRIDA_장애인등편의시설_조견표_별표2_2024.9.19.xlsx');});
+document.getElementById('goBtn').addEventListener('click',judge);
+const SIGN=[["가로형간판", "s", "자기 영업소에 붙이는 자가광고물이 조례가 정한 규모·수량 이하면 면제. 초과 시 신고."], ["세로형간판", "s", "자가광고물 규모 이하는 면제(조례). 초과 시 신고."], ["돌출간판", "h", "면제 거의 없음 — 규모와 무관하게 허가가 원칙."], ["옥상간판", "h", "면제 없음(허가 대상). 사용승인 받은 건물만 가능."], ["지주이용간판", "h/s", "높이 4m↑ 허가·4m 미만 신고. 소규모 자가는 조례상 면제 여지."], ["입간판", "s", "소규모 이동식 자가안내는 조례상 면제 가능, 보도 점용은 별도."], ["현수막", "s", "지정게시대·기간 내 신고. 그 외 게첨은 금지·강제철거·과태료."], ["창문이용광고물", "o/s", "유리창 규모 이하는 면제, 초과 시 신고(조례)."], ["공연간판", "h", "면제 없음(허가). 돌출폭 30cm(실물모형 70cm) 이하."], ["애드벌룬·선전탑·아치광고물", "h", "면제 없음 — 구조물형은 허가 대상."], ["벽보·전단", "s", "표시는 신고. 지정 장소 외 부착·배포는 금지(위반 과태료)."], ["디지털광고물", "h/o", "적용 가능 종류·자사광고 한정, 규모·표시는 조례."]];
+function badge(c){const m={h:'허가',s:'신고',o:'조례/제외'};return c.split('/').map(x=>`<span class="badge ${x}">${m[x]}</span>`).join('');}
+function buildSign(){document.getElementById('signbody').innerHTML=SIGN.map(r=>`<tr><td class="tn">${r[0]}</td><td class="tc">${badge(r[1])}</td><td>${r[2]}</td></tr>`).join('');}
+const SRC={access:'「장애인·노인·임산부 등의 편의증진 보장에 관한 법률」 시행령 <b>[별표1·2] 개정 2024. 9. 19.</b> · 소규모 적용기준 <b>2025. 3. 20. 시행</b> 반영',sign:'「옥외광고물 등의 관리와 옥외광고산업 진흥에 관한 법률」 <b>시행령 제3조(종류)·제4조(허가/신고)</b> · 규모·수량 상세는 시·도 조례'};
+document.querySelectorAll('.pnav button').forEach(b=>b.addEventListener('click',()=>{
+ document.querySelectorAll('.pnav button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+ document.querySelectorAll('.axis').forEach(a=>a.classList.remove('on'));document.getElementById('axis-'+b.dataset.axis).classList.add('on');
+ document.getElementById('srcline').innerHTML=SRC[b.dataset.axis];}));
+buildSign();
+buildHead();buildBody('');buildSelect();
+
+// ── 작품의뢰서(index.html) 연동: localStorage에서 조회된 의뢰서를 읽어 대상시설 판정기 세팅 ──
+(function applyActiveRequest(){
+  var reqParam=new URLSearchParams(location.search).get('req');
+  if(!reqParam) return;
+  var ban=document.getElementById('reqBanner'), txt=document.getElementById('reqBannerText');
+  function showBan(html){ if(ban){ txt.innerHTML=html; ban.style.display='flex';
+    var c=document.getElementById('reqBannerClear'); if(c) c.onclick=function(){ location.href=location.pathname; }; } }
+  var p=null; try{ p=JSON.parse(localStorage.getItem('grida_active')||'null'); }catch(e){}
+  if(!p||!p.data){ showBan('의뢰번호 '+reqParam+' 데이터를 찾지 못했습니다 — 작품의뢰서에서 조회 후 다시 여세요.'); return; }
+
+  // 별표1 호목 → ref04 RULES label
+  var MAP={"3가":"소매점 (수퍼마켓·일용품)","3나":"휴게음식점·제과점","3다":"이용원·미용원",
+    "3라":"의원·치과의원·한의원·조산원·산후조리원","4자":"일반음식점 (식당)","4아":"휴게음식점·제과점",
+    "4카":"학원·교습소·직업훈련소","10라":"교육원·연수원·연구시설 학원","4타":"독서실·기원",
+    "5가":"공연장 (소규모)","5나":"집회장 (예식장·회의장 등)","5다":"관람장 (경마장·경기장 등)","5라":"전시장 (박물관·미술관 등)",
+    "6가":"종교집회장 (교회·성당·사찰 등)","7가":"판매시설 (도소매시장·상점)","7나":"판매시설 (도소매시장·상점)",
+    "9가":"병원·격리병원","10가":"학교 (유치원 제외)","10나":"학교 (유치원 제외)","11가":"어린이집·아동복지시설",
+    "11나":"노인복지시설 (경로당 포함)","11다":"사회복지시설 (장애인복지시설 포함)","12가":"수련시설 (청소년수련관·유스호스텔 등)",
+    "13가":"운동시설 (체육관·운동장)","14가":"금융업소·사무소·오피스텔 등","14나":"금융업소·사무소·오피스텔 등",
+    "3자":"금융업소·사무소·오피스텔 등","4하":"금융업소·사무소·오피스텔 등",
+    "15가":"일반·생활숙박시설 (모텔·레지던스)","15나":"일반·생활숙박시설 (모텔·레지던스)",
+    "17":"공장 (장애인고용의무 사업주)","2가":"아파트","2나":"연립주택","2다":"다세대주택","2라":"기숙사",
+    "20":"주차장","24다":"녹음실·촬영소 (별표1 미열거)","28":"장례식장"};
+
+  var d=p.data;
+  function num(v){ var n=parseFloat(v); return isNaN(n)?null:n; }
+  function fire(el,t){ if(el) el.dispatchEvent(new Event(t,{bubbles:true})); }
+
+  var key=(d.uses&&((d.uses.targetUse&&d.uses.targetUse.key)||(d.uses.curUse&&d.uses.curUse.key)))||null;
+  var lbl=key?MAP[key]:null, idx=-1;
+  if(lbl){ for(var i=0;i<RULES.length;i++){ if(RULES[i].label===lbl){ idx=i; break; } } }
+  var sel=document.getElementById('useSel');
+  if(sel&&idx>=0){ sel.value=String(idx); fire(sel,'change'); }
+
+  var a=num(d.area), aEl=document.getElementById('area');
+  if(aEl&&a!=null){ aEl.value=a; fire(aEl,'input'); }
+  var g=num(d.grossArea), gEl=document.getElementById('gfa');
+  if(gEl&&g!=null){ gEl.value=g; fire(gEl,'input'); }
+
+  // 건축행위: 신축·개축전부·재축 = new / 그 외(대수선·부분증축·기존) = exist
+  var actEl=document.getElementById('act');
+  if(actEl){ var bt=(d.scope&&d.scope.baType)||''; actEl.value=(bt==='new'||bt==='rebuild'||bt==='restore')?'new':'exist'; fire(actEl,'change'); }
+
+  // 자동 판정 실행
+  try{ if(typeof judge==='function') judge(); }catch(e){}
+
+  var bits=[];
+  if(idx>=0) bits.push('용도('+lbl+')');
+  if(a!=null) bits.push('면적 '+a+'㎡');
+  if(g!=null) bits.push('연면적 '+g+'㎡');
+  var tail = idx>=0 ? ' 자동 입력·판정 완료.' : ' — 이 용도는 별표1 매핑이 없어 <b>용도는 직접 선택</b>하세요.';
+  showBan('작품의뢰서 <b>'+(p.reqno||reqParam)+'</b> 데이터 적용됨'+(bits.length?' — '+bits.join(' · '):'')+tail);
+})();
+</script><footer id="gridaCopyright" style="margin:44px auto 28px;max-width:920px;padding:16px 20px 0;border-top:1px solid #e5e5e5;text-align:center;font-size:11px;line-height:1.7;color:#9a9a9a;font-family:system-ui,-apple-system,'Malgun Gothic','Apple SD Gothic Neo',sans-serif;">
+  <div style="font-weight:700;color:#7a7a7a;letter-spacing:.02em;">© 2026 GRIDA_4U (그리드에이포유) · 당신을 위해 공간을 그리다</div>
+  <div style="margin-top:2px;"><a href="https://www.grida4u.com" target="_blank" rel="noopener" style="color:#7a7a7a;text-decoration:none;font-weight:700;">www.grida4u.com</a></div>
+  본 문서·양식·판정 로직 및 소스코드의 무단 복제·배포·2차 이용을 금합니다.<br>
+  Unauthorized reproduction, distribution, or derivative use is prohibited.
+</footer>
+</body></html>

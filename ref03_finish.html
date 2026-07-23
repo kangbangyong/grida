@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRIDA_4U 참고자료 ref03 · 내부마감자재 — 방화등급 · 실내건축 · 공기질</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"/>
+<style>
+  :root{
+    --ink:#1f2937; --sub:#6b7280; --line:#e5e7eb; --hair:#eceae4;
+    --accent:#14284a; --amber:#d97706; --fill:#fbfbfa; --paper:#ffffff;
+    --n1-bg:#e7edf2; --n1-tx:#002945; --n1-bd:#c4d2df;   /* 불연 */
+    --n2-bg:#faf0d8; --n2-tx:#8a5a05; --n2-bd:#ecd9ab;   /* 준불연 */
+    --n3-bg:#eaf1e2; --n3-tx:#4a6b2e; --n3-bd:#d2e0c0;   /* 난연 */
+    --req-bg:#fbeae8; --req-tx:#a8281b; --req-bd:#eecbc6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{ font-family:"Pretendard Variable","Pretendard","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;
+    color:var(--ink); background:var(--fill); line-height:1.5; -webkit-font-smoothing:antialiased; padding:0; }
+  .sheet{ max-width:1000px; margin:0 auto; background:transparent; border-radius:0;
+    box-shadow:none; overflow:visible; }
+
+  /* header (ref04 style) */
+  .hd{ background:transparent; color:var(--ink); padding:22px 20px 0; }
+  .hd .ki{ font-size:11px; letter-spacing:.14em; color:var(--amber); font-weight:700; text-transform:uppercase; }
+  .hd h1{ font-size:22px; font-weight:700; margin-top:6px; letter-spacing:-.02em; color:var(--accent); }
+  .hd h1 b{ color:var(--accent); font-weight:700; }
+  .hd .sub{ font-size:12px; color:var(--sub); margin-top:4px; line-height:1.55; }
+  .hd .sub b{ color:#1e3a5f; font-weight:700; }
+  .hd .msg{ display:block; margin-top:12px; padding-bottom:14px; border-bottom:2px solid var(--accent);
+    font-size:11.5px; font-weight:700; color:var(--sub); }
+
+  .body{ padding:24px 20px 80px; }
+  section{ margin-top:26px; }
+  section:first-child{ margin-top:6px; }
+  .sh{ display:flex; align-items:baseline; gap:7px; margin-bottom:12px; padding-left:10px; border-left:3px solid var(--accent); }
+  .sh .no{ color:var(--accent); font-size:15px; font-weight:900; flex-shrink:0; }
+  .sh .no::after{ content:' ·'; }
+  .sh .tt{ font-size:15px; font-weight:900; color:var(--accent); }
+  .sh .en{ font-size:10.5px; color:var(--sub); font-weight:600; letter-spacing:.03em; }
+  p.lead{ font-size:12.5px; color:var(--sub); line-height:1.65; margin-bottom:12px; }
+
+  table{ width:100%; border-collapse:collapse; font-size:12px; border:1px solid var(--hair); border-radius:10px; overflow:hidden; }
+  th,td{ padding:9px 10px; text-align:left; border-bottom:1px solid var(--hair); vertical-align:top; }
+  th{ background:var(--fill); font-weight:700; font-size:11px; color:var(--sub); }
+  tr:last-child td{ border-bottom:none; }
+  .center{ text-align:center; }
+
+  .grade{ display:inline-block; font-size:11px; font-weight:800; padding:3px 10px; border-radius:999px; white-space:nowrap; }
+  .g1{ background:var(--n1-bg); color:var(--n1-tx); border:1px solid var(--n1-bd); }
+  .g2{ background:var(--n2-bg); color:var(--n2-tx); border:1px solid var(--n2-bd); }
+  .g3{ background:var(--n3-bg); color:var(--n3-tx); border:1px solid var(--n3-bd); }
+
+  .ok{ color:var(--accent); font-weight:800; }
+  .no{ color:var(--req-tx); font-weight:800; }
+  .cond{ color:var(--n2-tx); font-weight:800; }
+
+  .mem{ margin-top:12px; background:var(--fill); border:1px solid var(--hair); border-radius:10px; padding:12px 14px; font-size:12px; line-height:1.7; }
+  .mem b{ color:var(--accent); }
+
+  .two{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .card{ border:1px solid var(--hair); border-radius:10px; padding:13px 15px; }
+  .card h4{ font-size:12.5px; font-weight:800; color:var(--accent); margin-bottom:7px; }
+  .card ul{ list-style:none; font-size:11.5px; line-height:1.7; color:var(--ink); }
+  .card ul li{ padding-left:11px; position:relative; }
+  .card ul li::before{ content:"·"; position:absolute; left:2px; color:var(--sub); }
+
+  .flow{ display:flex; align-items:stretch; gap:6px; flex-wrap:wrap; margin:10px 0; }
+  .flow .st{ flex:1; min-width:120px; border:1px solid var(--hair); border-radius:9px; padding:10px 11px; background:var(--fill); }
+  .flow .st .k{ font-size:10px; color:var(--sub); font-weight:700; }
+  .flow .st .v{ font-size:12px; font-weight:800; color:var(--accent); margin-top:3px; }
+  .flow .st .d{ font-size:10.5px; color:var(--sub); margin-top:3px; line-height:1.45; }
+  .flow .ar{ align-self:center; color:var(--line); font-weight:800; }
+
+  .note{ font-size:10.5px; color:var(--sub); line-height:1.6; margin-top:9px; padding-left:11px; text-indent:-11px; }
+  .warn{ margin-top:14px; background:var(--req-bg); border:1px solid var(--req-bd); border-radius:9px;
+    padding:11px 13px; font-size:11px; color:var(--req-tx); line-height:1.6; }
+
+  .ft{ border-top:1px solid var(--hair); margin-top:28px; padding-top:16px; font-size:10.5px; color:var(--sub); line-height:1.65; }
+  .ft b{ color:var(--ink); }
+  .ft .brand{ margin-top:10px; font-size:11px; color:var(--accent); font-weight:800; }
+
+  .xref{ margin-top:22px; border:1px dashed var(--n1-bd); background:var(--n1-bg); border-radius:11px; padding:13px 15px; }
+  .xref .xk{ font-size:12px; font-weight:800; color:var(--n1-tx); }
+  .xref .xb{ font-size:11.5px; color:var(--ink); line-height:1.65; margin-top:6px; }
+
+  .vs{ display:flex; align-items:stretch; gap:8px; margin:4px 0 14px; }
+  .vs .vsa,.vs .vsb{ flex:1; border:1px solid var(--hair); border-radius:10px; padding:10px 12px; background:var(--fill); }
+  .vs .vsa b,.vs .vsb b{ display:block; font-size:12px; color:var(--accent); }
+  .vs .vsa span,.vs .vsb span{ display:block; font-size:11px; color:var(--sub); margin-top:4px; line-height:1.5; }
+  .vs .vsx{ align-self:center; font-size:15px; font-weight:800; color:var(--line); }
+
+  .sic{ margin-top:16px; border:1.5px solid var(--n1-bd); border-radius:13px; overflow:hidden; background:#fff; }
+  .sic-h{ background:var(--n1-bg); padding:11px 15px; font-size:13px; font-weight:800; color:var(--n1-tx); border-bottom:1px solid var(--n1-bd); }
+  .sic-h span{ font-weight:600; color:var(--sub); font-size:11px; }
+  .sic-b{ padding:13px 15px; }
+  .sic-q{ margin-bottom:13px; }
+  .sic-q.hide{ display:none; }
+  .sic-qt{ font-size:12.5px; font-weight:700; color:var(--ink); }
+  .sic-hint{ font-size:10.5px; color:var(--sub); margin:3px 0 7px; line-height:1.5; }
+  .sic-opts{ display:flex; gap:7px; }
+  .sic-opts button{ flex:0 0 auto; min-width:64px; padding:7px 14px; border:1.5px solid var(--hair); background:var(--fill); border-radius:8px; font-size:12px; font-weight:700; color:var(--sub); cursor:pointer; font-family:inherit; transition:all .12s; }
+  .sic-opts button:hover{ border-color:var(--n1-bd); }
+  .sic-opts button.on{ background:var(--accent); border-color:var(--accent); color:#fff; }
+  .sic-res{ margin-top:4px; border-radius:10px; padding:13px 15px; font-size:12px; line-height:1.6; display:none; }
+  .sic-res.show{ display:block; }
+  .sic-res.excl{ background:var(--n2-bg); border:1px solid var(--n2-bd); }
+  .sic-res.ok{ background:var(--n1-bg); border:1px solid var(--n1-bd); }
+  .sic-res.neut{ background:var(--fill); border:1px solid var(--hair); }
+  .sic-res b.tag{ display:inline-block; padding:2px 9px; border-radius:20px; font-size:10.5px; margin-bottom:7px; }
+  .sic-res.excl b.tag{ background:var(--n2-tx); color:#fff; }
+  .sic-res.ok b.tag{ background:var(--n1-tx); color:#fff; }
+  .sic-res.neut b.tag{ background:var(--line); color:#fff; }
+  .sic-res ol{ margin:8px 0 0; padding-left:18px; }
+  .sic-res ol li{ margin:2px 0; font-size:11px; }
+  .sic-reset{ margin-top:10px; font-size:11px; color:var(--accent); background:none; border:none; cursor:pointer; font-family:inherit; text-decoration:underline; padding:0; }
+
+  .td{ border:1px solid var(--line); border-radius:12px; overflow:hidden; margin-bottom:26px; background:#fff; }
+  .td-h{ background:transparent; color:var(--accent); padding:16px 18px 0; font-size:14px; font-weight:800; }
+  .td-h span{ font-weight:400; color:var(--sub); font-size:12px; display:block; margin-top:4px; }
+  .td-in{ padding:15px 18px; display:flex; flex-wrap:wrap; gap:13px 18px; align-items:flex-end; border-bottom:1px solid var(--hair); }
+  .td-f{ display:flex; flex-direction:column; gap:4px; }
+  .td-f label{ font-size:11px; font-weight:700; color:var(--sub); }
+  .td-f select,.td-f input[type=number]{ font-family:inherit; font-size:13px; padding:8px 10px; border:1.5px solid var(--hair); border-radius:8px; background:var(--fill); color:var(--ink); }
+  .td-f select{ min-width:210px; }
+  .td-f input[type=number]{ width:120px; }
+  .td-cb{ display:flex; align-items:center; gap:6px; font-size:12px; font-weight:700; color:var(--ink); cursor:pointer; padding-bottom:8px; }
+  .td-res{ padding:16px 18px; display:none; }
+  .td-res.show{ display:block; }
+  .td-cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .td-c{ border:1px solid var(--hair); border-radius:11px; padding:13px; background:var(--fill); }
+  .td-c h5{ margin:0 0 8px; font-size:12px; font-weight:800; display:flex; align-items:center; gap:6px; }
+  .td-c .dot{ width:9px; height:9px; border-radius:50%; flex:0 0 auto; }
+  .td-c.yes{ background:var(--n1-bg); border-color:var(--n1-bd); } .td-c.yes .dot{ background:var(--n1-tx); }
+  .td-c.cond{ background:var(--n2-bg); border-color:var(--n2-bd); } .td-c.cond .dot{ background:var(--n2-tx); }
+  .td-c.no{ background:#fff; } .td-c.no .dot{ background:var(--line); }
+  .td-c p{ margin:0; font-size:11px; line-height:1.6; color:var(--ink); }
+  .td-c .badge{ display:inline-block; font-size:9.5px; font-weight:800; padding:1px 7px; border-radius:20px; margin-left:auto; }
+  .td-c.yes .badge{ background:var(--n1-tx); color:#fff; } .td-c.cond .badge{ background:var(--n2-tx); color:#fff; } .td-c.no .badge{ background:var(--line); color:#fff; }
+  .td-note{ margin-top:11px; font-size:10.5px; color:var(--sub); line-height:1.6; }
+  @media (max-width:640px){ .td-cards{ grid-template-columns:1fr; } .td-f select,.td-f input[type=number]{ width:100%; } }
+
+  .part{ display:flex; align-items:baseline; gap:10px; margin:36px 0 6px; padding-bottom:9px; border-bottom:2px solid var(--accent); }
+  .part.first{ margin-top:6px; }
+  .part .pn{ font-size:11.5px; font-weight:800; color:#fff; background:var(--accent); padding:3px 12px; border-radius:20px; letter-spacing:.02em; }
+  .part b{ font-size:16px; color:var(--ink); font-weight:800; }
+  .part .ps{ font-size:11px; color:var(--sub); font-weight:600; margin-left:auto; }
+  .part.close{ border-bottom-color:var(--line); }
+  .part.close .pn{ background:var(--line); }
+
+  @media (max-width:640px){ .two{ grid-template-columns:1fr; } .hd,.body{ padding-left:20px; padding-right:20px; } }
+  @media print{ body{ background:#fff; padding:0; } .sheet{ box-shadow:none; border-radius:0; max-width:none; } }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="hd">
+    <div class="ki">GRIDA_4U 참고자료 ref03 · 내부마감자재 · 감으로 하지 않는다</div>
+    <h1><b>내부마감자재</b> — 방화등급 · 실내건축 · 공기질</h1>
+    <div class="sub">건축법 <b>§52</b>(마감재료) · <b>§52의2</b>(실내건축) · 실내공기질관리법 — 인테리어가 실제로 만지는 마감 관련 법을 한 장에.</div>
+    <div class="msg">근거로 설계하고, 처음부터 견적에 담습니다</div>
+  </div>
+
+  <div class="body">
+
+    <div class="td" id="tdiag">
+      <div id="reqBanner" style="align-items:center;gap:10px;flex-wrap:wrap;background:#fef3e2;border:1px solid #f5d9a8;border-radius:10px;padding:10px 14px;margin-bottom:12px;font-size:12.5px;color:#7a4a08;display:none;">
+        <b id="reqBannerText" style="flex:1;min-width:200px;line-height:1.5;">작품의뢰서 데이터 적용됨</b>
+        <button id="reqBannerClear" style="font-size:11.5px;padding:4px 10px;border:1px solid #d97706;background:#fff;color:#b45309;border-radius:6px;cursor:pointer;font-family:inherit;font-weight:700;white-space:nowrap;">입력 지우기</button>
+      </div>
+      <div class="td-h">⚡ 프로젝트 자동진단<span>용도 + 면적을 넣으면 이 프로젝트에 걸리는 3축(마감등급 · 실내건축 · 공기질)을 한 번에 — 1차 스크리닝</span></div>
+      <div class="td-in">
+        <div class="td-f"><label>건축물 용도</label>
+          <select id="tdUse">
+            <option value="">— 선택 —</option>
+            <option value="cafe">휴게음식점·제과점 (카페·베이커리)</option>
+            <option value="rest">일반음식점</option>
+            <option value="bar">단란주점·유흥주점</option>
+            <option value="karaoke">노래연습장</option>
+            <option value="academy">학원</option>
+            <option value="pcbang">PC방 (인터넷컴퓨터게임)</option>
+            <option value="bath">목욕장·찜질방</option>
+            <option value="gosiwon">고시원 (다중생활시설)</option>
+            <option value="retailbig">대규모점포</option>
+            <option value="retail">일반 판매점</option>
+            <option value="cinema">영화상영관 (실내)</option>
+            <option value="expo">전시시설 (옥내)</option>
+            <option value="library">도서관</option>
+            <option value="museum">박물관·미술관</option>
+            <option value="clinic">의원 (일반 의료)</option>
+            <option value="hospital">종합병원</option>
+            <option value="elder">노인요양시설</option>
+            <option value="daycare">어린이집·실내놀이시설</option>
+            <option value="officetel">오피스텔</option>
+            <option value="office">일반 업무 (사무소)</option>
+            <option value="hotel">관광숙박시설</option>
+            <option value="apt">공동주택 (아파트)</option>
+          </select>
+        </div>
+        <div class="td-f"><label>해당 용도 면적 (㎡)</label><input type="number" id="tdArea" min="0" placeholder="예: 350"></div>
+        <div class="td-f"><label>층수</label><input type="number" id="tdFloor" min="1" placeholder="예: 3"></div>
+        <label class="td-cb"><input type="checkbox" id="tdBase"> 지하층에 설치</label>
+      </div>
+      <div class="td-res" id="tdRes"></div>
+    </div>
+
+    <script>(function(){
+      var USES={
+        cafe:{l:'휴게음식점·제과점', m52:'c', g6:false, m522:'food', iaq:null},
+        rest:{l:'일반음식점', m52:'c', g6:false, m522:'n', iaq:null},
+        bar:{l:'단란주점·유흥주점', m52:'y', g6:true, m522:'n', iaq:null},
+        karaoke:{l:'노래연습장', m52:'c', g6:false, m522:'n', iaq:null},
+        academy:{l:'학원', m52:'y', g6:true, m522:'n', iaq:1000},
+        pcbang:{l:'PC방', m52:'y', g6:false, m522:'n', iaq:300},
+        bath:{l:'목욕장·찜질방', m52:'c', g6:false, m522:'n', iaq:1000},
+        gosiwon:{l:'고시원', m52:'y', g6:false, m522:'n', iaq:null},
+        retailbig:{l:'대규모점포', m52:'y', g6:true, m522:'multi', iaq:'all'},
+        retail:{l:'일반 판매점', m52:'y', g6:true, m522:'multi', iaq:null},
+        cinema:{l:'영화상영관', m52:'y', g6:true, m522:'multi', iaq:'all'},
+        expo:{l:'전시시설', m52:'y', g6:true, m522:'multi', iaq:2000},
+        library:{l:'도서관', m52:'y', g6:true, m522:'n', iaq:3000},
+        museum:{l:'박물관·미술관', m52:'y', g6:true, m522:'multi', iaq:3000},
+        clinic:{l:'의원', m52:'y', g6:true, m522:'n', iaq:2000, v:true},
+        hospital:{l:'종합병원', m52:'y', g6:true, m522:'multi', iaq:2000, v:true},
+        elder:{l:'노인요양시설', m52:'y', g6:true, m522:'n', iaq:1000, v:true},
+        daycare:{l:'어린이집·실내놀이시설', m52:'y', g6:true, m522:'n', iaq:430, v:true},
+        officetel:{l:'오피스텔', m52:'y', g6:true, m522:'n', iaq:3000},
+        office:{l:'일반 업무(사무소)', m52:'n', g6:false, m522:'n', iaq:3000},
+        hotel:{l:'관광숙박시설', m52:'y', g6:true, m522:'multi', iaq:null},
+        apt:{l:'공동주택', m52:'y', g6:false, m522:'n', iaq:null}
+      };
+      var useEl=document.getElementById('tdUse'), areaEl=document.getElementById('tdArea'),
+          floorEl=document.getElementById('tdFloor'), baseEl=document.getElementById('tdBase'),
+          resEl=document.getElementById('tdRes');
+      function card(cls,title,badge,body){
+        return '<div class="td-c '+cls+'"><h5><span class="dot"></span>'+title+'<span class="badge">'+badge+'</span></h5><p>'+body+'</p></div>';
+      }
+      function calc(){
+        var u=USES[useEl.value]; if(!u){ resEl.className='td-res'; resEl.innerHTML=''; return; }
+        var area=parseFloat(areaEl.value)||0, floors=parseInt(floorEl.value)||0, base=baseEl.checked;
+
+        // ── 마감 §52 ──
+        var by5=(floors>=5 && area>=500), c1;
+        if(u.m52==='y' || by5){
+          var g = (u.g6||base||by5) ? '거실 벽·반자 <b>준불연↑</b>' : '거실 벽·반자 <b>난연↑</b>';
+          var extra = '피난 복도·계단 <b>준불연↑</b>' + (base?' · 지하 거실 <b>준불연↑</b>':'') + (by5&&!u.g6?' · 5층↑500㎡ 거실 준불연↑':'');
+          c1=card('yes','① 마감 (§52)','대상', g+' / '+extra+'. <b>§1·§2</b> 참조.');
+        } else if(u.m52==='c'){
+          c1=card('cond','① 마감 (§52)','조건부', '<b>다중이용업소이면</b> 마감 대상(§61①8호). 음식점 100㎡↑(지하 66㎡↑)·찜질방 등 → <b>ref01 다중이용업소 판정</b> 확인. 대상 시 거실 난연↑·피난 준불연↑.');
+        } else {
+          c1=card('no','① 마감 (§52)','비대상', '단독 용도로는 §61① 마감 대상 아님'+(floors>=5?'':' (단 5층↑ 거실 500㎡↑면 대상)')+'.');
+        }
+
+        // ── 실내건축 §52의2 ──
+        var c2;
+        if(u.m522==='multi'){
+          if(area>=5000 || floors>=16) c2=card('yes','② 실내건축 (§52의2)','대상', '<b>다중이용 건축물</b>(5천㎡↑ 또는 16층↑, 제1호). 제9조제3항 제외 <b>모든 기준</b>(제4~11조). <b>§6 판정기</b>.');
+          else c2=card('cond','② 실내건축 (§52의2)','확인', '다중이용건축물 용도지만 <b>5천㎡·16층 미달</b>. 분양건축물이면 대상(제2호). <b>§6 판정기</b>로 확정.');
+        } else if(u.m522==='food'){
+          c2=card('cond','② 실내건축 (§52의2)','조건부', '<b>거실을 칸막이로 구획</b>하면 제3호 완화 트랙(구조안전 확인·1.7m·30%). <b>§6 판정기</b>.');
+        } else {
+          c2=card('cond','② 실내건축 (§52의2)','확인', '<b>16층↑ 또는 분양건축물</b>이면 대상. 아니면 직접 대상 아님. <b>§6 판정기</b>로 확정.');
+        }
+
+        // ── 공기질 ──
+        var c3;
+        if(u.iaq===null){
+          c3=card('no','③ 공기질','비대상', '다중이용시설 유지·권고기준 대상 아님. 단 신축·개보수 시 <b>방출 건축자재 사용제한</b>(실내마크)은 별도 적용될 수 있음.');
+        } else if(u.iaq==='all'){
+          c3=card('yes','③ 공기질','대상', '다중이용시설 <b>전부 대상</b> → 유지·권고기준 + <b>방출 건축자재 사용제한</b>(실내마크). <b>§7</b> 참조.');
+        } else if(area>=u.iaq){
+          c3=card('yes','③ 공기질','대상', '연면적 <b>'+u.iaq+'㎡↑ 대상</b>'+(u.v?' 〔취약계층 강화〕':'')+' → 유지·권고기준 + 방출자재 사용제한. <b>§7</b> 참조.');
+        } else {
+          c3=card('cond','③ 공기질','미달', '기준 <b>'+u.iaq+'㎡</b> 미달 → 현재 유지기준 대상 아님. 단 신축·개보수 시 <b>방출자재 사용제한</b>은 적용.');
+        }
+
+        resEl.className='td-res show';
+        resEl.innerHTML='<div class="td-cards">'+c1+c2+c3+'</div>'
+          +'<div class="td-note">＊용도+면적 기반 <b>1차 스크리닝</b>입니다. 실제 판정은 각 섹션(§1·§6·§7)·ref01(다중이용업소/세부용도)로 확정하세요. 복합용도·무창층·상업지역 등은 별도 검토 필요.</div>';
+      }
+      [useEl,areaEl,floorEl].forEach(function(el){ el.addEventListener('input',calc); });
+      baseEl.addEventListener('change',calc);
+    })();</script>
+
+    <div class="part first"><span class="pn">PART 1</span> <b>마감재료</b> <span class="ps">§52 · 무슨 등급이냐</span></div>
+
+    <section>
+      <div class="sh"><span class="no">1</span><span class="tt">마감 규정 대상 건축물</span><span class="en">건축법 §52 · 시행령 §61</span></div>
+      <div class="two">
+        <div class="card">
+          <h4>내부 마감재료 (거실·피난동선)</h4>
+          <ul>
+            <li>문화집회 · 종교 · 판매 · 운수시설</li>
+            <li>의료 · 아동관련 · 노유자 · 수련시설</li>
+            <li>공동주택(아파트) · 다중이용업소(영업장)</li>
+            <li>창고 · 공장(위험물·소량화물 취급 등)</li>
+            <li>단독주택 중 다중주택 · 다가구주택</li>
+            <li>근생 중 목욕장 · 고시원 · 산후조리원 등</li>
+            <li>5층 이상 층의 거실 바닥면적 합계 500㎡ 이상</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>외부(외벽) 마감재료 — 준불연 이상</h4>
+          <ul>
+            <li><b>층수 3층 이상 또는 높이 9m 이상</b> (가장 넓게 적용 — 도심 빌딩·상가·빌라 대부분)</li>
+            <li>의료 · 수련 · 숙박(다중생활) · 학교 · 유치원 · 노유자시설 (층수 무관)</li>
+            <li>상업지역 내 근생·문화집회·판매·운동·위락 중 바닥면적 합계 2,000㎡ 이상</li>
+            <li>공장 · 창고(인접 대지 경계선 근접 등)</li>
+            <li>1층 전부·일부가 필로티 주차장인 건축물 (천장·벽면)</li>
+          </ul>
+        </div>
+      </div>
+      <p class="note">＊주요구조부가 내화구조 또는 불연재료이고 거실 바닥면적 200㎡ 이내마다 방화구획된 건축물은 내부 마감 규정에서 제외될 수 있습니다.</p>
+    </section>
+
+    <section>
+      <div class="sh"><span class="no">2</span><span class="tt">부위(구조)별 최소 등급</span><span class="en">피난방화규칙 §24</span></div>
+      <p class="lead">같은 건물이라도 부위에 따라 요구 등급이 달라집니다. 특히 <b>거실은 난연도 가능</b>하지만, <b>사람이 대피하는 피난동선은 난연이 금지</b>됩니다.</p>
+      <table>
+        <thead><tr><th>구조 부위</th><th class="center" style="width:60px">불연</th><th class="center" style="width:60px">준불연</th><th class="center" style="width:60px">난연</th><th style="width:150px">최소 등급</th></tr></thead>
+        <tbody>
+          <tr><td><b>거실 벽·천장(반자)</b> <span style="color:var(--sub);font-size:10.5px">(일반)</span></td><td class="center ok">O</td><td class="center ok">O</td><td class="center ok">O</td><td><span class="grade g3">난연 이상</span></td></tr>
+          <tr><td><b>특정용도 거실</b> <span style="color:var(--sub);font-size:10.5px">(문화집회·판매·의료·노유자·수련·오피스텔·숙박·위락·장례 = §61①6호)</span></td><td class="center ok">O</td><td class="center ok">O</td><td class="center no">X</td><td><span class="grade g2">준불연 이상</span></td></tr>
+          <tr><td><b>피난 계단·복도·통로</b></td><td class="center ok">O</td><td class="center ok">O</td><td class="center no">X</td><td><span class="grade g2">준불연 이상</span></td></tr>
+          <tr><td><b>지하층 거실</b></td><td class="center ok">O</td><td class="center ok">O</td><td class="center no">X</td><td><span class="grade g2">준불연 이상</span></td></tr>
+          <tr><td><b>외벽</b> <span style="color:var(--sub);font-size:10.5px">(3층↑ 또는 9m↑)</span></td><td class="center ok">O</td><td class="center ok">O</td><td class="center cond">△</td><td><span class="grade g2">준불연 이상</span></td></tr>
+        </tbody>
+      </table>
+      <p class="note">O 사용가능 · X 불가 · △ 조건부 — 일반 거실은 난연↑이나, <b>지하 거실</b>과 <b>특정용도(§61①6호) 거실</b>은 §24②에 따라 준불연↑로 강화됩니다(맨 위 자동진단이 이 구분을 반영). 외벽은 5층 이하이면서 높이 22m 미만일 때 화재확산방지구조 기준에 적합하면 난연 사용 가능(6층↑ 또는 22m↑는 불연·준불연만).</p>
+    </section>
+
+    <section>
+      <div class="sh"><span class="no">3</span><span class="tt">마감 방화등급 3형제 — 불연 · 준불연 · 난연</span></div>
+      <p class="lead">등급의 핵심은 “불에 얼마나 안 타느냐”입니다. 강도는 <b>불연 &gt; 준불연 &gt; 난연</b> 순이며, 시험(콘칼로리미터 가열)에서 견디는 시간이 등급을 가릅니다.</p>
+      <table>
+        <thead><tr><th style="width:88px">구분 · 등급</th><th style="width:150px">한 줄 정의</th><th>대표 재료</th><th style="width:150px">시험 기준(요약)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="grade g1">불연 · 1등급</span></td>
+            <td>불에 타지 않는 재료</td>
+            <td>콘크리트 · 석재 · 벽돌 · 기와 · 철강 · 알루미늄 · 유리 · 시멘트모르타르 · 회 · <b>석고보드 12.5T·15T(일반·방화)</b></td>
+            <td>불연성 시험(고온 가열) + 열방출·질량감소 기준 + 가스유해성 통과</td>
+          </tr>
+          <tr>
+            <td><span class="grade g2">준불연 · 2등급</span></td>
+            <td>불에 잘 타지 않는 재료 <span style="color:var(--n2-tx);font-weight:700">(10분 버팀)</span></td>
+            <td><b>일반 석고보드(9.5T)</b> · 미네랄울 · 가공 유리섬유 · 목모시멘트판 · 미네랄텍스</td>
+            <td>10분 가열 시 총열방출량 8MJ/㎡ 이하 + 가스유해성 통과</td>
+          </tr>
+          <tr>
+            <td><span class="grade g3">난연 · 3등급</span></td>
+            <td>가연성이나 확산을 늦추는 재료 <span style="color:var(--n3-tx);font-weight:700">(5분 지연)</span></td>
+            <td>난연처리 합판 · 난연 벽지 · 난연처리 목재 · 난연 플라스틱 판넬</td>
+            <td>5분 가열 시 열방출 기준 이하 + 가스유해성 통과</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="mem">쉽게 기억 — <b>불연</b>: 아예 안 탐 · <b>준불연</b>: 타긴 타도 버팀(10분) · <b>난연</b>: 불길 번짐을 늦춤(5분). ※ 등급 명칭은 난연1급=불연, 난연2급=준불연, 난연3급=난연으로도 부릅니다.</div>
+    </section>
+
+    <section>
+      <div class="sh"><span class="no">4</span><span class="tt">석고보드 — 12.5T부터 불연, ‘방화’는 내화·차음 성능 문제</span></div>
+      <p class="lead">석고보드 심재(석고)는 무기질 불연이라, <b>두께 12.5T·15T이면 일반·방화 구분 없이 불연재료(난연1급) 성적서</b>를 받습니다. 반대로 <b>9.5T 일반보드는 통상 불연 성적서가 나오지 않아 준불연</b>으로 봅니다. 즉 등급을 가르는 1차 변수는 ‘방화 여부’가 아니라 <b>‘12.5T 두께’</b>입니다.</p>
+      <table>
+        <thead><tr><th style="width:180px">종류 · 두께</th><th style="width:92px">재료 등급</th><th>비고</th></tr></thead>
+        <tbody>
+          <tr><td>일반 석고보드 <b>9.5T</b></td><td><span class="grade g2">준불연</span></td><td>가장 많이 쓰는 900×1800×9.5T. 단품 불연 성적서는 통상 미발급</td></tr>
+          <tr><td>일반 석고보드 <b>12.5T · 15T</b></td><td><span class="grade g1">불연</span></td><td>KCC·벽산·크나우프 등 <b>일반보드 12.5T·15T도 불연재료(난연1급) 시험성적서 보유</b> → 불연 요구 구간에 그대로 사용 가능</td></tr>
+          <tr><td>방화 석고보드 GB-F <b>12.5T↑</b></td><td><span class="grade g1">불연</span></td><td>불연 + 무기질섬유·내화재 보강. 재료 등급은 12.5T 일반과 동일한 불연이며, <b>내화구조·차음구조·다중이용업소 내부구획</b>용 성능판</td></tr>
+        </tbody>
+      </table>
+      <div class="mem"><b>① 재료 등급(불연/준불연)과 ② 내화구조 성능(시간)은 별개.</b> 12.5T·15T면 일반·방화 모두 <b>재료 등급은 불연</b>입니다. 다만 12.5T 두 겹 = 1시간, 19T 두 겹 = 2시간처럼 <b>내화시간</b>은 벽체 ‘조합(겹·심재)’으로 결정되며, 이 내화구조에는 심재가 보강된 <b>방화보드</b>를 씁니다. 겹을 늘린다고 9.5T가 불연이 되지는 않으며, 최종 판정은 언제나 제품 <b>시험성적서/인정서</b> 기준. &nbsp;※ 내화시간·내화구조 상세는 <b>ref02(소방피난안전)</b> 참조.</div>
+    </section>
+
+    <div class="xref">
+      <div class="xk">이 문서에서 빠진 항목 — <b>ref02 · 소방피난안전</b>으로 이동</div>
+      <div class="xb">내화구조 vs 방화구조 · 내화시간(별표1) · 방화구획(§49·시행령§46)은 마감재료가 아니라 <b>구조·구획</b> 주제라 ref02로 옮겼습니다. 위 마감(PART 1)의 “불연 마감을 하면 방화구획 면적이 완화(11층↑ 200→500㎡)”되는 이득도 ref02의 방화구획 편에서 다룹니다.</div>
+    </div>
+
+    <div class="part"><span class="pn">PART 2</span> <b>다중이용업소</b> <span class="ps">§10 실내장식물 · §10의2 내부구획</span></div>
+
+    <section>
+      <div class="sh"><span class="no">5</span><span class="tt">다중이용업소 — 실내장식물 · 내부구획 특칙</span><span class="en">다중이용업소법 §10 · §10의2</span></div>
+      <p class="lead">음식점·주점·노래연습장 등 다중이용업소는 건축법과 <b>별개로</b> 특별법이 추가 적용됩니다. ‘장식’과 ‘구획’의 요구 등급이 달라 현장에서 가장 자주 혼동되는 부분이에요.</p>
+      <table>
+        <thead><tr><th style="width:150px">구분</th><th style="width:120px">요구 등급</th><th>내용</th></tr></thead>
+        <tbody>
+          <tr><td><b>실내장식물</b><br><span style="color:var(--sub);font-size:10.5px">§10</span></td><td><span class="grade g2">불연 또는 준불연</span></td><td>천장·벽의 장식·마감(반자돌림대 등 폭 10cm 이하 제외)</td></tr>
+          <tr><td><b>영업장 내부구획</b><br><span style="color:var(--sub);font-size:10.5px">§10의2</span></td><td><span class="grade g1">불연재료</span></td><td>칸막이 <b>재료 등급</b>은 불연(12.5T↑). 구획 <b>범위</b>(반자 속까지 등)·내화충전·안전시설 기준은 <b>ref02(소방피난안전)</b> 참조</td></tr>
+        </tbody>
+      </table>
+      <div class="warn" style="background:var(--n2-bg);border-color:var(--n2-bd);color:var(--n2-tx);">💡 재료 등급 경고 — 내부구획을 준불연인 <b>일반 석고보드 9.5T</b>로 시공하면 §10의2의 ‘불연 구획’ 요건 미달로 지적됩니다. 불연 요건은 <b>12.5T·15T 석고보드(불연 성적서 보유)</b>면 일반보드로도 충족되며, 내화·차음이 함께 요구되면 <b>방화 석고보드</b>로 잡습니다. 처음부터 12.5T↑ 불연 구획으로 견적에 담아 ‘9.5T 위 덧대기 추가’를 막습니다. <span style="opacity:.85">＊구획 범위·반자속·관통부 내화충전 등 시공/안전 기준은 ref02.</span></div>
+    </section>
+
+    <div class="part"><span class="pn">PART 3</span> <b>실내건축</b> <span class="ps">§52의2 · 어떻게 시공·안전하냐</span></div>
+
+    <section>
+      <div class="sh"><span class="no">6</span><span class="tt">실내건축 — 마감·칸막이의 구조·시공 기준</span><span class="en">건축법 §52의2 · 시행령 §61의2 · 국토부 고시</span></div>
+      <p class="lead"><b>실내건축 = 내부공간을 칸막이로 구획하거나 벽지·천장재·바닥재·유리 등의 재료·장식물을 설치하는 것.</b> 인테리어 시공 그 자체를 규율하는 조항이라, 대상 건축물이면 마감·파티션·조형물이 모두 이 고시(「실내건축의 구조·시공방법 등에 관한 기준」)를 따라야 합니다.</p>
+      <div class="vs">
+        <div class="vsa"><b>§52 마감재료 — §1</b><span>무슨 <b>등급</b>이냐 · 불연·준불연·난연 재료 판정</span></div>
+        <div class="vsx">≠</div>
+        <div class="vsb"><b>§52의2 실내건축 — §6</b><span>어떻게 <b>시공·안전</b>하냐 · 고정·미끄럼·완충·난간·도면표시</span></div>
+      </div>
+      <p class="lead" style="margin-bottom:8px;">두 조문은 <b>대상 건축물 리스트가 부분적으로 겹칠 뿐</b>(예: 큰 판매시설은 양쪽 다 적용), 요구하는 <b>내용은 별개</b>입니다. 아래는 §52와 무관한 <b>§52의2 자체의 적용 대상</b>(고시 제2조)입니다.</p>
+      <table>
+        <thead><tr><th style="width:170px">§52의2 적용 대상</th><th>기준 · 적용 범위 (고시 제2조)</th></tr></thead>
+        <tbody>
+          <tr><td><b>① 다중이용 건축물</b><br><span style="color:var(--sub);font-size:10.5px">시행령 §2 17호</span></td><td>문화집회(전시장·동식물원 제외)·종교·판매·여객운수·종합병원·관광숙박 중 바닥면적 합계 <b>5,000㎡↑ 또는 16층↑</b> → <b>제9조제3항 제외</b>한 모든 기준</td></tr>
+          <tr><td><b>② 분양건축물</b><br><span style="color:var(--sub);font-size:10.5px">건축물분양법 §3</span></td><td>분양 바닥면적 3,000㎡↑ · 오피스텔 30실↑ · 생활숙박 30실↑ 등 → <b>제9조제3항 제외</b>한 모든 기준</td></tr>
+          <tr><td><b>③ 휴게음식점·제과점류</b><br><span style="color:var(--sub);font-size:10.5px">별표1 제3호나목·제4호아목</span></td><td>이들이 <b>칸막이로 거실 일부를 구획하는 경우만</b> → <b>제3조·제9조 적용</b>(거실 칸막이 완화 트랙)</td></tr>
+        </tbody>
+      </table>
+      <p class="note" style="margin-top:8px;">＊준다중이용 건축물·다중이용업소는 §61의2 대상이 <b>아닙니다</b>(§61 마감재료 대상과 혼동 주의). 위 ①②③에 안 걸리는 단독·공동·근생·문화집회 등은 <b>허가권자가 적용을 권고</b>할 수 있는 대상(고시 제2조②).</p>
+      <div class="two" style="margin-top:14px;">
+        <div class="card">
+          <h4>고시 조문별 요건 <span style="color:var(--sub);font-weight:600">— 제4~11조</span></h4>
+          <ul>
+            <li><b>제4조 마감</b> — 거실·복도·계단 벽·반자 방화등급(불연·준불연·난연)</li>
+            <li><b>제5조 바닥</b> — 진입부·복도·물쓰는 바닥 미끄럼방지, 단차 식별</li>
+            <li><b>제6조 난간</b> — 개방 계단·복도 난간 120cm↑, 어린이 살간격 10cm↓</li>
+            <li><b>제7조 완충</b> — 어린이·노약자 모서리 150cm↑ 완충/라운딩, 안전유리</li>
+            <li><b>제8조 출입문</b> — 유효너비 80cm↑, 속도제어·끼임방지, 자동문 수동개방</li>
+            <li><b>제9조①②</b> — 고정칸막이 통로 120cm↑, 구획실 통로 비꺾임</li>
+            <li><b>제10조 설비</b> — 배관 부식방지·환기·가스 기준 / <b>제11조</b> 피난·유도설비</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>거실 일부 칸막이 구획 <span style="color:var(--sub);font-weight:600">— 제9조제3항</span></h4>
+          <ul>
+            <li>상하 <b>2개 이하</b> · 바닥~천장 <b>높이 1.7m 이하</b></li>
+            <li>수평투영면적 = 해당 용도 바닥면적의 <b>30% 이내(최대 100㎡)</b></li>
+            <li>주요구조부와 <b>비영속·분리해체 가능</b>한 구조</li>
+            <li>구조안전은 <b>건축사 또는 건축구조기술사</b> 확인</li>
+            <li><b>열린공간구조</b>(피난 지장 없게) · 마감 불연·준불연·난연</li>
+            <li>평면도·단면도에 <b>구획 표시</b> → 허가·신고·사용승인·대장 변경</li>
+          </ul>
+        </div>
+      </div>
+      <p class="note">＊<b>‘거실 일부 칸막이 구획’(제9조제3항)은 휴게음식점·제과점류</b>(시행령 별표1 제3호나목·제4호아목)가 거실을 칸막이로 구획하는 경우에만 적용됩니다. <b>다중이용 건축물·분양건축물은 제9조제3항 제외</b>(나머지 고정·미끄럼·완충 등 기준만 적용).</p>
+
+      <div class="sic" id="sic">
+        <div class="sic-h">🧭 실내건축 기준 판정기 <span>— 고시 제2조 적용범위 · 우선순위 ①→②→③</span></div>
+        <div class="sic-b">
+          <div class="sic-q" data-q="q1">
+            <div class="sic-qt">Q1. <b>다중이용 건축물</b>인가?</div>
+            <div class="sic-hint">문화집회(전시장·동식물원 제외)·종교·판매·여객운수·종합병원·관광숙박 중 바닥면적 합계 5,000㎡↑ &nbsp;또는&nbsp; 층수 16층↑ (용도 무관)</div>
+            <div class="sic-opts"><button data-a="Y">예</button><button data-a="N">아니오</button></div>
+          </div>
+          <div class="sic-q hide" data-q="q2">
+            <div class="sic-qt">Q2. <b>분양건축물</b>인가?</div>
+            <div class="sic-hint">건축물분양법 §3 — 분양 바닥면적 3,000㎡↑ · 오피스텔 30실↑ · 생활숙박 30실↑ 등 (준공 전·중 분양)</div>
+            <div class="sic-opts"><button data-a="Y">예</button><button data-a="N">아니오</button></div>
+          </div>
+          <div class="sic-q hide" data-q="q3">
+            <div class="sic-qt">Q3. 용도가 <b>휴게음식점·제과점</b>인가?</div>
+            <div class="sic-hint">별표1 제3호나목·제4호아목 (카페·베이커리·디저트 등). 정확한 해당 여부는 ref01 세부용도 트리로 확인 · 일반음식점은 별도 목</div>
+            <div class="sic-opts"><button data-a="Y">예</button><button data-a="N">아니오</button></div>
+          </div>
+          <div class="sic-q hide" data-q="q4">
+            <div class="sic-qt">Q4. 거실을 <b>칸막이로 구획</b>(가로 또는 가로·세로)하려는가?</div>
+            <div class="sic-hint">홀을 나눠 부스·룸 등 반개방 공간을 만드는 경우</div>
+            <div class="sic-opts"><button data-a="Y">예</button><button data-a="N">아니오</button></div>
+          </div>
+          <div class="sic-res" id="sicRes"></div>
+          <button class="sic-reset" id="sicReset" style="display:none;">↺ 다시 판정</button>
+        </div>
+      </div>
+      <script>(function(){
+        var sic=document.getElementById('sic'); if(!sic)return;
+        var ans={}, order=['q1','q2','q3','q4'];
+        var res=document.getElementById('sicRes'), reset=document.getElementById('sicReset');
+        function qEl(q){return sic.querySelector('.sic-q[data-q="'+q+'"]');}
+        function show(q,on){qEl(q).classList.toggle('hide',!on);}
+        function render(){
+          // progressive reveal
+          show('q2', ans.q1==='N');
+          show('q3', ans.q1==='N'&&ans.q2==='N');
+          show('q4', ans.q1==='N'&&ans.q2==='N'&&ans.q3==='Y');
+          var v=verdict();
+          if(!v){res.className='sic-res';res.innerHTML='';reset.style.display='none';return;}
+          res.className='sic-res show '+v.tone;
+          res.innerHTML=v.html; reset.style.display='inline-block';
+        }
+        function verdict(){
+          if(ans.q1==='Y') return {tone:'excl',html:
+            '<b class="tag">실내건축 대상 · 제2조 제1호</b><br><b>다중이용 건축물</b>입니다. <b>제9조제3항(거실 칸막이 완화) 제외</b>, 나머지 실내건축 기준(제4조 마감·제5조 바닥·제6조 난간·제7조 완충·제8조 출입문·제9조①②·제10조 설비·제11조 피난유도) 모두 적용.<br><span style="color:var(--sub)">＊이 건물 안에 카페가 있어도 다중이용 건축물이 우선 — 거실 칸막이 완화 트랙은 못 씁니다.</span>'};
+          if(ans.q1==='N'&&ans.q2==='Y') return {tone:'excl',html:
+            '<b class="tag">실내건축 대상 · 제2조 제2호</b><br><b>분양건축물</b>입니다. <b>제9조제3항 제외</b>, 나머지 실내건축 기준 모두 적용.<br><span style="color:var(--sub)">＊수분양자 보호 목적 — 개발자가 거실을 임의 칸막이로 나눠 도면 표시하는 완화는 불가.</span>'};
+          if(ans.q1==='N'&&ans.q2==='N'&&ans.q3==='Y'){
+            if(ans.q4===undefined) return null;
+            if(ans.q4==='Y') return {tone:'ok',html:
+              '<b class="tag">실내건축 대상 · 제2조 제3호 · 완화 트랙</b><br><b>휴게음식점·제과점 + 거실 칸막이 구획</b> → 제3조·제9조 적용. 아래 <b>제9조제3항 9개 조건</b>을 충족하고 도면에 표시하면 허가·신고로 인정:'
+              +'<ol><li>구획 공간 상·하 2개 이하 · 높이 1.7m 이하</li><li>주요구조부와 비영속 · 분리·해체 가능</li><li>수평투영면적 = 해당 용도 바닥면적 30% 이내(최대 100㎡)</li><li>구조안전 확인 — 건축사 또는 건축구조기술사</li><li>열린공간구조(피난 지장 없게)</li><li>칸막이 마감 불연·준불연·난연(주요구조부 내화+스프링클러면 예외)</li><li>돌출부 완충재 또는 모서리 라운딩</li><li>계단·경사로 미끄럼방지·식별표시</li><li>안전난간·안전시설(난간 높이 1/2 완화 가능)</li></ol>'};
+            return {tone:'neut',html:
+              '<b class="tag">해당 없음(현재)</b><br>제3호는 <b>칸막이로 거실을 구획할 때만</b> 대상입니다. 칸막이 구획을 안 하면 실내건축 고시 <b>직접 대상 아님</b>.<br><span style="color:var(--sub)">＊단 허가권자가 적용을 권고할 수 있음(제2조②).</span>'};
+          }
+          if(ans.q1==='N'&&ans.q2==='N'&&ans.q3==='N') return {tone:'neut',html:
+            '<b class="tag">직접 대상 아님</b><br>①다중이용 ②분양 ③휴게음식점·제과점 어디에도 안 걸립니다 → 실내건축 고시 <b>직접 대상 아님</b>.<br><span style="color:var(--sub)">＊허가권자가 단독·공동·근생·문화집회 등에 기준 전부·일부 적용을 <b>권고</b>할 수 있음(제2조②).</span>'};
+          return null;
+        }
+        sic.querySelectorAll('.sic-q').forEach(function(qd){
+          var q=qd.getAttribute('data-q');
+          qd.querySelectorAll('.sic-opts button').forEach(function(btn){
+            btn.addEventListener('click',function(){
+              ans[q]=btn.getAttribute('data-a');
+              qd.querySelectorAll('button').forEach(function(b){b.classList.toggle('on',b===btn);});
+              // clear downstream answers when an upstream changes
+              var i=order.indexOf(q);
+              for(var j=i+1;j<order.length;j++){ delete ans[order[j]];
+                qEl(order[j]).querySelectorAll('button').forEach(function(b){b.classList.remove('on');}); }
+              render();
+            });
+          });
+        });
+        reset.addEventListener('click',function(){
+          ans={}; sic.querySelectorAll('.sic-opts button').forEach(function(b){b.classList.remove('on');});
+          render();
+        });
+        render();
+      })();
+
+// ── 작품의뢰서(index.html) 연동: localStorage에서 조회된 의뢰서를 읽어 프로젝트 자동진단 세팅 ──
+(function applyActiveRequest(){
+  var reqParam=new URLSearchParams(location.search).get('req');
+  if(!reqParam) return;
+  var ban=document.getElementById('reqBanner'), txt=document.getElementById('reqBannerText');
+  function showBan(html){ if(ban){ txt.innerHTML=html; ban.style.display='flex';
+    var c=document.getElementById('reqBannerClear'); if(c) c.onclick=function(){ location.href=location.pathname; }; } }
+  var p=null; try{ p=JSON.parse(localStorage.getItem('grida_active')||'null'); }catch(e){}
+  if(!p||!p.data){ showBan('의뢰번호 '+reqParam+' 데이터를 찾지 못했습니다 — 작품의뢰서에서 조회 후 다시 여세요.'); return; }
+
+  // 별표1 호목 → ref03 진단 카테고리
+  var MAP={"3나":"cafe","4아":"cafe","4자":"rest","16가":"bar","16나":"bar","4더":"bar","4러":"karaoke",
+    "4카":"academy","10라":"academy","4사":"pcbang","3다":"bath","4거":"gosiwon","15다":"gosiwon",
+    "7가":"retailbig","7나":"retailbig","3가":"retail","5가":"cinema","5라":"expo","3라":"clinic",
+    "9가":"hospital","11가":"daycare","11나":"elder","14나":"officetel","3자":"office","4하":"office",
+    "14가":"office","15가":"hotel","15나":"hotel","2가":"apt"};
+
+  var d=p.data;
+  function num(v){ var n=parseFloat(v); return isNaN(n)?null:n; }
+  function fire(el,t){ if(el) el.dispatchEvent(new Event(t,{bubbles:true})); }
+
+  var key=(d.uses&&((d.uses.targetUse&&d.uses.targetUse.key)||(d.uses.curUse&&d.uses.curUse.key)))||null;
+  var cat=key?MAP[key]:null;
+  var useEl=document.getElementById('tdUse');
+  if(useEl&&cat){ useEl.value=cat; fire(useEl,'change'); }
+
+  var a=num(d.area), aEl=document.getElementById('tdArea');
+  if(aEl&&a!=null){ aEl.value=a; fire(aEl,'input'); fire(aEl,'change'); }
+
+  var fl=num(d.totalFloors)||num(d.floorsAbove), fEl=document.getElementById('tdFloor');
+  if(fEl&&fl!=null){ fEl.value=fl; fire(fEl,'input'); fire(fEl,'change'); }
+
+  var bEl=document.getElementById('tdBase');
+  if(bEl&&d.floorType==='지하'){ bEl.checked=true; fire(bEl,'change'); }
+
+  var bits=[];
+  if(cat&&useEl){ var o=useEl.options[useEl.selectedIndex]; bits.push('용도('+(o?o.textContent.trim():cat)+')'); }
+  if(a!=null) bits.push('면적 '+a+'㎡');
+  if(fl!=null) bits.push(fl+'층');
+  if(d.floorType==='지하') bits.push('지하층');
+  var tail = cat ? ' 자동 입력.' : ' — 이 용도는 진단 목록에 없어 <b>용도는 직접 선택</b>하세요.';
+  showBan('작품의뢰서 <b>'+(p.reqno||reqParam)+'</b> 데이터 적용됨'+(bits.length?' — '+bits.join(' · '):'')+tail);
+})();
+</script>
+      <div class="mem"><b>GRIDA 포인트</b> — 마감·장식물 고정, 미끄럼방지, 완충 같은 <b>일반 시공기준</b>은 다중이용 건축물·분양건축물 등 §52의2 대상 전반에 걸립니다. 반면 위 <b>‘거실 일부 칸막이 구획’ 완화(구조안전 확인·1.7m·30%)는 휴게음식점·제과점류에만</b> 적용돼요(그마저도 큰 건물이 다중이용·분양건축물이면 제외). 우리가 <b>카페·베이커리 홀을 나눠 부스/룸을 짤 때</b>가 정확히 이 트랙 — 칸막이 <b>1.7m 초과·면적 초과·상하 3개↑</b>가 되면 완화를 벗어나 별도 구획·구조·대수선 검토가 필요하니, 처음부터 도면에 구획을 표기하고 구조안전 확인을 견적에 담습니다.</div>
+      <p class="note">＊지자체는 실내건축이 적정하게 설치·시공되었는지 검사할 수 있으며, 검사 대상 건축물과 주기는 건축조례로 정합니다(법 §52의2③).</p>
+    </section>
+
+    <div class="part"><span class="pn">PART 4</span> <b>실내공기질</b> <span class="ps">실내공기질 관리법</span></div>
+
+    <section>
+      <div class="sh"><span class="no">7</span><span class="tt">실내공기질 — 유지·권고기준 &amp; 방출 건축자재 사용제한</span><span class="en">실내공기질 관리법 §5·§6·§9·§11·§12</span></div>
+      <p class="lead">§52(마감재료)는 “<b>실내공기질 유지·권고기준을 고려</b>해” 재료를 정하도록 이 법과 연결돼 있습니다. 다만 유지·권고기준은 <b>운영자의 관리 의무</b>(측정·환기)이고, 인테리어가 실제로 통제하는 지점은 <b>어떤 자재를 쓰느냐</b> — 즉 <b>오염물질 방출 건축자재 사용제한</b>입니다.</p>
+
+      <div class="sh" style="margin-top:2px;"><span class="tt" style="font-size:13px;">실내공기질 관리 체계 — 관리축</span></div>
+      <table>
+        <thead><tr><th style="width:180px">관리축 (근거)</th><th style="width:86px">성격</th><th>핵심</th></tr></thead>
+        <tbody>
+          <tr><td><b>① 다중이용시설 유지·권고기준</b><br><span style="color:var(--sub);font-size:10.5px">§5·§6·§12</span></td><td><span class="grade g1">의무</span>+<span class="grade g3">권고</span></td><td>지하역사·터미널·의료·도서관·박물관·PC방 등. <b>유지</b>: PM-10·PM-2.5·CO₂·HCHO·총부유세균·CO / <b>권고</b>: NO₂·라돈(148Bq/㎥)·TVOC·곰팡이. 취약계층(의료·산후조리·노인·어린이) PM-10 75·PM-2.5 35·HCHO 80 강화</td></tr>
+          <tr><td><b>② 방출 건축자재 사용제한</b><br><span style="color:var(--sub);font-size:10.5px">§11 · §11의6 실내마크</span></td><td><span class="grade g1">의무</span></td><td><b>★ 인테리어 직접 대상</b> — 아래 상세</td></tr>
+          <tr><td><b>③ 신축 공동주택 측정·공고</b><br><span style="color:var(--sub);font-size:10.5px">§9</span></td><td><span class="grade g1">의무</span></td><td>시공자가 준공 후 실내공기질 <b>측정 → 지자체 제출 → 입주 전 공고</b></td></tr>
+          <tr><td><b>④ 라돈 관리</b><br><span style="color:var(--sub);font-size:10.5px">§11의7</span></td><td><span class="grade g2">조사·계획</span></td><td>실내라돈조사 · 라돈관리계획 수립</td></tr>
+          <tr><td><b>⑤ 대중교통차량</b><br><span style="color:var(--sub);font-size:10.5px">§9의2·3</span></td><td><span class="grade g3">권고</span></td><td>지하철·버스 등 (인테리어 무관)</td></tr>
+          <tr><td><b>⑥ 학교</b><br><span style="color:var(--sub);font-size:10.5px">학교보건법 §5 (별도 법)</span></td><td><span class="grade g1">의무</span></td><td>학교건물 공기질 유지·관리기준 및 환기 관리기준</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sh" style="margin-top:18px;"><span class="tt" style="font-size:13px;">다중이용시설 관리대상 — 규모 기준</span><span class="en">§3① · 시행령 §2①</span></div>
+      <p class="lead" style="margin-bottom:8px;">유지·권고기준(①)이 적용되는 시설과 규모 기준입니다(GRIDA 관련 위주 발췌). 이 규모 이상이면 소유자·관리자에게 자가측정·환기 의무가 생깁니다.</p>
+      <table>
+        <thead><tr><th style="width:230px">시설</th><th>규모 기준</th></tr></thead>
+        <tbody>
+          <tr><td><b>대규모점포 · 영화상영관</b>(실내)</td><td>전부</td></tr>
+          <tr><td><b>도서관 · 박물관 · 미술관 · 업무시설</b></td><td>연면적 3,000㎡ 이상</td></tr>
+          <tr><td><b>전시시설</b>(옥내) · <b>실내주차장</b>(기계식 제외)</td><td>연면적 2,000㎡ 이상</td></tr>
+          <tr><td><b>학원 · 목욕장업 · 장례식장</b>(지하)</td><td>연면적 1,000㎡ 이상</td></tr>
+          <tr><td><b>PC방</b>(인터넷컴퓨터게임시설제공업)</td><td>연면적 300㎡ 이상</td></tr>
+          <tr><td><b style="color:var(--n2-tx)">〔취약계층〕 의료기관</b></td><td>연면적 2,000㎡ 이상 또는 병상 100개 이상</td></tr>
+          <tr><td><b style="color:var(--n2-tx)">〔취약계층〕 노인요양시설</b></td><td>연면적 1,000㎡ 이상</td></tr>
+          <tr><td><b style="color:var(--n2-tx)">〔취약계층〕 어린이집 · 실내어린이놀이시설</b></td><td>연면적 430㎡ 이상</td></tr>
+          <tr><td><b style="color:var(--n2-tx)">〔취약계층〕 산후조리원</b></td><td>전부</td></tr>
+        </tbody>
+      </table>
+      <p class="note">＊교통시설도 대상 — 지하역사 전부 / 지하도상가·철도역사·여객터미널 대합실 2,000㎡↑ / 항만 대합실 5,000㎡↑ / 공항 여객터미널 1,500㎡↑. &nbsp;〔취약계층〕 시설은 PM-10·PM-2.5·폼알데하이드 유지기준이 강화됩니다. &nbsp;<b>2027.1.8 개정 시행 예정</b> — 대상·기준 변동 가능(국가법령정보센터 확인).</p>
+
+      <div class="mem" style="margin-top:12px;"><b>이산화탄소(CO₂)</b> 유지기준은 1,000ppm 이하가 기본이나, 자연환기가 어려워 기계·자연환기설비를 쓰는 <b>도서관·영화상영관·학원·PC방</b> 등은 1,500ppm 이하로 적용됩니다.</div>
+
+      <div class="sh" style="margin-top:20px;"><span class="tt" style="font-size:13.5px;">방출 건축자재 사용제한 — 자재 7종 × 물질 3종</span></div>
+      <p class="lead">기후에너지환경부가 고시한 <b>7종 마감자재</b>는 실내에 쓰기 전 <b>3종 오염물질</b> 방출량이 기준 이하여야 하고, 시험기관 <b>방출 확인</b>(§11의2)을 받아야 합니다.</p>
+      <div class="two">
+        <div class="card">
+          <h4>대상 자재 7종</h4>
+          <ul>
+            <li>접착제 · 페인트 · 실란트 · 퍼티</li>
+            <li>벽지 · 바닥재</li>
+            <li>목질판상제품(표면가공) <span style="color:var(--sub)">— 2020.1.1 편입</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>관리물질 3종 · 방출기준</h4>
+          <ul>
+            <li><b>폼알데하이드</b> — 0.02 mg/㎡·h 이하<br><span style="color:var(--sub)">목질판상제품은 0.05 이하(2022.1.1~, 종전 0.12)</span></li>
+            <li><b>톨루엔</b> — 0.08 mg/㎡·h 이하</li>
+            <li><b>TVOC</b> — 자재 종류별 차등 기준</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mem" style="margin-top:12px;"><b>표지·인증</b> — 방출 확인을 통과한 자재엔 <b>법정 ‘실내마크’</b>(§11의6 표지, 시행규칙 별표7)를 붙이고, 다중이용시설·공동주택(100세대↑) 설치자는 <b>실내마크 자재만</b> 써야 합니다(방출기준 초과 자재 사용 시 벌칙, 표지 오용 시 과태료). 이와 별개로 목질판상 폼알데하이드 등급 <b>SE0 &gt; E0 &gt; E1</b>(KS), 친환경건축자재 <b>HB마크</b>·환경표지 등은 <b>자율</b> 인증입니다(환경표지 등은 §11 방출확인 면제 사유).</div>
+
+      <div class="mem" style="background:var(--n1-bg);border-color:var(--n1-bd);"><b>GRIDA 포인트</b> — 우리가 고르는 접착제·도장·벽지·바닥재·가구 목재가 곧 방출원입니다. <b>불연/준불연 등급(§52)과 저방출 인증(공기질)은 별개의 두 요건</b>이라, 예를 들어 ‘불연 인증 보드 + 방출기준 부적합 접착제’ 조합은 방화는 통과해도 공기질에서 걸립니다. 저방출·불연을 <b>처음부터 함께</b> 스펙에 넣고, <b>실내마크·방출확인서(공기질)</b>와 <b>시험성적서(방화)</b>를 각각 챙기는 것이 안전합니다.</div>
+    </section>
+
+    <div class="part close"><span class="pn">마무리</span> <b>실무 체크</b> <span class="ps">인증·견적 반영</span></div>
+
+    <section>
+      <div class="sh"><span class="no">8</span><span class="tt">실무 체크 · 견적 반영</span></div>
+      <div class="two">
+        <div class="card">
+          <h4>성능 인증 확인은 필수</h4>
+          <ul>
+            <li>자재 납품 시 <b>시험성적서</b>에 불연/준불연 문구가 명확한지 확인</li>
+            <li>성적서 <b>유효기간</b>이 지나지 않았는지 확인 (준공 때 사단 방지)</li>
+            <li>외벽 드라이비트(가연성 외단열)는 대상 건물에 불가 — 준불연 인정 단열·마감 시스템을 패키지로</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>왜 처음부터 견적에 담나</h4>
+          <ul>
+            <li>일반 목재·MDF·일반 벽지·일반 페인트는 등급 미달인 경우가 많아 인증 자재 대체가 필요</li>
+            <li>피난 계단·복도는 난연 불가 → 자재 폭이 좁아 단가 상승</li>
+            <li>미리 안 잡으면 공사 중 ‘마감 변경 추가’로 튀어나옴 → 처음부터 반영이 정직한 견적</li>
+          </ul>
+        </div>
+      </div>
+      <div class="warn">⚠ 본 참고자료는 설계·시공 판단을 돕는 1차 정리입니다. 적용 대상·부위·등급·시공기준은 용도·규모·지자체 조례·법 개정에 따라 달라지며, 최종은 건축사·소방 협의 및 제품 인정서로 확정하시기 바랍니다.</div>
+    </section>
+
+    <div class="ft">
+      <b>근거 법령</b> — 건축법 §52(마감재료)·§52의2(실내건축) / 건축법 시행령 §61·§61의2 / 건축물의 피난·방화구조 등의 기준에 관한 규칙 §24 / 「실내건축의 구조·시공방법 등에 관한 기준」(국토부 고시) / 다중이용업소법 §10·§10의2 / 실내공기질 관리법(편입 예정). 내화구조·내화시간·방화구획은 <b>ref02(소방피난안전)</b> 참조. 기준 시행일·개정 사항은 국가법령정보센터(law.go.kr)에서 재확인.
+      <div class="brand">GRIDA_4U · 당신을 위해 공간을 그리다 — 이 사람은 감으로 하지 않는다</div>
+    </div>
+
+  </div>
+</div>
+<footer id="gridaCopyright" style="margin:44px auto 28px;max-width:920px;padding:16px 20px 0;border-top:1px solid #e5e5e5;text-align:center;font-size:11px;line-height:1.7;color:#9a9a9a;font-family:system-ui,-apple-system,'Malgun Gothic','Apple SD Gothic Neo',sans-serif;">
+  <div style="font-weight:700;color:#7a7a7a;letter-spacing:.02em;">© 2026 GRIDA_4U (그리드에이포유) · 당신을 위해 공간을 그리다</div>
+  <div style="margin-top:2px;"><a href="https://www.grida4u.com" target="_blank" rel="noopener" style="color:#7a7a7a;text-decoration:none;font-weight:700;">www.grida4u.com</a></div>
+  본 문서·양식·판정 로직 및 소스코드의 무단 복제·배포·2차 이용을 금합니다.<br>
+  Unauthorized reproduction, distribution, or derivative use is prohibited.
+</footer>
+</body>
+</html>
