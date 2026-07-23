@@ -4,28 +4,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GRIDA_4U 참고자료 ref02 · 소방피난안전</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"/>
 <style>
   :root{
-    --navy:#1f2937; --navy2:#334155; --ink:#0f172a; --sub:#64748b;
-    --line:#e2e8f0; --bg:#f8fafc; --card:#ffffff;
-    --amber:#b45309; --amber-bg:#fef3c7;
-    --red:#b91c1c; --red-bg:#fee2e2;
-    --teal:#0f766e; --teal-bg:#ccfbf1;
+    --navy:#14284a; --navy2:#1e3a5f; --ink:#1f2937; --sub:#6b7280;
+    --line:#e5e7eb; --bg:#fbfbfa; --card:#ffffff;
+    --amber:#d97706; --amber-bg:#fef3e2;
+    --red:#b4442e; --red-bg:#fdece8;
+    --teal:#1a7a4a; --teal-bg:#e8f5ee;
     --blue:#1d4ed8; --blue-bg:#dbeafe;
-    --slate:#475569; --slate-bg:#e2e8f0;
+    --slate:#475569; --slate-bg:#eef1f6;
     --g1:#0ea5e9;--g2:#64748b;--g3:#8b5cf6;--g4:#ec4899;--g5:#f59e0b;
     --g6:#10b981;--g7:#1d4ed8;--g8:#334155;--g9:#84cc16;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Pretendard','Malgun Gothic','맑은 고딕',-apple-system,sans-serif;
+  body{font-family:"Pretendard Variable",'Pretendard','Malgun Gothic','맑은 고딕',-apple-system,sans-serif;
     background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
   .wrap{max-width:1000px;margin:0 auto;padding:0 20px 90px}
 
-  header{background:var(--navy);color:#fff;padding:30px 0 22px}
-  .head-inner{max-width:1000px;margin:0 auto;padding:0 20px}
-  .eyebrow{font-size:12px;letter-spacing:.18em;color:#94a3b8;font-weight:600;text-transform:uppercase}
-  h1{font-size:24px;font-weight:800;margin:6px 0 4px;letter-spacing:-.01em}
-  .head-sub{font-size:13px;color:#cbd5e1}
+  /* header (ref04 style) */
+  header{background:#fff;color:var(--ink);padding:22px 0 0}
+  .head-inner{max-width:1000px;margin:0 auto;padding:0 20px 14px;border-bottom:2px solid var(--navy)}
+  .eyebrow{font-size:11px;letter-spacing:.14em;color:var(--amber);font-weight:700;text-transform:uppercase}
+  h1{font-size:22px;font-weight:700;margin:6px 0 4px;letter-spacing:-.02em;color:var(--navy)}
+  .head-sub{font-size:12px;color:var(--sub);margin-top:4px;line-height:1.5}
+  .head-sub b{color:var(--navy2);font-weight:700}
 
   .toolbar{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line);
     padding:12px 20px;max-width:1000px;margin:0 auto}
@@ -148,11 +151,11 @@
   .diag-name{font-size:13px;font-weight:700}
   .diag-reason{font-size:12px;color:var(--sub);margin-top:2px}
   .diag-check-label{display:flex;align-items:center;gap:6px;cursor:pointer}
-  .main-tabs{display:flex;gap:2px;border-bottom:2px solid var(--line);margin-top:12px;overflow-x:auto}
-  .main-tab{padding:11px 16px;font-size:13px;font-weight:700;color:var(--sub);cursor:pointer;
-    border:none;background:none;white-space:nowrap;border-bottom:2.5px solid transparent;margin-bottom:-2px;transition:.15s}
-  .main-tab:hover{color:var(--ink)}
-  .main-tab.active{color:var(--navy);border-bottom-color:var(--navy)}
+  .main-tabs{display:flex;gap:8px;border-bottom:1px solid var(--line);margin-top:12px;overflow-x:auto;padding-bottom:12px}
+  .main-tab{padding:8px 14px;font-size:13px;font-weight:600;color:var(--navy2);cursor:pointer;
+    border:1px solid var(--line);background:#fff;white-space:nowrap;border-radius:8px;transition:.15s}
+  .main-tab:hover{border-color:var(--amber);color:var(--amber)}
+  .main-tab.active{background:var(--amber);border-color:var(--amber);color:#fff}
   .law-block.evac-highlight{background:#fff7ed;border:1.5px solid #f59e0b;border-radius:10px;padding:12px 14px 4px;margin:-4px -4px 16px}
   .law-block.evac-dim{opacity:.45}
   .evac-badge{display:inline-block;font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:99px;background:#f59e0b;color:#fff;margin-left:8px;vertical-align:1px}
@@ -181,9 +184,9 @@
 
 <header>
   <div class="head-inner">
-    <div class="eyebrow">GRIDA_4U · ref02</div>
-    <h1>소방피난안전</h1>
-    <div class="head-sub">소방시설 · 피난·방화구획 · 다중이용업소 안전시설 — 9개 시설군 › 30개 용도군 › 세부용도(목), 참고자료 #1과 동일한 분류체계로 계속 채워나가는 실무 데이터입니다.</div>
+    <div class="eyebrow">GRIDA_4U 참고자료 ref02 · 소방피난안전 · 감으로 하지 않는다</div>
+    <h1>소방·피난안전 — 소방시설 · 피난·방화구획 · 다중이용업소 안전시설</h1>
+    <div class="head-sub">소방시설법 <b>별표4</b> · 건축법 <b>§49·§50</b> · 시행령 <b>§46</b> · 다중이용업소법 · 9개 시설군 › 30개 용도군 › 세부용도(목) 분류체계 · 실제 처리 전 관할 소방서 확인</div>
   </div>
 </header>
 
@@ -206,6 +209,10 @@
 </div>
 
 <div class="wrap" id="diagPanelWrap" style="display:none;padding-top:18px">
+  <div id="reqBanner" style="align-items:center;gap:10px;flex-wrap:wrap;background:#fef3e2;border:1px solid #f5d9a8;border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:13px;color:#7a4a08;display:none;">
+    <b id="reqBannerText" style="flex:1;min-width:200px;line-height:1.5;">작품의뢰서 데이터 적용됨</b>
+    <button id="reqBannerClear" style="font-size:12px;padding:4px 10px;border:1px solid #d97706;background:#fff;color:#b45309;border-radius:6px;cursor:pointer;font-family:inherit;font-weight:700;white-space:nowrap;">입력 지우기</button>
+  </div>
   <div style="background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px">
     <div style="font-size:15px;font-weight:800;margin-bottom:3px">🧯 소방시설 자동진단 (베타)</div>
     <div style="font-size:12px;color:var(--sub);margin-bottom:16px">전체 조견표(22개 용도군)를 기반으로 소화설비·경보설비 중심 판정. 시행령 별표4(2026.3.24 시행) 요약 기준 — 실제 인허가 전 원문·관할 소방서 확인 필수. 여기 나오는 판정은 대표 항목 위주라, "전체 조견표" 버튼의 원문과 함께 대조하시면 더 정확합니다.<br>※ 복합건축물(상가+오피스텔 등)은 "복합건축물 자체 기준"과 "안에 들어있는 개별 용도 기준"을 각각 진단해서, 더 엄격한(먼저 걸리는) 쪽을 적용하세요.</div>
@@ -2034,6 +2041,54 @@ document.getElementById('diagRunBtn').addEventListener('click', runDiagnosis);
 
 buildGroupTabs();
 render();
+
+// ── 작품의뢰서(index.html) 연동: localStorage에서 조회된 의뢰서를 읽어 소방 자동진단 자동 세팅 ──
+(function applyActiveRequest(){
+  const reqParam=new URLSearchParams(location.search).get('req');
+  if(!reqParam) return;                       // 직접 열람 시엔 자동주입 안 함
+  const ban=document.getElementById('reqBanner'), txt=document.getElementById('reqBannerText');
+  let p=null; try{ p=JSON.parse(localStorage.getItem('grida_active')||'null'); }catch(e){}
+  const showBan=(html)=>{ if(ban){ txt.innerHTML=html; ban.style.display='flex';
+    const c=document.getElementById('reqBannerClear'); if(c) c.onclick=()=>{ location.href=location.pathname; }; } };
+  if(!p||!p.data){ showBan('의뢰번호 '+reqParam+' 데이터를 찾지 못했습니다 — 작품의뢰서에서 조회 후 다시 여세요.'); return; }
+
+  const d=p.data, num=v=>{ const n=parseFloat(v); return isNaN(n)?null:n; };
+  const setV=(id,v)=>{ const e=document.getElementById(id); if(e&&v!=null){ e.value=v; e.dispatchEvent(new Event('input',{bubbles:true})); e.dispatchEvent(new Event('change',{bubbles:true})); } };
+
+  // 진단 탭으로 자동 전환
+  try{ if(typeof switchMainTab==='function'){ switchMainTab('diag');
+    document.querySelectorAll('.main-tab').forEach(b=>b.classList.toggle('active', b.dataset.tab==='diag')); } }catch(e){}
+
+  // ① 건축물 정보
+  const gross=num(d.grossArea)||num(d.area);
+  setV('diagBuildingArea', gross);
+  setV('diagFloorsUp', num(d.floorsAbove)||num(d.totalFloors));
+  setV('diagBasementFloors', num(d.floorsBelow));
+  setV('diagMaxFloorArea', num(d.windowlessArea));
+
+  // ② 프로젝트(용도) — 희망용도 우선, 없으면 현재용도
+  const key=(d.uses&&((d.uses.targetUse&&d.uses.targetUse.key)||(d.uses.curUse&&d.uses.curUse.key)))||null;
+  const u=key?USES.find(x=>x.code===key):null;
+  if(u){
+    const s=document.getElementById('diagUseSearch'); if(s) s.value=u.name;
+    selectDiagUse(u);
+    const bc=document.getElementById('diagBuildingCategory');
+    if(bc){ const same=[...bc.options].find(o=>/동일/.test(o.textContent)); if(same) bc.value=same.value; }
+  }
+  const pa=num(d.area); setV('diagArea', pa);
+
+  // 무창층 체크 (동적 생성 필드라 지연 반영)
+  setTimeout(()=>{ const w=document.getElementById('diag_windowless');
+    if(w && num(d.windowlessArea)>0){ w.checked=true; w.dispatchEvent(new Event('change',{bubbles:true})); } },0);
+
+  const bits=[];
+  if(u) bits.push('용도('+u.name+')');
+  if(pa!=null) bits.push('바닥면적 '+pa+'㎡');
+  if(gross!=null) bits.push('연면적 '+gross+'㎡');
+  const fu=num(d.floorsAbove)||num(d.totalFloors); if(fu!=null) bits.push('지상 '+fu+'층');
+  const fb=num(d.floorsBelow); if(fb!=null) bits.push('지하 '+fb+'층');
+  showBan('작품의뢰서 <b>'+(p.reqno||reqParam)+'</b> 데이터 적용됨 — '+bits.join(' · ')+' 자동 입력. <b>[진단 실행]</b>을 누르세요. 각 칸에서 수정 가능.');
+})();
 
 </script>
 
