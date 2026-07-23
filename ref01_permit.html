@@ -758,6 +758,24 @@
           </tbody>
         </table>
       </div>
+
+      <details style="margin-top:20px;">
+      <summary class="mu-h" style="cursor:pointer;">건축사 설계가 필요한가 (건축법 §23①·시행령 §18) <span style="font-weight:400;font-size:12px;color:var(--sub);">— 펼치기</span></summary>
+      <p class="lead" style="margin-bottom:10px;margin-top:8px;">원칙: <b>허가·신고 대상 건축물의 설계는 건축사가 아니면 할 수 없음.</b> 단, 아래 소규모 예외는 <b>건축주가 직접 설계 가능</b>.</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th style="width:150px">행위</th><th>건축사 없이 가능 (건축주 직접설계)</th><th>건축사 필수</th></tr></thead>
+          <tbody>
+            <tr><td><b>증축·개축·재축</b></td><td>바닥면적 합계 <b>85㎡ 미만</b> <span class="mu-inline-note">3층 이상 건축물은 그 부분이 연면적 1/10 이내일 때</span></td><td>85㎡ 이상</td></tr>
+            <tr><td><b>대수선</b></td><td>연면적 <b>200㎡ 미만 AND 3층 미만</b></td><td>200㎡ 이상 또는 3층 이상</td></tr>
+            <tr><td><b>용도변경</b></td><td>허가대상 용도변경 부분 <b>500㎡ 미만</b></td><td><b>500㎡ 이상</b>은 건축사 준용 (§19⑥)</td></tr>
+            <tr><td><b>신축</b></td><td>단독주택 <b>100㎡ 이하</b> 신고분 (그 외는 사실상 건축사)</td><td>100㎡ 초과 등 대부분</td></tr>
+            <tr style="background:#eef1f6"><td><b>읍·면 비도시 특례</b></td><td colspan="2">읍·면 지역 연면적 <b>200㎡ 이하 창고·농막</b>, <b>400㎡ 이하 축사·작물재배사·온실</b> 등은 건축주 직접설계 (시행령 §18 — 주택 아님에 주의)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="lead" style="margin-top:8px">＊ 규모 문턱이 항목마다 다름에 주의: <b>대수선 건축사 면제 = 200㎡·3층</b> / <b>용도변경 건축사 = 500㎡</b> / <b>증개재축 신고 = 85㎡</b> / <b>신축 신고 = 100㎡</b>. 각각 다른 기준이다. 리모델링(사용승인 20년↑) 설계도 건축사 대상.</p>
+      </details>
     </div>
 
     <!-- 건축행위 판정기 -->
@@ -830,6 +848,240 @@
       <div class="msc-result" id="dsResult">건드리는 부위를 선택하세요.</div>
     </div>
 
+    <!-- 증설·해체 vs 수선·변경 구분 -->
+    <div class="mu-block" style="margin-top:22px">
+      <div class="mu-h">증설·해체 vs 수선·변경 — 무엇이 다른가</div>
+      <p class="lead" style="margin-bottom:12px">갈림길은 하나. <b>“공사 후에 그 부재가 원래 있던 만큼 그대로 있나?”</b><br>
+        그대로 있으면 <b>수선·변경</b>(규모 따짐) · 없어지거나 생겼으면 <b>증설·해체</b>(규모 무관).</p>
+      <div class="tablewrap" style="margin-bottom:14px">
+        <table>
+          <thead><tr><th style="width:110px">용어</th><th>뜻</th><th style="width:230px">예</th></tr></thead>
+          <tbody>
+            <tr><td><b>수선</b><br><span class="mu-inline-note">→ 신고</span></td><td>기존 구조·성능을 <b>유지</b>하면서 보수·보강하는 행위</td><td>균열 보수 · 철근 보강 · 마감재 보수</td></tr>
+            <tr><td><b>변경</b><br><span class="mu-inline-note">→ 허가</span></td><td>자재의 종류·구조 방식·성능이 <b>달라지는</b> 행위</td><td>콘크리트 타일 → 징크 패널로 교체</td></tr>
+            <tr><td><b>해체</b><br><span class="mu-inline-note">→ 허가</span></td><td>구조체·주요 구성요소를 <b>철거·제거</b>하는 행위</td><td>내력벽·기둥 철거 · 개구부 신설(벽 일부 제거)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr>
+            <th style="width:150px">구분</th>
+            <th>증설 또는 해체</th>
+            <th>수선 또는 변경</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td><b>뜻</b></td>
+              <td>없던 걸 <b>새로 만들거나</b>, 있던 걸 <b>뜯어냄</b></td>
+              <td>있는 걸 <b>고치거나 바꿈</b> (자리·부재는 그대로)</td>
+            </tr>
+            <tr style="background:#fef3e2">
+              <td><b>규모 기준</b></td>
+              <td><b>없음 — 아무리 작아도 대수선</b> <span class="mu-inline-note">‘단 1㎡라도’는 면제 기준이 아니라 “이렇게 작아도 걸린다”는 뜻</span></td>
+              <td><b>문턱을 넘어야 대수선</b> <span class="mu-inline-note">내력벽·외벽마감 30㎡ / 기둥·보·지붕틀 3개</span></td>
+            </tr>
+            <tr>
+              <td><b>내력벽</b></td>
+              <td>1㎡라도 증설·해체 <span class="mu-inline-note">문·창·환기구 뚫기 = 벽 일부 해체 → 크기 무관 대수선</span></td>
+              <td>벽면적 <b>30㎡ 이상</b> 수선·변경 <span class="mu-inline-note">표면 보수·보강·미장 재시공, 노출마감 치핑 등</span></td>
+            </tr>
+            <tr>
+              <td><b>기둥 · 보 · 지붕틀</b></td>
+              <td><b>1개라도</b> 증설·해체</td>
+              <td><b>3개 이상</b> 수선·변경 <span class="mu-inline-note">단면보강·강판/탄소섬유 보강·균열 에폭시 주입 등</span></td>
+            </tr>
+            <tr>
+              <td><b>외벽 마감재료</b></td>
+              <td>증설·해체</td>
+              <td>외벽 면적 <b>30㎡ 이상</b> 수선·변경</td>
+            </tr>
+            <tr style="background:#eef1f6">
+              <td><b>방화벽·방화구획<br>주계단·피난계단<br>세대 간 경계벽</b></td>
+              <td colspan="2" style="text-align:center"><b>증설·해체든 수선·변경이든 — 규모 조건 없이 무조건 대수선</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="lead" style="margin-top:12px">
+        <b>실무 함정 ①</b> 작은 개구부가 큰 표면 보수보다 무겁다. 환기구 하나(0.3㎡) 뚫기 = 대수선 / 내력벽 20㎡ 표면 보수 = 대수선 아님.<br>
+        <b>실무 함정 ②</b> 개구부를 <b>구조체로 채워 일체화</b>하면 증설로 본다. 경량스터드·석고보드로 막는 것은 칸막이 신설이라 대수선 아님.<br>
+        <b>실무 함정 ③</b> 마감(도장·타일·벽지)은 아무리 손대도 대수선이 아니다. 구조체에 닿아야 수선이다. 단, <b>덧방·비접촉</b>은 부위를 안 건드리므로 대수선 아님.
+      </p>
+    </div>
+
+    <!-- 대수선 아님 / 신고 / 허가 3단계 -->
+    <div class="mu-block" style="margin-top:22px">
+      <div class="mu-h">대수선 — 아님 · 신고 · 허가 (검증: 건축법 §14①, 시행령 §11②·§3의2)</div>
+      <p class="lead" style="margin-bottom:12px">원칙적으로 대수선은 <b>허가</b>. 신고 대상은 시행령 §11②의 <b>“수선” 6가지로 한정</b>된다. 이 목록에 없으면 <b>전부 허가</b>. (국토부: <b>수선=신고 / 증설·해체·변경=허가</b>)</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr>
+            <th style="width:170px">부위</th>
+            <th style="width:130px">대수선 아님</th>
+            <th style="width:150px">신고 (수선만)</th>
+            <th>허가</th>
+          </tr></thead>
+          <tbody>
+            <tr><td><b>내력벽</b></td><td>수선 30㎡ 미만</td><td><b>수선</b> 30㎡ 이상</td><td>증설·해체 (1㎡라도) · <b>변경</b></td></tr>
+            <tr><td><b>기둥·보·지붕틀</b></td><td>수선 3개 미만</td><td><b>수선</b> 3개 이상</td><td>증설·해체 (1개라도) · <b>변경</b></td></tr>
+            <tr><td><b>방화벽·방화구획</b></td><td>—</td><td><b>수선</b> (규모 무관)</td><td>증설·해체·변경</td></tr>
+            <tr><td><b>주계단·피난·특별피난계단</b></td><td>—</td><td><b>수선</b> (규모 무관)</td><td>증설·해체·변경</td></tr>
+            <tr style="background:#fdece8"><td><b>경계벽</b><br>(다가구·다세대)</td><td>—</td><td><b>신고 목록에 없음</b></td><td><b>증설·해체·수선 전부 허가</b></td></tr>
+            <tr style="background:#fdece8"><td><b>외벽 마감재료</b><br>(드라이비트·석재·타일 등)</td><td>수선 30㎡ 미만</td><td><b>신고 목록에 없음</b></td><td><b>증설·해체 / 30㎡ 이상 수선 → 허가</b></td></tr>
+            <tr><td><b>마감·가벽·덧방</b></td><td colspan="3" style="text-align:center">도장·타일·벽지 등 마감 / 비내력 가벽·칸막이 / 덧방·비접촉 → <b>대수선 자체가 아님</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="msc-result" style="margin-top:12px;background:#fdf6e3;border-color:#e8d9a0">
+        <b>⚠ 외벽 마감재 — 고정 방식 주의</b> 겉면만 바꾸는 일처럼 보여도, <b>앙카·브라켓으로 구조체에 직접 고정</b>되면 구조적 수선 또는 변경으로 해석될 수 있습니다.
+        <span class="msc-r-sub">벽돌 위 접착 타일과, 앵커로 구조체를 관통·정착하는 건식 석재/패널은 판정이 다르게 갈릴 수 있어 관할 확인 필요. 재료의 불연·준불연 성능(§52②)도 함께 검토.</span>
+      </div>
+      <div class="msc-result yes" style="margin-top:12px">
+        <b>모든 것에 우선하는 규칙</b> — 연면적 <b>200㎡ 미만 AND 3층 미만</b> 건축물의 대수선은 <b>증설·해체·경계벽·외벽 포함 전부 “신고”</b>로 갈음. (건축법 §14①3호)
+        <span class="msc-r-sub">예) 199㎡ 2층 단독주택: 내력벽 해체도 신고 · 4층 빌라: 3호 적용 안 됨 → 외벽 재마감은 허가</span>
+      </div>
+
+      <div class="mu-h" style="margin-top:20px">신고 경로는 두 갈래 — §14①3호 vs 4호 (독립)</div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th style="width:130px">경로</th><th style="width:150px">요건</th><th>해체 포함?</th><th>예</th></tr></thead>
+          <tbody>
+            <tr><td><b>§14①3호</b></td><td>200㎡ 미만 <b>AND</b> 3층 미만</td><td><b>해체 포함 전부 신고</b></td><td>199㎡ 2층 건물의 내력벽 해체 → 신고</td></tr>
+            <tr><td><b>§14①4호</b><br>(시행령 §11②)</td><td>규모 무관, <b>“수선” 6가지만</b></td><td>해체 불가 (수선만)</td><td>500㎡ 건물의 내력벽 30㎡ 수선 → 신고</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="lead" style="margin-top:10px">둘 중 <b>하나라도</b> 맞으면 신고. 즉 큰 건물(200㎡↑·3층↑)이라도 <b>해체 없이 수선</b>이면 4호로 신고 가능하고, 소규모 건물이면 <b>해체를 해도</b> 3호로 신고. 두 경로 모두 안 맞으면 <b>허가</b>.</p>
+
+      <div class="msc-result" style="margin-top:14px;background:#fdf6e3;border-color:#e8d9a0">
+        <b>⚠ 지자체 실무 단서</b> — 소규모(200㎡ 미만·3층 미만)라도 <b>구조부재 해체를 동반</b>하면, 구조안전을 이유로 관할 구청이 <b>허가·구조안전확인서</b>를 요구하는 경우가 있습니다. 해체 공사는 <b>착공 전 관할 건축과 사전 확인 필수</b>. (법은 신고여도 실무는 다를 수 있음)
+      </div>
+
+      <div class="mu-h" style="margin-top:20px">참고 — 개축 (대수선과 헷갈리기 쉬움 · 시행령 §2 3호)</div>
+      <p class="lead" style="margin-bottom:8px">기존 건축물의 전부/일부를 철거하고 <b>내력벽·기둥·보·지붕틀 중 3개 이상을 해체</b>한 뒤 <b>종전과 같은 규모</b>(건축면적·연면적·층수·높이 모두 초과 X)로 다시 짓는 것.</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th style="width:200px">구분</th><th>처리</th></tr></thead>
+          <tbody>
+            <tr><td><b>개축 원칙</b></td><td>건축<b>허가</b> (건축법 §11)</td></tr>
+            <tr><td><b>85㎡ 이내 + 3층 미만</b></td><td>건축<b>신고</b>로 갈음 (§14①1호 · 3층 이상이면 연면적 1/10 이내 한정)</td></tr>
+            <tr><td><b>구조 3개 이상 해체 아님</b></td><td>개축 아님 → 대수선으로 판정</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="lead" style="margin-top:8px">＊ 건폐율·용적률을 초과한 기존 건물도, 적법 허가·사용승인 받았다면 <b>종전 규모 범위 안</b>에서 개축 가능. 단 면적·층수·높이 확대는 불가. 건축물대장·사용승인서 선확인 필수.</p>
+    </div>
+
+    <!-- 건축물관리법 해체 -->
+    <div class="mu-block" style="margin-top:22px">
+      <div class="mu-h">★ 해체 허가 · 신고 (건축물관리법 §30) — 건축법 대수선과 <b>별개로 동시 적용</b></div>
+      <p class="lead" style="margin-bottom:12px">철거 자체를 규율하는 <b>다른 법</b>. 내력벽을 뜯으면 <b>건축법상 대수선</b>(허가/신고)과 <b>건축물관리법상 해체</b>(허가/신고)를 <b>둘 다</b> 밟아야 한다. 2021년 광주 학동 철거 붕괴사고(정류장 버스 덮침·9명 사망) 이후 2022.8.4 대폭 강화.</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th style="width:150px">구분</th><th>신고로 갈음 (§30① 단서)</th><th>허가 (원칙)</th></tr></thead>
+          <tbody>
+            <tr style="background:#fdece8">
+              <td><b>일부 해체</b><br><span class="mu-inline-note">1호</span></td>
+              <td><b>주요구조부 해체를 수반하지 않을 것</b><br><span class="mu-inline-note">칸막이·가벽·마감·설비 철거 등</span></td>
+              <td><b>주요구조부 해체 시 → 전부 허가</b><br><span class="mu-inline-note">내력벽·기둥·바닥·보·지붕틀·주계단 (면적·개수 기준 없음)</span></td>
+            </tr>
+            <tr>
+              <td><b>전체 해체</b><br><span class="mu-inline-note">2호</span></td>
+              <td>셋 <b>모두</b> 충족 (AND)<br>· 연면적 <b>500㎡ 미만</b><br>· 높이 <b>12m 미만</b><br>· 지상+지하 <b>3개 층 이하</b></td>
+              <td>하나라도 초과 시 허가</td>
+            </tr>
+            <tr>
+              <td><b>그 밖</b><br><span class="mu-inline-note">3호·시행령 §21①</span></td>
+              <td>건축법 §14①1호·3호 건축물(85㎡ 이내 증개재축 / 200㎡ 미만·3층 미만 대수선) · 관리·농림·자연환경보전지역의 높이 12m 미만</td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="msc-result" style="margin-top:12px;background:#fdf6e3;border-color:#e8d9a0">
+        <b>⚠ 신고 대상이어도 허가로 올라가는 경우 (§30② · 주변 여건)</b><br>
+        ① 주변 일정 반경 내 <b>버스 정류장 · 도시철도 역사 출입구 · 횡단보도</b> 등 조례로 정하는 시설이 있는 경우<br>
+        ② 외벽으로부터 <b>건축물 높이에 해당하는 범위</b> 내에 조례로 정하는 폭 이상의 <b>도로</b>가 있는 경우<br>
+        ③ 그 밖에 배치·유동인구 등 주변 여건을 고려해 조례로 정하는 경우
+        <span class="msc-r-sub">구체 반경·도로폭은 <b>지자체 조례</b>로 정함 → 같은 조건도 지역마다 갈림. 관할 조례 확인 필수. 또한 §30⑥: 허가 시, 또는 신고받았어도 안전한 관리를 위해 전문적 검토가 필요하다고 판단하면 <b>건축위원회 심의</b>를 거쳐 수리 여부 결정.</span>
+      </div>
+      <div class="tablewrap" style="margin-top:12px">
+        <table>
+          <thead><tr><th style="width:150px">항목</th><th>신고</th><th>허가</th></tr></thead>
+          <tbody>
+            <tr><td><b>해체계획서</b></td><td>건축사사무소·기술사사무소(건축구조/시공/건설안전)가 <b>검토</b>·서명날인</td><td>동 자격자가 <b>작성</b>·서명날인</td></tr>
+            <tr><td><b>감리</b></td><td>비상주</td><td>상주</td></tr>
+            <tr><td><b>착공신고</b></td><td>불요</td><td><b>필요</b> (§30의2)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="lead" style="margin-top:10px"><b>판정 순서</b> ① 주요구조부 해체 있나 → 있으면 <b>허가</b> ② 전체 해체면 500㎡·12m·3개층 모두 충족 시 신고 ③ §30② 주변 여건 걸리면 <b>신고 대상도 허가</b> ④ 관할 판단 시 건축위원회 심의.<br>
+      <b>실무 함정</b> — 증축·대수선 승인 전에 <b>하중을 받는 아래층 내력벽을 먼저 해체</b>하는 순서는 성립하지 않는다(구조계산 확정 전 지지구조 제거). 내력벽 해체가 ‘신고’로 수리됐다면 신고서상 부위가 <b>비내력으로 기재</b>됐거나 검토가 누락된 것일 수 있으므로, 해체계획서의 <b>부위 표기와 작성자 서명</b>을 확인할 것. 석면 함유 시 허가권자가 노동관서·환경청에 통보(시행령 §21③).</p>
+    </div>
+
+    <!-- 내진: 설계 vs 보강 -->
+    <div class="mu-block" style="margin-top:22px">
+      <div class="mu-h">참고 — 내진설계 vs 내진보강 (구조 손댈 때 헷갈림)</div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th style="width:120px">구분</th><th>내진설계</th><th>내진보강</th></tr></thead>
+          <tbody>
+            <tr><td><b>대상</b></td><td><b>신축·대수선</b> (새로 만드는 구조)</td><td><b>기존 건물</b> (있는 구조 강화)</td></tr>
+            <tr><td><b>내용</b></td><td>지진 견디게 구조를 <b>계획</b></td><td>철골·탄소섬유·내진벽체로 <b>성능 향상</b></td></tr>
+            <tr><td><b>성격</b></td><td>건축법 §48 <b>의무</b></td><td>원칙 <b>자발적</b> — 오히려 건폐율·용적률 완화·세제 감면 <b>인센티브</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="msc-result yes" style="margin-top:12px">
+        <b>핵심</b> — 내진보강 자체는 의무가 아님. 다만 그 보강이 <b>대수선에 해당</b>(기둥 3개↑·내력벽 30㎡↑ 변경, 강판으로 단면 변경 등)하면, 그 대수선에 대해 <b>현행 내진기준 확인(구조안전확인서)이 따라옴</b>. (건축법 §48②·시행령 §32)
+        <span class="msc-r-sub">실무 팁: 대수선을 안 건드리는 선에서 탄소섬유·강판 보강만 하면 절차 부담이 작고 인센티브 쪽. 구조부재를 대수선 규모로 바꾸면 신고·구조안전확인·현행 내진이 함께 걸림.</span>
+      </div>
+      <div class="tablewrap" style="margin-top:12px">
+        <table>
+          <thead><tr><th style="width:180px">허가 시점 기준<br><span class="mu-inline-note">기존 건물은 사용승인일로 역산</span></th><th>내진 의무 대상 규모</th></tr></thead>
+          <tbody>
+            <tr><td>~1988</td><td>없음</td></tr>
+            <tr><td>1988~1995</td><td>6층↑ 또는 10만㎡↑</td></tr>
+            <tr><td>1995~2005</td><td>6층↑ 또는 1만㎡↑</td></tr>
+            <tr><td>2005~2015</td><td>3층↑ 또는 1,000㎡↑</td></tr>
+            <tr><td>2015~2017</td><td>3층↑ 또는 500㎡↑</td></tr>
+            <tr style="background:#fef3e2"><td><b>2017~현행</b></td><td><b>2층↑ 또는 200㎡↑</b> (목구조 3층/500㎡)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="lead" style="margin-top:8px">＊ ‘어느 기준을 적용하나’는 <b>착공신고일</b> 기준. ‘기존 건물이 당시 대상이었나’는 <b>사용승인일(대장)</b>로 판단. 내진 대상 규모는 <b>OR 조건</b>(층수 <b>또는</b> 면적)이라, 2층이면 면적과 무관하게 대상 — 대수선 소규모(200㎡ 미만 <b>AND</b> 3층 미만) 판정과 조건 방식이 다름에 주의.</p>
+    </div>
+
+    <!-- 석면조사 -->
+    <div class="mu-block" style="margin-top:22px">
+      <details>
+      <summary class="mu-h" style="cursor:pointer;">참고 — 석면조사 (철거·해체 전 필수) <span style="font-weight:400;font-size:12px;color:var(--sub);">— 펼치기</span></summary>
+      <p class="lead" style="margin-top:8px;margin-bottom:10px"><b>철거·멸실·리모델링·인테리어 등으로 건축물·설비의 전부/일부를 철거·해체하면 규모와 관계없이 석면조사 대상</b>(산업안전보건법). 조사 후 착공해야 하며, 미조사 철거는 불법(과태료·공사중지).</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th style="width:150px">사용승인(착공) 시기</th><th>석면조사</th></tr></thead>
+          <tbody>
+            <tr style="background:#fdece8"><td><b>2008년 이전</b></td><td><b>조사 필요</b> — 당시 석면 함유 자재 사용 가능</td></tr>
+            <tr style="background:#fef3e2"><td>2009~2011</td><td>착공신고일 <b>2009.1.1 기준</b>으로 확인(그 이후 착공이면 면제)</td></tr>
+            <tr><td><b>2009.1.1 이후 착공</b></td><td><b>면제</b> — 석면 함유 건축자재 전면 금지(석면조사 불요)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tablewrap" style="margin-top:12px">
+        <table>
+          <thead><tr><th style="width:150px">구분</th><th>내용</th></tr></thead>
+          <tbody>
+            <tr><td><b>일반석면조사</b></td><td>소규모 — 자재 정보로 건축주가 판단 가능</td></tr>
+            <tr><td><b>기관석면조사</b><br><span class="mu-inline-note">고용노동부 등록기관 의뢰</span></td><td>건축물 연면적 <b>50㎡↑</b>+석면자재 50㎡↑ / 주택 <b>200㎡↑</b>+석면자재 200㎡↑ / 분무재 15㎡·1㎥↑ / 배관보온재 <b>80m↑</b></td></tr>
+            <tr style="background:#fdece8"><td><b>석면 검출 시</b></td><td><b>석면해체·제거업자(등록업체)</b>가 처리 — 일반 철거업체 불가. 작업신고→음압·보호구→폐기물 특별관리(비용·기간 증가)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="lead" style="margin-top:8px">＊ 견적 팁: 오래된 건물은 <b>석면조사·해체 비용을 처음부터 견적에 반영</b>. 공사 중 '별도'로 튀어나오면 신뢰가 깨진다. 건축물 석면조사(석면안전관리법)는 별도로 공공·학교·다중이용시설 500㎡↑ 소유관리 의무.</p>
+      </details>
+    </div>
+
     <!-- 8가지 대상 -->
     <div class="mu-block" style="margin-top:22px">
       <div class="mu-h">대수선 대상 8가지 (시행령 §3의2)</div>
@@ -840,7 +1092,7 @@
             <tr><td><b>① 내력벽</b></td><td>증설·해체하거나, 벽면적 <b>30㎡ 이상</b> 수선·변경. <span class="mu-inline-note">내력벽에 문 하나 뚫는 것도 ‘해체’로 봐 대수선(판례).</span></td></tr>
             <tr><td><b>② 기둥</b></td><td>증설·해체하거나 <b>3개 이상</b> 수선·변경</td></tr>
             <tr><td><b>③ 보</b></td><td>증설·해체하거나 <b>3개 이상</b> 수선·변경</td></tr>
-            <tr><td><b>④ 지붕틀</b></td><td>증설·해체하거나 <b>3개 이상</b> 수선·변경 (한옥 서까래 제외)</td></tr>
+            <tr><td><b>④ 지붕틀</b></td><td>증설·해체하거나 <b>3개 이상</b> 수선·변경 (한옥 서까래 제외) <span class="mu-inline-note">철근콘크리트조 지붕슬래브도 ‘지붕틀’로 해석(국토부 유권해석)</span></td></tr>
             <tr><td><b>⑤ 방화벽·방화구획 바닥/벽</b></td><td>증설·해체·수선·변경 <span class="mu-inline-note">용도변경으로 공간 틀 때 자주 걸림</span></td></tr>
             <tr><td><b>⑥ 주계단·피난계단·특별피난계단</b></td><td>증설·해체·수선·변경</td></tr>
             <tr><td><b>⑦ 다가구/다세대 세대 간 경계벽</b></td><td>증설·해체·수선·변경 <span class="mu-inline-note">방음 시공과 직결</span></td></tr>
@@ -1767,7 +2019,8 @@ document.getElementById('lawBody').innerHTML=LAWS.map((l,i)=>`
     if(isNaN(a)){ set('','면적을 입력하세요.'); return; }
     if(t==='new'){ set('yes', a<=100 ? '📋 <b>건축신고</b> — 신축 연면적 '+a.toLocaleString()+'㎡ ≤ 100㎡. (건축법 §14)' : '📄 <b>건축허가</b> — 신축 연면적 '+a.toLocaleString()+'㎡ > 100㎡. (건축법 §11)'); return; }
     const nm={extend:'증축',rebuild:'개축',restore:'재축'}[t]||'';
-    set('yes', a<=85 ? '📋 <b>건축신고</b> — '+nm+' '+a.toLocaleString()+'㎡ ≤ 85㎡ <span class="msc-r-sub">단, 연면적 200㎡ 미만 + 3층 미만일 때 신고. 그 이상이면 허가.</span>' : '📄 <b>건축허가</b> — '+nm+' '+a.toLocaleString()+'㎡ > 85㎡. (건축법 §11)');
+    if(a<=85) set('yes','📋 <b>건축신고</b> — '+nm+' '+a.toLocaleString()+'㎡ ≤ 85㎡ <span class="msc-r-sub">단, ①3층 이상 건축물이면 증축 부분이 <b>연면적의 1/10 이내</b>일 때만 신고(초과 시 허가). ②주요구조부 해체를 수반하면 대수선 판정도 함께 볼 것.</span>');
+    else set('yes','📄 <b>건축허가</b> — '+nm+' '+a.toLocaleString()+'㎡ > 85㎡. (건축법 §11)');
   }
   sel.addEventListener('change',fields);
   const baA=document.getElementById('baArea'); if(baA) baA.addEventListener('input',judge);
@@ -1821,7 +2074,8 @@ document.getElementById('lawBody').innerHTML=LAWS.map((l,i)=>`
     if(dp){ dp.querySelectorAll('input[type=checkbox]').forEach(cb=>{ cb.checked=sc.dsParts.includes(cb.value); }); fire(dp.querySelector('input'),'change'); }
     setRadio('dsact', sc.dsMethod);
     setRadio('dsscale', sc.dsScale);
-    const gr=parseFloat(d.grossArea)||0, fl=Math.max(parseFloat(d.totalFloors)||0, parseFloat(d.floorsAbove)||0);
+    const gr=(parseFloat(d.grossArea)||0)||(parseFloat(d.area)||0);
+    const fl=Math.max(parseFloat(d.totalFloors)||0, parseFloat(d.floorsAbove)||0, parseFloat(d.floorNo)||0);
     if(gr>0||fl>0) setRadio('dsbldg', (gr>0&&gr<200&&(fl===0||fl<3))?'small':'big');
   }
 
