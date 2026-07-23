@@ -1,0 +1,2047 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRIDA_4U 참고자료 ref02 · 소방피난안전</title>
+<style>
+  :root{
+    --navy:#1f2937; --navy2:#334155; --ink:#0f172a; --sub:#64748b;
+    --line:#e2e8f0; --bg:#f8fafc; --card:#ffffff;
+    --amber:#b45309; --amber-bg:#fef3c7;
+    --red:#b91c1c; --red-bg:#fee2e2;
+    --teal:#0f766e; --teal-bg:#ccfbf1;
+    --blue:#1d4ed8; --blue-bg:#dbeafe;
+    --slate:#475569; --slate-bg:#e2e8f0;
+    --g1:#0ea5e9;--g2:#64748b;--g3:#8b5cf6;--g4:#ec4899;--g5:#f59e0b;
+    --g6:#10b981;--g7:#1d4ed8;--g8:#334155;--g9:#84cc16;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Pretendard','Malgun Gothic','맑은 고딕',-apple-system,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px 90px}
+
+  header{background:var(--navy);color:#fff;padding:30px 0 22px}
+  .head-inner{max-width:1000px;margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:12px;letter-spacing:.18em;color:#94a3b8;font-weight:600;text-transform:uppercase}
+  h1{font-size:24px;font-weight:800;margin:6px 0 4px;letter-spacing:-.01em}
+  .head-sub{font-size:13px;color:#cbd5e1}
+
+  .toolbar{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line);
+    padding:12px 20px;max-width:1000px;margin:0 auto}
+  .toolbar-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .search{flex:1;min-width:160px;padding:9px 13px;border:1px solid var(--line);border-radius:9px;
+    font-size:13.5px;font-family:inherit;background:var(--bg)}
+  .search:focus{outline:none;border-color:var(--navy2)}
+  .btn{font-size:12px;font-weight:700;padding:8px 13px;border-radius:8px;border:1px solid var(--line);
+    background:#fff;cursor:pointer;color:var(--navy2);white-space:nowrap}
+  .btn:hover{background:var(--bg)}
+  .btn.on{background:var(--amber);color:#fff;border-color:var(--amber)}
+  .btn.primary{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .file-input{display:none}
+
+  .group-tabs{display:flex;gap:6px;overflow-x:auto;margin-top:10px;padding-bottom:2px}
+  .gtab{flex-shrink:0;padding:6px 12px;font-size:12px;font-weight:700;border-radius:99px;
+    border:1px solid var(--line);background:#fff;cursor:pointer;color:var(--sub);white-space:nowrap}
+  .gtab.active{color:#fff;border-color:transparent}
+
+  .list{margin-top:18px;display:flex;flex-direction:column;gap:8px}
+  .item{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .item.deleted{opacity:.45}
+  .item-head{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer}
+  .item.deleted .item-head{cursor:default}
+  .gdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .item-code{font-size:11px;font-weight:800;color:var(--sub);width:44px;flex-shrink:0}
+  .item-main{flex:1;min-width:0}
+  .item-name{font-size:13.5px;font-weight:700}
+  .item-alias{font-size:11px;color:var(--sub);margin-top:1px}
+  .depth-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:99px;flex-shrink:0}
+  .depth-deep{background:var(--blue-bg);color:var(--blue)}
+  .depth-base{background:var(--slate-bg);color:var(--sub)}
+  .chevron{color:var(--sub);font-size:11px;flex-shrink:0;transition:.15s}
+  .item.open .chevron{transform:rotate(90deg)}
+
+  .item-detail{display:none;border-top:1px solid var(--line);padding:14px 16px 16px;background:#fbfcfe}
+  .item.open .item-detail{display:block}
+
+  .law-block{margin-bottom:12px}
+  .law-block-title{font-size:11px;font-weight:800;color:var(--sub);letter-spacing:.04em;
+    text-transform:uppercase;margin-bottom:7px}
+  .law-row{padding:9px 0;border-bottom:1px solid var(--line);display:flex;gap:8px}
+  .law-row:last-child{border-bottom:none}
+  .law-row .law-name{font-size:13px;font-weight:700}
+  .law-row .art{font-weight:500;color:var(--sub);font-size:11.5px}
+  .law-row .point{font-size:12px;color:var(--sub);margin-top:2px}
+  .law-note{font-size:12.5px;color:var(--navy2);background:#eef2f7;border-radius:8px;padding:10px 12px;
+    margin-top:8px;white-space:pre-wrap}
+  .empty-note{font-size:12px;color:var(--sub);font-style:italic;padding:6px 0}
+
+  .edit-row{display:flex;flex-direction:column;gap:5px;padding:9px 0;border-bottom:1px solid var(--line);position:relative}
+  .edit-row input, .edit-row textarea{width:100%;border:1px solid var(--line);border-radius:6px;
+    padding:6px 8px;font-size:12.5px;font-family:inherit;background:#fff}
+  .edit-row .ef-name{font-weight:700}
+  .edit-row .del-x{position:absolute;right:0;top:9px;font-size:11px;color:var(--red);cursor:pointer;
+    background:none;border:none;font-weight:700}
+  .add-law-btn{font-size:11.5px;font-weight:700;color:var(--navy2);background:none;border:1px dashed var(--line);
+    border-radius:7px;padding:6px 10px;cursor:pointer;margin-top:4px}
+  .notes-edit{width:100%;min-height:60px;border:1px solid var(--line);border-radius:8px;padding:9px 11px;
+    font-family:inherit;font-size:12.5px;margin-top:6px}
+
+  .no-results{text-align:center;padding:40px 0;color:var(--sub);font-size:13px}
+
+  .summary-bar{position:sticky;bottom:0;background:var(--navy);color:#fff;border-radius:12px;
+    padding:11px 16px;margin-top:16px;font-size:12px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .dirty-flag{display:none;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:#fca5a5;flex-shrink:0}
+  .dirty-flag.show{display:flex}
+  .dirty-flag .dot{width:7px;height:7px;border-radius:50%;background:#f87171;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .btn.has-unsaved{position:relative}
+  .btn.has-unsaved::after{content:'';position:absolute;top:-3px;right:-3px;width:8px;height:8px;
+    border-radius:50%;background:#ef4444;border:2px solid #fff}
+
+  .footnote{margin-top:16px;padding:12px 16px;background:#eef2f7;border-radius:10px;font-size:11.5px;color:var(--sub)}
+
+  /* ===== 전체 소방시설 조견표 (fmx) ===== */
+  .fmxPanel{
+    --f-sohwa-bg:#fff7ed; --f-sohwa-label:#c2410c;
+    --f-gyeongbo-bg:#eff6ff; --f-gyeongbo-label:#1d4ed8;
+    --f-pinan-bg:#f0fdf4; --f-pinan-label:#15803d;
+    --f-yongsu-bg:#ecfeff; --f-yongsu-label:#0e7490;
+    --f-hwaldong-bg:#fdf2f8; --f-hwaldong-label:#a21caf;
+    background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:18px;
+  }
+  .fmxPanel .fmx-legend{background:#fff;border-bottom:1px solid var(--line);padding:12px 20px;font-size:12px;color:var(--sub)}
+  .fmxPanel .fmx-legend b{color:var(--ink)}
+  .fmxPanel .fmx-table-wrap{overflow-x:auto;padding:16px;max-height:75vh;overflow-y:auto}
+  .fmxPanel table{border-collapse:collapse;font-size:11.5px;min-width:2600px}
+  .fmxPanel th,.fmxPanel td{border:1px solid var(--line);padding:6px 8px;text-align:center;vertical-align:middle}
+  .fmxPanel thead th{background:var(--navy);color:#fff;font-size:12px;position:sticky;top:0;z-index:3}
+  .fmxPanel thead tr.fmx-group-row th{background:#111827}
+  .fmxPanel thead th:first-child{left:0;z-index:6}
+  .fmxPanel thead th:nth-child(2){left:44px;z-index:6}
+  .fmxPanel th.fmx-rowcat{writing-mode:vertical-rl;text-orientation:upright;letter-spacing:2px;font-weight:800;font-size:13px;padding:4px;width:44px;position:sticky;left:0;z-index:2}
+  .fmxPanel td.fmx-rowlabel{font-weight:700;text-align:left;white-space:nowrap;background:#fff;position:sticky;left:44px;z-index:2}
+  .fmxPanel th.fmx-colhead{min-width:78px}
+  .fmxPanel td.fmx-merged{text-align:left;font-size:11.5px;padding:8px 12px}
+  .fmxPanel .cat-sohwa td.fmx-rowlabel, .fmxPanel .cat-sohwa th.fmx-rowcat{background:var(--f-sohwa-bg);color:var(--f-sohwa-label)}
+  .fmxPanel .cat-sohwa td:not(.fmx-rowlabel){background:#fffdf9}
+  .fmxPanel .cat-gyeongbo td.fmx-rowlabel, .fmxPanel .cat-gyeongbo th.fmx-rowcat{background:var(--f-gyeongbo-bg);color:var(--f-gyeongbo-label)}
+  .fmxPanel .cat-gyeongbo td:not(.fmx-rowlabel){background:#fbfdff}
+  .fmxPanel .cat-pinan td.fmx-rowlabel, .fmxPanel .cat-pinan th.fmx-rowcat{background:var(--f-pinan-bg);color:var(--f-pinan-label)}
+  .fmxPanel .cat-pinan td:not(.fmx-rowlabel){background:#fafffc}
+  .fmxPanel .cat-yongsu td.fmx-rowlabel, .fmxPanel .cat-yongsu th.fmx-rowcat{background:var(--f-yongsu-bg);color:var(--f-yongsu-label)}
+  .fmxPanel .cat-yongsu td:not(.fmx-rowlabel){background:#f8feff}
+  .fmxPanel .cat-hwaldong td.fmx-rowlabel, .fmxPanel .cat-hwaldong th.fmx-rowcat{background:var(--f-hwaldong-bg);color:var(--f-hwaldong-label)}
+  .fmxPanel .cat-hwaldong td:not(.fmx-rowlabel){background:#fffaff}
+  .fmxPanel .fmx-dash{color:#cbd5e1}
+  .fmxPanel .fmx-dot{color:#dc2626;font-weight:800}
+  .fmxPanel .fmx-notes{padding:16px 22px 22px;font-size:13px;color:var(--sub)}
+  .fmxPanel .fmx-notes h3{font-size:14px;color:var(--ink);margin:16px 0 6px}
+  .fmxPanel .fmx-notes ul{margin:0 0 8px 18px}
+  .fmxPanel .fmx-source{font-size:11px;color:#94a3b8;margin-top:14px}
+
+  .diag-row{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+  .diag-row:last-child{border-bottom:none}
+  .diag-icon{width:20px;height:20px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;margin-top:1px}
+  .diag-icon.need{background:var(--red)}
+  .diag-icon.no{background:#cbd5e1;color:#64748b}
+  .diag-name{font-size:13px;font-weight:700}
+  .diag-reason{font-size:12px;color:var(--sub);margin-top:2px}
+  .diag-check-label{display:flex;align-items:center;gap:6px;cursor:pointer}
+  .main-tabs{display:flex;gap:2px;border-bottom:2px solid var(--line);margin-top:12px;overflow-x:auto}
+  .main-tab{padding:11px 16px;font-size:13px;font-weight:700;color:var(--sub);cursor:pointer;
+    border:none;background:none;white-space:nowrap;border-bottom:2.5px solid transparent;margin-bottom:-2px;transition:.15s}
+  .main-tab:hover{color:var(--ink)}
+  .main-tab.active{color:var(--navy);border-bottom-color:var(--navy)}
+  .law-block.evac-highlight{background:#fff7ed;border:1.5px solid #f59e0b;border-radius:10px;padding:12px 14px 4px;margin:-4px -4px 16px}
+  .law-block.evac-dim{opacity:.45}
+  .evac-badge{display:inline-block;font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:99px;background:#f59e0b;color:#fff;margin-left:8px;vertical-align:1px}
+  .mu-cat-title{font-size:13px;font-weight:800;padding:9px 14px;border-radius:8px 8px 0 0;margin-top:20px}
+  .mu-cat-sohwa{background:#fff7ed;color:#c2410c}
+  .mu-cat-gyeongbo{background:#eff6ff;color:#1d4ed8}
+  .mu-cat-pinan{background:#f0fdf4;color:#15803d}
+  .mu-cat-bang{background:#fdf2f8;color:#a21caf}
+  .mu-cat-gita{background:#f8fafc;color:#475569}
+  .mu-block{border:1px solid var(--line);border-top:none;border-radius:0 0 8px 8px;padding:4px 14px;margin-bottom:0}
+  .law-row.mu-highlight{background:#fff7ed;margin:0 -14px;padding:9px 14px;border-radius:6px}
+  .law-row.mu-highlight .law-name::after{content:' ✓ 해당';color:#c2410c;font-weight:800;font-size:11px}
+  .law-row.mu-dim{opacity:.4}
+  .diag-use-row{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:12.5px;border:1px solid var(--line);margin-bottom:4px;background:#fff}
+  .diag-use-row:hover{background:var(--bg)}
+  .diag-use-row.selected{background:#eef2ff;border-color:var(--navy2)}
+  .diag-use-row .duc-box{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--sub);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff}
+  .diag-use-row.selected .duc-box{background:var(--navy2);border-color:var(--navy2)}
+  .diag-use-row .duc-code{font-weight:800;color:var(--sub);width:44px;flex-shrink:0}
+  .diag-use-row .duc-name{font-weight:600}
+  .diag-use-row .duc-alias{color:var(--sub);font-size:11px;margin-left:4px}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="head-inner">
+    <div class="eyebrow">GRIDA_4U · ref02</div>
+    <h1>소방피난안전</h1>
+    <div class="head-sub">소방시설 · 피난·방화구획 · 다중이용업소 안전시설 — 9개 시설군 › 30개 용도군 › 세부용도(목), 참고자료 #1과 동일한 분류체계로 계속 채워나가는 실무 데이터입니다.</div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="toolbar-row">
+    <input class="search" id="searchBox" placeholder="용도명·별칭·호목 검색 (예: 학원, 미용실, 3나)">
+    <button class="btn" id="editToggle">🔒 읽기 전용</button>
+    <button class="btn" id="downloadBtn">JSON 다운로드</button>
+    <button class="btn" id="uploadBtn">JSON 불러오기</button>
+    <input type="file" id="fileInput" class="file-input" accept="application/json">
+  </div>
+  <div class="main-tabs" id="mainTabs">
+    <button class="main-tab active" data-tab="checklist">📋 체크리스트</button>
+    <button class="main-tab" data-tab="diag">🧯 소방시설 자동진단</button>
+    <button class="main-tab" data-tab="evac">🚪 피난·방화구획 체크리스트</button>
+    <button class="main-tab" data-tab="multiuse">🚨 다중이용업 안전시설</button>
+    <button class="main-tab" data-tab="fmx">#전체조견표</button>
+  </div>
+  <div class="group-tabs" id="groupTabs"></div>
+</div>
+
+<div class="wrap" id="diagPanelWrap" style="display:none;padding-top:18px">
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px">
+    <div style="font-size:15px;font-weight:800;margin-bottom:3px">🧯 소방시설 자동진단 (베타)</div>
+    <div style="font-size:12px;color:var(--sub);margin-bottom:16px">전체 조견표(22개 용도군)를 기반으로 소화설비·경보설비 중심 판정. 시행령 별표4(2026.3.24 시행) 요약 기준 — 실제 인허가 전 원문·관할 소방서 확인 필수. 여기 나오는 판정은 대표 항목 위주라, "전체 조견표" 버튼의 원문과 함께 대조하시면 더 정확합니다.<br>※ 복합건축물(상가+오피스텔 등)은 "복합건축물 자체 기준"과 "안에 들어있는 개별 용도 기준"을 각각 진단해서, 더 엄격한(먼저 걸리는) 쪽을 적용하세요.</div>
+
+    <div style="font-size:13px;font-weight:800;color:var(--navy2);margin-bottom:8px">① 건축물 정보 (건물 전체 기준)</div>
+    <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1.2fr;gap:12px;margin-bottom:16px">
+      <div>
+        <label style="font-size:11.5px;font-weight:700;color:var(--sub)">건축물 전체 용도군 (건축물대장 기준)</label>
+        <select id="diagBuildingCategory" style="width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-family:inherit;font-size:13px;margin-top:4px">
+          <option value="">— 프로젝트 용도와 동일 (단일 용도 건물) —</option>
+          <option value="공동주택">공동주택</option>
+          <option value="근린생활">근린생활시설</option>
+          <option value="운수시설">운수시설</option>
+          <option value="위락시설">위락시설</option>
+          <option value="문화집회">문화집회시설</option>
+          <option value="종교시설">종교시설</option>
+          <option value="판매시설">판매시설</option>
+          <option value="의료시설">의료시설</option>
+          <option value="장례시설">장례시설</option>
+          <option value="교육연구">교육연구시설</option>
+          <option value="노유자">노유자시설</option>
+          <option value="수련">수련시설</option>
+          <option value="복합">복합건축물</option>
+          <option value="업무시설">업무시설</option>
+          <option value="숙박">숙박시설</option>
+          <option value="공장">공장</option>
+          <option value="창고시설">창고시설</option>
+          <option value="위험물가스">위험물·가스시설</option>
+          <option value="항공기자동차">항공기·자동차관련시설</option>
+          <option value="교정군사">교정·군사시설</option>
+          <option value="발전방송">발전·방송통신시설</option>
+          <option value="지하특수">지하상가·터널·지하구</option>
+        </select>
+      </div>
+      <div>
+        <label style="font-size:11.5px;font-weight:700;color:var(--sub)">건물 전체 연면적 (㎡)</label>
+        <input type="number" id="diagBuildingArea" placeholder="예: 900" style="width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-family:inherit;font-size:13px;margin-top:4px">
+      </div>
+      <div>
+        <label style="font-size:11.5px;font-weight:700;color:var(--sub)">지상 층수 (건물 전체)</label>
+        <input type="number" id="diagFloorsUp" placeholder="예: 8" style="width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-family:inherit;font-size:13px;margin-top:4px">
+      </div>
+      <div>
+        <label style="font-size:11.5px;font-weight:700;color:var(--sub)">지하 층수 (건물 전체)</label>
+        <input type="number" id="diagBasementFloors" placeholder="예: 1" style="width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-family:inherit;font-size:13px;margin-top:4px">
+      </div>
+      <div>
+        <label style="font-size:11.5px;font-weight:700;color:var(--sub)">지하·무창층 중 최대 바닥면적 (㎡)</label>
+        <input type="number" id="diagMaxFloorArea" placeholder="예: 2000" style="width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-family:inherit;font-size:13px;margin-top:4px">
+      </div>
+    </div>
+    <div style="font-size:11px;color:var(--sub);margin-top:-10px;margin-bottom:16px">※ 지하·무창층이 여러 층이면, 그중 <b>바닥면적이 가장 큰 층의 값</b>을 넣으세요 (예: 지하1층 500㎡·지하2층 1,000㎡·지하3층 2,000㎡ → 2,000 입력). 지하·무창층이 없으면 비워두세요.<br>※ 건축물 전체 용도군을 프로젝트 용도와 다르게 고르면, 스프링클러·옥내소화전처럼 <b>건물 전체 기준으로 판단하는 설비</b>는 이 용도군 + 건물 전체 연면적을 기준으로 별도 계산합니다 (예: 8층 판매시설 건물 3층에 80㎡ 음식점 → 음식점 자체는 스프링클러 기준 미달이어도, 건물이 판매시설로서 6층 이상이면 건물 전체에 스프링클러 설치 의무 발생).</div>
+
+    <div style="font-size:13px;font-weight:800;color:var(--navy2);margin-bottom:8px">② 프로젝트(용도) 정보 — 내가 시공하는 부분</div>
+    <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:12px;margin-bottom:6px">
+      <div>
+        <label style="font-size:11.5px;font-weight:700;color:var(--sub)">프로젝트 용도 (용도명·별칭·호목 검색)</label>
+        <input id="diagUseSearch" placeholder="예: 휴게음식점, 미용실, 4자" autocomplete="off" style="width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-family:inherit;font-size:13px;margin-top:4px">
+        <div id="diagUseSearchResults" style="margin-top:6px;max-height:180px;overflow-y:auto;border:1px solid transparent"></div>
+        <div id="diagUseResolved" style="font-size:11px;color:var(--sub);margin-top:4px">체크리스트에서 항목을 열어본 뒤 이 진단기를 열면 자동으로 선택되어 있습니다. 검색 결과에서 다른 항목을 눌러 바꿀 수 있어요.</div>
+      </div>
+      <div>
+        <label style="font-size:11.5px;font-weight:700;color:var(--sub)">이 용도로 쓰는 바닥면적 합계 (㎡)</label>
+        <input type="number" id="diagArea" placeholder="예: 130" style="width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-family:inherit;font-size:13px;margin-top:4px">
+      </div>
+    </div>
+    <div style="font-size:11px;color:var(--sub);margin-bottom:14px">※ 대부분의 면적 기준(간이스프링클러·자동화재탐지 등)은 건물 전체 연면적이 아니라 <b>"이 용도로 실제 쓰이는 바닥면적의 합계"</b>를 봅니다. 건물 전체가 하나의 용도로만 쓰이면 두 값이 같지만, 상가+숙박처럼 섞여 있으면 반드시 구분해서 넣으세요. 지상층수·지하층수만 건물 전체 기준을 그대로 씁니다.</div>
+
+    <div id="diagExtraFields" style="display:flex;flex-wrap:wrap;gap:14px;margin-bottom:14px;font-size:12.5px"></div>
+
+    <button class="btn primary" id="diagRunBtn" style="padding:10px 18px">진단 실행</button>
+
+    <div id="diagResult" style="margin-top:16px"></div>
+  </div>
+</div>
+
+<div class="wrap" id="checklistPanelWrap">
+  <div class="list" id="listWrap"></div>
+  <div class="summary-bar">
+    <span id="summaryText"></span>
+    <span class="dirty-flag" id="dirtyFlag"><span class="dot"></span>저장 안 한 편집 있음 · JSON 다운로드 필요</span>
+  </div>
+  <div class="footnote">편집 모드에서 법령을 추가/수정하고 "JSON 다운로드"로 저장하세요. 구글 드라이브 등에 보관해두었다가, 다음에 이 파일을 열 때 "JSON 불러오기"로 그 파일을 불러오면 이어서 편집할 수 있습니다. (브라우저를 새로고침하면 불러오기 전까지는 방금 편집한 내용이 초기화됩니다.)</div>
+</div>
+
+<div id="fmxPanelWrap" style="display:none;padding:18px 20px 40px;max-width:100%">
+  <div class="fmxPanel">
+<div class="fmx-legend" style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+  <span><b>●</b> = 규모 무관 모두 의무&nbsp;&nbsp; <b>—</b> = 해당없음&nbsp;&nbsp; <b>↑</b> = 이상&nbsp;&nbsp; <b>↓</b> = 미만&nbsp;&nbsp; 세부 예외조항은 반드시 시행령 별표4 원문으로 최종 확인하세요.</span>
+  <button class="btn" id="fmxExcelBtn" style="flex-shrink:0">📥 엑셀 다운로드</button>
+</div>
+
+<div class="fmx-table-wrap">
+<table id="fmxTable">
+<thead>
+<tr class="fmx-group-row">
+  <th colspan="2"></th>
+  <th colspan="4">공동·근린</th>
+  <th colspan="5">문화·판매·의료</th>
+  <th colspan="4">교육·복지</th>
+  <th colspan="4">업무·숙박·산업</th>
+  <th colspan="4">창고·위험·기타</th>
+  <th colspan="1">지하·특수</th>
+</tr>
+<tr>
+  <th>구분</th><th>소방시설</th>
+  <th class="fmx-colhead">공동주택</th><th class="fmx-colhead">근린생활</th><th class="fmx-colhead">운수시설</th><th class="fmx-colhead">위락시설</th>
+  <th class="fmx-colhead">문화집회</th><th class="fmx-colhead">종교시설</th><th class="fmx-colhead">판매시설</th><th class="fmx-colhead">의료시설</th><th class="fmx-colhead">장례시설</th>
+  <th class="fmx-colhead">교육연구</th><th class="fmx-colhead">노유자시설</th><th class="fmx-colhead">수련시설</th><th class="fmx-colhead">복합건축물</th>
+  <th class="fmx-colhead">업무시설</th><th class="fmx-colhead">숙박시설</th><th class="fmx-colhead">공장</th><th class="fmx-colhead">창고시설</th>
+  <th class="fmx-colhead">위험물·가스</th><th class="fmx-colhead">항공기·자동차</th><th class="fmx-colhead">교정·군사</th><th class="fmx-colhead">발전·방송</th>
+  <th class="fmx-colhead">지하상가·터널·지하구</th>
+</tr>
+</thead>
+<tbody>
+
+<tr class="cat-sohwa">
+  <th class="fmx-rowcat" rowspan="7">소화설비</th>
+  <td class="fmx-rowlabel">소화기구</td>
+  <td>33㎡↑ (투척형1/2가능)</td><td>33㎡↑</td><td>33㎡↑</td><td>33㎡↑</td>
+  <td>33㎡↑</td><td>33㎡↑</td><td>33㎡↑</td><td>33㎡↑</td><td>33㎡↑</td>
+  <td>33㎡↑</td><td>33㎡↑ (투척형1/2가능)</td><td>33㎡↑</td><td>33㎡↑</td>
+  <td>33㎡↑</td><td>33㎡↑</td><td>33㎡↑</td><td>33㎡↑</td>
+  <td>가스·전기저장</td><td>33㎡↑</td><td>33㎡↑</td><td>33㎡↑</td>
+  <td>터널·지하구<span class="fmx-dot">●</span></td>
+</tr>
+
+<tr class="cat-sohwa">
+  <td class="fmx-rowlabel">자동소화장치</td>
+  <td>아파트·오피스텔 주방<span class="fmx-dot">●</span></td><td>상업용주방(대규모점포·음식점)</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td>
+  <td class="fmx-dash">—</td><td class="fmx-dash">—</td><td>상업용주방(대규모점포·음식점)</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td>
+  <td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td><td>오피스텔 주방</td>
+  <td>오피스텔 주방<span class="fmx-dot">●</span></td><td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td>
+  <td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td>
+  <td>집단급식소 주방</td>
+</tr>
+
+<tr class="cat-sohwa">
+  <td class="fmx-rowlabel">옥내소화전설비</td>
+  <td>연면적3,000㎡↑ 또는 지하·무창600㎡↑층 또는 4층↑600㎡↑층</td>
+  <td>연면적1,500㎡↑ 또는 지하·무창300㎡↑층 또는 4층↑300㎡↑층</td>
+  <td>연면적1,500㎡↑</td><td>연면적1,500㎡↑</td>
+  <td>연면적3,000㎡↑ 또는 지하·무창600㎡↑층</td><td>연면적3,000㎡↑</td><td>연면적1,500㎡↑</td><td>연면적1,500㎡↑</td><td>연면적1,500㎡↑</td>
+  <td>연면적3,000㎡↑</td><td>연면적1,500㎡↑</td><td>연면적1,500㎡↑</td><td>연면적1,500㎡↑</td>
+  <td>연면적1,500㎡↑(무인변전소 제외)</td><td>연면적1,500㎡↑</td><td>연면적1,500㎡↑ 또는 특수가연물750배↑</td><td>연면적1,500㎡↑ 또는 특수가연물750배↑</td>
+  <td>가스시설 제외</td><td>연면적1,500㎡↑ 또는 옥상차고200㎡↑</td><td>연면적1,500㎡↑</td><td>연면적1,500㎡↑</td>
+  <td>터널1,000m↑</td>
+</tr>
+
+<tr class="cat-sohwa">
+  <td class="fmx-rowlabel">스프링클러설비</td>
+  <td>6층↑<span class="fmx-dot">●</span>(리모델링 예외 있음)</td>
+  <td>6층↑ 또는 지하·무창·4층↑1,000㎡↑층</td>
+  <td>6층↑ 또는 5,000㎡↑(수용500↑)</td><td>6층↑</td>
+  <td>6층↑ 또는 수용100↑ 영화관 지하500㎡↑</td><td>6층↑(목조제외)</td><td>6층↑ 또는 5,000㎡↑(수용500↑)</td><td>6층↑ 또는 병원등600㎡↑ 정신의료600㎡↑</td><td>6층↑</td>
+  <td>6층↑ 기숙사5,000㎡↑</td><td>6층↑ 또는 600㎡↑</td><td>6층↑ 또는 숙박가능600㎡↑</td><td>6층↑ 또는 5,000㎡↑</td>
+  <td>6층↑</td><td>6층↑ 또는 600㎡↑</td><td>6층↑ 또는 특수가연물1,000배↑ 지하·무창1,000㎡↑층</td><td>6층↑ 또는 5,000㎡↑ 랙식천장10m↑1,500㎡↑</td>
+  <td>가스시설 제외</td><td>6층↑</td><td>6층↑ 수용거실보호시설</td><td>6층↑ 전기저장시설<span class="fmx-dot">●</span></td>
+  <td>지하상가1,000㎡↑ 터널행안부령</td>
+</tr>
+
+<tr class="cat-sohwa">
+  <td class="fmx-rowlabel">간이스프링클러</td>
+  <td>연립·다세대주택<span class="fmx-dot">●</span></td>
+  <td>1,000㎡↑ 또는 의원등입원실·조산원 600㎡↓</td>
+  <td class="fmx-dash">—</td><td class="fmx-dash">—</td>
+  <td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td><td>병원등600㎡↓ 정신의료300~600㎡ 또는 300㎡↓창살</td><td class="fmx-dash">—</td>
+  <td>합숙소100㎡↑</td><td>생활시설<span class="fmx-dot">●</span> 300~600㎡ 또는 300㎡↓창살</td><td class="fmx-dash">—</td><td>나목복합1,000㎡↑</td>
+  <td class="fmx-dash">—</td><td>300~600㎡</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td>
+  <td class="fmx-dash">—</td><td class="fmx-dash">—</td><td>임차보호시설<span class="fmx-dot">●</span></td><td class="fmx-dash">—</td>
+  <td class="fmx-dash">—</td>
+</tr>
+
+<tr class="cat-sohwa">
+  <td class="fmx-rowlabel">물분무등소화설비</td>
+  <td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td>
+  <td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td>
+  <td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td>
+  <td>전기실 등 300㎡↑</td><td class="fmx-dash">—</td><td>전기실 300㎡↑</td><td>전기실 300㎡↑</td>
+  <td class="fmx-dash">—</td><td>항공기격납고<span class="fmx-dot">●</span> 차고800㎡↑ 주차장200㎡↑ 기계주차20대↑</td><td class="fmx-dash">—</td><td>전기실 300㎡↑</td>
+  <td>터널행안부령</td>
+</tr>
+
+<tr class="cat-sohwa">
+  <td class="fmx-rowlabel">옥외소화전설비</td>
+  <td class="fmx-dash">제외</td><td>1·2층합계 9,000㎡↑</td><td>9,000㎡↑</td><td>9,000㎡↑</td>
+  <td>9,000㎡↑</td><td>9,000㎡↑ 목조건축물·보물·국보</td><td>9,000㎡↑</td><td>9,000㎡↑</td><td>9,000㎡↑</td>
+  <td>9,000㎡↑</td><td>9,000㎡↑</td><td>9,000㎡↑</td><td>9,000㎡↑</td>
+  <td>9,000㎡↑</td><td>9,000㎡↑</td><td>9,000㎡↑ 또는 특수가연물750배↑</td><td>9,000㎡↑ 또는 특수가연물750배↑</td>
+  <td class="fmx-dash">제외</td><td>9,000㎡↑</td><td>9,000㎡↑</td><td>9,000㎡↑</td>
+  <td class="fmx-dash">제외</td>
+</tr>
+
+<tr class="cat-gyeongbo">
+  <th class="fmx-rowcat" rowspan="7">경보설비</th>
+  <td class="fmx-rowlabel">단독경보형감지기</td>
+  <td>연립·다세대 연동형<span class="fmx-dot">●</span></td><td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td>
+  <td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td>
+  <td>기숙사·합숙소2,000㎡↓</td><td class="fmx-dash">—</td><td>기숙소2,000㎡↓ 숙박있는수련시설</td><td class="fmx-dash">—</td>
+  <td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td>
+  <td class="fmx-dash">—</td><td>지하차고200㎡↓</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td>
+  <td>유치원400㎡↓</td>
+</tr>
+
+<tr class="cat-gyeongbo">
+  <td class="fmx-rowlabel">자동화재탐지설비</td>
+  <td>아파트등·기숙사 전층<span class="fmx-dot">●</span></td><td>600㎡↑(목욕장1,000㎡↑)</td><td>1,000㎡↑</td><td>600㎡↑</td>
+  <td>1,000㎡↑</td><td>1,000㎡↑</td><td>1,000㎡↑ 전통시장<span class="fmx-dot">●</span></td><td>600㎡↑ 정신의료300㎡↑ 요양병원<span class="fmx-dot">●</span></td><td>600㎡↑</td>
+  <td>2,000㎡↑</td><td>생활시설<span class="fmx-dot">●</span> 400㎡↑</td><td>2,000㎡↑ 숙박수련·수용100↑</td><td>600㎡↑</td>
+  <td>1,000㎡↑ 6층↑<span class="fmx-dot">●</span></td><td>전층<span class="fmx-dot">●</span></td><td>1,000㎡↑ 또는 특수가연물500배↑</td><td>1,000㎡↑</td>
+  <td>1,000㎡↑</td><td>1,000㎡↑ 지하차고200㎡↑</td><td>국방1,000㎡↑ 기타2,000㎡↑</td><td>1,000㎡↑ 전기저장시설<span class="fmx-dot">●</span></td>
+  <td>지하상가<span class="fmx-dot">●</span> 터널1,000m↑ 지하구<span class="fmx-dot">●</span></td>
+</tr>
+
+<tr class="cat-gyeongbo">
+  <td class="fmx-rowlabel">비상방송설비</td>
+  <td class="fmx-merged" colspan="21">연면적 3,500㎡↑ 모든층 | 11층↑ 모든층 | 지하층 3개층↑ 모든층 (가스시설·축사·터널·지하구 제외)</td>
+</tr>
+
+<tr class="cat-gyeongbo">
+  <td class="fmx-rowlabel">자동화재속보설비</td>
+  <td class="fmx-dash">—</td><td>의원·입원실·조산원·산후조리원</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td>
+  <td>목조건축물·보물·국보</td><td>목조건축물·보물·국보</td><td>전통시장<span class="fmx-dot">●</span></td><td>종합병원등<span class="fmx-dot">●</span> 정신병원500㎡↑층</td><td class="fmx-dash">—</td>
+  <td class="fmx-dash">—</td><td>생활시설<span class="fmx-dot">●</span> 500㎡↑층</td><td>숙박있는수련 500㎡↑층</td><td class="fmx-dash">—</td>
+  <td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td>
+  <td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td>
+  <td class="fmx-dash">—</td>
+</tr>
+
+<tr class="cat-gyeongbo">
+  <td class="fmx-rowlabel">누전경보기</td>
+  <td class="fmx-merged" colspan="21">계약전류 100A 초과 &amp; 비내화·철망 벽·바닥·반자 건축물 (가스시설·터널·지하구 제외)</td>
+</tr>
+
+<tr class="cat-gyeongbo">
+  <td class="fmx-rowlabel">가스누설경보기</td>
+  <td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td>
+  <td>가스시설 있는 경우</td><td>가스시설 있는 경우</td><td>가스시설 있는 경우</td><td>가스시설 있는 경우</td><td>가스시설 있는 경우</td>
+  <td class="fmx-dash">—</td><td>가스시설 있는 경우</td><td>가스시설 있는 경우</td><td class="fmx-dash">—</td>
+  <td class="fmx-dash">—</td><td>가스시설 있는 경우</td><td>가스시설 있는 경우</td><td>물류터미널 가스시설</td>
+  <td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td>
+  <td class="fmx-dash">—</td>
+</tr>
+
+<tr class="cat-gyeongbo">
+  <td class="fmx-rowlabel">시각경보기</td>
+  <td class="fmx-merged" colspan="21">자동화재탐지설비 설치대상 중 근린·문화집회·종교·판매·운수·의료·노유자·운동·업무·숙박·위락·물류터미널·발전·장례·지하상가 등</td>
+</tr>
+
+<tr class="cat-pinan">
+  <th class="fmx-rowcat" rowspan="5">피난구조설비</th>
+  <td class="fmx-rowlabel">피난기구</td>
+  <td class="fmx-merged" colspan="21">모든 특정소방대상물 모든층 (피난층·지상1층·지상2층·11층↑ 등 예외, 노유자시설 피난층아닌 1·2층 포함)</td>
+</tr>
+<tr class="cat-pinan">
+  <td class="fmx-rowlabel">유도등</td>
+  <td class="fmx-merged" colspan="21">모든 특정소방대상물 (축사·터널 제외). 객석유도등: 유흥주점·문화집회·종교·운동시설</td>
+</tr>
+<tr class="cat-pinan">
+  <td class="fmx-rowlabel">비상조명등</td>
+  <td class="fmx-merged" colspan="21">5층↑ 연면적 3,000㎡↑ 모든층 | 지하·무창층 450㎡↑ | 터널 500m↑ (창고·가스·축사 제외)</td>
+</tr>
+<tr class="cat-pinan">
+  <td class="fmx-rowlabel">휴대용비상조명등</td>
+  <td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td>
+  <td>영화상영관100인↑</td><td class="fmx-dash">—</td><td>대규모점포</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td>
+  <td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td>
+  <td class="fmx-dash">—</td><td>숙박시설<span class="fmx-dot">●</span></td><td class="fmx-dash">—</td><td class="fmx-dash">—</td>
+  <td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td><td class="fmx-dash">—</td>
+  <td>지하역사·지하상가</td>
+</tr>
+<tr class="cat-pinan">
+  <td class="fmx-rowlabel">인명구조기구</td>
+  <td class="fmx-merged" colspan="21">7층↑ 관광호텔(방열·방화복+공기호흡기) | 5층↑ 병원(방화복+공기호흡기) | 영화상영관100인↑·대규모점포·지하역사·지하상가(공기호흡기)</td>
+</tr>
+
+<tr class="cat-yongsu">
+  <th class="fmx-rowcat" rowspan="1">소화용수</th>
+  <td class="fmx-rowlabel">상수도소화용수</td>
+  <td class="fmx-merged" colspan="21">연면적 5,000㎡↑ (가스시설·터널·지하구 제외) | 가스시설 지상탱크 100톤↑ | 폐기물 재활용·처분시설</td>
+</tr>
+
+<tr class="cat-hwaldong">
+  <th class="fmx-rowcat" rowspan="6">소화활동설비</th>
+  <td class="fmx-rowlabel">제연설비</td>
+  <td class="fmx-merged" colspan="21">문화집회·종교·운동 무대부 200㎡↑ | 영화상영관 100인↑ | 지하층·무창층 근린·판매·운수·숙박·위락·의료·노유자·창고 1,000㎡↑ | 지하상가 1,000㎡↑ | 특별피난계단·비상용·피난용승강기 승강장</td>
+</tr>
+<tr class="cat-hwaldong">
+  <td class="fmx-rowlabel">연결송수관설비</td>
+  <td class="fmx-merged" colspan="21">5층↑ 연면적 6,000㎡↑ | 7층(지하포함)↑ | 지하층 3층↑ 지하면적 1,000㎡↑ | 터널 500m↑</td>
+</tr>
+<tr class="cat-hwaldong">
+  <td class="fmx-rowlabel">연결살수설비</td>
+  <td class="fmx-merged" colspan="21">판매·운수·물류터미널 1,000㎡↑ | 지하층 바닥면적 150㎡↑(아파트 지하700㎡↑·학교700㎡↑) | 가스탱크 30톤↑ | 지하차고 200㎡↓</td>
+</tr>
+<tr class="cat-hwaldong">
+  <td class="fmx-rowlabel">비상콘센트설비</td>
+  <td class="fmx-merged" colspan="21">11층↑ 11층이상 층 | 지하 3층↑ 지하면적 1,000㎡↑ 지하 전층 | 터널 500m↑</td>
+</tr>
+<tr class="cat-hwaldong">
+  <td class="fmx-rowlabel">무선통신보조설비</td>
+  <td class="fmx-merged" colspan="21">지하상가 1,000㎡↑ | 지하층 3,000㎡↑ 또는 지하 3층↑ 1,000㎡↑ | 터널 500m↑ | 공동구 | 30층↑ 16층이상 전층</td>
+</tr>
+<tr class="cat-hwaldong">
+  <td class="fmx-rowlabel">연소방지설비</td>
+  <td class="fmx-merged" colspan="21">지하구(전력·통신사업용)<span class="fmx-dot">●</span></td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+<div class="fmx-notes">
+  <h2>자주 헷갈리는 핵심 개념 5가지</h2>
+  <ul>
+    <li><b>무창층</b>은 소방시설법 고유 개념(건축법과 다름) — 지상층 중 ①지름 50cm 이상 원통과 ②바닥에서 1.2m 이내 높이 ③도로·빈터 방향 ④장애물 없음, 4가지를 모두 갖춘 개구부 합계가 바닥면적 1/30 이하인 층. "지하층·무창층"은 법제처 해석상 "지하층 그리고 무창층"(병렬)의 의미.</li>
+    <li><b>지하층</b>은 건축법 제2조제1항제5호 기준 — 바닥이 지표면 아래, 지표면까지 평균높이가 층 높이의 1/2 이상인 층.</li>
+    <li><b>연면적</b> = 건축물 각 층 바닥면적의 합계. <b>바닥면적</b> = 벽·기둥 구획 중심선 기준 각 층(또는 일부)의 수평투영면적.</li>
+    <li><b>복합건축물</b> 안에 근린생활시설등이 포함된 경우, 개별 시설의 기준이 복합건축물 기준보다 강화되어 있으면 강화 기준 우선 적용.</li>
+    <li><b>용도변경</b> 시 원칙적으로 변경 시점의 시행령 기준 적용(사용검사 당시 기준 아님). 노유자·의료시설 등으로 변경 시 신규 의무 발생 가능. <b>리모델링</b>은 연면적·층고 변경 없으면 사용검사 당시 기준 유지 가능.</li>
+  </ul>
+
+  <h2>노유자생활시설 강화기준 (FAQ 핵심)</h2>
+  <p>노유자생활시설(어린이집·요양시설 등 상시 거주형, 시행령 제7조제1항제7호)은 <b>면적 무관</b>으로 간이스프링클러·자동화재탐지·자동화재속보 설치가 항상 의무입니다. 일반(비생활형) 노유자시설은 각각 300~600㎡, 400㎡↑, 500㎡↑층 기준이 적용되어 상대적으로 완화됩니다.</p>
+
+  <h2>이 조견표의 한계 — 반드시 별도 확인</h2>
+  <ul>
+    <li>면제기준 (시행령 별표5) — 동등 이상 성능 시설 보유 시 일부 면제 가능</li>
+    <li>성능위주설계 대상 (법 제8조) — 연면적 20만㎡ 이상 등</li>
+    <li>내진설계 의무 (법 제7조) — 옥내소화전·스프링클러·물분무등소화설비 3종</li>
+    <li>화재안전기준(NFPC/NFTC)이 별도로 정하는 세부 장소</li>
+  </ul>
+
+  <p class="fmx-source">출처: 04noti.com "2026년 소방시설 설치기준 조견표" (소방시설법 시행령 별표4, 대통령령 제36220호, 2026.3.24 시행 기준) — 원문: <a href="https://04noti.com/fire-safety-installation-guide/">https://04noti.com/fire-safety-installation-guide/</a> · 실제 인허가 전 law.go.kr 원문 및 관할 소방서 확인 필수.</p>
+</div>
+  </div>
+</div>
+
+<div id="evacPanelWrap" style="display:none;padding:18px 20px 40px;max-width:900px;margin:0 auto">
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px">
+    <div style="font-size:15px;font-weight:800;margin-bottom:3px">🚪 피난·방화구획 체크리스트 (인테리어 시공 관점)</div>
+    <div style="font-size:12px;color:var(--sub);margin-bottom:14px">GRIDA는 방화구획 자체를 설계·변경하지 않습니다 — 이미 있는 방화구획·피난시설을 시공 중에 모르고 훼손하지 않도록 상기시키는 참고자료입니다. 근거: 건축법 §49(피난시설)·§50(내화구조와 방화벽), 시행령 §46(방화구획)·§48(계단·복도), 건축물의 피난·방화구조 등의 기준에 관한 규칙.</div>
+
+    <div id="evacSummary" style="margin-bottom:18px"></div>
+
+    <div class="law-block">
+      <div class="law-block-title">① 방화구획 설치기준 (건축법 §49·시행령 §46·규칙 §14)</div>
+      <div class="law-row"><div>
+        <div class="law-name">개념 체인 — 재료 › 표면구조 › 구조체 › 구획</div>
+        <div class="point"><b>불연·준불연·난연</b>(재료 자체가 타는가) → <b>방화구조</b>(화염 확산 지연, 표면 마감 — 철망모르타르 2cm↑ 등) → <b>내화구조</b>(1~3시간 붕괴 없이 견디는 구조체 — 철근콘크리트 등) → <b>방화구획</b>(내화구조 바닥·벽+방화문으로 칸을 나눠 확산 자체를 차단). 이 넷은 서로 다른 개념이라 순서대로 이해해야 헷갈리지 않음.</div>
+      </div></div>
+      <div class="law-row"><div>
+        <div class="law-name">구획 대상 및 면적 기준</div>
+        <div class="point">주요구조부가 내화구조 또는 불연재료이고 <b>연면적 1,000㎡ 초과</b>하는 건축물 대상.
+          <br>· <b>10층 이하</b>: 바닥면적 1,000㎡마다 + 매 층 (스프링클러 설치 시 3,000㎡마다)
+          <br>· <b>11층 이상</b>: 바닥면적 200㎡마다 + 매 층 — 벽·반자 <b>불연마감 시 500㎡로 완화</b> (스프링클러 설치 시 600㎡, 불연마감 병행 시 1,500㎡로 완화)</div>
+      </div></div>
+      <div class="law-note">불연 마감의 실리적 이득: 11층 이상에서 벽·반자를 불연재료로 마감하면 구획 면적이 200→500㎡(스프링클러 병행 시 600→1,500㎡)로 늘어나 구획 벽체 수 자체가 줄어듭니다 — 설계·시공비 절감으로 직결되는 부분이라, "처음부터 불연 마감으로 가는" 실무적 이유가 됩니다.</div>
+      <div class="law-note">완화 규정(시행령 §46②): 필로티 주차장 일부를 내부공간화하면 그 접합부만 방화구획하면 됨. 복층형 공동주택, 승강로, 최상층 대형공간(로비·강당 등)은 별도 완화 규정 적용 가능. 매 층마다 구획하되 지하1층→지상 직결 경사로는 예외.</div>
+    </div>
+
+    <div class="law-block" id="evacCorridorBlock">
+      <div class="law-block-title">② 복도 유효너비 (피난방화규칙 제15조의2) — 연면적 200㎡ 초과 건축물</div>
+      <div class="law-row"><div>
+        <div class="law-name">양옆에 거실이 있는 복도 (제1항)</div>
+        <div class="point">유효너비 <b>1.8m 이상</b>. 양쪽으로 방·사무실 등이 붙어있는 전형적인 편복도·중복도 구조.</div>
+      </div></div>
+      <div class="law-row"><div>
+        <div class="law-name">그 밖의 복도 (제1항, 한쪽만 거실 또는 거실 없음)</div>
+        <div class="point">유효너비 <b>1.2m 이상</b>.</div>
+      </div></div>
+      <div class="law-row"><div>
+        <div class="law-name">특수 용도와 접하는 복도 (제2항, 제1항 대체 적용)</div>
+        <div class="point">문화및집회시설 중 공연장·집회장·관람장·전시장, 종교시설 중 종교집회장, 노유자시설 중 아동관련시설·노인복지시설, 수련시설 중 생활권수련시설, 위락시설 중 유흥주점, 장례식장의 관람실 또는 집회실과 접하는 복도 — <b>해당 층에서 해당 용도로 쓰는 바닥면적의 합계</b> 기준(건물 전체 바닥면적이 아님):
+          <br>· 500㎡ 미만: <b>1.5m 이상</b>
+          <br>· 500~1,000㎡ 미만: <b>1.8m 이상</b>
+          <br>· 1,000㎡ 이상: <b>2.4m 이상</b></div>
+      </div></div>
+      <div class="law-row"><div>
+        <div class="law-name">공연장 복도 특칙 (제3항)</div>
+        <div class="point">개별 관람실이 <b>바닥면적 300㎡ 이상</b>인 경우 → 그 바깥쪽 양쪽 및 뒤쪽에 각각 복도 설치. 개별 관람실이 <b>300㎡ 미만</b>인 것을 한 층에 2개소 이상 연속 설치하는 경우 → 그 관람실 바깥쪽의 앞쪽과 뒤쪽에 각각 복도 설치.</div>
+      </div></div>
+      <div class="law-note">실무 주의사항: 유효너비는 <b>문이 닫혀있을 때 마감면 기준</b>으로 산정합니다. 문틀·문짝 두께, 손잡이·경첩 돌출부까지 감안해서 여유 있게 계획할 것 — 실제로 국토부 질의회신에서도 "문틀 돌출 10~20mm, 문 두께 40mm 내외"로 유효폭이 기준 미달되는 사례가 자주 지적됩니다. 마감재 두께(석재·타일 등)로 복도 폭이 줄어드는 것도 시공 단계에서 놓치기 쉬운 지점.</div>
+    </div>
+
+    <div class="law-block" id="evacInteriorPathBlock">
+      <div class="law-block-title">②-2 영업장 내부 피난통로 (다중이용업소법 시행규칙 별표2) — 건축법 복도기준과는 별개</div>
+      <div class="law-row"><div>
+        <div class="law-name">내부 피난통로 폭</div>
+        <div class="point">기본 <b>120cm 이상</b>. 다만 양옆에 구획된 실이 있는 영업장으로서, 그 구획된 실의 출입문이 열리는 방향이 피난통로 방향이면 <b>150cm 이상</b>.</div>
+      </div></div>
+      <div class="law-row"><div>
+        <div class="law-name">통로 형태 제한</div>
+        <div class="point">구획된 실부터 주된 출입구 또는 비상구까지, 피난통로가 <b>세 번 이상 구부러지는 형태로 설치 금지</b>.</div>
+      </div></div>
+      <div class="law-note">이건 "건축물"(건물 전체) 기준이 아니라 <b>"영업장"(다중이용업소 개별 점포) 내부</b> 기준이라, GRIDA가 다루는 음식점·노래방·고시원 같은 다중이용업소 프로젝트에서 건축법 복도기준보다 오히려 더 직접적으로 걸리는 경우가 많습니다. 칸막이·좌석 배치 계획 시 통로 폭과 꺾임 횟수를 함께 체크할 것.</div>
+    </div>
+
+    <div class="law-block">
+      <div class="law-block-title">③ 구획벽 시공 원칙 — "슬래브-투-슬래브"</div>
+      <div class="law-row"><div>
+        <div class="law-name">구획벽은 반자선에서 끊지 않는다</div>
+        <div class="point">방화구획벽은 <b>반자(천장 마감)선에서 끊지 않고, 반자 상부를 지나 상층 바닥 슬래브(또는 보) 하부까지</b> 내화구조로 연속시켜야 합니다. 인테리어 천장 공사에서 흔히 반자선까지만 벽을 세우고 마감하는 경우가 있는데, 그러면 <b>천장 속(플레넘) 공간으로 불·연기가 옆 구획으로 그대로 우회</b>해서 방화구획 자체가 무의미해집니다.</div>
+      </div></div>
+      <div class="law-row"><div>
+        <div class="law-name">관통부 내화충전 (방화퍼티 등)</div>
+        <div class="point">방화구획된 벽·바닥을 배관·덕트·전선이 관통하면, 그 틈을 <b>내화충전재(내화채움성능 인정구조)</b>로 메워서 방화성능을 유지해야 함. 인테리어 공사에서 냉난방 배관이나 전기배선을 새로 넣을 때 기존 방화구획 벽을 뚫는 경우가 흔한데, 뚫기만 하고 충전 처리를 안 하면 구획이 무력화됨.</div>
+      </div></div>
+      <div class="law-row"><div>
+        <div class="law-name">덕트가 구획을 관통하면 방화댐퍼 (규칙 §14②)</div>
+        <div class="point">냉난방·환기 덕트가 방화구획을 관통하는 지점에는 방화댐퍼를 설치해야 함. 인테리어 기계설비 공사에서 덕트 루트를 짤 때 방화구획 통과 여부를 사전에 확인할 것.</div>
+      </div></div>
+      <div class="law-note">다중이용업소 §10의2에서 단란주점·유흥주점·노래연습장에 "반자 속까지 구획"을 요구하는 것도 같은 원리의 강화 규정입니다 — 반자선에서 끊으면 안 된다는 원칙이 다중이용업소 내부구획에서는 아예 법 조문으로 명시되어 있는 셈.</div>
+    </div>
+
+    <div class="law-block">
+      <div class="law-block-title">④ 방화문·자동방화셔터</div>
+      <div class="law-row"><div>
+        <div class="law-name">교체·개조 시 주의</div>
+        <div class="point">손잡이·도어락을 디자인 톤에 맞춰 교체할 때, 제품 자체의 "성능인증" 라벨/구조가 훼손되지 않는 부속으로만 교체할 것. 방화문은 항상 닫힌 상태 유지 또는 화재감지 시 자동으로 닫히는 구조여야 함 — 도어스톱으로 상시 개방시켜두면 안 됨.</div>
+      </div></div>
+      <div class="law-row"><div>
+        <div class="law-name">개폐 경로 확보</div>
+        <div class="point">자동방화셔터·방화문의 작동(닫힘) 궤적 안에 가구·집기·간판 등을 배치하면 안 됨 — 화재 시 완전히 닫히지 못해 구획 자체가 무력화됨.</div>
+      </div></div>
+    </div>
+
+    <div class="law-block">
+      <div class="law-block-title">⑤ 천장 마감재 - 설비 간섭</div>
+      <div class="law-row"><div>
+        <div class="law-name">우물천장·간접조명 박스 설계 시</div>
+        <div class="point">천장 마감 구조물(우물천장, 몰딩박스 등)이 스프링클러 헤드·감지기·배연구를 가리거나 작동 반경을 침범하지 않는지 확인. 특히 헤드 주변 살수 반경(디플렉터 하부 공간) 확보 필요.</div>
+      </div></div>
+    </div>
+
+    <div class="law-block">
+      <div class="law-block-title">⑥ 개구부(문·창) 위치 변경</div>
+      <div class="law-row"><div>
+        <div class="law-name">방화구획용 벽 철거·변경 시 대수선 여부</div>
+        <div class="point">방화구획을 이루는 벽을 철거하거나 개구부를 새로 내는 공사는 건축법상 대수선(허가/신고 대상)에 해당할 수 있음. → ref01의 대수선 판정기와 교차 확인 필수.</div>
+      </div></div>
+    </div>
+
+    <div class="law-block" id="evacMultiUseBlock">
+      <div class="law-block-title">⑦ 다중이용업소 내부구획과의 연결</div>
+      <div class="law-row"><div>
+        <div class="law-name">§10의2 불연구획 규정</div>
+        <div class="point">다중이용업소 내부구획은 불연재료만 인정(12.5T 이상 석고보드가 통상 불연재 시험성적서 보유). 이 항목은 시설별 체크리스트의 3나·4아·4자 등 음식점 계열 항목에 이미 반영되어 있음 — 여기서는 방화구획 관점에서 한 번 더 교차 확인하는 용도.</div>
+      </div></div>
+    </div>
+
+  </div>
+</div>
+
+<div id="multiusePanelWrap" style="display:none;padding:18px 20px 40px;max-width:900px;margin:0 auto">
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px">
+    <div style="font-size:15px;font-weight:800;margin-bottom:3px">🚨 다중이용업소 영업장 안전시설등 설치·유지 기준</div>
+    <div style="font-size:12px;color:var(--sub);margin-bottom:14px">근거: 다중이용업소의 안전관리에 관한 특별법 시행규칙 제9조·별표2. "건축물" 전체가 아니라 <b>개별 "영업장"</b> 단위 기준입니다. 정확한 다중이용업 해당 여부는 ref01 자가진단을 먼저 확인하세요.</div>
+
+    <div id="multiuseSummary" style="margin-bottom:18px"></div>
+
+    <div class="mu-cat-title mu-cat-sohwa">소화설비</div>
+    <div class="mu-block">
+      <div class="law-row" id="muRow-extinguisher"><div>
+        <div class="law-name">소화기 · 자동확산소화기</div>
+        <div class="point"><b>소화기</b>: ①각 층마다 설치 ②보행거리 20m(소형소화기)·30m(대형소화기) 이내 ③한 층이 2개 이상으로 구획된 경우 구획된 실마다 배치(아파트는 각 세대마다 배치) ④바닥으로부터 1.5m 이하 위치에 비치 ⑤이산화탄소 소화기는 지하층·무창층 20㎡ 미만에는 설치 금지(단, 배기를 위한 별도 시설이 있는 경우 제외).<br><b>자동확산소화기</b>: 보일러실·주방·건조실·세탁소 — 10㎡ 이하 1개, 10㎡ 이상 2개.</div>
+      </div></div>
+      <div class="law-row" id="muRow-simpleSprinkler"><div>
+        <div class="law-name">간이스프링클러설비</div>
+        <div class="point"><b>대상</b>(별표1 기준): ①지하층·무창층(밀폐구조 영업장)인 영업장, 권총사격장 ②산후조리원·고시원업 영업장(단, 지상1층에 있거나 영업장 주된 출입구가 건축물 외부 지면과 직접 연결된 경우 제외).<br><b>설치기준</b>(별표2): 화재안전기준에 따라 설치. 다만 영업장의 구획된 실마다 간이스프링클러헤드 또는 스프링클러헤드가 이미 설치된 경우, 그 설비의 유효범위 부분에는 간이스프링클러설비를 별도로 설치하지 않을 수 있음.</div>
+      </div></div>
+    </div>
+
+    <div class="mu-cat-title mu-cat-gyeongbo">경보설비</div>
+    <div class="mu-block">
+      <div class="law-row" id="muRow-alarm"><div>
+        <div class="law-name">비상벨설비 또는 자동화재탐지설비</div>
+        <div class="point">①영업장의 구획된 실마다 설치 ②노래반주기·영상음향장치를 사용하는 영업장에는 자동화재탐지설비 설치 ③자동화재탐지설비 설치 시 감지기·지구음향장치는 구획된 실마다 설치(단, 비상방송설비 음향장치가 설치된 경우 제외) ④영상음향장치가 설치된 영업장은 자동화재탐지설비 신호를 그 장치에 별도로 전달 ⑤연면적 400㎡ 이상 ⑥지하층·무창층 바닥면적 150㎡ 이상(공연장은 100㎡ 이상)이면 대상.</div>
+      </div></div>
+      <div class="law-row"><div>
+        <div class="law-name">가스누설경보기</div>
+        <div class="point">가스시설을 사용하는 주방·난방시설이 있는 영업장(주방, 보일러실, 건조실, 세탁소 등).</div>
+      </div></div>
+      <div class="law-row"><div>
+        <div class="law-name">감지기</div>
+        <div class="point">영업장의 구획된 실마다 설치.<br><b>연기감지기</b>: 복도·통로·경사로·계단에 15㎡마다 1개(1·2종은 4m 미만), 보행거리 30m(3종은 20m) 마다 1개(단 30m 미만은 제외), 수직거리 15m마다 1개. 벽 또는 보로부터 0.6m 이격.<br><b>차동식감지기</b>: 룸·각 구획된 실·창고 70㎡마다 1개(2종은 4m 미만인 경우).<br><b>정온식감지기</b>: 주방·보일러실 60㎡마다 1개(1종은 4m 미만인 경우).</div>
+      </div></div>
+    </div>
+
+    <div class="mu-cat-title mu-cat-pinan">피난설비</div>
+    <div class="mu-block">
+      <div class="law-row"><div>
+        <div class="law-name">피난기구</div>
+        <div class="point">2층~10층 이하: 완강기·피난사다리·미끄럼대·구조대·승강식피난기 중 설치.</div>
+      </div></div>
+      <div class="law-row" id="muRow-evacLine"><div>
+        <div class="law-name">피난유도선</div>
+        <div class="point">영업장 내부 피난통로 또는 복도가 있는 영업장에만 설치. <b>광원점등방식</b>으로 설치하며, 설치방향은 영업장 중심으로부터 가까운 주출입구 또는 비상구 방향으로 피난을 유도하도록 피난방향을 설정.<br>
+        <b>대상 업종</b>: ①단란주점영업·유흥주점영업 ②영화상영관·비디오물감상실업·복합영상물제공업 ③노래연습장업 ④산후조리업 ⑤고시원업.</div>
+      </div></div>
+      <div class="law-row"><div>
+        <div class="law-name">유도등 · 유도표지 — 설치장소별 종류 (NFTC 303 표2.1.1.1, 2024.1.1 개정)</div>
+        <div class="point"><b>별표2(다중이용업소법) 기준</b>: 영업장의 구획된 실마다 유도등·유도표지·비상조명등 중 하나 이상을 화재안전기준에 따라 설치.<br>
+        <b>NFTC 303 세부 분류 (다중이용업소 → 6호 해당)</b>:
+        <br>① 공연장·집회장(종교집회장 포함)·관람장·운동시설 → 대형피난구유도등+통로유도등+객석유도등
+        <br>② 유흥주점영업 중 춤을 출 수 있는 무대가 설치된 카바레·나이트클럽 등 → 대형피난구유도등+통로유도등+객석유도등
+        <br>③ 위락시설·판매시설·운수시설·관광숙박업·의료시설·장례식장·방송통신시설·전시장·지하상가·지하철역사 → 대형피난구유도등+통로유도등
+        <br>④ 숙박시설(관광숙박업 제외)·오피스텔 → 중형피난구유도등+통로유도등
+        <br>⑤ ①~③ 외의 건축물로 지하층·무창층 또는 11층 이상인 특정소방대상물 → 중형피난구유도등+통로유도등
+        <br>⑥ <b>①~⑤ 외의 건축물로 근린생활시설·노유자시설·업무시설·발전시설·종교시설(집회장 용도 제외)·교육연구시설·수련시설·공장·교정및군사시설(국방·군사시설 제외)·자동차정비공장·운전학원및정비학원·다중이용업소·복합건축물 → 소형피난구유도등+통로유도등</b>
+        <br>⑦ 그 밖의 것 → 피난구유도표지+통로유도표지</div>
+      </div></div>
+      <div class="law-note">GRIDA가 다루는 음식점·미용실·학원·사무실 등 대부분의 근린생활시설 프로젝트는 ⑥에 해당해 소형피난구유도등+통로유도등이 기본입니다. 다만 소방서장 재량으로 상위 등급(중형·대형) 요구가 가능하고, 복합건축물의 주택 세대 내부는 유도등 설치 자체가 면제됩니다.</div>
+      <div class="law-row"><div>
+        <div class="law-name">휴대용비상조명등</div>
+        <div class="point"><b>별표2 기준</b>: 영업장 안의 구획된 실마다 화재안전기준에 따라 설치.<br><b>화재안전기준(NFSC 304) 참고</b>: 거실과 그로부터 지상에 이르는 복도·계단 등에 설치. 5층 이상(지하층 포함)+연면적 3,000㎡ 이상, 또는 지하층·무창층 바닥면적 450㎡ 이상이면 그 부분에 설치. 보행거리 15m 이내 등은 설치 제외.</div>
+      </div></div>
+    </div>
+
+    <div class="mu-cat-title mu-cat-bang">방화시설</div>
+    <div class="mu-block">
+      <div class="law-row"><div>
+        <div class="law-name">비상구 — 가. 공통기준</div>
+        <div class="point">
+          <b>1) 설치위치</b>: 주출입구의 반대방향에 설치, 주출입구 중심선으로부터 수평거리가 영업장의 가장 긴 대각선 길이(가로 또는 세로 중 가장 긴 길이) 1/2 이상 떨어진 위치. 건축구조상 반대방향 설치가 불가능하면 대각선·가로·세로 방향으로 1/2 이상 떨어진 위치도 가능.<br>
+          <b>2) 규격</b>: 가로 75cm 이상 × 세로 150cm 이상(비상구 문틀을 제외한 가로·세로 길이).<br>
+          <b>3) 구조</b>: ①구획된 실·천장으로 통하는 구조가 아닐 것(단, 바닥에서 천장까지 불연재료로 구획된 부속실/전실은 예외) ②다른 영업장·다른 용도 시설을 경유하는 구조가 아닐 것(주차장 제외, 2개 이상 영업장 공동 비상구 사용 등 일부 예외 있음) ③피난방향으로 열릴 것 ④화재감지기와 연동 개방, 정전 시 자동 개방, 또는 정전 시 수동 개방 구조 중 하나일 것 ⑤<b>주요구조부(영업장 벽·천장·바닥)가 내화구조인 경우에 한해 비상구·주출입구 문을 방화문으로 설치</b> — 주요구조부가 내화구조가 아니거나, 지표면과 접한 창문으로 파괴 대피 가능하거나, 건축법령상 피난계단·방화구획 규정 적용 대상이 아닌 위치면 불연재료로 설치 가능.</div>
+      </div></div>
+      <div class="law-row"><div>
+        <div class="law-name">비상구 — 나. 복층구조 영업장</div>
+        <div class="point">각각 다른 2개 이상 층이 내부계단·통로로 연결되어 하나의 층 내부에서 다른 층으로 출입 가능한 구조: ①각 층마다 영업장 외부로 나가는 비상구 설치 원칙 ②비상구 문은 (가)목 재질 기준 동일 적용 ③문이 열리는 구조는 실내에서 외부로. 다만 건축물 주요구조부를 훼손하는 경우 등 특정 조건에 해당하면 어느 하나의 층에만 비상구 설치 가능.</div>
+      </div></div>
+      <div class="law-row"><div>
+        <div class="law-name">비상구 — 다. 4층 이하(지하층 제외) 영업장</div>
+        <div class="point">
+          <b>1)</b> 피난에 유효한 발코니(가로75cm↑·세로150cm↑·면적1.12㎡↑·난간높이100cm↑) 또는 부속실(불연재료로 바닥~천장 구획, 가로75cm↑·세로150cm↑·면적1.12㎡↑)을 설치하고 적합한 피난기구를 설치.<br>
+          <b>2)</b> 부속실 입구 문과 외부로 나가는 문 규격은 가로75cm↑·세로150cm↑. 다만 120cm 이상 난간이 있으면 발판 설치 후 외부 나가는 문을 가로75cm↑·세로100cm↑ 창호로 대체 가능.<br>
+          <b>3)</b> 추락 방지: 발코니·부속실 문 개방 시 자동 경보음 발생장치 + 추락위험 표지 부착. 부속실 외부문이 낙하물 위험 장소면 낙하물 방지시설, 안전로프 등을 바닥에서 120cm 이상 높이에 가로로 설치(단, 120cm 이상 난간 있으면 생략 가능).</div>
+      </div></div>
+      <div class="law-row"><div>
+        <div class="law-name">비상구 설치 제외</div>
+        <div class="point">①주출입구 외에 피난층·지상으로 통하는 직통계단이 주출입구로부터 영업장 긴 변 길이의 1/2 이상 떨어져 별도 설치된 경우 ②피난층 영업장(바닥면적 33㎡ 이하)으로 구획된 실이 없고 개방형 구조이며 출입구까지 수평거리 10m 이하인 경우.</div>
+      </div></div>
+      <div class="law-row"><div>
+        <div class="law-name">방화문</div>
+        <div class="point">구획된 실이 있는 영업장에만 설치.</div>
+      </div></div>
+      <div class="law-row"><div>
+        <div class="law-name">방화구조</div>
+        <div class="point">주요구조부가 내화구조일 것.</div>
+      </div></div>
+    </div>
+
+    <div class="mu-cat-title mu-cat-gita">기타</div>
+    <div class="mu-block">
+      <div class="law-row"><div>
+        <div class="law-name">영업장 내부 피난통로 · 창문 (①-2와 연결)</div>
+        <div class="point">편복도 120cm 이상, 중복도(양쪽 문) 150cm 이상. 주출입구부터 비상구까지 3번 이상 구부러지는 형태 금지. 창문: 영업장 층별로 50×50cm 이상 열리는 창문 1개 이상 — 영업장 내부 피난통로 또는 복도의 바깥 공기와 접하는 부분에 설치(구획된 실 내부는 제외).</div>
+      </div></div>
+      <div class="law-row" id="muRow-videoAudio"><div>
+        <div class="law-name">영상음향차단장치</div>
+        <div class="point">노래반주기 등 영상음향장치를 사용하는 영업장에 설치. ①화재 시 감지기에 의해 자동으로 음향·영상이 정지되는 구조로 설치하되, 하나의 스위치로 전체를 제어하는 수동조작도 가능하게 할 것 ②수동차단스위치는 관계인이 일반적으로 통행하거나 정기 순찰하는 곳에 설치하고 "영상음향차단스위치" 표지 부착 ③전기화재 예방을 위해 누전차단기 설치 ④장치 작동으로 실내 전원 전체가 차단되지 않는 구조로 설치(조명 등은 살아있어야 함).</div>
+      </div></div>
+      <div class="law-row"><div>
+        <div class="law-name">누전차단기</div>
+        <div class="point">과전류차단기를 포함해 용량에 적합한 것으로 설치.</div>
+      </div></div>
+      <div class="law-row"><div>
+        <div class="law-name">보일러실과 영업장 사이 방화구획</div>
+        <div class="point">①보일러실과 영업장 사이 출입문은 방화문으로 설치 ②개구부에는 자동방화댐퍼 설치.</div>
+      </div></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const GROUPS = {
+  1:{name:"자동차관련시설", color:"var(--g1)"},
+  2:{name:"산업 등 시설군", color:"var(--g2)"},
+  3:{name:"전기통신시설군", color:"var(--g3)"},
+  4:{name:"문화집회시설군", color:"var(--g4)"},
+  5:{name:"영업시설군", color:"var(--g5)"},
+  6:{name:"교육및복지시설군", color:"var(--g6)"},
+  7:{name:"근린생활시설군", color:"var(--g7)"},
+  8:{name:"주거업무시설군", color:"var(--g8)"},
+  9:{name:"그밖의시설군", color:"var(--g9)"}
+};
+
+const USES = [
+{code:"1가",name:"단독주택",group:8,note:"—"},
+{code:"1나",name:"다중주택(연면적330㎡↓·3층↓)",group:8,note:"취사시설 없음"},
+{code:"1다",name:"다가구주택(3개층↓·660㎡↓·19세대↓)",group:8,note:"—"},
+{code:"1라",name:"공관",group:8,note:"—"},
+{code:"2가",name:"아파트(주택 5개층↑)",group:8,note:"—"},
+{code:"2나",name:"연립주택(1동 660㎡ 초과·4층↓)",group:8,note:"—"},
+{code:"2다",name:"다세대주택(1동 660㎡↓·4층↓)",group:8,note:"—"},
+{code:"2라",name:"기숙사",group:8,note:"—"},
+{code:"3가",name:"소매점(1,000㎡↓)",alias:"편의점·슈퍼",group:7,note:"1종 근생. 1,000㎡↑이면 판매시설"},
+{code:"3나",name:"휴게음식점·제과점(300㎡↓)",alias:"카페·베이커리·빵집",group:7,note:"1종 근생. 300㎡↑이면 2종"},
+{code:"3다",name:"이용원·미용원·목욕장·세탁소",alias:"미용실·이발소·네일·사우나·빨래방",group:7,note:"1종 근생 (면적기준 없음)"},
+{code:"3라",name:"의원·치과·한의원·조산원·산후조리원·안마원",alias:"병원·클리닉·의원",group:7,note:"1종 근생 (면적기준 없음)"},
+{code:"3마",name:"탁구장·체육도장(500㎡↓)",alias:"태권도·검도·헬스",group:7,note:"1종 근생. 500㎡↑이면 운동시설"},
+{code:"3바",name:"공공업무시설(파출소·우체국·보건소 등, 1,000㎡↓)",group:7,note:"1종 근생"},
+{code:"3사",name:"마을회관·공중화장실·지역아동센터 등 주민공동시설",group:7,note:"1종 근생"},
+{code:"3아",name:"변전소·도시가스배관·통신용시설·정수장 등",group:7,note:"1종 근생"},
+{code:"3자",name:"금융업소·사무소·부동산중개소 등 일반업무(30㎡↓)",alias:"소규모 사무실",group:7,note:"1종 근생. 30㎡↑이면 2종/업무"},
+{code:"3차",name:"전기자동차 충전소(1,000㎡↓)",alias:"전기차충전소",group:7,note:"1종 근생"},
+{code:"3카",name:"동물병원·동물미용실·동물위탁관리업(300㎡↓)",alias:"동물병원·펫샵·애견미용·강아지",group:7,note:"1종 근생. 300㎡↑이면 2종 근생(4차). 2025 반영"},
+{code:"4가",name:"공연장(500㎡↓)",alias:"소극장·라이브홀",group:7,note:"2종 근생. 500㎡↑이면 문화및집회시설"},
+{code:"4나",name:"종교집회장(500㎡↓)",alias:"교회·성당·절·예배당",group:7,note:"2종 근생. 500㎡↑이면 종교시설"},
+{code:"4다",name:"자동차영업소(1,000㎡↓)",alias:"카센터·대리점",group:7,note:"2종 근생"},
+{code:"4라",name:"서점(1종 제외)",alias:"책방",group:7,note:"2종 근생"},
+{code:"4마",name:"총포판매소",group:7,note:"2종 근생"},
+{code:"4바",name:"사진관·표구점",alias:"스튜디오",group:7,note:"2종 근생"},
+{code:"4사",name:"청소년게임제공업소·PC방 등 게임시설(500㎡↓)",alias:"피시방·오락실",group:7,note:"2종 근생"},
+{code:"4아",name:"휴게음식점·제과점(300㎡↑)",alias:"대형카페",group:7,note:"2종 근생"},
+{code:"4자",name:"일반음식점",alias:"식당·레스토랑·술집·고깃집·횟집",group:7,note:"2종 근생 (면적기준 없음)"},
+{code:"4차",name:"장의사·동물병원·동물미용실",alias:"펫샵·애견미용",group:7,note:"2종 근생"},
+{code:"4카",name:"학원·교습소·직업훈련소(500㎡↓)",alias:"보습학원·음악학원·미술학원·연습실·공부방",group:7,note:"2종 근생. 500㎡↑이면 교육연구시설. ※보컬·악기·안무 연습실이 교습소로 등록되면 여기"},
+{code:"4타",name:"독서실·기원",alias:"스터디카페·열람실·바둑",group:7,note:"2종 근생 (면적기준 없음). ※스터디카페는 통상 여기"},
+{code:"4파",name:"체력단련장·볼링장·당구장·골프연습장 등(500㎡↓)",alias:"헬스장·피트니스·스크린골프·요가·필라테스",group:7,note:"2종 근생. 500㎡↑이면 운동시설"},
+{code:"4하",name:"금융업소·사무소·부동산중개소·출판사 등 일반업무(500㎡↓)",alias:"사무실·오피스·공유오피스·은행·부동산",group:7,note:"2종 근생. 500㎡↑이면 업무시설"},
+{code:"4거",name:"다중생활시설(고시원, 500㎡↓)",alias:"고시원·고시텔",group:7,note:"2종 근생. 500㎡↑이면 숙박시설"},
+{code:"4너",name:"제조업소·수리점(500㎡↓, 비공해)",alias:"공방·수선집",group:7,note:"2종 근생"},
+{code:"4더",name:"단란주점(150㎡↓)",group:7,note:"2종 근생. 150㎡↑이면 위락시설"},
+{code:"4러",name:"안마시술소·노래연습장",alias:"노래방·코인노래방",group:7,note:"2종 근생 (면적기준 없음)"},
+{code:"4머",name:"주문배송시설",alias:"풀필먼트·물류·배송센터",group:7,note:"2종 근생. 500㎡↓ (물류창고업 등록 대상). 2025 신설"},
+{code:"4버",name:"공유보관시설",alias:"셀프스토리지·무인창고·짐보관",group:7,note:"2종 근생. 1,000㎡↓. 2025 신설"},
+{code:"5가",name:"공연장(2종 근생 아닌 것)",alias:"공연장·극장",group:4,note:"문화및집회시설"},
+{code:"5나",name:"집회장(예식장·공회당·회의장 등)",alias:"웨딩홀·컨벤션",group:4,note:"문화및집회시설"},
+{code:"5다",name:"관람장(경마장·체육관 등 관람석 1,000㎡↑)",alias:"경기장·스타디움",group:4,note:"문화및집회시설"},
+{code:"5라",name:"전시장(박물관·미술관·과학관 등)",alias:"갤러리·뮤지엄",group:4,note:"문화및집회시설"},
+{code:"5마",name:"동·식물원",group:4,note:"문화및집회시설"},
+{code:"6가",name:"종교집회장(2종 근생 아닌 것)",alias:"대형교회·성당",group:4,note:"종교시설"},
+{code:"6나",name:"봉안당(종교시설 내)",alias:"납골당",group:4,note:"종교시설"},
+{code:"7가",name:"도매시장",group:5,note:"판매시설"},
+{code:"7나",name:"소매시장(대규모점포)",alias:"마트·백화점·아울렛",group:5,note:"판매시설"},
+{code:"7다",name:"상점(1종 근생 아닌 것 등)",alias:"대형상점",group:5,note:"판매시설"},
+{code:"8가",name:"여객자동차터미널",alias:"버스터미널",group:2,note:"운수시설"},
+{code:"8나",name:"철도시설",alias:"역사",group:2,note:"운수시설"},
+{code:"8다",name:"공항시설",group:2,note:"운수시설"},
+{code:"8라",name:"항만시설",group:2,note:"운수시설"},
+{code:"8마",name:"버티포트(Vertiport)",alias:"UAM·드론택시·에어택시·수직이착륙장",group:2,note:"운수시설. UAM 도심항공교통 이착륙장. 2025 신설"},
+{code:"9가",name:"병원(종합·치과·한방·정신·요양)",alias:"종합병원·요양병원",group:6,note:"의료시설"},
+{code:"9나",name:"격리병원(전염병원·마약진료소 등)",group:6,note:"의료시설"},
+{code:"10가",name:"학교(유치원·초·중·고·대학)",group:6,note:"교육연구시설"},
+{code:"10나",name:"교육원·연수원",group:6,note:"교육연구시설"},
+{code:"10다",name:"직업훈련소(운전·정비 제외)",group:6,note:"교육연구시설"},
+{code:"10라",name:"학원(500㎡↑ 등, 2종근생 아닌 것)",alias:"대형학원",group:6,note:"교육연구시설"},
+{code:"10마",name:"연구소·시험소·계측계량소",alias:"랩",group:6,note:"교육연구시설"},
+{code:"10바",name:"도서관",group:6,note:"교육연구시설"},
+{code:"11가",name:"아동관련시설(어린이집·아동복지시설 등)",alias:"어린이집·유치원",group:6,note:"노유자시설"},
+{code:"11나",name:"노인복지시설",alias:"요양원·데이케어",group:6,note:"노유자시설"},
+{code:"11다",name:"기타 사회복지·근로복지시설",group:6,note:"노유자시설"},
+{code:"12가",name:"생활권수련시설(청소년수련관 등)",group:6,note:"수련시설"},
+{code:"12나",name:"자연권수련시설(청소년수련원·야영장 등)",group:6,note:"수련시설"},
+{code:"12다",name:"유스호스텔",group:6,note:"수련시설"},
+{code:"12라",name:"야영장시설(29호 아닌 것)",alias:"캠핑장·글램핑",group:6,note:"수련시설"},
+{code:"13가",name:"탁구장·체력단련장·볼링장·골프연습장 등(근생 아닌 것)",alias:"대형헬스장",group:5,note:"운동시설"},
+{code:"13나",name:"체육관(관람석 1,000㎡↓)",group:5,note:"운동시설"},
+{code:"13다",name:"운동장(수영장·스케이트장 등)",alias:"수영장·아이스링크",group:5,note:"운동시설"},
+{code:"14가",name:"공공업무시설(국가·지자체 청사, 외국공관)",alias:"관공서·시청",group:8,note:"업무시설"},
+{code:"14나-1",name:"일반업무시설(사무소·금융업소 등, 500㎡↑)",alias:"오피스·사옥·대형사무실",group:8,note:"업무시설. 500㎡↓이면 2종 근생"},
+{code:"14나-2",name:"오피스텔",group:8,note:"업무시설"},
+{code:"15가",name:"일반숙박시설·생활숙박시설",alias:"모텔·여관·레지던스·생숙",group:5,note:"숙박시설"},
+{code:"15나",name:"관광숙박시설(호텔·호스텔·콘도 등)",alias:"호텔·호스텔·게스트하우스·게하·콘도",group:5,note:"숙박시설. ※호스텔·게하 프로젝트 핵심"},
+{code:"15다",name:"다중생활시설(고시원, 500㎡↑)",alias:"대형고시원",group:5,note:"숙박시설. 500㎡↓이면 2종 근생"},
+{code:"15라",name:"그 밖에 비슷한 숙박시설",group:5,note:"숙박시설"},
+{code:"16가",name:"단란주점(2종 근생 아닌 것, 150㎡↑)",group:4,note:"위락시설"},
+{code:"16나",name:"유흥주점",alias:"룸살롱·클럽",group:4,note:"위락시설"},
+{code:"16다",name:"유원시설업 시설",alias:"놀이공원",group:4,note:"위락시설"},
+{code:"16마",name:"무도장·무도학원",alias:"댄스홀",group:4,note:"위락시설"},
+{code:"16바",name:"카지노영업소",alias:"카지노",group:4,note:"위락시설"},
+{code:"17",name:"공장",alias:"공장·제조",group:2,note:"산업 등 시설군"},
+{code:"18가",name:"창고(일반·냉장·냉동)",alias:"물류창고·냉동창고",group:2,note:"창고시설"},
+{code:"18나",name:"하역장",group:2,note:"창고시설"},
+{code:"18다",name:"물류터미널",group:2,note:"창고시설"},
+{code:"18라",name:"집배송시설",alias:"택배",group:2,note:"창고시설"},
+{code:"19",name:"위험물저장및처리시설(주유소·충전소 등)",alias:"주유소·가스충전소·LPG",group:2,note:"산업 등 시설군"},
+{code:"20가",name:"주차장",alias:"주차타워",group:1,note:"자동차관련시설"},
+{code:"20나",name:"세차장",group:1,note:"자동차관련시설"},
+{code:"20다",name:"폐차장",group:1,note:"자동차관련시설"},
+{code:"20라",name:"검사장",group:1,note:"자동차관련시설"},
+{code:"20마",name:"매매장",alias:"중고차매매",group:1,note:"자동차관련시설"},
+{code:"20바",name:"정비공장",alias:"카센터·정비소",group:1,note:"자동차관련시설"},
+{code:"20사",name:"운전학원·정비학원",alias:"운전면허학원",group:1,note:"자동차관련시설"},
+{code:"20아",name:"차고·주기장",group:1,note:"자동차관련시설"},
+{code:"20자",name:"전기자동차 충전소로서 1종근생 아닌 것",alias:"전기차충전소·EV충전소·충전스테이션",group:1,note:"1종근생(3차, 1,000㎡↓)에 해당 안 하는 대규모 충전소"},
+{code:"21가",name:"축사",group:9,note:"동물및식물관련시설"},
+{code:"21나",name:"가축시설",group:9,note:"동물및식물관련시설"},
+{code:"21다",name:"도축장",group:9,note:"동물및식물관련시설"},
+{code:"21라",name:"도계장",group:9,note:"동물및식물관련시설"},
+{code:"21마",name:"작물재배사",group:9,note:"동물및식물관련시설"},
+{code:"21바",name:"종묘배양시설",group:9,note:"동물및식물관련시설"},
+{code:"21사",name:"화초·분재 온실",group:9,note:"동물및식물관련시설"},
+{code:"22가",name:"하수등처리시설",group:2,note:"자원순환관련시설"},
+{code:"22나",name:"고물상",group:2,note:"자원순환관련시설"},
+{code:"22다",name:"폐기물재활용시설",group:2,note:"자원순환관련시설"},
+{code:"22라",name:"폐기물처분시설",group:2,note:"자원순환관련시설"},
+{code:"22마",name:"폐기물감량화시설",group:2,note:"자원순환관련시설"},
+{code:"23가",name:"교정시설(구치소·교도소)",group:8,note:"교정및군사시설"},
+{code:"23나",name:"갱생보호시설",group:8,note:"교정및군사시설"},
+{code:"23다",name:"소년원·소년분류심사원",group:8,note:"교정및군사시설"},
+{code:"23라",name:"(삭제 2023.5.15)",group:8,note:"삭제된 목",deleted:true},
+{code:"23의2",name:"국방·군사시설",alias:"군사시설·국방",group:8,note:"2025 개정으로 23호에서 분리 신설"},
+{code:"24가",name:"방송국",alias:"방송사",group:3,note:"방송통신시설"},
+{code:"24나",name:"전신전화국",group:3,note:"방송통신시설"},
+{code:"24다",name:"촬영소",alias:"녹음실·스튜디오",group:3,note:"방송통신시설. ※녹음실·스튜디오 방송용이면 확인"},
+{code:"24라",name:"데이터센터",alias:"IDC·서버센터·전산센터",group:3,note:"방송통신시설(2023 신설)"},
+{code:"24마",name:"통신용시설",group:3,note:"방송통신시설"},
+{code:"25",name:"발전시설(발전소)",alias:"발전소",group:3,note:"전기통신시설군"},
+{code:"26가",name:"화장시설",alias:"화장장",group:2,note:"묘지관련시설"},
+{code:"26나",name:"봉안당(종교시설 제외)",alias:"납골당",group:2,note:"묘지관련시설"},
+{code:"26다",name:"묘지·자연장지 부수건축물",group:2,note:"묘지관련시설"},
+{code:"27가",name:"야외음악당",group:4,note:"관광휴게시설"},
+{code:"27나",name:"야외극장",group:4,note:"관광휴게시설"},
+{code:"27다",name:"어린이회관",group:4,note:"관광휴게시설"},
+{code:"27라",name:"관망탑",alias:"전망대",group:4,note:"관광휴게시설"},
+{code:"27마",name:"휴게소",group:4,note:"관광휴게시설"},
+{code:"27바",name:"공원·유원지 부수시설",group:4,note:"관광휴게시설"},
+{code:"28",name:"장례식장",group:2,note:"산업 등 시설군"},
+{code:"29",name:"야영장시설(300㎡↓)",alias:"캠핑장",group:6,note:"수련시설로 분류"}
+];
+
+const BASE_LAWS = [
+  {name:"건축법 시행령 별표1", art:"용도·규모 판정", point:"면적 기준에 따라 1종/2종근생, 시설군이 갈립니다. 참고자료 #1에서 자동판정 가능."},
+  {name:"소방시설법 시행령 별표4 (2026.3.24 시행)", art:"용도별 소방시설 설치기준", point:"소화기구는 대부분 용도에서 33㎡ 이상이면 설치 의무. 그 외 자동화재탐지설비·스프링클러·옥내소화전 등은 용도군(근린생활/숙박/의료/노유자 등)별로 연면적·층수·수용인원 문턱값이 다름 — 세부는 해당 용도 카드의 개별 항목에서 확인. 무창층은 소방시설법 고유 개념(지름 50cm 이상 원통과·바닥 1.2m 이내·도로방향·장애물없음, 4가지 요건 충족 여부)으로 건축법상 정의와 다르니 주의."},
+  {name:"장애인등편의법", art:"편의시설 설치의무", point:"바닥면적 기준 이상 시 출입구·통로·화장실 등 편의시설 의무. 소규모는 권장사항."},
+  {name:"주차장법", art:"부설주차장 설치기준", point:"서울시는 조례 별표2 기준(용도별 원단위) 적용."}
+];
+
+let LAWDATA = {
+"1가":{depth:"deep",extraLaws:[
+  {name:"소방시설법 제10조",art:"주택용소방시설 설치의무",point:"단독주택 소유자는 소화기 및 단독경보형감지기(주택용소방시설)를 설치해야 함. 별표4(특정소방대상물 기준)가 아니라 이 조항으로 별도 규율 — 스프링클러·옥내소화전 등 별표4 항목은 적용되지 않음.",badge:"must"},
+  {name:"지자체 조례",art:"설치기준 (예: 서울시 주택의 소방시설 설치 조례)",point:"소화기는 세대별·층별 능력단위 2단위 이상 1개 이상, 보행거리 20m 이내 배치. 단독경보형감지기는 구획된 실(침실·거실·주방 등)마다 1개 이상 설치.",badge:"must"}
+],notes:"단독주택은 별표4 대상이 아니라 소방시설법 제10조의 '주택용소방시설'로 규율되는 게 핵심. 별표4의 '공동주택' 열(스프링클러 6층↑ 등)과 헷갈리지 말 것 — 그건 아파트·기숙사 등 규모 있는 공동주택 얘기고, 단독주택은 소화기+단독경보형감지기가 사실상 전부."},
+"1나":{depth:"deep",extraLaws:[
+  {name:"소방시설법 제10조",art:"주택용소방시설 설치의무",point:"다중주택도 단독주택 범주로 분류되어 동일하게 소화기·단독경보형감지기 설치 대상.",badge:"must"}
+],notes:"1가(단독주택)와 동일 규정 적용."},
+"1다":{depth:"deep",extraLaws:[
+  {name:"소방시설법 제10조",art:"주택용소방시설 설치의무",point:"다가구주택도 단독주택 범주로 분류되어 동일하게 소화기·단독경보형감지기 설치 대상.",badge:"must"}
+],notes:"1가(단독주택)와 동일 규정 적용. 다만 세대수가 있으니(19세대↓) 세대별 소화기 배치 기준을 세대마다 확인할 것."},
+"1라":{depth:"deep",extraLaws:[
+  {name:"소방시설법 제10조",art:"주택용소방시설 설치의무",point:"공관도 단독주택 범주로 분류되어 동일하게 소화기·단독경보형감지기 설치 대상.",badge:"must"}
+],notes:"1가(단독주택)와 동일 규정 적용."},
+"2나":{depth:"deep",extraLaws:[
+  {name:"소방시설법 제10조",art:"주택용소방시설 설치의무",point:"연립주택은 '공동주택(아파트·기숙사 제외)'에 해당해 소화기·단독경보형감지기 설치 대상. 세대별로 소유권이 구분되어 있다는 점에서 단독주택과 구분되나 적용 규정은 동일. 단, 감지기는 일반 단독형이 아니라 세대 내 여러 개가 서로 신호를 주고받는 연동형으로 설치.",badge:"must"}
+],notes:"아파트·기숙사(2가·2라)는 이 조항에서 제외되고 대신 별표4(스프링클러 등 규모 있는 기준)를 적용받는 정반대 구조라는 점 주의. 단독주택(1가~1라)은 연동형 요건 없이 일반 단독경보형감지기로 충분하지만, 연립·다세대는 연동형이 원칙."},
+"2다":{depth:"deep",extraLaws:[
+  {name:"소방시설법 제10조",art:"주택용소방시설 설치의무",point:"다세대주택도 '공동주택(아파트·기숙사 제외)'에 해당해 소화기·단독경보형감지기 설치 대상. 감지기는 일반 단독형이 아니라 세대 내 여러 개가 서로 신호를 주고받는 연동형으로 설치.",badge:"must"}
+],notes:"아파트·기숙사(2가·2라)는 이 조항에서 제외되고 대신 별표4(스프링클러 등 규모 있는 기준)를 적용받는 정반대 구조라는 점 주의. 단독주택(1가~1라)은 연동형 요건 없이 일반 단독경보형감지기로 충분하지만, 연립·다세대는 연동형이 원칙."},
+"2가":{depth:"deep",extraLaws:[
+  {name:"소방시설법 시행령 별표4",art:"주택용소방시설 적용 제외 → 별표4 '공동주택' 기준 적용",point:"아파트는 소방시설법 제10조(주택용소방시설) 대상에서 제외되고, 대신 이 진단기의 '공동주택' 카테고리(별표4 기준: 스프링클러 6층↑, 옥내소화전 3,000㎡↑ 등)를 적용받음.",badge:"must"}
+],notes:"1가~1라·2나·2다(단독주택·다중주택·다가구·공관·연립·다세대)와는 반대로, 아파트는 별표4의 무거운 기준을 그대로 적용받음. 소방시설 자동진단기에서 '공동주택' 카테고리로 진단할 것."},
+"2라":{depth:"deep",extraLaws:[
+  {name:"소방시설법 시행령 별표4",art:"주택용소방시설 적용 제외 → 별표4 '공동주택' 기준 적용",point:"기숙사도 아파트와 마찬가지로 제10조 대상에서 제외되고 별표4 기준을 적용받음. 자동화재탐지설비는 규모 무관 전층 의무(아파트등·기숙사 전층●).",badge:"must"}
+],notes:"1가~1라·2나·2다와는 반대로 별표4의 무거운 기준을 적용받는 쪽. 소방시설 자동진단기에서 '공동주택' 카테고리로 진단할 것."},
+"3나":{depth:"deep",extraLaws:[
+  {name:"식품위생법",art:"휴게음식점 영업신고",point:"주류 판매 불가. 위생교육 이수, 영업장 시설기준(주방·화장실) 충족.",badge:"must"},
+  {name:"식품위생법 시행규칙 별표4",art:"식품접객업(일반·휴게음식점·제과점) 시설기준",point:"①영업장: 독립된 건물이거나 다른 용도 시설과 분리, 환기 원활. ②조리장: 손님이 내부를 볼 수 있는 구조(오픈형), 조리·세척시설과 뚜껑 있는 내수성 폐기물용기, 자외선소독기·열탕세척소독시설, 냉장·냉동시설. ③급수시설: 수돗물 또는 먹는물 수질기준 적합 지하수(인근 급수시설 있으면 생략 가능). ④화장실: 청결·위생적 화장실(공동화장실·인근 화장실 있으면 생략 가능).",badge:"must"},
+  {name:"식품위생법 시행규칙 별표15",art:"즉석판매제조가공업 (제조 공정이 있는 경우)",point:"제조가공업소에서 직접 최종소비자에게만 판매하는 업(반찬가게·떡집·건어물·생선회뜨기 등 포함, 인터넷·택배 판매 가능). 도매·마트 등 사업자 대상 판매는 불가 — 그 경우 식품제조가공업(17호 참고) 대상. 통조림·레토르트·냉동식품·어육제품 등은 대상식품에서 제외.",badge:"cond"},
+  {name:"식품위생법 시행규칙 별표15",art:"즉석판매제조가공업 시설기준",point:"건물은 독립되거나 다른 용도와 구획(단, 백화점 등 식품전문 일정장소 내는 예외 인정 가능). 제조·가공실(작업장) 별도 확보. 식품을 위생적으로 유지·보관할 진열·판매시설 필수. 화장실은 작업장에 영향 없는 위치에 별도 설치, 정화조+수세식 원칙(하수도 미설치 지역은 예외).",badge:"must"},
+  {name:"식품위생법",art:"기존 영업장 병행신고 실무 (물리적 공사 불필요)",point:"카페·베이커리 등 기존 식품접객업 영업장·주방을 그대로 이용해 즉석판매제조가공업을 병행 신고할 때는 벽 구분이나 출입구 분리 공사가 필요 없음. 대신 ①제조 작업공간을 판매공간과 분리(칸막이 수준으로 충분) ②진열대 구비 ③기존 영업장 신고면적에서 즉석판매제조가공업 면적만큼 제외하는 변경신고 필요. ④단, 식품접객업 없이 즉석판매제조가공장만 단독 신규신고하는 경우엔 매장 내 취식 가능한 테이블을 두면 안 됨.",badge:"must"},
+  {name:"하수도법",art:"정화조",point:"공공하수처리구역 외 지역이면 오수처리시설/정화조 용량 산정 필요."},
+  {name:"다중이용업소법",art:"면적 조건부",point:"바닥면적이 커져 4아(300㎡↑)로 넘어가면 다중이용업 해당 여부 재검토."},
+  {name:"소방시설법 시행령 별표4 (2026.3.24 시행)",art:"근린생활시설 소방시설 설치기준",point:"소화기구 33㎡↑. 상업용 주방(대규모점포·음식점 조건)이면 자동소화장치 의무. 옥내소화전 연면적 1,500㎡↑ 또는 지하·무창층 300㎡↑층 또는 4층↑300㎡↑층. 자동화재탐지설비 600㎡↑.",badge:"must"}
+],notes:"300㎡ 기준으로 3나(1종근생)/4아(2종근생)가 갈림. 즉석판매제조가공업과 식품제조가공업의 핵심 차이는 판매처 — 즉석판매제조가공업은 최종소비자에게만 판매 가능, 식품제조가공업은 최종소비자+도매상·마트 등 사업자에게도 판매 가능. HACCP 인증은 식품제조가공업(17호)에는 대부분 필요하지만 즉석판매제조가공업은 해당 없음. 판매 준수사항: 즉석판매제조가공업은 영업장 내 판매가 원칙 — 영업자 직접배달 또는 식약처 고시 기준 택배·우편만 예외 허용, 그 외 영업장 밖 판매 금지. 가격표 부착·영업신고증 비치 의무. ※주의: '마트가 상품을 배달해주는 것'은 이미 유통된 상품에 대한 소매업의 배송 서비스라 이 규정과 무관 — 이 규정이 막는 건 제조업소가 도매상·마트에 납품하는 행위이지, 마트가 손님에게 배송하는 행위가 아님. 공유주방(여러 베이킹 업체가 조리시설 공유) 형태는 4자(일반음식점) 항목에 별도 정리."},
+"4아":{depth:"deep",extraLaws:[
+  {name:"식품위생법",art:"휴게음식점 영업신고",point:"주류 판매 불가. 대형 매장은 화장실 다수 설치 등 시설기준 강화."},
+  {name:"식품위생법 시행규칙 별표4",art:"식품접객업(일반·휴게음식점·제과점) 시설기준",point:"①영업장: 독립된 건물이거나 다른 용도 시설과 분리, 환기 원활. ②조리장: 오픈형 구조, 조리·세척시설과 뚜껑 있는 내수성 폐기물용기, 자외선소독기·열탕세척소독시설, 냉장·냉동시설. ③급수시설: 수돗물 또는 먹는물 수질기준 적합 지하수. ④화장실: 청결·위생적 화장실.",badge:"must"},
+  {name:"식품위생법 시행규칙 별표15",art:"즉석판매제조가공업 (제조 공정이 있는 경우)",point:"제조가공업소에서 직접 최종소비자에게만 판매(도매·마트 판매는 불가). 인터넷·택배 판매는 가능.",badge:"cond"},
+  {name:"식품위생법 시행규칙 별표15",art:"즉석판매제조가공업 시설기준",point:"건물 구획, 별도 제조·가공실(작업장), 진열·판매시설 필수, 화장실은 작업장과 분리된 위치에 정화조+수세식 원칙.",badge:"must"},
+  {name:"식품위생법",art:"기존 영업장 병행신고 실무 (물리적 공사 불필요)",point:"기존 영업장·주방을 그대로 이용해 병행 신고 시 벽 구분·출입구 분리 공사 불필요. 제조공간을 판매공간과 분리(칸막이 수준), 진열대 구비, 기존 신고면적에서 해당 면적 제외하는 변경신고만 하면 됨. 단독 신규신고 시엔 매장 내 테이블 두면 안 됨.",badge:"must"},
+  {name:"다중이용업소법",art:"완비증명·안전시설",point:"바닥면적 100㎡ 이상(지하 66㎡ 이상)이면 다중이용업 대상. 화재배상책임보험 가입 의무.",badge:"must"},
+  {name:"소방시설법 시행령 별표4 (2026.3.24 시행)",art:"근린생활시설 소방시설 설치기준",point:"소화기구 33㎡↑. 스프링클러는 6층↑ 또는 (지하·무창층 또는 4층↑인 층 중 바닥면적 1,000㎡↑인 층이 있는 경우). 비상방송설비는 연면적 3,500㎡↑ 모든 층 — 대형 카페는 해당 여부 확인 필요.",badge:"must"}
+],notes:"3나와 같은 업종군, 규모만 큼. 프랜차이즈 대형 카페는 대부분 여기 해당. 즉석판매제조가공업(최종소비자 전용 판매)과 식품제조가공업(도소매 가능, 17호 참고)의 핵심 차이는 판매처. 영업장 외 판매는 원칙 금지(직접배달·택배만 예외), 가격표 부착 의무. ※'마트 배달'은 이미 유통된 상품의 소매 배송 서비스라 이 규정과 무관 (규정이 막는 건 제조업소→도매상·마트 납품)."},
+"4자":{depth:"deep",extraLaws:[
+  {name:"식품위생법",art:"영업신고 · 시설기준",point:"일반음식점(주류 허용) 영업신고, 영업장 면적별 시설기준, 위생교육 이수, 건강진단.",badge:"must"},
+  {name:"식품위생법 시행규칙 별표4",art:"식품접객업(일반·휴게음식점·제과점) 시설기준",point:"①영업장: 독립된 건물이거나 다른 용도 시설과 분리, 환기 원활. ②조리장: 손님이 내부를 볼 수 있는 구조(오픈형), 조리·세척시설과 뚜껑 있는 내수성 폐기물용기, 자외선소독기·열탕세척소독시설, 냉장·냉동시설로 온도 유지. ③급수시설: 수돗물 또는 먹는물 수질기준 적합 지하수(인근 급수시설 있으면 생략 가능). ④화장실: 청결·위생적 화장실(공동화장실·인근 화장실 있으면 생략 가능).",badge:"must"},
+  {name:"다중이용업소법",art:"완비증명 · 안전시설",point:"바닥면적 100㎡ 이상(지하 66㎡ 이상, 지상1층+직접출입구는 제외) 시 대상. 화재배상책임보험 가입 의무.",badge:"must"},
+  {name:"하수도법",art:"정화조",point:"공공하수처리구역 외 지역이면 좌석수·면적 기준 정화조 용량 산정."},
+  {name:"농수산물 품질관리법",art:"원산지표시",point:"쌀·소고기·돼지고기·닭고기 등 표시 의무 품목 게시판 부착."},
+  {name:"소방시설법 시행령 별표4 (2026.3.24 시행)",art:"근린생활시설 소방시설 설치기준",point:"소화기구 33㎡↑. 상업용 주방이면 자동소화장치 설치 의무(대규모점포·음식점 조건). 옥내소화전은 연면적 1,500㎡↑ 또는 지하·무창층 300㎡↑층 또는 4층↑300㎡↑층. 스프링클러는 6층↑ 또는 (지하·무창층 또는 4층↑인 층 중 바닥면적 1,000㎡↑인 층이 있는 경우). 자동화재탐지설비는 600㎡↑. 비상방송설비는 연면적 3,500㎡↑ 모든 층.",badge:"must"},
+  {name:"식품위생법 제2조제5호의2",art:"공유주방운영업 등록 (다수 업체 입점형인 경우)",point:"여러 식품영업자가 조리·저장·소분 등에 필요한 시설·기계·기구를 함께 쓰도록 운영하는 업. '등록' 대상 업종이라 관할 시·군·구청에 별도 등록 필요(영업등록신청서·교육이수증·위생관리책임자 선임신고서·책임보험 가입증명 구비). 공용시설·기구에는 식별표지 부착 의무 — 영업장 내 모든 걸 공용으로 쓰는 게 아니라 공용 부분만 표시해야 함.",badge:"cond"},
+],notes:"근생 1종↔2종 상호변경은 2014 개정으로 임의변경 가능(건축법 시행령 §14④). 다만 관청 신고 면제일 뿐, 식품위생법 영업신고는 항상 별도 필요. 공유주방(고스트키친) 형태로 여러 사업자가 입점하는 경우, 공유주방 운영업 자체의 등록과 별개로 입점 업체 각각의 영업신고(즉석판매제조가공업 등)가 필요할 수 있음 — 주로 담당하려는 입점 업종에 따라 시설기준이 달라지므로 사전에 어떤 업종을 모집할지 확정 후 설계."},
+"3다":{depth:"deep",extraLaws:[
+  {name:"공중위생관리법",art:"미용업·이용업 신고",point:"미용사/이용사 면허 보유자 배치, 시설기준(소독 설비 등) 충족 후 신고.",badge:"must"},
+  {name:"공중위생관리법",art:"목욕장업 (사우나 겸업 시)",point:"온수 공급·환기 등 별도 시설기준. 배관·급탕 용량 사전 확인 필요."},
+  {name:"화학물질관리법",art:"세탁소 겸업 시",point:"드라이클리닝 용제(유기용제) 사용 시 유해화학물질 취급 신고 대상 여부 확인."},
+  {name:"소방시설법 시행령 별표4 (2026.3.24 시행)",art:"근린생활시설 소방시설 설치기준",point:"자동화재탐지설비는 일반 근린생활 600㎡↑ 기준이나, 목욕장(사우나)은 완화되어 1,000㎡↑부터 적용. 소화기구는 33㎡↑ 동일."}
+],notes:"미용실·이발소는 업종법이 비교적 가볍지만, 목욕장(사우나)이나 세탁소가 결합되면 급배수·소방 스펙이 커짐."},
+"3라":{depth:"deep",extraLaws:[
+  {name:"의료법",art:"의료기관 개설신고",point:"의원급은 신고, 병원급 이상은 허가. 진료과목별 시설기준(진료실·처치실 면적 등).",badge:"must"},
+  {name:"의료법 / 원자력안전법",art:"진단용 방사선 발생장치 신고 (치과 등)",point:"엑스레이 장비 설치 시 관할 보건소·원자력안전위원회에 별도 신고, 차폐시설 기준 적용."},
+  {name:"장애인등편의법",art:"편의시설 설치의무",point:"의료시설은 편의시설 의무가 비교적 엄격하게 적용되는 업종."},
+  {name:"소방시설법 시행령 별표4 (2026.3.24 시행)",art:"간이스프링클러설비 (조건부)",point:"①근린생활시설 바닥면적 합계 1,000㎡ 이상이면 모든 층 필요. ②의원·치과의원·한의원으로서 입원실 또는 인공신장실이 있으면 규모 무관 필요. ③조산원·산후조리원은 연면적 600㎡ 미만인 경우에 필요(600㎡ 이상이면 오히려 정식 스프링클러 대상으로 전환).",badge:"cond"}
+],notes:"한의원도 의료법상 한방의료기관으로 동일 신고 체계. 산후조리원은 모자보건법상 별도 인력·시설기준이 추가로 붙으므로 프로젝트 시 반드시 재확인. 입원실·인공신장실이 있는 의원급은 간이스프링클러 의무가 면적과 무관하게 발생하는 점을 놓치기 쉬움."},
+"3자":{depth:"deep",extraLaws:[
+  {name:"공인중개사법",art:"중개사무소 개설등록 (부동산중개소인 경우만)",point:"개설등록, 등록증·수수료표 게시 의무, 업무보증(공제 가입) 필요."}
+],notes:"순수 사무실은 업종 특화 법령이 거의 없음(건축법 면적분기+기본 소방·주차만 확인). 부동산중개소만 공인중개사법이 추가됨. 30㎡ 기준으로 3자(1종)/4하(2종, 500㎡ 미만)/14나-1(업무시설, 500㎡ 이상)로 갈림."},
+"4하":{depth:"deep",extraLaws:[
+  {name:"공인중개사법",art:"중개사무소 개설등록 (부동산중개소인 경우만)",point:"개설등록, 등록증·수수료표 게시, 업무보증 필요."}
+],notes:"3자와 같은 업종군, 규모(500㎡ 기준)만 다름."},
+"14나-1":{depth:"deep",extraLaws:[
+  {name:"공인중개사법",art:"중개사무소 개설등록 (부동산중개소인 경우만)",point:"개설등록, 등록증·수수료표 게시, 업무보증 필요."}
+],notes:"500㎡ 이상 업무시설. 오피스 대형 인테리어 시 사무실과 동일 골자, 규모가 커지며 소방·주차 기준만 강화."},
+"4카":{depth:"deep",extraLaws:[
+  {name:"학원법",art:"학원 등록 vs 교습소 신고",point:"강사 다수·정원 큰 '학원'은 등록제, 강사 1인·정원 제한된 '교습소'는 신고제로 절차가 더 간단.",badge:"must"},
+  {name:"다중이용업소법",art:"수용인원 300명 이상 시 대상",point:"강의실 바닥면적 합계÷1.9㎡로 산정. 대략 강의실 570㎡ 이상이 기준점."},
+  {name:"소방시설법 시행령 별표4 (2026.3.24 시행)",art:"근린생활시설 소방시설 설치기준",point:"소화기구 33㎡↑. 자동화재탐지설비 600㎡↑. 기숙사·합숙소 형태(교습소 내 숙식 제공)가 있으면 기숙사·합숙소 2,000㎡↓ 단독경보형감지기 기준 별도 검토.",badge:"must"}
+],notes:"보컬·악기·안무 연습실을 교습소로 등록하면 이 목(4카)에 해당. '학원'과 '교습소'는 법적 지위가 다르므로 클라이언트가 어느 쪽으로 등록할지 사전에 확인."},
+"10라":{depth:"deep",extraLaws:[
+  {name:"학원법",art:"학원 설립등록",point:"교습과정·정원·강사 자격 등록, 시설기준(강의실별 면적·정원) 충족 후 교육청 등록.",badge:"must"},
+  {name:"다중이용업소법",art:"수용인원 300명 이상 시 대상",point:"4카와 동일 계산식(면적÷1.9㎡) 적용."},
+  {name:"소방시설법 시행령 별표4 (2026.3.24 시행)",art:"교육연구시설 소방시설 설치기준",point:"자동화재탐지설비 2,000㎡↑. 기숙사가 있으면 스프링클러 5,000㎡↑, 합숙소는 100㎡↑ 간이스프링클러, 기숙사·합숙소 2,000㎡↓는 단독경보형감지기.",badge:"must"}
+],notes:"4카와 같은 업종군, 500㎡ 이상이라 교육연구시설로 분류된 대형학원."},
+"4타":{depth:"deep",extraLaws:[
+  {name:"학원법",art:"독서실 등록",point:"독서실도 학원법상 별도 조항으로 등록 대상. 좌석 정원 산정 기준 있음.",badge:"must"},
+  {name:"소방시설법",art:"피난통로 확보",point:"좌석이 밀집된 구조라 통로 폭·피난 동선 확보가 특히 중요하게 점검됨."}
+],notes:"'스터디카페'라는 브랜딩과 무관하게 법적으로는 독서실로 등록되는 경우가 많음. 무인 운영 매장은 사업자등록·영업신고 요건을 별도로 재확인할 것."},
+"4거":{depth:"deep",extraLaws:[
+  {name:"다중이용업소법",art:"숙박형 다중이용업",point:"고시원은 숙박 유사시설로 간이스프링클러 설치 의무 대상인 경우가 많음.",badge:"must"},
+  {name:"건축법",art:"실별 최소 기준",point:"각 실 면적·창문(피난) 유무 확인. 창 없는 실이 많으면 무창층 규제와 겹쳐 검토 필요."},
+  {name:"소방시설법 시행령 별표4 (2026.3.24 시행)",art:"근린생활시설(다중생활시설) 소방시설 설치기준",point:"소화기구 33㎡↑, 자동화재탐지설비 600㎡↑ 기본이나, 고시원은 실무상 완비증명 심사에서 스프링클러·자동화재탐지 등이 더 엄격히 적용되는 경우가 많음 — 관할 소방서 사전 협의 권장.",badge:"must"}
+],notes:"500㎡ 기준으로 4거(2종근생)/15다(숙박시설)로 갈림. 고시원은 다중이용업소법상 안전시설 기준이 엄격한 대표 업종."},
+"15다":{depth:"deep",extraLaws:[
+  {name:"다중이용업소법",art:"숙박형 다중이용업",point:"4거와 동일, 규모만 500㎡ 이상."},
+  {name:"건축법",art:"실별 최소 기준",point:"무창층 여부 특히 주의."},
+  {name:"소방시설법 시행령 별표4 (2026.3.24 시행)",art:"숙박시설 소방시설 설치기준",point:"500㎡↑로 숙박시설 분류되면 자동화재탐지설비·휴대용비상조명등이 규모 무관 전층 의무(●)로 강화됨 — 4거(2종근생)보다 확실히 엄격해짐.",badge:"must"}
+],notes:"4거와 같은 업종군, 규모(500㎡)만 다름."},
+"11가":{depth:"deep",extraLaws:[
+  {name:"영유아보육법",art:"어린이집 인가·등록",point:"보육교사 배치기준, 보육실 면적당 영유아 정원, 시설기준(놀이터·급식시설 등).",badge:"must"},
+  {name:"건축법",art:"층수 제한",point:"원칙적으로 지상 1층 입지, 예외적으로만 상층 허용(비상구·피난시설 강화 조건부).",badge:"must"},
+  {name:"소방시설법",art:"강화된 소방기준",point:"영유아 대상 시설이라 스프링클러 등 일반 근생보다 강화된 기준 적용."},
+  {name:"소방시설법 시행령 별표4 (2026.3.24 시행)",art:"노유자생활시설 강화 기준 — 면적 무관 의무",point:"어린이집은 '노유자생활시설'에 해당하는 경우 규모와 무관하게 간이스프링클러·자동화재탐지설비·자동화재속보설비 설치가 항상 의무(●). 일반 노유자시설보다 훨씬 강화된 기준이라, '작은 어린이집이니 소방시설이 간단하겠지'라고 가정하면 안 됨.",badge:"must"}
+],notes:"어린이집은 입지 층수 제한이 특히 엄격함 — 설계 초기에 층수부터 확정해야 나머지 진행이 가능."},
+"15가":{depth:"deep",extraLaws:[
+  {name:"공중위생관리법",art:"숙박업 신고",point:"관광진흥법 등록 대상이 아닌 일반 숙박업. 위생 시설기준 충족 후 신고. 정책자금 등 혜택은 없음.",badge:"must"},
+  {name:"소방시설법 시행령 별표4 (2026.3.24 시행)",art:"숙박시설 소방시설 설치기준",point:"자동화재탐지설비는 규모 무관 전층 의무(●) — 소규모 모텔이라도 예외 없음. 휴대용비상조명등도 규모 무관 전 숙박시설 의무(●). 간이스프링클러는 300~600㎡ 구간, 스프링클러는 6층↑ 또는 600㎡↑, 옥내소화전은 연면적 1,500㎡↑. 위 3종 외 세부시설은 이 조견표에 없는 예외조항이 있을 수 있어 원문 대조 권장.",badge:"must"},
+  {name:"다중이용업소법",art:"숙박형 다중이용업 · 간이스프링클러",point:"숙박이 포함된 다중이용업은 간이스프링클러 설치 대상."},
+  {name:"다중이용업소법",art:"화재배상책임보험",point:"가입 의무 대상."}
+],notes:"모텔·여관·레지던스(생활숙박시설)는 이 경로. '레지던스'라는 명칭도 실제로는 생활숙박시설로 분류되는 경우가 많아, 숙박업 신고 요건이 그대로 적용됨."},
+"15나":{depth:"deep",extraLaws:[
+  {name:"국토계획법 · 지자체 조례",art:"용도지역 확인 (창업 착수 전 최우선)",point:"호스텔은 관광진흥법상 숙박시설 — 부지가 일반상업지역·준주거지역·일반주거지역 등 숙박시설 허용 지역인지 먼저 확인. 계획관리지역·자연녹지지역은 지자체 도시계획과와 사전 협의 필요(불가 판정이 대부분).",badge:"must"},
+  {name:"관광진흥법 시행령",art:"건축물 높이 제한 (일조권·조망권 보호)",point:"창·문 등 개구부가 있는 벽면에서 인접 대지 경계선까지 직각방향 수평거리의 2배를 초과하는 높이로 건축 불가. 일반주거지역은 주택간 거리가 좁아 이 규정이 신축·개보수 설계에 실제로 영향을 줌 — 설계 단계에서 놓치면 사업계획승인 거부 사유가 됨.",badge:"must"},
+  {name:"관광진흥법 시행령",art:"진입도로 기준",point:"부지(건물) 앞 도로 8m 이상 확보, 도로와 접하는 부분은 4m 이상. 단, 관광특구·관광객 수 등 지역 특성에 따라 지자체가 지정·고시한 지역은 4m 도로폭도 허용 가능."},
+  {name:"건축법",art:"기존 건물 용도변경 (주택·사무실·근생 → 숙박시설)",point:"기존 건물이 주택·사무실·근린생활시설로 등록되어 있다면 단순 인테리어 공사만으로는 숙박시설 전환 불가. 도시계획과·건축과에 용도변경허가를 받고 도면·공사계획서 제출 필요.",badge:"must"},
+  {name:"관광진흥법",art:"관광숙박업 사업계획승인 (등록 전 필수 절차)",point:"단순 행정서류가 아니라 부지·건물 적합성, 사업 지속가능성, 지역사회·관광산업 기여도를 종합평가. 사업계획서에 건물도면·객실수·공용시설계획·부지현황도·공사계획·주차장 확보계획·자금조달계획·추정손익계산서 등 재무계획까지 포함. 심사기간 12일(보완요구 시 연장).",badge:"must"},
+  {name:"다중이용업소법 · 소방시설법",art:"소방설비 (예산 비중 큰 항목)",point:"호스텔은 다중이용시설이라 소방시설 설치가 법적 필수. 기존 건물에 소방설비가 전무한 경우가 대부분이라, 리모델링 예산에서 소방설비 공사비가 높은 비중을 차지하는 경우가 많음 — 설계 초기부터 소방 설계와 예산을 함께 계획할 것.",badge:"must"},
+  {name:"소방시설법 시행령 별표4 (2026.3.24 시행)",art:"숙박시설 소방시설 설치기준",point:"자동화재탐지설비·휴대용비상조명등은 규모 무관 전 숙박시설 의무(●) — 객실 수가 적어도 예외 없음. 간이스프링클러 300~600㎡, 스프링클러 6층↑ 또는 600㎡↑, 옥내소화전 연면적 1,500㎡↑.",badge:"must"},
+  {name:"공중위생관리법 (보건소 심사)",art:"위생기준",point:"객실당 환기 시스템, 세면공간, 분리형 욕실 구조, 청소·세탁공간 확보 등을 보건소 심사로 확인받아야 함. 설계 초기 단계부터 위생·소방 요건을 반영해야 인허가 지연을 막을 수 있음.",badge:"must"},
+  {name:"관광진흥법",art:"관광숙박업 등록 (사업계획승인 이후, 공사 완료 후)",point:"사업계획승인 후 실제 공사(신축·리모델링)를 마치고 관할 지자체에 등록 신청. 등록을 마쳐야 법적으로 정식 숙박시설로 인정되어 영업 가능. 호스텔은 객실 수 제한은 없으나 공용주방·세탁공간·휴게실 등 공용시설, 출입구·피난통로 확보 등이 심사 대상. 실제 공사 결과와 승인 당시 계획이 일치해야 하며 중간 무단 변경은 불가. 등록과 동시에 사업자등록, 업종코드 '관광숙박업' 분류로 부가가치세·지방세·숙박요금 고지방식 등 세무행정도 함께 준비.",badge:"must"},
+  {name:"관광진흥법",art:"외국인관광 도시민박업 (대안 경로)",point:"도시지역 거주 주민이 자가주택 활용 시 소규모 경로로 가능. 외국인 대상이 원칙.",badge:"cond"},
+  {name:"공중위생관리법",art:"숙박업 신고 (관광진흥법 미등록 시)",point:"관광숙박업으로 등록하지 않으면 이 법에 따른 신고로 개업 가능하나 혜택은 없음."}
+],notes:"'호스텔'이라는 명칭 자체는 법적 기준이 아님. 관광진흥법 등록(정책자금 등 혜택 O, 절차 엄격) vs 공중위생관리법 신고(혜택 없음, 절차 간단) 중 클라이언트의 사업 방향에 따라 첫 갈림길이 정해짐. 실무 순서: ①용도지역 확인 → ②(필요시) 용도변경허가 → ③관광숙박업 사업계획승인 → ④설계·시공(소방·위생 기준 반영) → ⑤관광숙박업 등록·사업자등록. 이 순서를 건너뛰고 인테리어부터 진행하면 사업계획승인 단계에서 재설계를 요구받을 수 있음."},
+"12라":{depth:"deep",extraLaws:[
+  {name:"관광진흥법",art:"야영장업 등록",point:"관광사업의 하나로 별도 등록 대상. 안전·위생 기준(전기설비 접지, 소화기 비치 등) 충족 필요.",badge:"must"},
+  {name:"하수도법",art:"오수처리시설",point:"공공하수처리구역 외 지역이면 정화조 용량 산정."},
+  {name:"소방시설법 시행령 별표4 (2026.3.24 시행)",art:"수련시설 소방시설 설치기준",point:"숙박 가능한 캠핑장(글램핑 등)은 스프링클러 6층↑ 또는 숙박가능 600㎡↑, 단독경보형감지기(2,000㎡↓), 자동화재탐지설비(2,000㎡↑ 또는 숙박+수용인원 100명↑), 자동화재속보설비(숙박있는 수련시설 500㎡↑층) 대상 여부를 숙박 동수·면적 기준으로 확인.",badge:"must"}
+],notes:"실내 인테리어와는 결이 다르지만, 관리동·샤워장 등 부속 건축물은 건축법을 그대로 적용받음. 300㎡ 기준으로 12라(수련시설)/29(300㎡↓)로 갈림."},
+"29":{depth:"deep",extraLaws:[
+  {name:"관광진흥법",art:"야영장업 등록",point:"12라와 동일."},
+  {name:"하수도법",art:"오수처리시설",point:"12라와 동일."}
+],notes:"12라와 같은 업종군, 300㎡ 미만 소규모."},
+"24다":{depth:"deep",extraLaws:[
+  {name:"소음진동관리법",art:"생활소음 규제기준",point:"방음설계 목표치는 이 법의 생활소음 기준(주간/야간, 용도지역별 dB)에 맞춰 산정. 인허가 요건이라기보단 방음 스펙의 근거 법령."},
+  {name:"공연법",art:"공연장 등록 (관객 대상 공연 시)",point:"순수 녹음·연습 용도는 해당 없음. 유료 관객을 받는 소공연장 운영이면 등록 대상 여부 확인.",badge:"cond"}
+],notes:"방송용 촬영소·녹음실이 아니라 개인/회원제 연습실이면 4카(교습소)나 3자/4하(사무소)로 분류될 수 있음 — 실사용 목적에 따라 용도 판정부터 다시 확인."},
+"17":{depth:"deep",extraLaws:[
+  {name:"식품위생법",art:"식품제조가공업 등록",point:"공장에서 완제품을 만들어 최종소비자뿐 아니라 도매상·마트 등 사업자에게도 유통 가능한 업. 즉석판매제조가공업(최종소비자 전용 판매)과의 핵심 차이는 이 판매처 범위. 대부분 HACCP 인증 필요, 작업장 구획(원료·가공·포장 구역 분리) 등 시설기준이 더 엄격.",badge:"must"},
+  {name:"대기환경보전법 / 물환경보전법",art:"배출시설 신고 (해당 시)",point:"제조 공정에서 분진·악취·폐수가 발생하면 대기/수질 배출시설 신고 대상 여부 확인."},
+  {name:"소방시설법 시행령 별표4 (2026.3.24 시행)",art:"공장 소방시설 설치기준",point:"옥내소화전은 연면적 1,500㎡↑ 또는 특수가연물 750배↑. 스프링클러는 6층↑ 또는 특수가연물 1,000배↑, 또는 (지하·무창층 또는 4층↑인 층 중 바닥면적 1,000㎡↑인 층이 있는 경우). 자동화재탐지설비는 1,000㎡↑ 또는 특수가연물 500배↑.",badge:"must"}
+],notes:"베이커리 카페가 규모를 키워 별도 생산공장(중앙공급식 제빵공장 등)을 낼 경우 여기 해당. 매장(3나/4아 제과점)과 공장(17호)은 서로 다른 시설로, 등록도 각각 별도로 필요. 온라인·전화판매(통신판매업)는 즉석판매제조가공업·식품제조가공업 둘 다 별도 신고하면 가능."},
+};
+
+const listWrap = document.getElementById('listWrap');
+const groupTabs = document.getElementById('groupTabs');
+let activeGroup = 'all';
+let editMode = false;
+let isDirty = false;
+let lastOpenedUse = null;
+
+function markDirty(){
+  isDirty = true;
+  document.getElementById('dirtyFlag').classList.add('show');
+  document.getElementById('downloadBtn').classList.add('has-unsaved');
+}
+function clearDirty(){
+  isDirty = false;
+  document.getElementById('dirtyFlag').classList.remove('show');
+  document.getElementById('downloadBtn').classList.remove('has-unsaved');
+}
+window.addEventListener('beforeunload', (e)=>{
+  if(isDirty){
+    e.preventDefault();
+    e.returnValue = '';
+  }
+});
+
+function buildGroupTabs(){
+  const all = document.createElement('button');
+  all.className = 'gtab active';
+  all.textContent = '전체';
+  all.dataset.g = 'all';
+  groupTabs.appendChild(all);
+  Object.keys(GROUPS).forEach(g=>{
+    const b = document.createElement('button');
+    b.className = 'gtab';
+    b.textContent = g+'·'+GROUPS[g].name;
+    b.dataset.g = g;
+    groupTabs.appendChild(b);
+  });
+  groupTabs.querySelectorAll('.gtab').forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+      groupTabs.querySelectorAll('.gtab').forEach(t=>{t.classList.remove('active');t.style.background='';t.style.color='';t.style.borderColor='var(--line)'});
+      tab.classList.add('active');
+      activeGroup = tab.dataset.g;
+      if(activeGroup!=='all'){
+        tab.style.background = GROUPS[activeGroup].color;
+        tab.style.borderColor = 'transparent';
+        tab.style.color = '#fff';
+      } else {
+        tab.style.background = 'var(--navy)';
+        tab.style.color = '#fff';
+      }
+      render();
+    });
+  });
+  document.querySelector('.gtab.active').style.background='var(--navy)';
+  document.querySelector('.gtab.active').style.color='#fff';
+}
+
+function getLaw(code){
+  return LAWDATA[code] || {depth:"base",extraLaws:[],notes:""};
+}
+
+function matchesSearch(u, q){
+  if(!q) return true;
+  q = q.toLowerCase();
+  return u.code.toLowerCase().includes(q) ||
+    u.name.toLowerCase().includes(q) ||
+    (u.alias||"").toLowerCase().includes(q);
+}
+
+function render(){
+  const q = document.getElementById('searchBox').value.trim();
+  listWrap.innerHTML = '';
+  let shown = 0;
+  USES.forEach(u=>{
+    if(activeGroup!=='all' && String(u.group)!==String(activeGroup)) return;
+    if(!matchesSearch(u,q)) return;
+    shown++;
+    const law = getLaw(u.code);
+    const item = document.createElement('div');
+    item.className = 'item' + (u.deleted?' deleted':'');
+    item.dataset.code = u.code;
+
+    const head = document.createElement('div');
+    head.className = 'item-head';
+    head.innerHTML = `
+      <span class="gdot" style="background:${GROUPS[u.group].color}"></span>
+      <span class="item-code">${u.code}</span>
+      <div class="item-main">
+        <div class="item-name">${u.name}</div>
+        ${u.alias?`<div class="item-alias">${u.alias}</div>`:''}
+      </div>
+      ${u.deleted?'':`<span class="depth-badge ${law.depth==='deep'?'depth-deep':'depth-base'}">${law.depth==='deep'?'정리됨':'베이스'}</span>`}
+      ${u.deleted?'':'<span class="chevron">▸</span>'}
+    `;
+    item.appendChild(head);
+
+    if(!u.deleted){
+      const detail = document.createElement('div');
+      detail.className = 'item-detail';
+      detail.innerHTML = renderDetail(u, law);
+      item.appendChild(detail);
+
+      head.addEventListener('click', ()=>{
+        item.classList.toggle('open');
+        if(item.classList.contains('open')){
+          lastOpenedUse = u;
+        }
+      });
+
+      bindDetailEvents(item, u.code);
+    }
+
+    listWrap.appendChild(item);
+  });
+
+  if(shown===0){
+    listWrap.innerHTML = '<div class="no-results">일치하는 항목이 없습니다.</div>';
+  }
+  updateSummary(shown);
+}
+
+function renderDetail(u, law){
+  let html = '<div class="law-block"><div class="law-block-title">공통 베이스</div>';
+  BASE_LAWS.forEach(l=>{
+    html += `<div class="law-row"><div><div class="law-name">${l.name} <span class="art">${l.art}</span></div><div class="point">${l.point}</div></div></div>`;
+  });
+  html += '</div>';
+
+  html += `<div class="law-block" data-block="extra"><div class="law-block-title">업종 특화 법령</div><div class="extra-wrap">`;
+  if(!editMode){
+    if(law.extraLaws.length===0){
+      html += '<div class="empty-note">아직 정리되지 않은 항목입니다. 편집 모드에서 추가해보세요.</div>';
+    } else {
+      law.extraLaws.forEach(l=>{
+        const badge = l.badge==='must'?'<span class="badge" style="background:#fee2e2;color:#b91c1c;font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;margin-left:6px">필수확인</span>'
+                      : l.badge==='cond'?'<span class="badge" style="background:#fef3c7;color:#b45309;font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;margin-left:6px">조건부</span>' : '';
+        html += `<div class="law-row"><div><div class="law-name">${l.name} <span class="art">${l.art}</span>${badge}</div><div class="point">${l.point}</div></div></div>`;
+      });
+    }
+  } else {
+    law.extraLaws.forEach((l,i)=>{
+      html += `<div class="edit-row" data-idx="${i}">
+        <button class="del-x" data-action="del-law" data-idx="${i}">✕ 삭제</button>
+        <input class="ef-name" data-field="name" data-idx="${i}" value="${escAttr(l.name)}" placeholder="법령명">
+        <input data-field="art" data-idx="${i}" value="${escAttr(l.art||'')}" placeholder="조항/포인트 제목">
+        <textarea data-field="point" data-idx="${i}" placeholder="설명">${l.point||''}</textarea>
+      </div>`;
+    });
+    html += `<button class="add-law-btn" data-action="add-law">+ 법령 추가</button>`;
+  }
+  html += '</div></div>';
+
+  html += '<div class="law-block"><div class="law-block-title">실무 메모</div>';
+  if(!editMode){
+    html += law.notes ? `<div class="law-note">${law.notes}</div>` : '<div class="empty-note">메모 없음</div>';
+  } else {
+    html += `<textarea class="notes-edit" data-field="notes">${law.notes||''}</textarea>`;
+  }
+  html += '</div>';
+
+  return html;
+}
+
+function escAttr(s){
+  return (s||'').replace(/"/g,'&quot;');
+}
+
+function bindDetailEvents(item, code){
+  const detail = item.querySelector('.item-detail');
+
+  detail.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    const action = e.target.dataset.action;
+    if(action==='add-law'){
+      ensureLaw(code);
+      LAWDATA[code].extraLaws.push({name:"",art:"",point:""});
+      LAWDATA[code].depth = "deep";
+      markDirty();
+      refreshItem(item, code);
+    } else if(action==='del-law'){
+      ensureLaw(code);
+      const idx = parseInt(e.target.dataset.idx);
+      LAWDATA[code].extraLaws.splice(idx,1);
+      markDirty();
+      refreshItem(item, code);
+    }
+  });
+
+  detail.addEventListener('input', (e)=>{
+    const field = e.target.dataset.field;
+    if(!field) return;
+    ensureLaw(code);
+    markDirty();
+    if(field==='notes'){
+      LAWDATA[code].notes = e.target.value;
+      if(e.target.value.trim()) LAWDATA[code].depth = "deep";
+    } else {
+      const idx = parseInt(e.target.dataset.idx);
+      LAWDATA[code].extraLaws[idx][field] = e.target.value;
+      LAWDATA[code].depth = "deep";
+    }
+  });
+}
+
+function ensureLaw(code){
+  if(!LAWDATA[code]) LAWDATA[code] = {depth:"base",extraLaws:[],notes:""};
+}
+
+function refreshItem(item, code){
+  const wasOpen = item.classList.contains('open');
+  const law = getLaw(code);
+  const u = USES.find(x=>x.code===code);
+  const detail = item.querySelector('.item-detail');
+  detail.innerHTML = renderDetail(u, law);
+  bindDetailEvents(item, code);
+  const badge = item.querySelector('.depth-badge');
+  if(badge){
+    badge.textContent = law.depth==='deep' ? '정리됨' : '베이스';
+    badge.className = 'depth-badge ' + (law.depth==='deep' ? 'depth-deep' : 'depth-base');
+  }
+  if(wasOpen) item.classList.add('open');
+}
+
+function updateSummary(shown){
+  const deepCount = Object.keys(LAWDATA).filter(k=>LAWDATA[k].depth==='deep').length;
+  document.getElementById('summaryText').textContent = `표시 ${shown}개 · 전체 ${USES.length}개 세부용도 · 정리된 항목 ${deepCount}개`;
+}
+
+document.getElementById('searchBox').addEventListener('input', render);
+
+document.getElementById('editToggle').addEventListener('click', (e)=>{
+  editMode = !editMode;
+  e.target.classList.toggle('on', editMode);
+  e.target.textContent = editMode ? '✏️ 편집 중' : '🔒 읽기 전용';
+  render();
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  const dataStr = JSON.stringify(LAWDATA, null, 2);
+  const blob = new Blob([dataStr], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const today = new Date().toISOString().slice(0,10);
+  a.href = url;
+  a.download = `grida_참고자료2_법령데이터_${today}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  clearDirty();
+});
+
+document.getElementById('uploadBtn').addEventListener('click', ()=>{
+  document.getElementById('fileInput').click();
+});
+document.getElementById('fileInput').addEventListener('change', (e)=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = (evt)=>{
+    try{
+      const parsed = JSON.parse(evt.target.result);
+      Object.assign(LAWDATA, parsed);
+      render();
+      clearDirty();
+      alert('불러오기 완료: ' + Object.keys(parsed).length + '개 항목이 반영되었습니다.');
+    }catch(err){
+      alert('JSON 파일을 읽는 중 오류가 발생했습니다: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+});
+
+// ===== 전체 소방시설 조견표 토글 =====
+document.getElementById('fmxExcelBtn').addEventListener('click', ()=>{
+  const table = document.getElementById('fmxTable');
+  const wb = XLSX.utils.table_to_book(table, {sheet:"소방시설조견표", raw:false});
+  const ws = wb.Sheets["소방시설조견표"];
+  // 열 너비를 보기 좋게 지정 (구분·소방시설은 좁게, 나머지는 넓게)
+  ws['!cols'] = [{wch:6},{wch:14}].concat(Array(22).fill({wch:22}));
+  const today = new Date().toISOString().slice(0,10);
+  XLSX.writeFile(wb, `GRIDA_소방시설_설치기준_조견표_2026_${today}.xlsx`);
+});
+
+const fmxPanelWrap = document.getElementById('fmxPanelWrap');
+const evacPanelWrap = document.getElementById('evacPanelWrap');
+const diagPanelWrap = document.getElementById('diagPanelWrap');
+const checklistPanelWrap = document.getElementById('checklistPanelWrap');
+
+const multiusePanelWrap = document.getElementById('multiusePanelWrap');
+const MAIN_PANELS = {
+  checklist: checklistPanelWrap,
+  diag: diagPanelWrap,
+  fmx: fmxPanelWrap,
+  evac: evacPanelWrap,
+  multiuse: multiusePanelWrap
+};
+
+function switchMainTab(tabName){
+  Object.keys(MAIN_PANELS).forEach(key=>{
+    MAIN_PANELS[key].style.display = (key===tabName) ? 'block' : 'none';
+  });
+  document.querySelectorAll('.main-tab').forEach(t=>{
+    t.classList.toggle('active', t.dataset.tab===tabName);
+  });
+  if(tabName==='diag' && lastOpenedUse){
+    const searchEl = document.getElementById('diagUseSearch');
+    searchEl.value = lastOpenedUse.name;
+    selectDiagUse(lastOpenedUse);
+  }
+  if(tabName==='evac'){
+    renderEvacSummary();
+  }
+  if(tabName==='multiuse'){
+    renderMultiuseSummary();
+  }
+  if(tabName!=='checklist'){
+    MAIN_PANELS[tabName].scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
+
+// 복도 강화기준 대상 코드 (피난방화규칙 제15조의2 제2항)
+const EVAC_CORRIDOR_SPECIAL_CODES = {
+  '4가':'공연장(2종근생)', '5가':'공연장', '5나':'집회장', '5다':'관람장', '5라':'전시장',
+  '4나':'종교집회장(2종근생)', '6가':'종교집회장',
+  '11가':'아동관련시설', '11나':'노인복지시설',
+  '12가':'생활권수련시설',
+  '16나':'유흥주점',
+  '28':'장례식장'
+};
+// 다중이용업 해당 가능성이 높은 코드 (다중이용업소법 시행령 §2, 면적·수용인원 등 추가조건은 별도 확인 필요)
+const EVAC_MULTIUSE_LIKELY_CODES = ['4더','4러','4자','4아','3나','15가','15나','4거','15다','4사','4파','4타','12라','29'];
+
+function renderEvacSummary(){
+  const el = document.getElementById('evacSummary');
+  // 하이라이트 초기화
+  document.getElementById('evacCorridorBlock').classList.remove('evac-highlight','evac-dim');
+  document.getElementById('evacInteriorPathBlock').classList.remove('evac-highlight','evac-dim');
+  document.getElementById('evacMultiUseBlock').classList.remove('evac-highlight','evac-dim');
+
+  if(!resolvedUseInfo){
+    el.innerHTML = `<div class="law-note">아직 선택된 프로젝트 용도가 없습니다. "🧯 소방시설 자동진단" 탭에서 프로젝트 용도를 먼저 선택하면, 이 탭이 그 프로젝트에 맞는 항목만 강조해서 보여줍니다.</div>`;
+    return;
+  }
+
+  const area = parseFloat(document.getElementById('diagArea').value) || 0;
+  const code = resolvedUseInfo.code;
+  const specialUse = EVAC_CORRIDOR_SPECIAL_CODES[code];
+  const isMultiUseLikely = EVAC_MULTIUSE_LIKELY_CODES.includes(code);
+
+  let html = `<div class="law-note" style="background:#eef2ff;color:var(--navy2)">현재 선택된 프로젝트: <b>${resolvedUseInfo.code} ${resolvedUseInfo.name}</b>${area?` · 바닥면적 ${area}㎡`:' · 바닥면적 미입력(자동진단 탭에서 입력하면 폭까지 계산됩니다)'}</div>`;
+
+  html += '<div style="margin-top:10px">';
+  if(specialUse){
+    let req = '';
+    if(area>0){
+      if(area>=1000) req = '2.4m 이상';
+      else if(area>=500) req = '1.8m 이상';
+      else req = '1.5m 이상';
+    }
+    html += `<div class="law-row"><div><div class="law-name">✓ 복도 유효너비 — 강화기준 대상<span class="evac-badge">해당</span></div><div class="point">"${specialUse}"에 해당해 일반 복도기준(1.8m/1.2m) 대신 강화기준이 적용됩니다.${area>0?` 현재 바닥면적 ${area}㎡ 기준 → 필요폭 <b>${req}</b>.`:' 바닥면적을 입력하면 정확한 필요폭이 계산됩니다.'}</div></div></div>`;
+    document.getElementById('evacCorridorBlock').classList.add('evac-highlight');
+  } else {
+    html += `<div class="law-row"><div><div class="law-name">복도 유효너비 — 일반기준 대상</div><div class="point">강화기준 대상 용도가 아니므로 일반기준(양옆 거실 1.8m / 그 밖 1.2m)을 적용합니다.</div></div></div>`;
+    document.getElementById('evacCorridorBlock').classList.add('evac-dim');
+  }
+
+  if(isMultiUseLikely){
+    html += `<div class="law-row"><div><div class="law-name">✓ 영업장 내부 피난통로 — 다중이용업 해당 가능성<span class="evac-badge">확인 필요</span></div><div class="point">이 업종은 다중이용업소법 대상에 해당할 가능성이 있습니다(정확한 판정은 면적·수용인원 등 추가조건 필요, ref01 다중이용업소 자가진단 참고). 해당된다면 내부 피난통로 120cm(조건부 150cm) 기준을 반드시 확인하세요.</div></div></div>`;
+    document.getElementById('evacInteriorPathBlock').classList.add('evac-highlight');
+  } else {
+    document.getElementById('evacInteriorPathBlock').classList.add('evac-dim');
+  }
+
+  html += '</div>';
+  el.innerHTML = html;
+}
+
+// 다중이용업소 특화 안전시설 대상 코드 매핑
+const MULTIUSE_CODE_FLAGS = {
+  '4더': {evacLine:true, videoAudio:true, label:'단란주점'},
+  '16나': {evacLine:true, videoAudio:true, label:'유흥주점'},
+  '4러': {evacLine:true, videoAudio:true, label:'노래연습장 (동일 코드에 안마시술소 포함)'},
+  '4거': {evacLine:true, simpleSprinkler:'조건부(지상1층·외부직접연결 시 제외)', label:'고시원(2종근생, 500㎡↓)'},
+  '15다': {evacLine:true, simpleSprinkler:true, label:'고시원(숙박시설, 500㎡↑)'},
+  '3라': {evacLine:'산후조리원인 경우만 해당', simpleSprinkler:'산후조리원인 경우만 해당', label:'의원 등(산후조리원 포함 코드)'}
+};
+
+function renderMultiuseSummary(){
+  const el = document.getElementById('multiuseSummary');
+  ['muRow-extinguisher','muRow-simpleSprinkler','muRow-alarm','muRow-evacLine','muRow-videoAudio'].forEach(id=>{
+    const row = document.getElementById(id);
+    if(row) row.classList.remove('mu-highlight','mu-dim');
+  });
+
+  if(!resolvedUseInfo){
+    el.innerHTML = `<div class="law-note">아직 선택된 프로젝트 용도가 없습니다. "🧯 소방시설 자동진단" 탭에서 프로젝트 용도를 먼저 선택하면, 이 탭이 그 업종에 필요한 안전시설만 강조해서 보여줍니다.</div>`;
+    return;
+  }
+
+  const area = parseFloat(document.getElementById('diagArea').value) || 0;
+  const basementFloors = parseFloat(document.getElementById('diagBasementFloors').value) || 0;
+  const windowless = document.getElementById('diag_windowless') ? document.getElementById('diag_windowless').checked : false;
+  const underground = basementFloors>=1 && windowless;
+  const code = resolvedUseInfo.code;
+  const flags = MULTIUSE_CODE_FLAGS[code] || {};
+
+  let html = `<div class="law-note" style="background:#eef2ff;color:var(--navy2)">현재 선택된 프로젝트: <b>${resolvedUseInfo.code} ${resolvedUseInfo.name}</b>${area?` · 바닥면적 ${area}㎡`:' · 바닥면적 미입력'}${flags.label?` · <b>${flags.label}</b> 특화 규정 적용 대상`:''}</div>`;
+
+  // 소화기(항상 강조, 33㎡ 이상 등 조건은 참고자료#2 체크리스트에서 별도 확인)
+  document.getElementById('muRow-extinguisher').classList.add('mu-highlight');
+
+  // 간이스프링클러
+  if(flags.simpleSprinkler){
+    document.getElementById('muRow-simpleSprinkler').classList.add('mu-highlight');
+  } else if(underground){
+    document.getElementById('muRow-simpleSprinkler').classList.add('mu-highlight');
+  } else {
+    document.getElementById('muRow-simpleSprinkler').classList.add('mu-dim');
+  }
+
+  // 비상벨/자동화재탐지 — 연면적 400㎡ 이상 또는 지하무창 150㎡ 이상
+  if(area>=400 || (underground && area>=150)){
+    document.getElementById('muRow-alarm').classList.add('mu-highlight');
+  } else if(area>0){
+    document.getElementById('muRow-alarm').classList.add('mu-dim');
+  }
+
+  // 피난유도선
+  if(flags.evacLine){
+    document.getElementById('muRow-evacLine').classList.add('mu-highlight');
+  } else {
+    document.getElementById('muRow-evacLine').classList.add('mu-dim');
+  }
+
+  // 영상음향차단장치
+  if(flags.videoAudio){
+    document.getElementById('muRow-videoAudio').classList.add('mu-highlight');
+  } else {
+    document.getElementById('muRow-videoAudio').classList.add('mu-dim');
+  }
+
+  el.innerHTML = html;
+}
+
+document.querySelectorAll('.main-tab').forEach(tab=>{
+  tab.addEventListener('click', ()=> switchMainTab(tab.dataset.tab));
+});
+
+// ===== 소방시설 자동진단 (베타) =====
+
+
+const DIAG_EXTRA_FIELDS = {
+  "공동주택": [
+    {id:'isAptOfficetel',label:'아파트/오피스텔 (자동소화장치용)'},
+    {id:'isRowhouse',label:'연립·다세대주택'}
+  ],
+  "근린생활": [
+    {id:'commercialKitchen',label:'상업용 주방 있음 (음식점 등)'},
+    {id:'clinicWithBeds',label:'의원·치과의원·한의원 - 입원실 또는 인공신장실 있음'},
+    {id:'birthCenter',label:'조산원·산후조리원 해당'}
+  ],
+  "운수시설": [{id:'occupancy500',label:'수용인원 500명 이상'}],
+  "위락시설": [],
+  "문화집회": [
+    {id:'isCinema',label:'영화상영관'},
+    {id:'occupancy100',label:'수용인원 100명 이상'}
+  ],
+  "종교시설": [{id:'isWoodOrHeritage',label:'목조건축물 또는 보물·국보'}],
+  "판매시설": [
+    {id:'isTraditionalMarket',label:'전통시장'},
+    {id:'isLargeStore',label:'대규모점포'},
+    {id:'commercialKitchen',label:'상업용 주방 있음'}
+  ],
+  "의료시설": [
+    {id:'isGeneralHospital',label:'종합병원·병원·치과병원·한방병원'},
+    {id:'isPsychiatric',label:'정신의료기관·의료재활시설'},
+    {id:'isNursingHospital',label:'요양병원'},
+    {id:'hasBars',label:'창살 설치 (탈출방지용, 화재 시 자동개방 아님)'}
+  ],
+  "장례시설": [],
+  "숙박": [],
+  "노유자": [{id:'lifeFacility',label:'노유자생활시설 해당 (어린이집·요양시설 등 상시 거주형)'}],
+  "교육연구": [
+    {id:'hasDorm',label:'기숙사 있음'},
+    {id:'hasHapsook',label:'합숙소 있음 (기숙사와 별개)'}
+  ],
+  "수련": [
+    {id:'canSleep',label:'숙박 가능 시설 (글램핑·유스호스텔 등)'},
+  ],
+  "업무시설": [
+    {id:'hasOfficetel',label:'오피스텔 있음'},
+    {id:'unmannedSubstation',label:'무인변전소 (옥내소화전 제외 대상)'}
+  ],
+  "공장": [{id:'specialCombustible',label:'특수가연물 저장 있음'}],
+  "창고시설": [
+    {id:'isRackWarehouse',label:'랙식창고 (천장고 10m 초과)'},
+    {id:'isLogisticsTerminal',label:'물류터미널'},
+    {id:'specialCombustible',label:'특수가연물 저장 있음'},
+    {id:'hasGasFacility',label:'가스시설 있음'}
+  ],
+  "위험물가스": [],
+  "항공기자동차": [
+    {id:'isHangar',label:'항공기 격납고'},
+    {id:'isParkingLot',label:'주차장·차고'}
+  ],
+  "교정군사": [{id:'isLeasedProtective',label:'임차 보호시설(출입국관리법)'}],
+  "발전방송": [{id:'hasElectricRoom',label:'전기실 또는 전기저장시설 있음'}],
+  "지하특수": [
+    {id:'isTunnel',label:'터널'},
+    {id:'isUndergroundMall',label:'지하상가'},
+    {id:'isUndergroundConduit',label:'지하구 (전력·통신사업용)'}
+  ],
+  "복합": [
+    {id:'hasOfficetel',label:'오피스텔 있음'},
+    {id:'nabokComplex',label:'"나목형" 복합건축물 (같은 동에 주택+근린생활시설 함께 있음)'}
+  ]
+};
+
+let resolvedProjectCategory = null;
+let resolvedUseInfo = null;
+
+function inferFireCategory(u){
+  const g = u.group;
+  const c = u.code;
+  if(g===7) return '근린생활';
+  if(g===8){
+    if(c.startsWith('14')) return '업무시설';
+    if(c.startsWith('23')) return '교정군사';
+    if(c==='1가' || c==='1나' || c==='1다' || c==='1라') return null; // 단독주택 계열: 별표4 아닌 제10조 주택용소방시설 대상
+    return '공동주택'; // 2가~2라 (아파트·연립·다세대·기숙사)
+  }
+  if(g===4){
+    if(c.startsWith('6')) return '종교시설';
+    if(c.startsWith('16')) return '위락시설';
+    return '문화집회'; // 5번대, 27번대(관광휴게) 근사치
+  }
+  if(g===5){
+    if(c.startsWith('7')) return '판매시설';
+    if(c.startsWith('13')) return '문화집회'; // 운동시설 - 전용 컬럼 없어 근사치
+    if(c.startsWith('15')) return '숙박';
+  }
+  if(g===2){
+    if(c.startsWith('8')) return '운수시설';
+    if(c==='17') return '공장';
+    if(c.startsWith('18')) return '창고시설';
+    if(c==='19') return '위험물가스';
+    if(c.startsWith('22')) return '공장'; // 자원순환 - 근사치
+    if(c.startsWith('26') || c==='28') return '장례시설'; // 묘지관련 - 근사치
+  }
+  if(g===3) return '발전방송';
+  if(g===6){
+    if(c.startsWith('9')) return '의료시설';
+    if(c.startsWith('10')) return '교육연구';
+    if(c.startsWith('11')) return '노유자';
+    if(c.startsWith('12') || c==='29') return '수련';
+  }
+  if(g===1) return '항공기자동차';
+  return null; // 그밖의시설군(동식물관련) 등 전용 컬럼 없음
+}
+
+function selectDiagUse(u){
+  const resolvedEl = document.getElementById('diagUseResolved');
+  if(!u){
+    resolvedUseInfo = null;
+    resolvedProjectCategory = null;
+    resolvedEl.textContent = '선택 해제됨 — 검색 결과에서 다시 골라주세요.';
+  } else {
+    const fireCat = inferFireCategory(u);
+    resolvedUseInfo = u;
+    resolvedProjectCategory = fireCat;
+    if(fireCat){
+      resolvedEl.innerHTML = `→ <b style="color:var(--navy2)">${u.code} ${u.name}</b> · 화재안전기준 <b>"${fireCat}"</b> 카테고리로 진단됩니다`;
+    } else if(['1가','1나','1다','1라'].includes(u.code)){
+      resolvedEl.innerHTML = `→ <b>${u.code} ${u.name}</b> · 별표4가 아니라 <b>소방시설법 제10조(주택용소방시설)</b> 대상 — 소화기+단독경보형감지기만 설치하면 됩니다. 자세한 내용은 체크리스트에서 이 항목을 직접 열어보세요.`;
+    } else {
+      resolvedEl.innerHTML = `→ <b>${u.code} ${u.name}</b> · 이 용도는 전용 화재안전기준 컬럼이 없어 자동진단 불가 (전체 조견표에서 직접 확인해주세요)`;
+    }
+  }
+  renderDiagExtraFields();
+  renderDiagUseResults(document.getElementById('diagUseSearch').value);
+}
+
+function renderDiagUseResults(query){
+  const wrap = document.getElementById('diagUseSearchResults');
+  const q = (query||'').trim().toLowerCase();
+  if(!q){ wrap.innerHTML = ''; return; }
+  const matches = USES.filter(u=>!u.deleted && (
+    u.code.toLowerCase().includes(q) ||
+    u.name.toLowerCase().includes(q) ||
+    (u.alias||'').toLowerCase().includes(q)
+  )).slice(0, 12);
+
+  if(matches.length===0){
+    wrap.innerHTML = '';
+    document.getElementById('diagUseResolved').textContent = '일치하는 용도가 없습니다.';
+    return;
+  }
+
+  wrap.innerHTML = matches.map(u=>{
+    const selected = resolvedUseInfo && resolvedUseInfo.code===u.code;
+    return `<div class="diag-use-row${selected?' selected':''}" data-code="${u.code}">
+      <span class="duc-box">${selected?'✓':''}</span>
+      <span class="duc-code">${u.code}</span>
+      <span class="duc-name">${u.name}</span>
+      ${u.alias?`<span class="duc-alias">${u.alias}</span>`:''}
+    </div>`;
+  }).join('');
+
+  wrap.querySelectorAll('.diag-use-row').forEach(row=>{
+    row.addEventListener('click', ()=>{
+      const code = row.dataset.code;
+      if(resolvedUseInfo && resolvedUseInfo.code===code){
+        selectDiagUse(null); // 이미 선택된 항목을 다시 누르면 해제
+      } else {
+        selectDiagUse(USES.find(x=>x.code===code));
+      }
+    });
+  });
+}
+
+document.getElementById('diagUseSearch').addEventListener('input', (e)=>{
+  renderDiagUseResults(e.target.value);
+});
+
+function renderDiagExtraFields(){
+  const cat = resolvedProjectCategory;
+  const wrap = document.getElementById('diagExtraFields');
+  wrap.innerHTML = '';
+  const fields = DIAG_EXTRA_FIELDS[cat] || [];
+  fields.forEach(f=>{
+    const label = document.createElement('label');
+    label.className = 'diag-check-label';
+    label.innerHTML = `<input type="checkbox" id="diag_${f.id}"> ${f.label}`;
+    wrap.appendChild(label);
+  });
+  if(cat==='수련'){
+    const label = document.createElement('label');
+    label.className = 'diag-check-label';
+    label.innerHTML = `숙박+수용인원(명, 숙박가능일 때) <input type="number" id="diag_occupancy" style="width:70px;border:1px solid var(--line);border-radius:6px;padding:4px 6px;margin-left:4px">`;
+    wrap.appendChild(label);
+  }
+  if(cat==='공장' || cat==='창고시설'){
+    const label = document.createElement('label');
+    label.className = 'diag-check-label';
+    label.innerHTML = `특수가연물 배수 <input type="number" id="diag_combustibleUnits" style="width:70px;border:1px solid var(--line);border-radius:6px;padding:4px 6px;margin-left:4px"> 배`;
+    wrap.appendChild(label);
+  }
+  if(cat==='지하특수'){
+    const label = document.createElement('label');
+    label.className = 'diag-check-label';
+    label.innerHTML = `터널 길이(m) <input type="number" id="diag_tunnelLength" style="width:80px;border:1px solid var(--line);border-radius:6px;padding:4px 6px;margin-left:4px">`;
+    wrap.appendChild(label);
+  }
+  const un2 = document.createElement('label');
+  un2.className = 'diag-check-label';
+  un2.innerHTML = `<input type="checkbox" id="diag_windowless"> 무창층 해당 (지하층 여부는 위 ①에 입력한 지하 층수를 따름)`;
+  wrap.appendChild(un2);
+  const fp = document.createElement('label');
+  fp.className = 'diag-check-label';
+  fp.innerHTML = `<input type="checkbox" id="diag_fireproofFinish"> 내화구조 + 벽·반자 불연재/준불연재/난연재 마감 (소화기구 능력단위 기준면적 2배 완화)`;
+  wrap.appendChild(fp);
+  const noteEl = document.createElement('div');
+  noteEl.style.cssText = 'width:100%;font-size:11px;color:var(--sub);margin-top:-6px';
+  noteEl.textContent = '※ 조견표의 "지하·무창층" 조건은 지하층이면서 동시에 무창층 요건도 충족하는 경우를 뜻합니다 — 지하 층수가 1층 이상이고 무창층에 체크되어 있어야 해당 조건이 적용됩니다.';
+  wrap.appendChild(noteEl);
+}
+renderDiagExtraFields();
+
+const FIRE_EXT_BASE_AREA = {
+  "위락시설": 30,
+  "문화집회": 50, "장례시설": 50, "의료시설": 50, "종교시설": 50,
+  "근린생활": 100, "판매시설": 100, "운수시설": 100, "숙박": 100, "노유자": 100,
+  "공동주택": 100, "업무시설": 100, "발전방송": 100, "공장": 100, "창고시설": 100, "항공기자동차": 100,
+  "교육연구": 200, "수련": 200, "복합": 200, "위험물가스": 200, "교정군사": 200, "지하특수": 200
+};
+
+function computeResults(cat, area, get, floorsUp, underground, maxFloorArea, buildingArea){
+  const results = [];
+
+  const fireproof = get('diag_fireproofFinish');
+  const baseArea = FIRE_EXT_BASE_AREA[cat];
+  if(baseArea && area>0){
+    const effectiveBase = fireproof ? baseArea*2 : baseArea;
+    const units = Math.ceil(area / effectiveBase);
+    results.push({name:"소화기구 능력단위 [별표3]", need: true, reason: `${area}㎡ ÷ 기준면적 ${effectiveBase}㎡(${fireproof?'내화구조+불연재 2배 적용':'기준면적 그대로'}) = 능력단위 ${units}단위 이상 필요 (소수점 올림). 실제 대수는 사용할 소화기 1대당 능력단위 사양에 따라 달라짐 — 능력단위 총합만 충족하면 됨.`});
+  }
+
+  if(cat==='근린생활'){
+    const commercialKitchen = get('diag_commercialKitchen');
+    const clinicWithBeds = get('diag_clinicWithBeds');
+    const birthCenter = get('diag_birthCenter');
+    results.push({name:"소화기구", need: area>=33, reason: area>=33 ? "연면적 33㎡ 이상" : "연면적 33㎡ 미만"});
+    results.push({name:"자동소화장치 (상업용 주방)", need: commercialKitchen, reason: commercialKitchen ? "상업용 주방 있음" : "상업용 주방 없음 → 해당없음"});
+    results.push({name:"옥내소화전설비", need: area>=1500 || (underground && maxFloorArea>=300) || (floorsUp>=4 && maxFloorArea>=300), reason: area>=1500 ? "연면적 1,500㎡ 이상" : ((underground && maxFloorArea>=300) ? "지하·무창층 300㎡ 이상층" : (floorsUp>=4 && maxFloorArea>=300 ? "4층 이상 + 300㎡ 이상층" : "기준 미달"))});
+    results.push({name:"스프링클러설비", need: floorsUp>=6 || ((underground || floorsUp>=4) && maxFloorArea>=1000), reason: floorsUp>=6 ? "지상 6층 이상" : (((underground || floorsUp>=4) && maxFloorArea>=1000) ? "지하·무창층 또는 4층 이상인 층 중 바닥면적 1,000㎡ 이상인 층 있음" : "기준 미달")});
+    results.push({name:"간이스프링클러설비", need: area>=1000 || clinicWithBeds || (birthCenter && area<600), reason: area>=1000 ? "근린생활시설 바닥면적 합계 1,000㎡ 이상" : (clinicWithBeds ? "의원·치과의원·한의원 + 입원실/인공신장실 있음 (규모 무관)" : ((birthCenter && area<600) ? "조산원·산후조리원 + 연면적 600㎡ 미만" : "기준 미달 (조산원·산후조리원이 600㎡ 이상이면 정식 스프링클러 대상으로 전환)"))});
+    results.push({name:"자동화재탐지설비", need: area>=600, reason: area>=600 ? "연면적 600㎡ 이상 (목욕장은 1,000㎡ 기준으로 완화될 수 있음)" : "연면적 600㎡ 미만"});
+    results.push({name:"비상방송설비", need: area>=3500, reason: area>=3500 ? "연면적 3,500㎡ 이상 (모든 층)" : "연면적 3,500㎡ 미만"});
+  } else if(cat==='숙박'){
+    results.push({name:"소화기구", need: area>=33, reason: area>=33 ? "연면적 33㎡ 이상" : "연면적 33㎡ 미만"});
+    results.push({name:"자동화재탐지설비", need: true, reason: "숙박시설은 규모 무관 전층 의무"});
+    results.push({name:"휴대용비상조명등", need: true, reason: "숙박시설은 규모 무관 의무"});
+    results.push({name:"간이스프링클러설비", need: area>=300 && area<600, reason: (area>=300 && area<600) ? "연면적 300~600㎡ 구간" : "300~600㎡ 구간 아님(원문에 별도 조항 있을 수 있음)"});
+    results.push({name:"스프링클러설비", need: floorsUp>=6 || area>=600, reason: floorsUp>=6 ? "지상 6층 이상" : (area>=600 ? "연면적 600㎡ 이상" : "기준 미달")});
+    results.push({name:"옥내소화전설비", need: area>=1500, reason: area>=1500 ? "연면적 1,500㎡ 이상" : "연면적 1,500㎡ 미만"});
+  } else if(cat==='노유자'){
+    const lifeFacility = get('diag_lifeFacility');
+    results.push({name:"소화기구", need: area>=33, reason: area>=33 ? "연면적 33㎡ 이상" : "연면적 33㎡ 미만"});
+    if(lifeFacility){
+      results.push({name:"간이스프링클러설비", need: true, reason: "노유자생활시설은 규모 무관 의무"});
+      results.push({name:"자동화재탐지설비", need: true, reason: "노유자생활시설은 규모 무관 의무"});
+      results.push({name:"자동화재속보설비", need: true, reason: "노유자생활시설은 규모 무관 의무"});
+    } else {
+      results.push({name:"간이스프링클러·자동화재탐지·자동화재속보", need: null, reason: "일반 노유자시설(비생활형)은 이 진단기에 세부 문턱값이 없음 — 원문 별표4 직접 확인 필요"});
+    }
+  } else if(cat==='교육연구'){
+    const hasDorm = get('diag_hasDorm');
+    const hasHapsook = get('diag_hasHapsook');
+    results.push({name:"자동화재탐지설비", need: area>=2000, reason: area>=2000 ? "연면적 2,000㎡ 이상" : "연면적 2,000㎡ 미만"});
+    if(hasDorm) results.push({name:"스프링클러설비 (기숙사)", need: area>=5000, reason: area>=5000 ? "기숙사 연면적 5,000㎡ 이상" : "5,000㎡ 미만 → 해당없음"});
+    if(hasHapsook) results.push({name:"간이스프링클러설비 (합숙소)", need: area>=100, reason: area>=100 ? "합숙소 100㎡ 이상" : "100㎡ 미만"});
+    if(hasDorm || hasHapsook) results.push({name:"단독경보형감지기", need: area<2000, reason: area<2000 ? "기숙사·합숙소 2,000㎡ 미만" : "2,000㎡ 이상 → 다른 감지설비로 전환"});
+  } else if(cat==='수련'){
+    const canSleep = get('diag_canSleep');
+    const occupancy = get('diag_occupancy');
+    results.push({name:"스프링클러설비", need: floorsUp>=6 || (canSleep && area>=600), reason: floorsUp>=6 ? "지상 6층 이상" : (canSleep && area>=600 ? "숙박가능 + 연면적 600㎡ 이상" : "기준 미달")});
+    results.push({name:"자동화재탐지설비", need: area>=2000 || (canSleep && occupancy>=100), reason: area>=2000 ? "연면적 2,000㎡ 이상" : (canSleep && occupancy>=100 ? "숙박가능 + 수용인원 100명 이상" : "기준 미달")});
+    if(canSleep){
+      results.push({name:"자동화재속보설비", need: maxFloorArea>=500, reason: maxFloorArea>=500 ? "숙박가능 + 해당 층 바닥면적 500㎡ 이상" : "500㎡ 미만"});
+      results.push({name:"단독경보형감지기", need: area<2000, reason: area<2000 ? "숙박가능 + 연면적 2,000㎡ 미만" : "2,000㎡ 이상"});
+    }
+  } else if(cat==='공장'){
+    const specialCombustible = get('diag_specialCombustible');
+    const combustibleUnits = get('diag_combustibleUnits');
+    results.push({name:"소화기구", need: area>=33, reason: area>=33 ? "연면적 33㎡ 이상" : "연면적 33㎡ 미만"});
+    results.push({name:"옥내소화전설비", need: area>=1500 || (specialCombustible && combustibleUnits>=750), reason: area>=1500 ? "연면적 1,500㎡ 이상" : (specialCombustible && combustibleUnits>=750 ? "특수가연물 750배 이상" : "기준 미달")});
+    results.push({name:"스프링클러설비", need: floorsUp>=6 || (specialCombustible && combustibleUnits>=1000) || ((underground || floorsUp>=4) && maxFloorArea>=1000), reason: floorsUp>=6 ? "지상 6층 이상" : ((specialCombustible && combustibleUnits>=1000) ? "특수가연물 1,000배 이상" : (((underground || floorsUp>=4) && maxFloorArea>=1000) ? "지하·무창층 또는 4층 이상인 층 중 바닥면적 1,000㎡ 이상인 층 있음" : "기준 미달"))});
+    results.push({name:"자동화재탐지설비", need: area>=1000 || (specialCombustible && combustibleUnits>=500), reason: area>=1000 ? "연면적 1,000㎡ 이상" : (specialCombustible && combustibleUnits>=500 ? "특수가연물 500배 이상" : "기준 미달")});
+  } else if(cat==='복합'){
+    const hasOfficetel = get('diag_hasOfficetel');
+    const nabokComplex = get('diag_nabokComplex');
+    results.push({name:"소화기구", need: area>=33, reason: area>=33 ? "연면적 33㎡ 이상" : "연면적 33㎡ 미만"});
+    results.push({name:"자동소화장치 (오피스텔 주방)", need: hasOfficetel, reason: hasOfficetel ? "오피스텔 있음" : "오피스텔 없음 → 해당없음"});
+    results.push({name:"옥내소화전설비", need: area>=1500, reason: area>=1500 ? "연면적 1,500㎡ 이상" : "연면적 1,500㎡ 미만"});
+    results.push({name:"스프링클러설비", need: floorsUp>=6 || area>=5000, reason: floorsUp>=6 ? "지상 6층 이상" : (area>=5000 ? "연면적 5,000㎡ 이상" : "기준 미달")});
+    results.push({name:"간이스프링클러설비 (나목형 복합)", need: nabokComplex && buildingArea>=1000, reason: (nabokComplex && buildingArea>=1000) ? "나목형 복합건축물 + 건물 전체 연면적 1,000㎡ 이상 (모든 층)" : "해당없음"});
+    results.push({name:"옥외소화전설비", need: area>=9000, reason: area>=9000 ? "연면적 9,000㎡ 이상" : "연면적 9,000㎡ 미만"});
+    results.push({name:"자동화재탐지설비", need: area>=600, reason: area>=600 ? "연면적 600㎡ 이상" : "연면적 600㎡ 미만"});
+    results.push({name:"※ 개별 용도 기준도 반드시 함께 확인", need: null, reason: "복합건축물 안의 각 용도(근린생활·숙박 등)를 해당 카테고리로 별도 진단해서, 이 결과보다 더 엄격한 기준이 있으면 그쪽을 적용하세요."});
+  } else if(cat==='공동주택'){
+    const isAptOfficetel = get('diag_isAptOfficetel');
+    const isRowhouse = get('diag_isRowhouse');
+    results.push({name:"소화기구", need: area>=33, reason: area>=33 ? "연면적 33㎡ 이상 (투척형 소화용구 1/2 대체 가능)" : "연면적 33㎡ 미만"});
+    results.push({name:"자동소화장치 (주방)", need: isAptOfficetel, reason: isAptOfficetel ? "아파트·오피스텔 주방 해당 (규모 무관)" : "해당없음"});
+    results.push({name:"옥내소화전설비", need: area>=3000 || (underground && maxFloorArea>=600) || (floorsUp>=4 && maxFloorArea>=600), reason: area>=3000 ? "연면적 3,000㎡ 이상" : ((underground && maxFloorArea>=600) ? "지하·무창층 600㎡ 이상층" : (floorsUp>=4 && maxFloorArea>=600 ? "4층 이상 + 600㎡ 이상층" : "기준 미달"))});
+    results.push({name:"스프링클러설비", need: floorsUp>=6, reason: floorsUp>=6 ? "지상 6층 이상 (규모 무관 의무, 리모델링 예외 있음)" : "6층 미만"});
+    results.push({name:"간이스프링클러설비", need: isRowhouse, reason: isRowhouse ? "연립·다세대주택 해당 (규모 무관)" : "해당없음"});
+    results.push({name:"단독경보형감지기", need: isRowhouse, reason: isRowhouse ? "연립·다세대주택 (연동형, 규모 무관)" : "해당없음"});
+    results.push({name:"자동화재탐지설비", need: true, reason: "아파트 등·기숙사는 규모 무관 전층 의무"});
+  } else if(cat==='운수시설'){
+    const occupancy500 = get('diag_occupancy500');
+    results.push({name:"소화기구", need: area>=33, reason: area>=33 ? "연면적 33㎡ 이상" : "연면적 33㎡ 미만"});
+    results.push({name:"옥내소화전설비", need: area>=1500, reason: area>=1500 ? "연면적 1,500㎡ 이상" : "연면적 1,500㎡ 미만"});
+    results.push({name:"스프링클러설비", need: floorsUp>=6 || (area>=5000 && occupancy500), reason: floorsUp>=6 ? "지상 6층 이상" : ((area>=5000 && occupancy500) ? "연면적 5,000㎡ 이상 + 수용인원 500명 이상" : "기준 미달")});
+    results.push({name:"옥외소화전설비", need: area>=9000, reason: area>=9000 ? "연면적 9,000㎡ 이상" : "연면적 9,000㎡ 미만"});
+    results.push({name:"자동화재탐지설비", need: area>=1000, reason: area>=1000 ? "연면적 1,000㎡ 이상" : "연면적 1,000㎡ 미만"});
+  } else if(cat==='위락시설'){
+    results.push({name:"소화기구", need: area>=33, reason: area>=33 ? "연면적 33㎡ 이상" : "연면적 33㎡ 미만"});
+    results.push({name:"옥내소화전설비", need: area>=1500, reason: area>=1500 ? "연면적 1,500㎡ 이상" : "연면적 1,500㎡ 미만"});
+    results.push({name:"스프링클러설비", need: floorsUp>=6, reason: floorsUp>=6 ? "지상 6층 이상" : "6층 미만"});
+    results.push({name:"옥외소화전설비", need: area>=9000, reason: area>=9000 ? "연면적 9,000㎡ 이상" : "연면적 9,000㎡ 미만"});
+    results.push({name:"자동화재탐지설비", need: area>=600, reason: area>=600 ? "연면적 600㎡ 이상" : "연면적 600㎡ 미만"});
+  } else if(cat==='문화집회'){
+    const isCinema = get('diag_isCinema');
+    const occupancy100 = get('diag_occupancy100');
+    results.push({name:"소화기구", need: area>=33, reason: area>=33 ? "연면적 33㎡ 이상" : "연면적 33㎡ 미만"});
+    results.push({name:"옥내소화전설비", need: area>=3000 || (underground && maxFloorArea>=600), reason: area>=3000 ? "연면적 3,000㎡ 이상" : (underground && maxFloorArea>=600 ? "지하·무창층 600㎡ 이상층" : "기준 미달")});
+    results.push({name:"스프링클러설비", need: floorsUp>=6 || (isCinema && occupancy100), reason: floorsUp>=6 ? "지상 6층 이상" : ((isCinema && occupancy100) ? "영화상영관 + 수용인원 100명 이상" : "기준 미달")});
+    results.push({name:"옥외소화전설비", need: area>=9000, reason: area>=9000 ? "연면적 9,000㎡ 이상" : "연면적 9,000㎡ 미만"});
+    results.push({name:"자동화재탐지설비", need: area>=1000, reason: area>=1000 ? "연면적 1,000㎡ 이상" : "연면적 1,000㎡ 미만"});
+    results.push({name:"휴대용비상조명등 (영화상영관)", need: isCinema && occupancy100, reason: (isCinema && occupancy100) ? "영화상영관 + 수용인원 100명 이상" : "해당없음"});
+  } else if(cat==='종교시설'){
+    const isWoodOrHeritage = get('diag_isWoodOrHeritage');
+    results.push({name:"소화기구", need: area>=33, reason: area>=33 ? "연면적 33㎡ 이상" : "연면적 33㎡ 미만"});
+    results.push({name:"옥내소화전설비", need: area>=1500, reason: area>=1500 ? "연면적 1,500㎡ 이상" : "연면적 1,500㎡ 미만"});
+    results.push({name:"스프링클러설비", need: floorsUp>=6 && !isWoodOrHeritage, reason: isWoodOrHeritage ? "목조건축물 제외 대상" : (floorsUp>=6 ? "지상 6층 이상" : "6층 미만")});
+    results.push({name:"옥외소화전설비", need: area>=9000 || isWoodOrHeritage, reason: area>=9000 ? "연면적 9,000㎡ 이상" : (isWoodOrHeritage ? "목조건축물·보물·국보 해당" : "기준 미달")});
+    results.push({name:"자동화재탐지설비", need: area>=1000, reason: area>=1000 ? "연면적 1,000㎡ 이상" : "연면적 1,000㎡ 미만"});
+    results.push({name:"자동화재속보설비", need: isWoodOrHeritage, reason: isWoodOrHeritage ? "목조건축물·보물·국보 해당" : "해당없음"});
+  } else if(cat==='판매시설'){
+    const isTraditionalMarket = get('diag_isTraditionalMarket');
+    const isLargeStore = get('diag_isLargeStore');
+    const commercialKitchen = get('diag_commercialKitchen');
+    results.push({name:"소화기구", need: area>=33, reason: area>=33 ? "연면적 33㎡ 이상" : "연면적 33㎡ 미만"});
+    results.push({name:"자동소화장치 (상업용 주방)", need: commercialKitchen, reason: commercialKitchen ? "대규모점포·음식점 상업용 주방 해당" : "해당없음"});
+    results.push({name:"옥내소화전설비", need: area>=1500, reason: area>=1500 ? "연면적 1,500㎡ 이상" : "연면적 1,500㎡ 미만"});
+    results.push({name:"스프링클러설비", need: floorsUp>=6 || area>=5000, reason: floorsUp>=6 ? "지상 6층 이상" : (area>=5000 ? "연면적 5,000㎡ 이상" : "기준 미달")});
+    results.push({name:"옥외소화전설비", need: area>=9000, reason: area>=9000 ? "연면적 9,000㎡ 이상" : "연면적 9,000㎡ 미만"});
+    results.push({name:"자동화재탐지설비", need: area>=1000 || isTraditionalMarket, reason: area>=1000 ? "연면적 1,000㎡ 이상" : (isTraditionalMarket ? "전통시장 해당 (규모 무관)" : "기준 미달")});
+    results.push({name:"자동화재속보설비", need: isTraditionalMarket, reason: isTraditionalMarket ? "전통시장 해당" : "해당없음"});
+    results.push({name:"휴대용비상조명등 (대규모점포)", need: isLargeStore, reason: isLargeStore ? "대규모점포 해당" : "해당없음"});
+  } else if(cat==='의료시설'){
+    const isGeneralHospital = get('diag_isGeneralHospital');
+    const isPsychiatric = get('diag_isPsychiatric');
+    const isNursingHospital = get('diag_isNursingHospital');
+    const hasBars = get('diag_hasBars');
+    results.push({name:"소화기구", need: area>=33, reason: area>=33 ? "연면적 33㎡ 이상" : "연면적 33㎡ 미만"});
+    results.push({name:"옥내소화전설비", need: area>=1500, reason: area>=1500 ? "연면적 1,500㎡ 이상" : "연면적 1,500㎡ 미만"});
+    results.push({name:"스프링클러설비", need: floorsUp>=6 || (isGeneralHospital && area>=600) || (isPsychiatric && area>=600), reason: floorsUp>=6 ? "지상 6층 이상" : ((isGeneralHospital && area>=600) ? "병원 등 600㎡ 이상" : ((isPsychiatric && area>=600) ? "정신의료 600㎡ 이상" : "기준 미달"))});
+    results.push({name:"간이스프링클러설비", need: (isGeneralHospital && area<600) || (isPsychiatric && area>=300 && area<600) || (isPsychiatric && area<300 && hasBars), reason: (isGeneralHospital && area<600) ? "병원 등(의료재활시설 제외) 600㎡ 미만" : ((isPsychiatric && area>=300 && area<600) ? "정신의료기관·의료재활시설 300~600㎡" : ((isPsychiatric && area<300 && hasBars) ? "정신의료기관·의료재활시설 300㎡ 미만 + 창살 설치" : "기준 미달"))});
+    results.push({name:"옥외소화전설비", need: area>=9000, reason: area>=9000 ? "연면적 9,000㎡ 이상" : "연면적 9,000㎡ 미만"});
+    results.push({name:"자동화재탐지설비", need: area>=600 || (isPsychiatric && area>=300) || isNursingHospital, reason: area>=600 ? "연면적 600㎡ 이상" : ((isPsychiatric && area>=300) ? "정신의료 300㎡ 이상" : (isNursingHospital ? "요양병원 해당 (규모 무관)" : "기준 미달"))});
+    results.push({name:"자동화재속보설비", need: isGeneralHospital || (isPsychiatric && area>=500), reason: isGeneralHospital ? "종합병원 등 해당 (규모 무관)" : ((isPsychiatric && area>=500) ? "정신병원 500㎡ 이상층" : "해당없음")});
+    results.push({name:"인명구조기구 (병원)", need: floorsUp>=5, reason: floorsUp>=5 ? "5층 이상 병원 (방화복+공기호흡기)" : "5층 미만"});
+  } else if(cat==='장례시설'){
+    results.push({name:"소화기구", need: area>=33, reason: area>=33 ? "연면적 33㎡ 이상" : "연면적 33㎡ 미만"});
+    results.push({name:"옥내소화전설비", need: area>=1500, reason: area>=1500 ? "연면적 1,500㎡ 이상" : "연면적 1,500㎡ 미만"});
+    results.push({name:"스프링클러설비", need: floorsUp>=6, reason: floorsUp>=6 ? "지상 6층 이상" : "6층 미만"});
+    results.push({name:"옥외소화전설비", need: area>=9000, reason: area>=9000 ? "연면적 9,000㎡ 이상" : "연면적 9,000㎡ 미만"});
+    results.push({name:"자동화재탐지설비", need: area>=600, reason: area>=600 ? "연면적 600㎡ 이상" : "연면적 600㎡ 미만"});
+  } else if(cat==='업무시설'){
+    const hasOfficetelBiz = get('diag_hasOfficetel');
+    const unmannedSubstation = get('diag_unmannedSubstation');
+    results.push({name:"소화기구", need: area>=33, reason: area>=33 ? "연면적 33㎡ 이상" : "연면적 33㎡ 미만"});
+    results.push({name:"자동소화장치 (오피스텔 주방)", need: hasOfficetelBiz, reason: hasOfficetelBiz ? "오피스텔 있음 (규모 무관)" : "해당없음"});
+    results.push({name:"옥내소화전설비", need: area>=1500 && !unmannedSubstation, reason: unmannedSubstation ? "무인변전소 제외 대상" : (area>=1500 ? "연면적 1,500㎡ 이상" : "연면적 1,500㎡ 미만")});
+    results.push({name:"스프링클러설비", need: floorsUp>=6, reason: floorsUp>=6 ? "지상 6층 이상" : "6층 미만"});
+    results.push({name:"옥외소화전설비", need: area>=9000, reason: area>=9000 ? "연면적 9,000㎡ 이상" : "연면적 9,000㎡ 미만"});
+    results.push({name:"자동화재탐지설비", need: area>=1000 || floorsUp>=6, reason: area>=1000 ? "연면적 1,000㎡ 이상" : (floorsUp>=6 ? "지상 6층 이상 (규모 무관)" : "기준 미달")});
+  } else if(cat==='창고시설'){
+    const isRackWarehouse = get('diag_isRackWarehouse');
+    const isLogisticsTerminal = get('diag_isLogisticsTerminal');
+    const specialCombustibleW = get('diag_specialCombustible');
+    const combustibleUnitsW = get('diag_combustibleUnits');
+    const hasGasFacility = get('diag_hasGasFacility');
+    results.push({name:"소화기구", need: area>=33, reason: area>=33 ? "연면적 33㎡ 이상" : "연면적 33㎡ 미만"});
+    results.push({name:"옥내소화전설비", need: area>=1500 || (specialCombustibleW && combustibleUnitsW>=750), reason: area>=1500 ? "연면적 1,500㎡ 이상" : (specialCombustibleW && combustibleUnitsW>=750 ? "특수가연물 750배 이상" : "기준 미달")});
+    results.push({name:"스프링클러설비", need: floorsUp>=6 || (isRackWarehouse && maxFloorArea>=1500), reason: floorsUp>=6 ? "지상 6층 이상" : ((isRackWarehouse && maxFloorArea>=1500) ? "랙식창고(천장10m초과) + 1,500㎡ 이상" : "기준 미달")});
+    results.push({name:"옥외소화전설비", need: area>=9000 || (specialCombustibleW && combustibleUnitsW>=750), reason: area>=9000 ? "연면적 9,000㎡ 이상" : (specialCombustibleW && combustibleUnitsW>=750 ? "특수가연물 750배 이상" : "기준 미달")});
+    results.push({name:"자동화재탐지설비", need: area>=1000, reason: area>=1000 ? "연면적 1,000㎡ 이상" : "연면적 1,000㎡ 미만"});
+    results.push({name:"가스누설경보기 (물류터미널)", need: isLogisticsTerminal && hasGasFacility, reason: (isLogisticsTerminal && hasGasFacility) ? "물류터미널 + 가스시설 있음" : "해당없음"});
+    results.push({name:"연결살수설비 (물류터미널)", need: isLogisticsTerminal && area>=1000, reason: (isLogisticsTerminal && area>=1000) ? "물류터미널 + 1,000㎡ 이상" : "해당없음"});
+  } else if(cat==='위험물가스'){
+    results.push({name:"소화기구", need: true, reason: "가스시설·전기저장시설은 규모 무관 의무"});
+    results.push({name:"옥내소화전설비", need: false, reason: "가스시설은 제외 대상"});
+    results.push({name:"스프링클러설비", need: false, reason: "가스시설은 제외 대상"});
+    results.push({name:"옥외소화전설비", need: false, reason: "가스시설은 제외 대상"});
+    results.push({name:"자동화재탐지설비", need: area>=1000, reason: area>=1000 ? "연면적 1,000㎡ 이상" : "연면적 1,000㎡ 미만"});
+  } else if(cat==='항공기자동차'){
+    const isHangar = get('diag_isHangar');
+    const isParkingLot = get('diag_isParkingLot');
+    results.push({name:"소화기구", need: area>=33, reason: area>=33 ? "연면적 33㎡ 이상" : "연면적 33㎡ 미만"});
+    results.push({name:"옥내소화전설비", need: area>=1500 || (isParkingLot && maxFloorArea>=200), reason: area>=1500 ? "연면적 1,500㎡ 이상" : ((isParkingLot && maxFloorArea>=200) ? "옥상차고 200㎡ 이상" : "기준 미달")});
+    results.push({name:"스프링클러설비", need: floorsUp>=6, reason: floorsUp>=6 ? "지상 6층 이상" : "6층 미만"});
+    results.push({name:"물분무등소화설비", need: isHangar || (isParkingLot && maxFloorArea>=800), reason: isHangar ? "항공기 격납고 해당 (규모 무관)" : ((isParkingLot && maxFloorArea>=800) ? "차고 800㎡ 이상" : "기준 미달 (주차장 200㎡↑·기계식 20대↑ 조건 별도)")});
+    results.push({name:"옥외소화전설비", need: area>=9000, reason: area>=9000 ? "연면적 9,000㎡ 이상" : "연면적 9,000㎡ 미만"});
+    results.push({name:"단독경보형감지기 (지하차고)", need: isParkingLot && underground && maxFloorArea<200, reason: (isParkingLot && underground && maxFloorArea<200) ? "지하차고 200㎡ 미만" : "해당없음"});
+    results.push({name:"자동화재탐지설비", need: area>=1000 || (isParkingLot && underground && maxFloorArea>=200), reason: area>=1000 ? "연면적 1,000㎡ 이상" : ((isParkingLot && underground && maxFloorArea>=200) ? "지하차고 200㎡ 이상" : "기준 미달")});
+  } else if(cat==='교정군사'){
+    const isLeasedProtective = get('diag_isLeasedProtective');
+    results.push({name:"소화기구", need: area>=33, reason: area>=33 ? "연면적 33㎡ 이상" : "연면적 33㎡ 미만"});
+    results.push({name:"옥내소화전설비", need: area>=1500, reason: area>=1500 ? "연면적 1,500㎡ 이상" : "연면적 1,500㎡ 미만"});
+    results.push({name:"스프링클러설비", need: floorsUp>=6, reason: floorsUp>=6 ? "지상 6층 이상 (수용거실·보호시설 포함)" : "6층 미만"});
+    results.push({name:"간이스프링클러설비 (임차 보호시설)", need: isLeasedProtective, reason: isLeasedProtective ? "임차 보호시설 해당 (규모 무관)" : "해당없음"});
+    results.push({name:"옥외소화전설비", need: area>=9000, reason: area>=9000 ? "연면적 9,000㎡ 이상" : "연면적 9,000㎡ 미만"});
+    results.push({name:"자동화재탐지설비", need: area>=1000, reason: area>=1000 ? "연면적 1,000㎡ 이상 (국방·군사시설 기준, 기타는 2,000㎡)" : "연면적 1,000㎡ 미만"});
+  } else if(cat==='발전방송'){
+    const hasElectricRoom = get('diag_hasElectricRoom');
+    results.push({name:"소화기구", need: area>=33, reason: area>=33 ? "연면적 33㎡ 이상" : "연면적 33㎡ 미만"});
+    results.push({name:"옥내소화전설비", need: area>=1500, reason: area>=1500 ? "연면적 1,500㎡ 이상" : "연면적 1,500㎡ 미만"});
+    results.push({name:"스프링클러설비", need: floorsUp>=6 || hasElectricRoom, reason: floorsUp>=6 ? "지상 6층 이상" : (hasElectricRoom ? "전기저장시설 해당 (규모 무관)" : "기준 미달")});
+    results.push({name:"물분무등소화설비 (전기실)", need: hasElectricRoom && area>=300, reason: (hasElectricRoom && area>=300) ? "전기실 등 300㎡ 이상" : "해당없음"});
+    results.push({name:"옥외소화전설비", need: area>=9000, reason: area>=9000 ? "연면적 9,000㎡ 이상" : "연면적 9,000㎡ 미만"});
+    results.push({name:"자동화재탐지설비", need: area>=1000 || hasElectricRoom, reason: area>=1000 ? "연면적 1,000㎡ 이상" : (hasElectricRoom ? "전기저장시설 해당 (규모 무관)" : "기준 미달")});
+  } else if(cat==='지하특수'){
+    const isTunnel = get('diag_isTunnel');
+    const isUndergroundMall = get('diag_isUndergroundMall');
+    const isUndergroundConduit = get('diag_isUndergroundConduit');
+    const tunnelLength = get('diag_tunnelLength');
+    results.push({name:"소화기구", need: isTunnel || isUndergroundConduit, reason: (isTunnel || isUndergroundConduit) ? "터널·지하구 해당 (규모 무관)" : "해당없음"});
+    results.push({name:"옥내소화전설비", need: isTunnel && tunnelLength>=1000, reason: (isTunnel && tunnelLength>=1000) ? "터널 길이 1,000m 이상" : "해당없음"});
+    results.push({name:"스프링클러설비", need: isUndergroundMall && area>=1000, reason: (isUndergroundMall && area>=1000) ? "지하상가 1,000㎡ 이상" : "해당없음 (터널은 행정안전부령 별도 기준)"});
+    results.push({name:"자동화재탐지설비", need: isUndergroundMall || isUndergroundConduit || (isTunnel && tunnelLength>=1000), reason: isUndergroundMall ? "지하상가 해당 (규모 무관)" : (isUndergroundConduit ? "지하구 해당 (규모 무관)" : ((isTunnel && tunnelLength>=1000) ? "터널 길이 1,000m 이상" : "해당없음"))});
+    results.push({name:"연소방지설비 (지하구)", need: isUndergroundConduit, reason: isUndergroundConduit ? "지하구(전력·통신사업용) 해당 (규모 무관)" : "해당없음"});
+  }
+
+  return results;
+}
+
+function runDiagnosis(){
+  if(!resolvedProjectCategory){
+    alert('프로젝트 용도를 먼저 검색해서 목록에서 선택해주세요 (예: 일반음식점, 4자).');
+    return;
+  }
+  const projectCat = resolvedProjectCategory;
+  const buildingCatRaw = document.getElementById('diagBuildingCategory').value;
+  const buildingArea = parseFloat(document.getElementById('diagBuildingArea').value) || 0;
+  const area = parseFloat(document.getElementById('diagArea').value) || 0;
+  const floorsUp = parseFloat(document.getElementById('diagFloorsUp').value) || 0;
+  const basementFloors = parseFloat(document.getElementById('diagBasementFloors').value) || 0;
+  const maxFloorArea = parseFloat(document.getElementById('diagMaxFloorArea').value) || 0;
+  const windowless = document.getElementById('diag_windowless') ? document.getElementById('diag_windowless').checked : false;
+  const underground = basementFloors>=1 && windowless;
+
+  const get = (id)=>{ const el = document.getElementById(id); return el ? (el.type==='checkbox' ? el.checked : parseFloat(el.value)||0) : false; };
+  const stubGet = ()=>false;
+
+  const projectResults = computeResults(projectCat, area, get, floorsUp, underground, maxFloorArea, buildingArea);
+  const buildingCat = buildingCatRaw || null;
+  const buildingResults = buildingCat ? computeResults(buildingCat, buildingArea, stubGet, floorsUp, underground, maxFloorArea, buildingArea) : null;
+
+  const projectLabel = `${resolvedUseInfo.code} ${resolvedUseInfo.name} (${projectCat})`;
+  const buildingLabel = buildingCat ? document.getElementById('diagBuildingCategory').selectedOptions[0].text : null;
+
+  renderDiagResult(projectResults, buildingResults, projectLabel, buildingLabel);
+}
+
+function renderDiagResult(projectResults, buildingResults, projectLabel, buildingLabel){
+  const el = document.getElementById('diagResult');
+
+  function renderList(results){
+    let html = '<div style="border-top:1px solid var(--line);padding-top:4px">';
+    results.forEach(r=>{
+      if(r.need===null){
+        html += `<div class="diag-row"><div class="diag-icon" style="background:var(--amber)">?</div><div><div class="diag-name">${r.name}</div><div class="diag-reason">${r.reason}</div></div></div>`;
+      } else {
+        html += `<div class="diag-row"><div class="diag-icon ${r.need?'need':'no'}">${r.need?'✓':'—'}</div><div><div class="diag-name">${r.name} <span style="font-weight:400;color:${r.need?'var(--red)':'var(--sub)'}">${r.need?'설치 필요':'해당없음'}</span></div><div class="diag-reason">${r.reason}</div></div></div>`;
+      }
+    });
+    html += '</div>';
+    return html;
+  }
+
+  let html = '';
+  if(buildingResults){
+    html += `<div style="font-size:13px;font-weight:800;color:var(--navy2);margin-bottom:6px">🏢 건축물 전체 기준 (용도군: ${buildingLabel})</div>`;
+    html += renderList(buildingResults);
+    html += `<div style="font-size:13px;font-weight:800;color:var(--navy2);margin:18px 0 6px">🎯 프로젝트 용도 기준 (용도군: ${projectLabel})</div>`;
+    html += renderList(projectResults);
+    html += `<div style="font-size:11.5px;color:var(--sub);margin-top:14px;padding:10px 12px;background:#eef2f7;border-radius:8px">두 결과 중 <b>하나라도 "설치 필요"</b>면 그 설비는 실제로 설치해야 합니다 (건물 전체 기준과 프로젝트 기준 중 더 엄격한 쪽 적용).</div>`;
+  } else {
+    html += renderList(projectResults);
+  }
+  el.innerHTML = html;
+}
+
+document.getElementById('diagRunBtn').addEventListener('click', runDiagnosis);
+
+buildGroupTabs();
+render();
+
+</script>
+
+<footer id="gridaCopyright" style="margin:44px auto 28px;max-width:920px;padding:16px 20px 0;border-top:1px solid #e5e5e5;text-align:center;font-size:11px;line-height:1.7;color:#9a9a9a;font-family:system-ui,-apple-system,'Malgun Gothic','Apple SD Gothic Neo',sans-serif;">
+  <div style="font-weight:700;color:#7a7a7a;letter-spacing:.02em;">© 2026 GRIDA_4U (그리드에이포유) · 당신을 위해 공간을 그리다</div>
+  <div style="margin-top:2px;"><a href="https://www.grida4u.com" target="_blank" rel="noopener" style="color:#7a7a7a;text-decoration:none;font-weight:700;">www.grida4u.com</a></div>
+  본 문서·양식·판정 로직 및 소스코드의 무단 복제·배포·2차 이용을 금합니다.<br>
+  Unauthorized reproduction, distribution, or derivative use is prohibited.
+</footer>
+</body>
+</html>
