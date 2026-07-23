@@ -506,10 +506,23 @@
 
   <!-- 7 클라이언트 참고이미지 -->
   <section>
-    <div class="sec-head"><span class="sec-no">7</span><span class="sec-title">클라이언트 참고이미지</span><span class="sec-en">Reference · 업로드</span></div>
-    <p class="eum-hint" style="margin-bottom:12px;">원하시는 분위기·디테일이 담긴 참고 이미지를 올려주세요. 여러 장 가능합니다.</p>
-    <div id="refUpload" class="scope-stub">
-      <p class="eum-hint">． 이미지 업로드 기능은 다음 단계(Step 3)에서 추가됩니다. (기존 §7 특화시설 항목은 견적의뢰서-B로 이관 예정)</p>
+    <div class="sec-head"><span class="sec-no">7</span><span class="sec-title">클라이언트 참고이미지</span><span class="sec-en">Reference · 카카오톡</span></div>
+    <p class="eum-hint" style="margin-bottom:12px;">원하시는 분위기·디테일이 담긴 참고 이미지를 <b>카카오톡 채널</b>로 보내주세요. 사진·링크·영상 모두 가능하며, 의뢰번호를 함께 남겨주시면 바로 연결해 드립니다.</p>
+    <div style="border:1px solid var(--line);border-radius:10px;padding:16px 18px;background:var(--fill);">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+        <a id="kakaoBtn" href="http://pf.kakao.com/_cGnxfX/chat" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:8px;background:#FEE500;color:#191600;font-weight:800;font-size:13.5px;
+                  padding:11px 20px;border-radius:8px;text-decoration:none;border:1px solid #e6cf00;white-space:nowrap;">
+          💬 카카오톡으로 참고이미지 보내기
+        </a>
+        <div style="font-size:11.5px;color:var(--sub);line-height:1.6;">
+          버튼을 누르면 <b>GRIDA_4U 카카오톡 채널</b> 채팅방이 열립니다.<br>
+          첫 메시지에 <b>의뢰번호</b>를 적어주시면 이 의뢰서와 함께 정리됩니다.
+        </div>
+      </div>
+      <label class="f" style="display:block;margin-top:14px;">참고이미지 메모 <span class="tagline">스타일 키워드·유의사항 등 (선택)</span>
+        <input id="refNote" placeholder="예: 3번 사진의 조명 느낌 / 우드톤은 밝게 / 간판은 네온 제외">
+      </label>
     </div>
   </section>
 
@@ -1063,7 +1076,7 @@
    "floorsAbove","floorsBelow","areaAbove","areaBelow","windowlessArea"]
     .forEach(id=>{ const e=document.getElementById(id); if(e){ e.addEventListener("input",render); e.addEventListener("change",render); } });
   const FIELDS=["reqno","reqdate","clientName","clientPhone","clientRef","schedule",
-    "addr","approvalDate","area","floorType","floorNo",
+    "addr","approvalDate","area","floorType","floorNo","refNote",
     "totalFloors","floorsAbove","floorsBelow","windowlessArea","grossArea","areaAbove","areaBelow",
     "zone","zoneDist","district","septic","elecCap","sprinkler","purpose"];
   const gv=id=>{ const e=document.getElementById(id); return e?e.value:""; };
