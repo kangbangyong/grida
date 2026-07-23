@@ -200,8 +200,9 @@
     .f input, .f select, textarea.purpose{ border-color:#bbb; }
     .toolbar{ display:none !important; }
   }
-  .toolbar{ max-width:210mm; margin:0 auto 14px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
-  .tb-title{ font-weight:700; font-size:13px; color:var(--accent); margin-right:auto; }
+  .toolbar{ max-width:210mm; margin:0 auto 14px; display:flex; align-items:center; gap:7px; flex-wrap:nowrap; overflow-x:auto; }
+  .tb-title{ font-weight:700; font-size:13px; color:var(--accent); white-space:nowrap; }
+  .tb-lab{ font-size:11.5px; color:var(--sub); font-weight:700; white-space:nowrap; margin-left:4px; }
   .tb-inp{ border:1px solid var(--line); border-radius:6px; padding:5px 8px; font-size:12px; font-family:inherit; width:120px; }
   .tb-btn{ border:1px solid var(--accent); background:#fff; color:var(--accent); border-radius:6px; padding:6px 12px; font-size:12px; font-weight:700; cursor:pointer; font-family:inherit; }
   .tb-btn:hover{ background:var(--fill); }
@@ -250,18 +251,18 @@
 </head>
 <body>
 <div class="toolbar">
-  <span class="tb-title">GRIDA_4U 작품의뢰서</span>
+  <span class="tb-title">GRIDA_4U</span>
 
   <span id="adminGate" class="tb-group">
-    <input id="adminPass" class="tb-inp" type="password" placeholder="관리자 비번" style="width:100px;">
+    <input id="adminPass" class="tb-inp" type="password" placeholder="관리자 비번" style="width:92px;">
     <button class="tb-btn" onclick="unlockAdmin()">관리자 열기</button>
   </span>
 
   <span id="adminTools" class="tb-group" style="display:none;">
-    <input id="loadno" class="tb-inp" placeholder="의뢰번호" style="width:110px;">
+    <span class="tb-lab">의뢰번호</span><input id="loadno" class="tb-inp" placeholder="예: G2026-07-01" style="width:118px;">
     <button class="tb-btn" onclick="loadReq()">불러오기</button>
-    <input id="findName" class="tb-inp" placeholder="성명" style="width:70px;">
-    <input id="findPhone" class="tb-inp" placeholder="연락처" style="width:90px;">
+    <input id="findName" class="tb-inp" placeholder="성명" style="width:62px;">
+    <input id="findPhone" class="tb-inp" placeholder="연락처" style="width:82px;">
     <button class="tb-btn" onclick="findReq()">찾기</button>
     <span class="tb-sep">|</span>
     <button class="tb-btn" onclick="makeClientLink()">고객용 링크 만들기</button>
@@ -270,8 +271,8 @@
 
   <span id="clientNote" class="tb-msg" style="display:none;"></span>
 
-  <button class="tb-btn primary" id="saveBtn" onclick="saveReq()">저장</button>
   <button class="tb-btn" onclick="window.print()">인쇄 · PDF</button>
+  <button class="tb-btn primary" id="saveBtn" onclick="saveReq()">저장</button>
   <span id="tb-msg" class="tb-msg"></span>
 </div>
 <div id="refLinks" style="display:none;padding:14px 0 2px;">
