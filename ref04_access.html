@@ -205,7 +205,7 @@ function buildBody(filter){const tb=document.getElementById('tbody');filter=(fil
 // ---- judge ----
 function buildSelect(){const s=document.getElementById('useSel');const byGun={};
  RULES.forEach((r,i)=>{(byGun[r.gun]=byGun[r.gun]||[]).push([i,r.label]);});
- let h='';Object.keys(byGun).forEach(g=>{h+=`<optgroup label="${g}">`;byGun[g].forEach(([i,l])=>h+=`<option value="${i}">${l}</option>`);h+='</optgroup>';});
+ let h='<option value="">— 프로젝트 용도를 선택하세요 —</option>';Object.keys(byGun).forEach(g=>{h+=`<optgroup label="${g}">`;byGun[g].forEach(([i,l])=>h+=`<option value="${i}">${l}</option>`);h+='</optgroup>';});
  s.innerHTML=h;}
 function oblList(v){ // merge 화장실 6,7,8
  const out=[];const lvl=x=>x==='M'?2:(x==='R'?1:0);
@@ -214,7 +214,9 @@ function oblList(v){ // merge 화장실 6,7,8
    if(lvl(v[i]))out.push([COLS[i],v[i]]);
  }return out;}
 function judge(){
- const idx=+document.getElementById('useSel').value;const rule=RULES[idx];
+ const rawSel=document.getElementById('useSel').value;
+ if(rawSel===''){ const R=document.getElementById('res'); R.className='res show'; R.innerHTML='<div style="padding:14px 16px;color:#6b7280;font-size:13px">먼저 <b>프로젝트 용도</b>를 선택하세요.</div>'; return; }
+ const idx=+rawSel;const rule=RULES[idx];
  const area=parseFloat(document.getElementById('area').value);
  const act=document.getElementById('act').value;
  const res=document.getElementById('res');
@@ -280,25 +282,55 @@ buildHead();buildBody('');buildSelect();
 
   // 별표1 호목 → ref04 RULES label
   var MAP={"3가":"소매점 (수퍼마켓·일용품)","3나":"휴게음식점·제과점","3다":"이용원·미용원",
-    "3라":"의원·치과의원·한의원·조산원·산후조리원","4자":"일반음식점 (식당)","4아":"휴게음식점·제과점",
-    "4카":"학원·교습소·직업훈련소","10라":"교육원·연수원·연구시설 학원","4타":"독서실·기원",
-    "5가":"공연장 (소규모)","5나":"집회장 (예식장·회의장 등)","5다":"관람장 (경마장·경기장 등)","5라":"전시장 (박물관·미술관 등)",
-    "6가":"종교집회장 (교회·성당·사찰 등)","7가":"판매시설 (도소매시장·상점)","7나":"판매시설 (도소매시장·상점)",
-    "9가":"병원·격리병원","10가":"학교 (유치원 제외)","10나":"학교 (유치원 제외)","11가":"어린이집·아동복지시설",
-    "11나":"노인복지시설 (경로당 포함)","11다":"사회복지시설 (장애인복지시설 포함)","12가":"수련시설 (청소년수련관·유스호스텔 등)",
-    "13가":"운동시설 (체육관·운동장)","14가":"금융업소·사무소·오피스텔 등","14나":"금융업소·사무소·오피스텔 등",
-    "3자":"금융업소·사무소·오피스텔 등","4하":"금융업소·사무소·오피스텔 등",
+    "3라":"의원·치과의원·한의원·조산원·산후조리원","3마":"지역자치센터·파출소·우체국·보건소·공공도서관·공단지사 등",
+    "3바":"대피소","3사":"공중화장실","3아":"지역아동센터",
+    "4가":"공연장 (소규모)","4나":"종교집회장 (교회·성당·사찰 등)","4아":"휴게음식점·제과점","4자":"일반음식점 (식당)",
+    "4카":"학원·교습소·직업훈련소","4타":"독서실·기원","4하":"금융업소·사무소·오피스텔 등",
+    "4너":"장의사","4더":"안마시술소","4러":"안마시술소",
+    "5가":"공연장 (소규모)","5나":"집회장 (예식장·회의장 등)","5다":"관람장 (경마장·경기장 등)",
+    "5라":"전시장 (박물관·미술관 등)","5마":"동·식물원·수족관",
+    "6가":"종교집회장 (교회·성당·사찰 등)",
+    "7가":"판매시설 (도소매시장·상점)","7나":"판매시설 (도소매시장·상점)","7다":"판매시설 (도소매시장·상점)",
+    "9가":"병원·격리병원","9나":"병원·격리병원","9다":"병원·격리병원",
+    "10가":"학교 (유치원 제외)","10나":"학교 (유치원 제외)","10다":"학교 (유치원 제외)",
+    "10라":"교육원·연수원·연구시설 학원","10마":"도서관","10바":"도서관",
+    "11가":"어린이집·아동복지시설","11나":"노인복지시설 (경로당 포함)","11다":"사회복지시설 (장애인복지시설 포함)",
+    "12가":"수련시설 (청소년수련관·유스호스텔 등)","12나":"수련시설 (청소년수련관·유스호스텔 등)",
+    "12다":"수련시설 (청소년수련관·유스호스텔 등)","12라":"수련시설 (청소년수련관·유스호스텔 등)",
+    "13가":"운동시설 (체육관·운동장)","13나":"운동시설 (체육관·운동장)","13다":"운동시설 (체육관·운동장)",
+    "14가":"국가·지자체 청사","14나":"금융업소·사무소·오피스텔 등","3자":"금융업소·사무소·오피스텔 등",
     "15가":"일반·생활숙박시설 (모텔·레지던스)","15나":"일반·생활숙박시설 (모텔·레지던스)",
-    "17":"공장 (장애인고용의무 사업주)","2가":"아파트","2나":"연립주택","2다":"다세대주택","2라":"기숙사",
-    "20":"주차장","24다":"녹음실·촬영소 (별표1 미열거)","28":"장례식장"};
+    "17가":"공장 (장애인고용의무 사업주)","17":"공장 (장애인고용의무 사업주)",
+    "2가":"아파트","2나":"연립주택","2다":"다세대주택","2라":"기숙사",
+    "20가":"주차장","20나":"주차장","20다":"운전학원","20라":"운전학원",
+    "24가":"방송국 (방송통신시설)","24나":"전신전화국","24다":"녹음실·촬영소 (별표1 미열거)",
+    "23가":"교도소·구치소","23나":"교도소·구치소",
+    "26가":"화장시설·봉안당","26나":"화장시설·봉안당",
+    "27가":"야외음악당·야외극장·어린이회관","27나":"야외음악당·야외극장·어린이회관","27다":"휴게소",
+    "28가":"장례식장","28":"장례식장"};
 
   var d=p.data;
   function num(v){ var n=parseFloat(v); return isNaN(n)?null:n; }
   function fire(el,t){ if(el) el.dispatchEvent(new Event(t,{bubbles:true})); }
 
   var key=(d.uses&&((d.uses.targetUse&&d.uses.targetUse.key)||(d.uses.curUse&&d.uses.curUse.key)))||null;
+  var useTxt=(d.uses&&((d.uses.targetUse&&d.uses.targetUse.txt)||(d.uses.curUse&&d.uses.curUse.txt)))||'';
   var lbl=key?MAP[key]:null, idx=-1;
   if(lbl){ for(var i=0;i<RULES.length;i++){ if(RULES[i].label===lbl){ idx=i; break; } } }
+
+  // MAP에 없으면 용도 이름으로 자동 매칭 (백업 — 확실할 때만)
+  if(idx<0 && useTxt){
+    var name=useTxt.replace(/^\[[^\]]*\]\s*/,'').replace(/\(.*$/,'').trim();
+    var toks=name.split(/[·ㆍ,\/\s]+/).filter(function(t){ return t.length>=3; });
+    var best=-1, bestScore=0, tie=false;
+    for(var j=0;j<RULES.length;j++){
+      var L=RULES[j].label.replace(/\(.*$/,''), sc=0;
+      for(var k=0;k<toks.length;k++){ if(L.indexOf(toks[k])>=0) sc+=toks[k].length; }
+      if(sc>bestScore){ bestScore=sc; best=j; tie=false; }
+      else if(sc>0&&sc===bestScore){ tie=true; }
+    }
+    if(bestScore>=3 && !tie) idx=best;   // 3글자 이상 확실히 일치할 때만
+  }
   var sel=document.getElementById('useSel');
   if(sel&&idx>=0){ sel.value=String(idx); fire(sel,'change'); }
 
@@ -318,7 +350,8 @@ buildHead();buildBody('');buildSelect();
   if(idx>=0) bits.push('용도('+lbl+')');
   if(a!=null) bits.push('면적 '+a+'㎡');
   if(g!=null) bits.push('연면적 '+g+'㎡');
-  var tail = idx>=0 ? ' 자동 입력·판정 완료.' : ' — 이 용도는 별표1 매핑이 없어 <b>용도는 직접 선택</b>하세요.';
+  var tail = idx>=0 ? ' 자동 입력·판정 완료.'
+    : ' — <b>이 용도는 편의증진법 별표1에 열거되지 않았습니다.</b> 열거주의이므로 원칙적으로 편의시설 설치 대상이 아니지만, 실제 사용형태(공연장·업무·판매 등)로 볼 여지가 있으면 아래에서 <b>직접 선택</b>해 확인하세요.';
   showBan('작품의뢰서 <b>'+(p.reqno||reqParam)+'</b> 데이터 적용됨'+(bits.length?' — '+bits.join(' · '):'')+tail);
 })();
 </script><footer id="gridaCopyright" style="margin:44px auto 28px;max-width:920px;padding:16px 20px 0;border-top:1px solid #e5e5e5;text-align:center;font-size:11px;line-height:1.7;color:#9a9a9a;font-family:system-ui,-apple-system,'Malgun Gothic','Apple SD Gothic Neo',sans-serif;">
