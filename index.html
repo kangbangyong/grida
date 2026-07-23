@@ -251,8 +251,6 @@
 </head>
 <body>
 <div class="toolbar">
-  <span class="tb-title">GRIDA_4U</span>
-
   <span id="adminGate" class="tb-group">
     <input id="adminPass" class="tb-inp" type="password" placeholder="관리자 비번" style="width:92px;">
     <button class="tb-btn" onclick="unlockAdmin()">관리자 열기</button>
@@ -265,13 +263,13 @@
     <input id="findPhone" class="tb-inp" placeholder="연락처" style="width:82px;">
     <button class="tb-btn" onclick="findReq()">찾기</button>
     <span class="tb-sep">|</span>
-    <button class="tb-btn" onclick="makeClientLink()">고객용 링크 만들기</button>
+    <button class="tb-btn" onclick="makeClientLink()">고객용링크</button>
     <span class="tb-sep">|</span>
   </span>
 
   <span id="clientNote" class="tb-msg" style="display:none;"></span>
 
-  <button class="tb-btn" onclick="window.print()" style="margin-left:auto;">인쇄 · PDF</button>
+  <button class="tb-btn" onclick="window.print()" style="margin-left:auto;">인쇄</button>
   <button class="tb-btn primary" id="saveBtn" onclick="saveReq()">저장</button>
   <span id="tb-msg" class="tb-msg"></span>
 </div>
