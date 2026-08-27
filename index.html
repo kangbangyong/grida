@@ -1268,6 +1268,12 @@
   const MU_SET=new Set(["3나","3다","3라","4가","4사","4아","4자","4카","4파","4거","4더","4러","5가","10라","13가","13다","15다","16나"]);
   const MU_SUB={"3나":"음식점(100㎡ 이상 등, 1층·지상 직접출입은 제외)","3다":"찜질방(맥반석·황토 등, 수용 100명 이상)","3라":"산후조리원·안마원","4가":"비디오물감상실·소극장·복합영상물제공업","4사":"게임제공업·PC방·복합유통게임(1층·지상 직접출입은 제외)","4아":"음식점(100㎡ 이상, 지하 66㎡ 이상 등)","4자":"음식점(100㎡ 이상, 지하 66㎡ 이상 등)","4카":"학원(수용인원 300명 이상 등)","4파":"실내 가상체험 체육시설업(스크린골프 등)만 — 실외 타석형 골프연습장은 제외","4거":"고시원업","4더":"단란주점","4러":"안마시술소·노래연습장","5가":"영화상영관·공연장","10라":"학원(수용인원 300명 이상 등)","13가":"실내 가상체험 체육시설업(스크린골프 등)만","13다":"실내 권총사격장","15다":"고시원업","16나":"유흥주점"};
   const MU_MUSTREG=new Set(["3다","3라","4가","4사","4카","4파","4더","4러","7다","16가","16나"]); // 임의변경 제외(대장변경 필수)
+  // 묶음 코드 중 일부 업종만 §14④ 단서 예외 — 별칭으로 세분
+  const MUSTREG_SUB={ "3다": /목욕|찜질|사우나/, "3라": /산후조리|안마/ };
+  function bizTxtOf(slot){ const s=usePick[slot]; const inp=gv(slot==="curUse"?"curBizInput":"targetBizInput");
+    return (((slot==="curUse"?usePick.curBiz:usePick.targetBiz)||[])[2]||"")+" "+(inp||""); }
+  function mustRegSub(code, bizTxt){ if(!MU_MUSTREG.has(code)) return false;
+    const rx=MUSTREG_SUB[code]; if(!rx) return true; if(!bizTxt.trim()) return true; return rx.test(bizTxt); }
   const MU_FOOD=new Set(["3나","4아","4자"]), MU_GAME=new Set(["4사"]), MU_ACADEMY=new Set(["4카","10라"]);
   const MU_ALWAYS=new Set(["4러","4더","4거","15다","16나"]); // 면적·층 무관 해당
   const MB_HO={"5":"문화 및 집회시설","6":"종교시설","7":"판매시설"};
@@ -1283,12 +1289,27 @@
     const H=b=>`<div class="scope-line"><span class="scope-nm"><span class="scope-no">1</span>용도변경</span>${b}</div>`;
     let b,dt;
     if(!cu||!tu){ b=bdg("w","대기"); dt="§2에서 현재·희망 용도를 입력하면 자동 판정됩니다."; }
-    else if(uKey(cu)===uKey(tu)){ b=bdg("n","해당없음"); dt="현재와 희망 용도가 같습니다 — 용도변경 없음."; }
+    else if(uKey(cu)===uKey(tu)){
+      // 같은 호 코드. 묶음 코드(3다·3라)면 별칭까지 같아야 '완전 동일'
+      const code=uKey(tu), mixed=MUSTREG_SUB[code];
+      const cB=bizTxtOf("curUse").trim(), tB=bizTxtOf("targetUse").trim();
+      if(mixed && cB && tB && cB!==tB){
+        // 같은 코드지만 다른 업종 (예: 의원→산후조리원)
+        if(mustRegSub(code,tB)){ b=bdg("n","대장변경");
+          dt=`같은 호 안이지만 <b>${tB}</b>은 임의변경 제외 업종이라 <b>건축물대장 기재변경 신청</b>이 필요합니다. (시행령 §14④ 단서)`; }
+        else { b=bdg("n","임의변경");
+          dt=`같은 호 안의 업종 변경(<b>${cB}→${tB}</b>) — 건축물대장 변경 없이 가능(임의변경). 단 <b>개별 인허가는 별도</b>(의원↔한의원=의료기관 개설신고 등). (시행령 §14④)`; }
+      } else {
+        b=bdg("n","해당없음"); dt="현재와 희망이 같은 세부용도입니다 — 건축법상 용도변경 없음. (개별 영업 인허가는 별도 확인)";
+      }
+    }
     else { const a=effGroup(cu), x=effGroup(tu);
-      if(a===x){ b=bdg("n","대장변경");
-        dt=MU_MUSTREG.has(uKey(tu))
-          ? `같은 시설군 내 이동이지만 <b>${tu[2]}</b>은 임의변경 제외 용도라 <b>건축물대장 기재변경 신청</b>이 필요합니다. (시행령 §14④ 단서)`
-          : "같은 시설군 안에서의 이동 — 허가·신고 대상 아님(대장 기재변경/임의변경). (건축법 §19③)"; }
+      if(a===x){
+        const tB=bizTxtOf("targetUse").trim();
+        if(mustRegSub(uKey(tu),tB)){ b=bdg("n","대장변경");
+          dt=`같은 시설군 내 이동이지만 <b>${tB||tu[2]}</b>은 임의변경 제외 용도라 <b>건축물대장 기재변경 신청</b>이 필요합니다. (시행령 §14④ 단서)`; }
+        else { b=bdg("n","임의변경");
+          dt="같은 시설군 안에서의 이동 — 허가·신고 대상 아님(임의변경). 개별 영업 인허가는 별도. (건축법 §19③·시행령 §14④)"; } }
       else if(x<a){ b=bdg("r","허가"); dt=`하위→상위 시설군(${GRP_SHORT[a]}→${GRP_SHORT[x]}) — <b>용도변경 허가</b> 대상. (건축법 §19②1호)`; }
       else { b=bdg("c","신고"); dt=`상위→하위 시설군(${GRP_SHORT[a]}→${GRP_SHORT[x]}) — <b>용도변경 신고</b> 대상. (건축법 §19②2호)`; }
     }
@@ -1332,6 +1353,18 @@
     if(!tu){ out(bdg("w","대기"),"§2에서 희망 업종을 입력하면 자동 판정됩니다."); return; }
     const key=uKey(tu);
     if(!MU_SET.has(key)){ out(bdg("n","해당없음"),"다중이용업 목록에 없는 업종입니다."); return; }
+
+    // 3라(의원·치과·한의원·조산원·산후조리원·안마원)는 한 코드에 여러 업종이 묶임 —
+    // 이 중 다중이용업은 산후조리원·안마원뿐. 의원·치과·한의원·조산원은 아님.
+    // 입력한 업종 별칭(targetBiz)/용도텍스트로 실제 업종을 가려낸다.
+    if(key==="3라"){
+      const bizTxt=((usePick.targetBiz&&(usePick.targetBiz[2]||""))||"")+" "+(gv("targetBizInput")||"");
+      const isMU=/산후조리|안마/.test(bizTxt);
+      if(!isMU){ out(bdg("n","해당없음"),"의원·치과·한의원·조산원은 다중이용업이 아닙니다. (3라 중 다중이용업은 산후조리원·안마원만 해당)"); return; }
+      out(bdg("c","확인필요"),"산후조리원·안마원 — 다중이용업일 수 있습니다. 소방서 ‘안전시설등 완비증명서’ 확인.");
+      return;
+    }
+
     const sub=MU_SUB[key]||tu[2];
     const isBase=val("floorType")==="지하", is1F=val("floorType")==="지상"&&nn("floorNo")===1, area=nn("area");
     const excSeg=`<div class="scope-seg" id="muExcSeg"><button data-e="exempt">지상과 직접 통하는 출입구 + 창 충분</button><button data-e="no">아니오(지하·무창·안쪽 등)</button></div>`;
