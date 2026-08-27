@@ -1143,8 +1143,11 @@
     meta.textContent="접수 "+total+"건 · "+(total?(from+1)+"–"+(from+slice.length):"0");
     if(!total){ body.innerHTML='<div style="padding:24px;text-align:center;color:var(--sub);font-size:12px;border:1px solid var(--line);border-radius:10px;">접수된 의뢰서가 없습니다.</div>'; pager.innerHTML=""; return; }
     body.innerHTML=slice.map(it=>{
-      const uses=it.uses||{}, tgt=(uses.targetUse&&(uses.targetUse.txt||uses.targetUse.key))||"";
-      const nm=it.clientName||"", desc=[nm,tgt].filter(Boolean).join(" · ")||"—";
+      const uses=it.uses||{};
+      const biz=(uses.targetBiz&&uses.targetBiz.txt)||(uses.curBiz&&uses.curBiz.txt)||"";
+      const tgt=(uses.targetUse&&(uses.targetUse.txt||uses.targetUse.key))||"";
+      const nm=it.clientName||"";
+      const desc=[nm,biz,tgt].filter(Boolean).join(" · ")||"—";
       const col=STATUS_COLORS[it.status]||"#64748b";
       return '<div style="display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin-bottom:8px;">'
         +'<div style="flex:1;min-width:0;cursor:pointer;" onclick="openFromList(\''+it.reqno+'\')">'
